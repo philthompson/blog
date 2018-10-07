@@ -48,7 +48,7 @@ do
 
 	ARTICLE_YEAR="$(echo "${ARTICLE_DATE}" | cut -d '-' -f 1)"
 
-	echo "<a href=\"${ARTICLE_YEAR}/index.html\">${ARTICLE_YEAR}</a>" >> "${OUT_DIR}/archive.html"
+	echo "<a href=\"${ARTICLE_YEAR}/\">${ARTICLE_YEAR}</a>" >> "${OUT_DIR}/archive.html"
 
 	mkdir -p "${OUT_DIR}/${ARTICLE_YEAR}"
 
