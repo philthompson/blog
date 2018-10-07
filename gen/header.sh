@@ -26,12 +26,12 @@ cat << xxxxxEOFxxxxx
 	<body>
 		<div class="wrap">
 			<header>
-				<a href="${SITE_ROOT_REL}/index.html" class="logo">
+				<a href="${SITE_ROOT_REL}/" class="logo">
 					<img src="${SITE_ROOT_REL}/img/logo.png">
 				</a>
 				<ul class="nav">
 					<li class="nav-item">
-						<a href="${SITE_ROOT_REL}/index.html" target="_self">BLOG</a>
+						<a href="${SITE_ROOT_REL}/" target="_self">BLOG</a>
 					</li>
 					<li class="nav-item">
 						<a href="${SITE_ROOT_REL}/archive.html" target="_self">ARCHIVE</a>
