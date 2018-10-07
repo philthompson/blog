@@ -21,15 +21,16 @@ cp -rp "${STATIC_DIR}"/* "${OUT_DIR}/"
 
 RECENT_ARTICLES="$(ls -1 "${GEN_DIR}/articles" | sort -r | head -n 5)"
 
-"${GEN_DIR}/header.sh" Home . > "${OUT_DIR}/index.html"
+"${GEN_DIR}/header.sh" Home '.' "philthompson, phil, thompson, personal, blog" "Personal blog home — philthompson.me" 3 > "${OUT_DIR}/index.html"
 
 find "${GEN_DIR}/articles" -type f | sort -r | while read ARTICLE_MARKDOWN_FILE
 do
-	ARTICLE_METADATA="$(grep -B 99 '^\[//\]: # (gen-meta-end)' "${ARTICLE_MARKDOWN_FILE}" | grep -A 99 '^\[//\]: # (gen-meta-start)')"
+	ARTICLE_METADATA="$(grep -B 99 '^\[//\]: # (gen-meta-end)' "${ARTICLE_MARKDOWN_FILE}")"
 
-	ARTICLE_TITLE="$(echo "${ARTICLE_METADATA}" | grep -m 1 gen-title: | sed 's$^\[//\]: # (gen-title: $$' | sed 's/)$//')"
+	ARTICLE_TITLE="$(echo "${ARTICLE_METADATA}" | grep -m 1 gen-title: | cut -d ' ' -f 4- | sed 's/)$//')"
 	ARTICLE_TITLE_URL="$(echo "${ARTICLE_METADATA}" | grep -m 1 gen-title-url: | cut -d ' ' -f 4- | sed 's/)$//')"
-	#ARTICLE_DATE="$(echo "${ARTICLE_METADATA}" | grep -m 1 gen-date: | sed 's$^\[//\]: # (gen-date: $$' | sed 's/)$//')"
+	ARTICLE_KEYWORDS="$(echo "${ARTICLE_METADATA}" | grep -m 1 gen-keywords: | cut -d ' ' -f 4- | sed 's/)$//')"
+	ARTICLE_DESCRIPTION="$(echo "${ARTICLE_METADATA}" | grep -m 1 gen-description: | cut -d ' ' -f 4- | sed 's/)$//')"
 	ARTICLE_DATE="$(basename "${ARTICLE_MARKDOWN_FILE}" | cut -d . -f 1)"
 
 	ARTICLE_DATE_REFORMAT="$(echo "${ARTICLE_DATE}" | cut -d '-' -f 1-3 | \
@@ -54,7 +55,7 @@ do
 
 	if [[ ! -s "${OUT_DIR}/${ARTICLE_YEAR}/index.html" ]]
 	then
-		"${GEN_DIR}/header.sh" "Archive — ${ARTICLE_YEAR}" .. > "${OUT_DIR}/${ARTICLE_YEAR}/index.html"
+		"${GEN_DIR}/header.sh" "Archive — ${ARTICLE_YEAR}" '..' "blog, archive, history, year, ${ARTICLE_YEAR}" "Personal blog archive for ${ARTICLE_YEAR} — philthompson.me" 7 > "${OUT_DIR}/${ARTICLE_YEAR}/index.html"
 	fi
 
 	echo "<div class=\"article-title\">" >> "${OUT_DIR}/${ARTICLE_YEAR}/index.html"
@@ -78,6 +79,8 @@ do
 		"${ARTICLE_MARKDOWN_FILE}" \
 		"${ARTICLE_TITLE}" \
 		"${ARTICLE_TITLE_URL}" \
+		"${ARTICLE_KEYWORDS}" \
+		"${ARTICLE_DESCRIPTION}" \
 		"${ARTICLE_DATE_REFORMAT}" \
 		"${PREV_MARKDOWN_FILE_YEAR}/${PREV_TITLE_URL}.html" \
 		"${NEXT_MARKDOWN_FILE_YEAR}/${NEXT_TITLE_URL}.html" \
@@ -112,8 +115,8 @@ do
 	echo "<div class=\"article-title\">${LINE}</div>"
 done >> "${OUT_DIR}/tmp.html"
 
-"${GEN_DIR}/header.sh" Archive . > "${OUT_DIR}/archive.html"
+"${GEN_DIR}/header.sh" Archive '.' "blog, archive, history, contents" "Personal blog archive — philthompson.me" 30 > "${OUT_DIR}/archive.html"
 cat "${OUT_DIR}/tmp.html" >> "${OUT_DIR}/archive.html"
-"${GEN_DIR}/footer.sh" Archive . >> "${OUT_DIR}/archive.html"
+"${GEN_DIR}/footer.sh" Archive '.' >> "${OUT_DIR}/archive.html"
 
 rm "${OUT_DIR}/tmp.html"

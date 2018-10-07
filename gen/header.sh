@@ -2,6 +2,9 @@
 
 PAGE_TITLE="${1}"
 SITE_ROOT_REL="${2}"
+PAGE_KEYWORDS="${3}"
+PAGE_DESCRIPTION="${4}"
+PAGE_REVISIT_AFTER_DAYS="${5}"
 
 cat << xxxxxEOFxxxxx
 <!DOCTYPE html>
@@ -9,11 +12,16 @@ cat << xxxxxEOFxxxxx
 	<head>
 		<title>${PAGE_TITLE} &mdash; philthompson.me</title>
 		<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+		<meta http-equiv="content-language" content="en">
+		<meta name="description" content="${PAGE_DESCRIPTION}">
 		<meta charset="utf-8">
 		<meta name="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="keywords" content="${PAGE_KEYWORDS}">
+		<meta name="robots" content="all">
+		<meta name="revisit-after" content="${PAGE_REVISIT_AFTER_DAYS} days">
 		<link rel="apple-touch-icon-precomposed" sizes="144×144" href="${SITE_ROOT_REL}/icon-ipad-144x144.png">
-		<link rel="apple-touch-icon-precomposed" sizes="114×114" href="${SITE_ROOT_REL}/icon-iphone-114x144.png">
+		<link rel="apple-touch-icon-precomposed" sizes="114×114" href="${SITE_ROOT_REL}/icon-iphone-114x114.png">
 		<link rel="apple-touch-icon-precomposed" href="${SITE_ROOT_REL}/icon-default-57x57.png">
 		<link rel="icon" type="image/png" href="${SITE_ROOT_REL}/favicon-16x16.png" sizes="16x16">
 		<link rel="icon" type="image/png" href="${SITE_ROOT_REL}/favicon-192x192.png" sizes="192x192">
