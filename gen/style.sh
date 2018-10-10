@@ -23,6 +23,10 @@ body {
 	font-family: 'Helvetica Neue', Arial, sans-serif;
 }
 
+h1, h2, h3, .article-title {
+	line-height: 1.3;
+}
+
 .wrap {
     max-width: 42rem;
     margin: 0 auto;
@@ -78,6 +82,38 @@ header .nav .nav-item {
 .article-info {
 	color: ${CLR_TEXT_ALT};
 	margin: 1.2rem 0;
+}
+
+img {
+	padding-top: 0.4rem;
+}
+
+.width-resp-50-100 {
+	max-width: 100%;
+}
+
+@media screen and (min-width: 700px) {
+	.width-resp-50-100 {
+		padding-left: 2%;
+		padding-right: 2%;
+		max-width: 45%;
+	}
+}
+
+.width-100 {
+	max-width: 100%;
+}
+
+.width-50 {
+	padding-left: 2%;
+	padding-right: 2%;
+	max-width: 45%;
+}
+
+.width-25 {
+	padding-left: 2%;
+	padding-right: 2%;
+	max-width: 20%;
 }
 
 code, pre {
