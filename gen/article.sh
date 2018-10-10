@@ -31,8 +31,26 @@ cat << xxxxxEOFxxxxx
 			</section>
 			<footer>
 				<div class="btns">
+xxxxxEOFxxxxx
+
+
+ARTICLE_YEAR="$(basename "${ARTICLE_MARKDOWN_FILE}" | cut -c 1-4)"
+
+if [[ "${ARTICLE_YEAR}/${ARTICLE_TITLE_URL}.html" != "${PREV_ARTICLE_URL}" ]]
+then
+cat << xxxxxEOFxxxxx
 					<a class="btn" href="${SITE_ROOT_REL}/${PREV_ARTICLE_URL}">Previous</a>
+xxxxxEOFxxxxx
+fi
+
+if [[ "${ARTICLE_YEAR}/${ARTICLE_TITLE_URL}.html" != "${NEXT_ARTICLE_URL}" ]]
+then
+cat << xxxxxEOFxxxxx
 					<a class="btn" href="${SITE_ROOT_REL}/${NEXT_ARTICLE_URL}">Next</a>
+xxxxxEOFxxxxx
+fi
+
+cat << xxxxxEOFxxxxx
 				</div>
 xxxxxEOFxxxxx
 
