@@ -117,15 +117,14 @@ img {
 }
 
 code, pre {
-	font-size: 0.8rem;
+	font-size: 0.9rem;
 }
 
 pre {
 	overflow-x: auto;
-	background-color: ${CLR_TWO_DARK};
-	color: ${CLR_PAGE_BG};
+	background-color: ${CLR_LINK_LINE};
 	padding: 1.0rem;
-	line-height: 1.2rem;
+	line-height: 1.3;
 }
 
 p code {
