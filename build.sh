@@ -14,6 +14,8 @@ echo "${OUT_DIR}"
 # make new build output dir
 mkdir -p "${OUT_DIR}"
 
+mkdir -p "${OUT_DIR}/archive"
+
 # put static files in place
 cp -rp "${STATIC_DIR}"/* "${OUT_DIR}/"
 
@@ -49,7 +51,7 @@ do
 
 	ARTICLE_YEAR="$(echo "${ARTICLE_DATE}" | cut -d '-' -f 1)"
 
-	echo "<a href=\"${ARTICLE_YEAR}/\">${ARTICLE_YEAR}</a>" >> "${OUT_DIR}/archive.html"
+	echo "<a href=\"../${ARTICLE_YEAR}/\">${ARTICLE_YEAR}</a>" >> "${OUT_DIR}/archive/index.html"
 
 	mkdir -p "${OUT_DIR}/${ARTICLE_YEAR}"
 
@@ -110,13 +112,17 @@ do
 	"${GEN_DIR}/footer.sh" "ignoreme" .. >> "${YEAR_FILE}"
 done
 
-sort -u "${OUT_DIR}/archive.html" | while read LINE
+sort -u "${OUT_DIR}/archive/index.html" | while read LINE
 do
 	echo "<div class=\"article-title\">${LINE}</div>"
-done >> "${OUT_DIR}/tmp.html"
+done >> "${OUT_DIR}/archive/tmp.html"
 
-"${GEN_DIR}/header.sh" Archive '.' "blog, archive, history, contents" "Personal blog archive — philthompson.me" 30 > "${OUT_DIR}/archive.html"
-cat "${OUT_DIR}/tmp.html" >> "${OUT_DIR}/archive.html"
-"${GEN_DIR}/footer.sh" Archive '.' >> "${OUT_DIR}/archive.html"
+"${GEN_DIR}/header.sh" Archive '..' "blog, archive, history, contents" "Personal blog archive — philthompson.me" 30 > "${OUT_DIR}/archive/index.html"
+cat "${OUT_DIR}/archive/tmp.html" >> "${OUT_DIR}/archive/index.html"
+"${GEN_DIR}/footer.sh" Archive '..' >> "${OUT_DIR}/archive/index.html"
+rm "${OUT_DIR}/archive/tmp.html"
 
-rm "${OUT_DIR}/tmp.html"
+mkdir -p "${OUT_DIR}/about"
+"${GEN_DIR}/header.sh" About '..' "blog, archive, about, author" "About — philthompson.me" 30 > "${OUT_DIR}/about/index.html"
+perl "${MARKDOWN_PERL_SCRIPT}" --html4tags "${GEN_DIR}/about.md" >> "${OUT_DIR}/about/index.html"
+"${GEN_DIR}/footer.sh" Arbout '..' >> "${OUT_DIR}/about/index.html"

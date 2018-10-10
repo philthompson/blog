@@ -100,6 +100,18 @@ img {
 	}
 }
 
+.width-resp-25-40 {
+	max-width: 40%;
+}
+
+@media screen and (min-width: 700px) {
+	.width-resp-25-40 {
+		padding-left: 2%;
+		padding-right: 2%;
+		max-width: 20%;
+	}
+}
+
 .width-100 {
 	max-width: 100%;
 }

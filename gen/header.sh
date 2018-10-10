@@ -39,13 +39,13 @@ cat << xxxxxEOFxxxxx
 				</a>
 				<ul class="nav">
 					<li class="nav-item">
-						<a href="${SITE_ROOT_REL}/" target="_self">BLOG</a>
+						<a href="${SITE_ROOT_REL}/about" target="_self">About</a>
 					</li>
 					<li class="nav-item">
-						<a href="${SITE_ROOT_REL}/archive.html" target="_self">ARCHIVE</a>
+						<a href="${SITE_ROOT_REL}/archive" target="_self">Archive</a>
 					</li>
 					<li class="nav-item">
-						<a href="https://github.com/philthompson" target="_blank">GITHUB</a>
+						<a href="https://github.com/philthompson" target="_blank">GitHub</a>
 					</li>
 				</ul>
 			</header>
