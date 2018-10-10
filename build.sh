@@ -105,6 +105,12 @@ do
 	fi >> "${OUT_DIR}/index.html"
 done
 
+LAST_YEAR="$(find "${GEN_DIR}/articles" -type f | sort -r | head -n 1)"
+LAST_YEAR="$(basename "${LAST_YEAR}" | cut -c 1-4)"
+echo "	<section class=\"container\">"  >> "${OUT_DIR}/index.html"
+echo "		<h1 class=\"article-title\"><a href=\"./${LAST_YEAR}/\">All ${LAST_YEAR} posts</a></h1>" >> "${OUT_DIR}/index.html"
+echo "	</section>" >> "${OUT_DIR}/index.html"
+
 "${GEN_DIR}/footer.sh" Home . >> "${OUT_DIR}/index.html"
 
 ls -1 "${OUT_DIR}"/20*/index.html | while read YEAR_FILE
