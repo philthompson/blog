@@ -92,7 +92,7 @@ do
 
 	if [[ ! -z "$(echo "${RECENT_ARTICLES}" | grep "${ARTICLE_DATE}")" ]]
 	then
-		echo "	<section class=\"container\">"
+		echo "	<div class=\"container\">"
 		echo "		<div class=\"article-info\">${ARTICLE_DATE_REFORMAT}</div>"
 		echo "		<h1 class=\"article-title\"><a href=\"./${ARTICLE_YEAR}/${ARTICLE_TITLE_URL}.html\">${ARTICLE_TITLE}</a></h1>"
 
@@ -101,15 +101,15 @@ do
 
 
 		echo "      <hr />"
-		echo "	</section>"
+		echo "	</div>"
 	fi >> "${OUT_DIR}/index.html"
 done
 
 LAST_YEAR="$(find "${GEN_DIR}/articles" -type f | sort -r | head -n 1)"
 LAST_YEAR="$(basename "${LAST_YEAR}" | cut -c 1-4)"
-echo "	<section class=\"container\">"  >> "${OUT_DIR}/index.html"
+echo "	<div class=\"container\">"  >> "${OUT_DIR}/index.html"
 echo "		<h1 class=\"article-title\"><a href=\"./${LAST_YEAR}/\">All ${LAST_YEAR} posts</a></h1>" >> "${OUT_DIR}/index.html"
-echo "	</section>" >> "${OUT_DIR}/index.html"
+echo "	</div>" >> "${OUT_DIR}/index.html"
 
 "${GEN_DIR}/footer.sh" Home . >> "${OUT_DIR}/index.html"
 

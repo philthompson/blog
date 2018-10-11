@@ -20,7 +20,7 @@ SITE_ROOT_REL="${12}"
 "${HEADER_SCRIPT}" "${ARTICLE_TITLE}" "${SITE_ROOT_REL}" "${ARTICLE_KEYWORDS}" "${ARTICLE_DESCRIPTION}" 14
 
 cat << xxxxxEOFxxxxx
-			<section class="container">
+			<div class="container">
 				<h1 class="article-title">${ARTICLE_TITLE}</h1>
 				<div class="article-info">${ARTICLE_DATE}</div>
 xxxxxEOFxxxxx
@@ -28,7 +28,7 @@ xxxxxEOFxxxxx
 perl "${MARKDOWN_PERL_SCRIPT}" --html4tags "${ARTICLE_MARKDOWN_FILE}" | grep -v 'more://'
 
 cat << xxxxxEOFxxxxx
-			</section>
+			</div>
 			<footer>
 				<div class="btns">
 xxxxxEOFxxxxx
