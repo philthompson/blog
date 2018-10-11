@@ -96,9 +96,13 @@ do
 		echo "		<div class=\"article-info\">${ARTICLE_DATE_REFORMAT}</div>"
 		echo "		<h1 class=\"article-title\"><a href=\"./${ARTICLE_YEAR}/${ARTICLE_TITLE_URL}.html\">${ARTICLE_TITLE}</a></h1>"
 
-		perl "${MARKDOWN_PERL_SCRIPT}" --html4tags "${ARTICLE_MARKDOWN_FILE}" | grep -B 999 'more://' | grep -v 'more://' | sed 's#src="../#src="./#g'
-		echo "<a href=\"./${ARTICLE_YEAR}/${ARTICLE_TITLE_URL}.html\">continue reading...</a>"
-
+		if [[ -z "$(grep -m 1 "more://" "${ARTICLE_MARKDOWN_FILE}")" ]]
+		then
+			perl "${MARKDOWN_PERL_SCRIPT}" --html4tags "${ARTICLE_MARKDOWN_FILE}" | sed 's#src="../#src="./#g' | sed 's#href="../#href="./#g'
+		else
+			perl "${MARKDOWN_PERL_SCRIPT}" --html4tags "${ARTICLE_MARKDOWN_FILE}" | grep -B 999 'more://' | grep -v 'more://' | sed 's#src="../#src="./#g' | sed 's#href="../#href="./#g'
+			echo "<a href=\"./${ARTICLE_YEAR}/${ARTICLE_TITLE_URL}.html\">continue reading...</a>"
+		fi
 
 		echo "      <hr />"
 		echo "	</div>"
