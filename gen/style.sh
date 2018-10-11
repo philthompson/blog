@@ -20,7 +20,7 @@ body {
 	background-color: ${CLR_PAGE_BG};
 	font-size: 1.0rem;
 	line-height: 1.6;
-	font-family: 'Helvetica Neue', Arial, sans-serif;
+	font-family: system-ui, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"
 }
 
 h1, h2, h3, .article-title {
