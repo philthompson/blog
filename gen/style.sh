@@ -128,6 +128,12 @@ img {
 	max-width: 20%;
 }
 
+.center-block {
+	margin-left: auto;
+	margin-right: auto;
+	display: block;
+}
+
 code, pre {
 	font-size: 0.9rem;
 }
@@ -139,7 +145,7 @@ pre {
 	line-height: 1.3;
 }
 
-p code {
+p code, ul code, ol code {
 	background-color: ${CLR_ONE_DARK};
 	color: ${CLR_ONE_LIGHT};
 	margin: 0 0.1rem;
