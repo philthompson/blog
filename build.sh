@@ -127,12 +127,27 @@ do
 	echo "<div class=\"article-title\">${LINE}</div>"
 done >> "${OUT_DIR}/archive/tmp.html"
 
-"${GEN_DIR}/header.sh" Archive '..' "blog, archive, history, contents" "Personal blog archive — philthompson.me" 30 > "${OUT_DIR}/archive/index.html"
+"${GEN_DIR}/header.sh" 'Archive' '..' "blog, archive, history, contents" "Personal blog archive — philthompson.me" 30 > "${OUT_DIR}/archive/index.html"
 cat "${OUT_DIR}/archive/tmp.html" >> "${OUT_DIR}/archive/index.html"
-"${GEN_DIR}/footer.sh" Archive '..' >> "${OUT_DIR}/archive/index.html"
+"${GEN_DIR}/footer.sh" 'Archive' '..' >> "${OUT_DIR}/archive/index.html"
 rm "${OUT_DIR}/archive/tmp.html"
 
 mkdir -p "${OUT_DIR}/about"
-"${GEN_DIR}/header.sh" About '..' "blog, archive, about, author" "About — philthompson.me" 30 > "${OUT_DIR}/about/index.html"
+"${GEN_DIR}/header.sh" 'About' '..' "blog, about, author" "About — philthompson.me" 30 > "${OUT_DIR}/about/index.html"
 perl "${MARKDOWN_PERL_SCRIPT}" --html4tags "${GEN_DIR}/about.md" >> "${OUT_DIR}/about/index.html"
-"${GEN_DIR}/footer.sh" Arbout '..' >> "${OUT_DIR}/about/index.html"
+"${GEN_DIR}/footer.sh" 'About' '..' >> "${OUT_DIR}/about/index.html"
+
+mkdir -p "${OUT_DIR}/terms"
+"${GEN_DIR}/header.sh" 'Terms and Conditions' '..' "blog, terms, conditions, use, privacy, policy, disclaimer" "Terms and Conditions — philthompson.me" 30 > "${OUT_DIR}/terms/index.html"
+perl "${MARKDOWN_PERL_SCRIPT}" --html4tags "${GEN_DIR}/terms.md" >> "${OUT_DIR}/terms/index.html"
+"${GEN_DIR}/footer.sh" 'Terms and Conditions' '..' >> "${OUT_DIR}/terms/index.html"
+
+mkdir -p "${OUT_DIR}/privacy"
+"${GEN_DIR}/header.sh" 'Privacy Policy' '..' "blog, privacy, policy" "Privacy Policy — philthompson.me" 30 > "${OUT_DIR}/privacy/index.html"
+perl "${MARKDOWN_PERL_SCRIPT}" --html4tags "${GEN_DIR}/privacy.md" >> "${OUT_DIR}/privacy/index.html"
+"${GEN_DIR}/footer.sh" 'Privacy Policy' '..' >> "${OUT_DIR}/privacy/index.html"
+
+mkdir -p "${OUT_DIR}/disclaimer"
+"${GEN_DIR}/header.sh" 'Disclaimer' '..' "blog, disclaimer" "Disclaimer — philthompson.me" 30 > "${OUT_DIR}/disclaimer/index.html"
+perl "${MARKDOWN_PERL_SCRIPT}" --html4tags "${GEN_DIR}/disclaimer.md" >> "${OUT_DIR}/disclaimer/index.html"
+"${GEN_DIR}/footer.sh" 'Disclaimer' '..' >> "${OUT_DIR}/disclaimer/index.html"
