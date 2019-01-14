@@ -25,7 +25,7 @@ cat << xxxxxEOFxxxxx
 				<div class="article-info">${ARTICLE_DATE}</div>
 xxxxxEOFxxxxx
 
-perl "${MARKDOWN_PERL_SCRIPT}" --html4tags "${ARTICLE_MARKDOWN_FILE}" | grep -v 'more://'
+perl "${MARKDOWN_PERL_SCRIPT}" --html4tags "${ARTICLE_MARKDOWN_FILE}" | grep -v 'more://' | sed "s/\${SITE_ROOT_REL}/${SITE_ROOT_REL}/g" | sed "s#\${THIS_ARTICLE}#./${ARTICLE_TITLE_URL}.html#g"
 
 cat << xxxxxEOFxxxxx
 			</div>

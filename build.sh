@@ -98,9 +98,9 @@ do
 
 		if [[ -z "$(grep -m 1 "more://" "${ARTICLE_MARKDOWN_FILE}")" ]]
 		then
-			perl "${MARKDOWN_PERL_SCRIPT}" --html4tags "${ARTICLE_MARKDOWN_FILE}" | sed 's#src="../#src="./#g' | sed 's#href="../#href="./#g'
+			perl "${MARKDOWN_PERL_SCRIPT}" --html4tags "${ARTICLE_MARKDOWN_FILE}" | sed 's/${SITE_ROOT_REL}/./g' | sed "s#\${THIS_ARTICLE}#./${ARTICLE_YEAR}/${ARTICLE_TITLE_URL}.html#g"
 		else
-			perl "${MARKDOWN_PERL_SCRIPT}" --html4tags "${ARTICLE_MARKDOWN_FILE}" | grep -B 999 'more://' | grep -v 'more://' | sed 's#src="../#src="./#g' | sed 's#href="../#href="./#g'
+			perl "${MARKDOWN_PERL_SCRIPT}" --html4tags "${ARTICLE_MARKDOWN_FILE}" | grep -B 999 'more://' | grep -v 'more://' | sed 's/${SITE_ROOT_REL}/./g' | sed "s#\${THIS_ARTICLE}#./${ARTICLE_YEAR}/${ARTICLE_TITLE_URL}.html#g"
 			echo "<a href=\"./${ARTICLE_YEAR}/${ARTICLE_TITLE_URL}.html\">continue reading...</a>"
 		fi
 
@@ -132,6 +132,7 @@ cat "${OUT_DIR}/archive/tmp.html" >> "${OUT_DIR}/archive/index.html"
 "${GEN_DIR}/footer.sh" 'Archive' '..' >> "${OUT_DIR}/archive/index.html"
 rm "${OUT_DIR}/archive/tmp.html"
 
+# render markdown files in their static locations, and add their headers and footers
 find "${GEN_DIR}/static" -type f -name "*.md" | sort -r | while read PAGE_MARKDOWN_FILE
 do
 	PAGE_DIR="$(dirname "${PAGE_MARKDOWN_FILE}" | sed 's#^.*static/*##')"
@@ -151,7 +152,7 @@ do
 	PAGE_DESCRIPTION="$(echo "${PAGE_METADATA}" | grep -m 1 gen-description: | cut -d ' ' -f 4- | sed 's/)$//')"
 
 	"${GEN_DIR}/header.sh" "${PAGE_TITLE}" "${PAGE_DIR_REL_ROOT}" "${PAGE_KEYWORDS}" "${PAGE_DESCRIPTION}" 30 > "${OUT_DIR}/${PAGE_HTML_FILE}"
-	perl "${MARKDOWN_PERL_SCRIPT}" --html4tags "${PAGE_MARKDOWN_FILE}" >> "${OUT_DIR}/${PAGE_HTML_FILE}"
+	perl "${MARKDOWN_PERL_SCRIPT}" --html4tags "${PAGE_MARKDOWN_FILE}" | sed 's/${SITE_ROOT_REL}/../g' >> "${OUT_DIR}/${PAGE_HTML_FILE}"
 	"${GEN_DIR}/footer.sh" "${PAGE_TITLE}" "${PAGE_DIR_REL_ROOT}" >> "${OUT_DIR}/${PAGE_HTML_FILE}"
 
 	rm "${OUT_DIR}/${PAGE_DIR}/$(basename "${PAGE_MARKDOWN_FILE}")"
