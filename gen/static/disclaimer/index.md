@@ -1,4 +1,12 @@
 
+[//]: # (gen-title: Disclaimer)
+
+[//]: # (gen-keywords: blog, disclaimer)
+
+[//]: # (gen-description: Disclaimer — philthompson.me")
+
+[//]: # (gen-meta-end)
+
 ## Disclaimer
 
 By visiting any part of philthompson.me (the "Site") you agree to this Disclaimer and also this Site's [Terms and Conditions for Use](../terms) and this Site's [Privacy Policy](../privacy).

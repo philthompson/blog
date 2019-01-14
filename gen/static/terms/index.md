@@ -1,4 +1,12 @@
 
+[//]: # (gen-title: Terms and Conditions)
+
+[//]: # (gen-keywords: blog, terms, conditions, use, privacy, policy, disclaimer)
+
+[//]: # (gen-description: Terms and Conditions — philthompson.me")
+
+[//]: # (gen-meta-end)
+
 ## Terms and Conditions for Use
 
 By visiting any part of philthompson.me (the "Site") you agree to these Terms and Conditions for Use and also this Site's [Privacy Policy](../privacy) and [Disclaimer](../disclaimer).  Together these documents comprise the "Terms". These Terms apply to all users of the Site, including without limitation users who are browsers, vendors, customers, merchants, and/ or contributors of content.
