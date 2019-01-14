@@ -1,0 +1,53 @@
+Paper Password Splitting — Recovery Phrase
+------------------------------------------
+
+This is recovery phrase...A1
+  and is to be paired
+  with recovery phrase....A2
+
+Account owner name........Your Name
+Login instructions/URL....https://example.com
+Account username/email....your-email@example.com
+(keep one line below)
+Passphrase is lowercase with one space between each word
+Passphrase is:
+
+Wordlist
+--------
+https://github.com/philthompson/eff_diceware/blob/master/eff_large_wordlist-2019.txt
+or search for the "eff_long_wordlist-2019.txtfile" at https://github.com/philthompson/blog
+		
+https://philthompson.me/paper-password-splitting/BIP-0039-english-dice.txt
+or search for the "BIP-0039-english-dice.txt" file at https://github.com/philthompson/blog
+		
+https://philthompson.me/paper-password-splitting/ASCII-philthompson.me.txt
+or search for the "ASCII-philthompson.me.txt" file at https://github.com/philthompson/blog			
+
+
+Recovery phrase
+---------------
+swimmer causal rabbit concerned fang engraver glimpse shower
+
+
+Using the wordlist and matching recovery phrase specified above, the passphrase can be recovered with modular addition.  For modular addition: ADD the numeric values of the Nth words in both recovery phrases, SUBTRACTING the wordlist word count if the sum is greater than the word count.
+
+Example 6-word phrase recovery using a wordlist of 7,776 words:
+---------------------------------------------------------------------
+recovery phrase|justify  routine  banana   suffix monotype exfoliate
+               | 3540     5557     485      6573    3983     2419
+               |
+recovery phrase|boss    hamburger bronchial reset  virtuous  cut
+               | 647      3086     709      5382    7554     1525
+              + ______________________________________________________
+               |			
+   mod 7776    | 4187     8643     1194     11955   11537    3944
+               |
+ secret phrase |nurture  cardiac  commence  numeral luckless mobilize
+               | 4187     867      1194     4179     3761    3944
+----------------------------------------------------------------------
+
+
+More information can be found at:
+https://philthompson.me/paper-password-splitting/
+https://philthompson.me/2019/Paper-Password-Splitting.html
+https://github.com/philthompson/blog
