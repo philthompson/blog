@@ -132,22 +132,27 @@ cat "${OUT_DIR}/archive/tmp.html" >> "${OUT_DIR}/archive/index.html"
 "${GEN_DIR}/footer.sh" 'Archive' '..' >> "${OUT_DIR}/archive/index.html"
 rm "${OUT_DIR}/archive/tmp.html"
 
-mkdir -p "${OUT_DIR}/about"
-"${GEN_DIR}/header.sh" 'About' '..' "blog, about, author" "About — philthompson.me" 30 > "${OUT_DIR}/about/index.html"
-perl "${MARKDOWN_PERL_SCRIPT}" --html4tags "${GEN_DIR}/about.md" >> "${OUT_DIR}/about/index.html"
-"${GEN_DIR}/footer.sh" 'About' '..' >> "${OUT_DIR}/about/index.html"
+find "${GEN_DIR}/static" -type f -name "*.md" | sort -r | while read PAGE_MARKDOWN_FILE
+do
+	PAGE_DIR="$(dirname "${PAGE_MARKDOWN_FILE}" | sed 's#^.*static/*##')"
+	mkdir -p "${OUT_DIR}/${PAGE_DIR}"
+	PAGE_DIR_REL_ROOT="$(echo "${PAGE_DIR}" | sed 's#[^/][^/]*#..#g')"
+	if [[ -z "${PAGE_DIR_REL_ROOT}" ]]
+	then
+		PAGE_DIR_REL_ROOT="."
+	fi
 
-mkdir -p "${OUT_DIR}/terms"
-"${GEN_DIR}/header.sh" 'Terms and Conditions' '..' "blog, terms, conditions, use, privacy, policy, disclaimer" "Terms and Conditions — philthompson.me" 30 > "${OUT_DIR}/terms/index.html"
-perl "${MARKDOWN_PERL_SCRIPT}" --html4tags "${GEN_DIR}/terms.md" >> "${OUT_DIR}/terms/index.html"
-"${GEN_DIR}/footer.sh" 'Terms and Conditions' '..' >> "${OUT_DIR}/terms/index.html"
+	PAGE_HTML_FILE="$(echo "${PAGE_MARKDOWN_FILE}" | sed 's#^.*static/*##' | sed 's/\.md$/.html/')"
 
-mkdir -p "${OUT_DIR}/privacy"
-"${GEN_DIR}/header.sh" 'Privacy Policy' '..' "blog, privacy, policy" "Privacy Policy — philthompson.me" 30 > "${OUT_DIR}/privacy/index.html"
-perl "${MARKDOWN_PERL_SCRIPT}" --html4tags "${GEN_DIR}/privacy.md" >> "${OUT_DIR}/privacy/index.html"
-"${GEN_DIR}/footer.sh" 'Privacy Policy' '..' >> "${OUT_DIR}/privacy/index.html"
+	PAGE_METADATA="$(grep -B 99 '^\[//\]: # (gen-meta-end)' "${PAGE_MARKDOWN_FILE}")"
 
-mkdir -p "${OUT_DIR}/disclaimer"
-"${GEN_DIR}/header.sh" 'Disclaimer' '..' "blog, disclaimer" "Disclaimer — philthompson.me" 30 > "${OUT_DIR}/disclaimer/index.html"
-perl "${MARKDOWN_PERL_SCRIPT}" --html4tags "${GEN_DIR}/disclaimer.md" >> "${OUT_DIR}/disclaimer/index.html"
-"${GEN_DIR}/footer.sh" 'Disclaimer' '..' >> "${OUT_DIR}/disclaimer/index.html"
+	PAGE_TITLE="$(echo "${PAGE_METADATA}" | grep -m 1 gen-title: | cut -d ' ' -f 4- | sed 's/)$//')"
+	PAGE_KEYWORDS="$(echo "${PAGE_METADATA}" | grep -m 1 gen-keywords: | cut -d ' ' -f 4- | sed 's/)$//')"
+	PAGE_DESCRIPTION="$(echo "${PAGE_METADATA}" | grep -m 1 gen-description: | cut -d ' ' -f 4- | sed 's/)$//')"
+
+	"${GEN_DIR}/header.sh" "${PAGE_TITLE}" "${PAGE_DIR_REL_ROOT}" "${PAGE_KEYWORDS}" "${PAGE_DESCRIPTION}" 30 > "${OUT_DIR}/${PAGE_HTML_FILE}"
+	perl "${MARKDOWN_PERL_SCRIPT}" --html4tags "${PAGE_MARKDOWN_FILE}" >> "${OUT_DIR}/${PAGE_HTML_FILE}"
+	"${GEN_DIR}/footer.sh" "${PAGE_TITLE}" "${PAGE_DIR_REL_ROOT}" >> "${OUT_DIR}/${PAGE_HTML_FILE}"
+
+	rm "${OUT_DIR}/${PAGE_DIR}/$(basename "${PAGE_MARKDOWN_FILE}")"
+done

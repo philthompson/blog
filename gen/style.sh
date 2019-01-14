@@ -34,11 +34,11 @@ h1, h2, h3, .article-title {
 }
 
 header {
-    padding: 1.5rem 0;
-}
-
-header {
+	padding: 1.5rem 0;
+	max-width: 42rem;
 	min-height: 4rem;
+	margin-left: auto;
+	margin-right: auto;
 }
 
 header .logo {

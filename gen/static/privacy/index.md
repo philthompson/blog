@@ -1,4 +1,12 @@
 
+[//]: # (gen-title: Privacy Policy)
+
+[//]: # (gen-keywords: blog, privacy, policy)
+
+[//]: # (gen-description: Privacy Policy — philthompson.me")
+
+[//]: # (gen-meta-end)
+
 ## Privacy Policy
 
 This Privacy Policy describes how your personal information is collected and used when you visit philthompson.me (the "Site").  By visiting any part of the "Site" you agree to this Privacy Policy and also this Site's [Terms and Conditions for Use](../terms) and [Disclaimer](../disclaimer).
