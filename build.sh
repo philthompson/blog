@@ -21,9 +21,15 @@ cp -rp "${STATIC_DIR}"/* "${OUT_DIR}/"
 
 "${GEN_DIR}/style.sh" > "${OUT_DIR}/css/style.css"
 
-RECENT_ARTICLES="$(ls -1 "${GEN_DIR}/articles" | sort -r | head -n 5)"
+# put 5 articles on each "home page" calling the newest one index.html
+# TODO: consider putting 10 articles on each page -- prefer smaller/faster-
+#   loading pages so we're going with 5 per page now
+HOME_PAGES="$(ls -1 "${GEN_DIR}/articles" | sort -r | paste - - - - - | awk '{if (NR=="1") {print "index.html "$0}else{ p=NR-1; print "older"p".html "$0}}')"
 
-"${GEN_DIR}/header.sh" Home '.' "philthompson, phil, thompson, personal, blog" "Personal blog home — philthompson.me" 3 > "${OUT_DIR}/index.html"
+echo "${HOME_PAGES}" | cut -d ' ' -f 1 | while read HOME_PAGE
+do
+	"${GEN_DIR}/header.sh" Home '.' "philthompson, phil, thompson, personal, blog" "Personal blog home — philthompson.me" 3 > "${OUT_DIR}/${HOME_PAGE}"
+done
 
 find "${GEN_DIR}/articles" -type f | sort -r | while read ARTICLE_MARKDOWN_FILE
 do
@@ -90,7 +96,8 @@ do
 		"${GEN_DIR}/footer.sh" \
 		".." > "${OUT_DIR}/${ARTICLE_YEAR}/${ARTICLE_TITLE_URL}.html"
 
-	if [[ ! -z "$(echo "${RECENT_ARTICLES}" | grep "${ARTICLE_DATE}")" ]]
+	HOME_PAGE="$(echo "${HOME_PAGES}" | grep -m 1 "${ARTICLE_DATE}" | awk '{print $1}')"
+	if [[ 1 ]]
 	then
 		echo "	<div class=\"container\">"
 		echo "		<div class=\"article-info\">${ARTICLE_DATE_REFORMAT}</div>"
@@ -106,16 +113,33 @@ do
 
 		echo "      <p style=\"clear:both;\"></p>"
 		echo "	</div>"
-	fi >> "${OUT_DIR}/index.html"
+	fi >> "${OUT_DIR}/${HOME_PAGE}"
 done
 
-LAST_YEAR="$(find "${GEN_DIR}/articles" -type f | sort -r | head -n 1)"
-LAST_YEAR="$(basename "${LAST_YEAR}" | cut -c 1-4)"
-echo "	<div class=\"container\">"  >> "${OUT_DIR}/index.html"
-echo "		<h1 class=\"article-title\"><a href=\"./${LAST_YEAR}/\">All ${LAST_YEAR} posts</a></h1>" >> "${OUT_DIR}/index.html"
-echo "	</div>" >> "${OUT_DIR}/index.html"
+echo "${HOME_PAGES}" | cut -d ' ' -f 1 | while read HOME_PAGE
+do
+	echo "<footer>" >> "${OUT_DIR}/${HOME_PAGE}"
+	echo "	<div class=\"btns\">"  >> "${OUT_DIR}/${HOME_PAGE}"
 
-"${GEN_DIR}/footer.sh" Home . >> "${OUT_DIR}/index.html"
+	PREV_NEXT="$(echo "${HOME_PAGES}" | cut -d ' ' -f 1 | grep -B 1 -A 1 "${HOME_PAGE}")"
+
+	PREV_PAGE_FILE="$(echo "${PREV_NEXT}" | head -n 1)"
+	NEXT_PAGE_FILE="$(echo "${PREV_NEXT}" | tail -n 1)"
+
+	if [[ "${NEXT_PAGE_FILE}" != "${HOME_PAGE}" ]]
+	then
+		echo "<a class="btn" href="./${NEXT_PAGE_FILE}">Older Articles</a>" >> "${OUT_DIR}/${HOME_PAGE}"
+	fi
+
+	if [[ "${PREV_PAGE_FILE}" != "${HOME_PAGE}" ]]
+	then
+		echo "<a class="btn" href="./${PREV_PAGE_FILE}">Newer Articles</a>" >> "${OUT_DIR}/${HOME_PAGE}"
+	fi
+
+	echo "	</div>" >> "${OUT_DIR}/${HOME_PAGE}"
+
+	"${GEN_DIR}/footer.sh" Home . >> "${OUT_DIR}/${HOME_PAGE}"
+done
 
 ls -1 "${OUT_DIR}"/20*/index.html | while read YEAR_FILE
 do
