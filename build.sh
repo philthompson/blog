@@ -104,7 +104,7 @@ do
 			echo "<a href=\"./${ARTICLE_YEAR}/${ARTICLE_TITLE_URL}.html\">continue reading...</a>"
 		fi
 
-		echo "      <hr />"
+		echo "      <p style=\"clear:both;\"></p>"
 		echo "	</div>"
 	fi >> "${OUT_DIR}/index.html"
 done
@@ -122,6 +122,7 @@ do
 	"${GEN_DIR}/footer.sh" "ignoreme" .. >> "${YEAR_FILE}"
 done
 
+# TODO: make archive pages with below general-purpose markdown page building loop
 sort -u "${OUT_DIR}/archive/index.html" | while read LINE
 do
 	echo "<div class=\"article-title\">${LINE}</div>"
