@@ -165,7 +165,7 @@ blockquote {
 	color: ${CLR_ONE_DARK};
 	border-radius: 0.3rem;
 	padding: 0.3rem;
-	width: 5.0rem;
+	min-width: 5.0rem;
 	display: inline-block;
 	border-color: ${CLR_ONE_DARK};
 	border-width: 2px;
