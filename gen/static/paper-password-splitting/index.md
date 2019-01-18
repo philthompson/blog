@@ -78,7 +78,7 @@ For password recovery, you can ignore the columns with dice values.
 ### Diceware ###
 **[philthompson.me Customized EFF Wordlist 2019](https://github.com/philthompson/eff_diceware/blob/master/eff_large_wordlist-2019.txt)** &mdash; 2019 version of a 5-die 7,776-word English wordlist, based on the EFF's long wordlist
 
-### BIP-39 ###
+### BIP39 ###
 **[BIP39 English](./BIP-0039-english-dice.txt)** &mdash; 2,048 English words standardized for [BIP39](https://github.com/bitcoin/bips/blob/master/bip-0039.mediawiki) crypto currency mnemonic wallet seeds
 
 ### ASCII ###
