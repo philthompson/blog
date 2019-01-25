@@ -1,6 +1,5 @@
 ASCII philthompson.me
-(character #95 is a space)
-Select randomly with three 6-sided dice, rolling again if higher than 624
+Select randomly with three 6-sided dice, rolling again if higher than 623
 
  1 111 or 346 1      27 153 or 432 a      53 235 or 514 A      79 321 or 556 [
  2 112 or 351 2      28 154 or 433 b      54 236 or 515 B      80 322 or 561 ]
@@ -18,10 +17,10 @@ Select randomly with three 6-sided dice, rolling again if higher than 624
 14 132 or 411 $      40 214 or 453 n      66 256 or 535 N      92 342 or 621 >
 15 133 or 412 %      41 215 or 454 o      67 261 or 536 O      93 343 or 622 /
 16 134 or 413 ^      42 216 or 455 p      68 262 or 541 P      94 344 or 623 ?
-17 135 or 414 &      43 221 or 456 q      69 263 or 542 Q      95 345 or 624  
+17 135 or 414 &      43 221 or 456 q      69 263 or 542 Q
 18 136 or 415 *      44 222 or 461 r      70 264 or 543 R
-19 141 or 416 (      45 223 or 462 s      71 265 or 544 S      roll again if
-20 142 or 421 )      46 224 or 463 t      72 266 or 545 T      higher than 624
+19 141 or 416 (      45 223 or 462 s      71 265 or 544 S
+20 142 or 421 )      46 224 or 463 t      72 266 or 545 T
 21 143 or 422 `      47 225 or 464 u      73 311 or 546 U
 22 144 or 423 ~      48 226 or 465 v      74 312 or 551 V
 23 145 or 424 -      49 231 or 466 w      75 313 or 552 W

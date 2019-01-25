@@ -82,9 +82,9 @@ For password recovery, you can ignore the columns with dice values.
 **[BIP39 English](./BIP-0039-english-dice.txt)** &mdash; 2,048 English words standardized for [BIP39](https://github.com/bitcoin/bips/blob/master/bip-0039.mediawiki) crypto currency mnemonic wallet seeds
 
 ### ASCII ###
-**[philthompson.me ASCII](./ASCII-philthompson.me.txt)** &mdash; Custom ordering of the ASCII character set to easily find character values from 1-95
+**[philthompson.me ASCII](./ASCII-philthompson.me.txt)** &mdash; Custom ordering of the ASCII character set to easily find character values from 1-94
 
-**[ASCII Decimal Values Minus 31](./ASCII-Decimal-Values-Minus-31.txt)** &mdash; Standard ASCII character set, where each true ASCII decimal value is less 31 to create numbered characters from 1-95
+**[ASCII Decimal Values Minus 32](./ASCII-Decimal-Values-Minus-32.txt)** &mdash; Standard ASCII character set, where we subtract 32 from each ASCII decimal value to create numbered characters from 1-94
 
 <hr/>
 
