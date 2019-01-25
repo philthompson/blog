@@ -152,6 +152,7 @@ p code, ul code, ol code {
 	padding: 0.2rem 0.5rem;
 	border-radius: 0.3rem;
 	white-space: inherit;
+	word-break: break-word;
 }
 
 blockquote {
