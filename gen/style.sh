@@ -2,7 +2,7 @@
 
 CLR_PAGE_BG="#eff1f3"
 CLR_LINK_LINE="#dee2e5"
-CLR_LINK_LINE="#d4d9dd"
+CLR_LINK_LINE="#b4b9bd"
 # initial text color seems too dark
 CLR_TEXT_MAIN="#283044"
 # darker and less saturated version of text color
@@ -10,7 +10,7 @@ CLR_TEXT_MAIN="#474e60"
 CLR_TEXT_ALT="#949b96"
 CLR_ONE_DARK="#443850"
 CLR_ONE_LIGHT="#ada8be"
-CLR_TWO_DARK="#829191"
+CLR_TWO_DARK="#627171"
 CLR_TWO_LIGHT="#949b96"
 
 cat << xxxxxEOFxxxxx
