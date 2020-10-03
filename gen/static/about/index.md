@@ -7,7 +7,7 @@
 
 [//]: # (gen-meta-end)
 
-<img style="float: left; padding-right: 10px" class="width-resp-25-40" src="../img/me.png" title="Me" alt="me" /> I’m a software developer in the Seattle area.  I enjoy running, nature, and tinkering with software.
+<img style="float: left; padding-right: 10px" class="width-resp-25-40" src="../img/me.png" title="Me" alt="me" /> I’m a software developer in the PNW.  I enjoy running, nature, and tinkering with software.
 
 I hope to publish informative, helpful articles to this blog, as well as document my personal projects.
 
@@ -61,4 +61,8 @@ PGP
 Portfolio
 ---------
 
-(coming soon)
+* <a target="_blank" href="https://github.com/philthompson/qrcodejs">qrcodejs</a>
+ * a static JavaScript page for interactively generating QR codes
+ * the page is viewable at <a target="_blank" href="https://philthompson.me/qrcode.html">philthompson.me/qrcode.html</a>
+* <a target="_blank" href="https://github.com/philthompson/rust-calc-term">rust-calc-term</a>
+ * a terminal-based calculator powered by bigdecimal math, written in Rust
