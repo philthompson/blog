@@ -62,7 +62,9 @@ Portfolio
 ---------
 
 * <a target="_blank" href="https://github.com/philthompson/qrcodejs">qrcodejs</a>
- * a static JavaScript page for interactively generating QR codes
+ * a JavaScript page for interactively generating QR codes
  * the page is viewable at <a target="_blank" href="https://philthompson.me/qrcode.html">philthompson.me/qrcode.html</a>
 * <a target="_blank" href="https://github.com/philthompson/rust-calc-term">rust-calc-term</a>
  * a terminal-based calculator powered by bigdecimal math, written in Rust
+* <a target="_blank" href="${SITE_ROOT_REL}/screensavejs/">screensavejs</a> (interactive) / <a target="_blank" href="https://harvey.dog">harvey.dog</a> (non-interactive)
+ * a JavaScript page that paints a blurry rendition of any image file
