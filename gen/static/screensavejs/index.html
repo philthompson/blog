@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="description" content="javascript screensaver">
+    <meta name="robots" content="index,follow">
+
+    <title>ScreenSaveJS</title>
+    <style type="text/css">
+        /* * { border: 0; margin: 0; padding: 0; } */
+        body, html, div { border: 0; margin: 0; padding: 0; }
+        body, html {  height: 100%; }
+        #dc { position:absolute; width: 100%; height: 100%; z-index:10; }
+        #sc, img, input { display:none; }
+        #menu, #menu-open-wrap {
+            position:fixed;
+            width: 96%;
+            padding: 2%;
+            margin: 0;
+            z-index: 11;
+            color: #999999;
+            text-shadow: 0px 0px 5px #222;
+            font-family: arial;
+            font-size: 1.5rem;
+        }
+        #menu {
+            background-color: rgba(0,0,0,0.5);
+            display: none;
+        }
+        #menu p {
+            padding-bottom: 1rem;
+        }
+        button {
+            font-size: 1rem;
+            cursor: pointer;
+            z-index: 12;
+        }
+        #menu-close, #menu-open {
+            color: #aaa;
+            float: right;
+            font-size: 1.75rem;
+            font-weight: 700;
+            margin-top: -.7rem;
+            cursor: pointer;
+            z-index: 12;
+        }
+    </style>
+  </head>
+  <body>
+    <input type="file" id="fi" multiple accept="image/*" onchange="setFiles(this.files)" />
+    <canvas id="sc"></canvas>
+    <canvas id="dc"></canvas>
+    <img class="demo-img" src="demo1.jpeg"/>
+    <img class="demo-img" src="demo2.jpeg"/>
+    <img class="demo-img" src="demo3.jpeg"/>
+    <div id="menu-open-wrap">
+        <button id="demo">Demo</button><span id="menu-open">𑁔</span>
+    </div>
+    <div id="menu">
+        <span id="menu-close">×</span>
+            <p>
+                <span>Remove images and reset page:&nbsp;</span><button id="reset">Reset</button>
+            </p>
+            <p>
+                This page uses some simple JavaScript to "paint" a rendition of whatever images you give it.  No images are sent to any servers &mdash; this runs completely on your device.
+            </p>
+            <p>
+                I haven't tested the power consumption of this page.  It may be fine but I wouldn't recommend leaving this running too long on a battery-powered phone, tablet, laptop, etc.
+            </p>
+            <p>
+                Background on this page is discussed on <a target="_blank" href="https://philthompson.me/2020/screensave-js.html">this blog post</a>.
+            </p>
+
+    </div>
+    <script src="paint.js"></script>
+  </body>
+</html>
