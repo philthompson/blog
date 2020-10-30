@@ -1,6 +1,6 @@
 #!/bin/bash
 
-THIS_SCRIPT="${0}"
+THIS_SCRIPT="`perl -MCwd -le 'print Cwd::abs_path shift' "${0}"`"
 THIS_DIR="$(dirname "${THIS_SCRIPT}")"
 OUT_DIR="${THIS_DIR}/out/$(date +%Y-%m-%d-%H%M%S)"
 GEN_DIR="${THIS_DIR}/gen"
