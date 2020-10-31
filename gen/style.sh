@@ -192,4 +192,8 @@ a:hover {
 	color: ${CLR_TEXT_MAIN};
 }
 
+.copyright {
+	text-align: center;
+}
+
 xxxxxEOFxxxxx
