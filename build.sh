@@ -182,3 +182,11 @@ do
 
 	rm "${OUT_DIR}/${PAGE_DIR}/$(basename "${PAGE_MARKDOWN_FILE}")"
 done
+
+# run script to generate gallery/ pages
+"${GEN_DIR}/gallery.sh" \
+	"${STATIC_DIR}" \
+	"${OUT_DIR}" \
+	"${GEN_DIR}/header.sh" \
+	"${GEN_DIR}/footer.sh" \
+	".."
