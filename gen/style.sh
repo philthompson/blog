@@ -196,4 +196,8 @@ a:hover {
 	text-align: center;
 }
 
+.top-border {
+	border-top: 1px solid #949b96;
+}
+
 xxxxxEOFxxxxx
