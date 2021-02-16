@@ -270,7 +270,7 @@ xxxxxEOFxxxxx
 		PHOTO_VISIBLE="`echo "${LINE}" | cut -d '|' -f 6`"
 		if [ "${PHOTO_VISIBLE}" != "true" ]
 		then
-			echo "photo ${PHOTO_PATH} of shoot ${HASHES_ID} is not visible, so skipping"
+			#echo "photo ${PHOTO_PATH} of shoot ${HASHES_ID} is not visible, so skipping"
 			continue
 		fi
 		if [ ! -z "${PHOTO_DESC}" ] && [ "${PHOTO_DESC}" != "--" ]
