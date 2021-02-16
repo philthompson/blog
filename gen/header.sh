@@ -45,6 +45,9 @@ cat << xxxxxEOFxxxxx
 						<a href="${SITE_ROOT_REL}/archive" target="_self">Archive</a>
 					</li>
 					<li class="nav-item">
+						<a href="${SITE_ROOT_REL}/gallery" target="_self">Gallery</a>
+					</li>
+					<li class="nav-item">
 						<a href="https://github.com/philthompson" target="_blank">GitHub</a>
 					</li>
 				</ul>
