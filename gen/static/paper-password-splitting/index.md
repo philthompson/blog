@@ -86,6 +86,10 @@ For password recovery, you can ignore the columns with dice values.
 
 **[ASCII Decimal Values Minus 32](./ASCII-Decimal-Values-Minus-32.txt)** &mdash; Standard ASCII character set, where we subtract 32 from each ASCII decimal value to create numbered characters from 1-94
 
+**[Lowercase Alpha-Numeric](./Lowercase-Alpha-Numeric.txt)** &mdash; ASCII characters, lowercase only, plus the digits 0-9
+
+**[Uppercase Alpha-Numeric](./Uppercase-Alpha-Numeric.txt)** &mdash; ASCII characters, uppercase only, plus the digits 0-9
+
 <hr/>
 
 *Diceware&trade; is a trademark of Arnold G. Reinhold, and for more information you can visit [his Diceware page](http://world.std.com/~reinhold/diceware.html).*
