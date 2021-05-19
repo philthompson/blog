@@ -47,6 +47,24 @@ do
 	HASHES_DIR_REL="${SITE_ROOT_REL}/gallery-img/`basename "${HASHES_DIR}"`"
 	HASHES_SUPP="${HASHES_DIR}/${HASHES_ID}.supplement"
 
+	HASHES_YEAR="0123"
+	HASHES_MONTH="01"
+
+	if [[ "${HASHES_ID}" =~ ^hashes-2[0-9]{3}-[0-9]{2}-[0-9]{2}-[0-9]{6}$ ]]
+	then
+		HASHES_YEAR="`echo "${HASHES_ID}" | cut -d '-' -f 2`"
+		HASHES_MONTH="`echo "${HASHES_ID}" | cut -d '-' -f 3`"
+	else
+		echo "invalid hashes file [${HASHES_ID}]: hashes filename format is expected to be \"hashes-YYYY-MM-DD-HHmmss\"" >&2
+		continue
+	fi
+
+	# this requires a local copy of all bird gallery -sm.jpg pictures, which
+	#   i of course have but this means the git repo is not self-contained
+	#   with respect to these pictures anymore, which is kind of the point
+	#   anyway of removing bird gallery pics from the git repo
+	BIRD_PICS_YEAR_DIR="${HOME}/Pictures/Birds/${HASHES_YEAR}/${HASHES_MONTH}"
+
 	# build the db file for this file of photo hashes
 	# (if db schema changes, simply delete all .db files and they will be
 	#   rebuilt on the next run of build.sh)
@@ -85,8 +103,10 @@ do
 		grep "\-sm\." "${HASHES_FILE}" | while read LINE
 		do
 			PHOTO_FILENAME="`echo "${LINE}" | cut -d ':' -f 1`"
-			PHOTO_PATH="${HASHES_DIR}/${PHOTO_FILENAME}"
-			PHOTO_PATH_REL="${HASHES_DIR_REL}/${PHOTO_FILENAME}"
+			# this path is local, on the system this script is running on
+			PHOTO_PATH="${BIRD_PICS_YEAR_DIR}/${PHOTO_FILENAME}"
+			# this path is relative to the new on-webserver static images path
+			PHOTO_PATH_REL="${HASHES_YEAR}/${PHOTO_FILENAME}"
 			PHOTO_DATETIME_LEX="`/usr/local/bin/exiftool -d '%Y-%m-%d-%H%M%S' -DateTimeOriginal -S -s "${PHOTO_PATH}"`"
 			PHOTO_DATETIME_DISP="`/usr/local/bin/exiftool -d '%I:%M%p %A %B %d, %Y' -DateTimeOriginal -S -s "${PHOTO_PATH}"`"
 			PHOTO_STARS="`/usr/local/bin/exiftool -d '%I:%M%p %A %B %d, %Y' -DateTimeOriginal -S -s "${PHOTO_PATH}"`"
@@ -283,8 +303,8 @@ xxxxxEOFxxxxx
 cat << xxxxxEOFxxxxx >> "${GALLERY_PAGE}"
 <div class="container top-border">
 	<p>
-		<a href="${PHOTO_PATH}">
-			<img style="float: left" class="width-resp-50-100" src="${PHOTO_PATH}"/>
+		<a href="${SITE_ROOT_REL}/s/img/${PHOTO_PATH}">
+			<img style="float: left" class="width-resp-50-100" src="${SITE_ROOT_REL}/s/img/${PHOTO_PATH}"/>
 		</a>
 		<p class="article-info">${PHOTO_DATE}</p>
 		<b>${PHOTO_SPECIES}</b>
