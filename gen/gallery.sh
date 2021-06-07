@@ -282,7 +282,7 @@ xxxxxEOFxxxxx
 	do
 		#echo "${HASHES_ID} photo: ${LINE}"
 		PHOTO_PATH="`echo "${LINE}" | cut -d '|' -f 1`"
-		PHOTO_DATE="`echo "${LINE}" | cut -d '|' -f 3`"
+		PHOTO_DATE="`echo "${LINE}" | cut -d '|' -f 3 | sed 's/^0//'`"
 		PHOTO_SPECIES="`echo "${LINE}" | cut -d '|' -f 4 | base64 -d`"
 		PHOTO_DESC="`echo "${LINE}" | cut -d '|' -f 5 | base64 -d`"
 		PHOTO_VISIBLE="`echo "${LINE}" | cut -d '|' -f 6`"
