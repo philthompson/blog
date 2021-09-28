@@ -43,7 +43,9 @@ do
 	HASHES_DIR="`dirname "${HASHES_FILE}"`"
 	HASHES_ID="`basename "${HASHES_FILE}" | cut -d '.' -f 1`"
 	HASHES_DB="${HASHES_DIR}/${HASHES_ID}.db"
-	HASHES_TXID="${HASHES_DIR}/${HASHES_ID}.txid"
+	HASHES_BCH_TXID_OLD="${HASHES_DIR}/${HASHES_ID}.txid"
+	HASHES_BCH_TXID="${HASHES_DIR}/${HASHES_ID}-BCH.txid"
+	HASHES_ALGO_TXID="${HASHES_DIR}/${HASHES_ID}-ALGO.txid"
 	HASHES_DIR_REL="${SITE_ROOT_REL}/gallery-img/`basename "${HASHES_DIR}"`"
 	HASHES_SUPP="${HASHES_DIR}/${HASHES_ID}.supplement"
 
@@ -73,8 +75,10 @@ do
 	#   - parsed from hand-written, optional, file
 	# - title for this set of photos
 	#   - parsed from hand-written, optional, file
-	# - BCH TXID that contains the signature of the hashes file in OP RETURN
-	#   - from hashes...txid
+	# - BCH TXID that contains the signature of the hashes file in "OP RETURN" tx field
+	#   - from hashes...-BCH.txid or hashes...txid (old)
+	# - ALGO TXID that contains the signature of the hashes file in "Note" tx field
+	#   - from hashes...-ALGO.txid
 	if [ ! -s "${HASHES_DB}" ]
 	then
 		# photos table columns:
@@ -87,7 +91,7 @@ do
 		# - description (text)
 		# - bch_txid (text)
 		sqlite3 "${HASHES_DB}" "CREATE TABLE photos (path_rel TEXT PRIMARY KEY, local_datetime_lex TEXT, local_datetime_disp TEXT, species_b64 TEXT, description_b64 TEXT, visible TEXT)"
-		sqlite3 "${HASHES_DB}" "CREATE TABLE shoot (title_b64 TEXT, description_b64 TEXT, bch_txid_b64 TEXT, favorite_path_rel TEXT, default_favorite_path_rel TEXT, visible TEXT)"
+		sqlite3 "${HASHES_DB}" "CREATE TABLE shoot (title_b64 TEXT, description_b64 TEXT, bch_txid_b64 TEXT, algo_txid_b64 TEXT, favorite_path_rel TEXT, default_favorite_path_rel TEXT, visible TEXT)"
 
 		SHOOT_DEFAULT_FAVORITE="`echo "--" | base64`"
 		SHOOT_DEFAULT_FAVORITE_STARS=0
@@ -160,13 +164,23 @@ do
 		SHOOT_TITLE="`echo "${HASHES_ID}" | cut -d '-' -f 2-`"
 		SHOOT_TITLE="`echo "Shoot ${SHOOT_TITLE}" | base64`"
 		SHOOT_DESCRIPTION="`echo "--" | base64`"
-		SHOOT_TXID="`echo "--" | base64`"
+		SHOOT_BCH_TXID="`echo "--" | base64`"
+		SHOOT_ALGO_TXID="`echo "--" | base64`"
 		SHOOT_VISIBLE="true"
 		SHOOT_FAVORITE="`echo "--" | base64`"
 
-		if [ -s "${HASHES_TXID}" ]
+		# read and use BCH txid file, if present
+		if [ -s "${HASHES_BCH_TXID_OLD}" ]
 		then
-			SHOOT_TXID="`head -n 1 "${HASHES_TXID}" | base64`"
+			SHOOT_BCH_TXID="`head -n 1 "${HASHES_BCH_TXID_OLD}" | base64`"
+		elif [ -s "${HASHES_BCH_TXID}" ]
+		then
+			SHOOT_BCH_TXID="`head -n 1 "${HASHES_BCH_TXID}" | base64`"
+		fi
+		# read and use ALGO txid file, if present
+		if [ -s "${HASHES_ALGO_TXID}" ]
+		then
+			SHOOT_ALGO_TXID="`head -n 1 "${HASHES_ALGO_TXID}" | base64`"
 		fi
 		if [ -s "${HASHES_SUPP}" ]
 		then
@@ -192,7 +206,7 @@ do
 			fi
 		fi
 
-		sqlite3 "${HASHES_DB}" "INSERT INTO shoot (title_b64, description_b64, bch_txid_b64, favorite_path_rel, default_favorite_path_rel, visible) VALUES ('${SHOOT_TITLE}', '${SHOOT_DESCRIPTION}', '${SHOOT_TXID}', '${SHOOT_FAVORITE}', '${SHOOT_DEFAULT_FAVORITE}', '${SHOOT_VISIBLE}');"
+		sqlite3 "${HASHES_DB}" "INSERT INTO shoot (title_b64, description_b64, bch_txid_b64, algo_txid_b64, favorite_path_rel, default_favorite_path_rel, visible) VALUES ('${SHOOT_TITLE}', '${SHOOT_DESCRIPTION}', '${SHOOT_BCH_TXID}', '${SHOOT_ALGO_TXID}', '${SHOOT_FAVORITE}', '${SHOOT_DEFAULT_FAVORITE}', '${SHOOT_VISIBLE}');"
 	fi
 
 	# build the page for this hashes file
@@ -216,13 +230,14 @@ do
 		GALLERY_PAGE="${GALLERY_OUT}/gallery-`echo "${HASHES_ID}" | cut -d '-' -f 2-`.html"
 	fi
 
-	SHOOT_DATA="`sqlite3 "${HASHES_DB}" "SELECT title_b64, description_b64, bch_txid_b64, favorite_path_rel, default_favorite_path_rel, visible FROM shoot LIMIT 1;"`"
+	SHOOT_DATA="`sqlite3 "${HASHES_DB}" "SELECT title_b64, description_b64, bch_txid_b64, algo_txid_b64, favorite_path_rel, default_favorite_path_rel, visible FROM shoot LIMIT 1;"`"
 	SHOOT_TITLE="`echo "${SHOOT_DATA}" | cut -d '|' -f 1 | base64 -d`"
 	SHOOT_DESC="`echo "${SHOOT_DATA}" | cut -d '|' -f 2 | base64 -d`"
-	SHOOT_TXID="`echo "${SHOOT_DATA}" | cut -d '|' -f 3 | base64 -d`"
-	SHOOT_FAVORITE="`echo "${SHOOT_DATA}" | cut -d '|' -f 4 | base64 -d`"
-	SHOOT_DEFAULT_FAVORITE="`echo "${SHOOT_DATA}" | cut -d '|' -f 5 | base64 -d`"
-	SHOOT_VISIBLE="`echo "${SHOOT_DATA}" | cut -d '|' -f 6`"
+	SHOOT_BCH_TXID="`echo "${SHOOT_DATA}" | cut -d '|' -f 3 | base64 -d`"
+	SHOOT_ALGO_TXID="`echo "${SHOOT_DATA}" | cut -d '|' -f 4 | base64 -d`"
+	SHOOT_FAVORITE="`echo "${SHOOT_DATA}" | cut -d '|' -f 5 | base64 -d`"
+	SHOOT_DEFAULT_FAVORITE="`echo "${SHOOT_DATA}" | cut -d '|' -f 6 | base64 -d`"
+	SHOOT_VISIBLE="`echo "${SHOOT_DATA}" | cut -d '|' -f 7`"
 	if [ "${SHOOT_VISIBLE}" != "true" ]
 	then
 		echo "shoot ${HASHES_ID} is not visible (${SHOOT_VISIBLE}), so skipping"
@@ -260,15 +275,38 @@ cat << xxxxxEOFxxxxx >> "${GALLERY_PAGE}"
 		<p>These photos are © ${SHOOT_YEAR} Phil Thompson, all rights reserved.</p>
 		<p><a target="_blank" href="${HASHES_DIR_REL}/${HASHES_ID}.txt">📄 ${HASHES_ID}.txt</a></p>
 		<p><a target="_blank" href="${HASHES_DIR_REL}/${HASHES_ID}.txt.sig">📄 ${HASHES_ID}.txt.sig</a></p>
+xxxxxEOFxxxxx
+if [ "${SHOOT_ALGO_TXID}" != "--" ]
+then
+cat << xxxxxEOFxxxxx >> "${GALLERY_PAGE}"
 		<p>
 			The above <code>hashes-&lt;date&gt;.txt</code> file contains SHA-256 hashes of all the photos
 			from this shoot.  The <code>hashes-&lt;date&gt;.txt.sig</code> is a signature of that hashes
 			file, created with <a href="${SITE_ROOT_REL}/about">my PGP key</a>.  The signature file
-			itself was written to the BCH blockchain, in <code>OP RETURN</code> data for the transaction
-			below.  In short, this proves that these photos and the signature both existed at the time
-			the transaction was written to the blockchain.  A future blog post will have more details.
+			itself was written to both the Bitcoin Cash and Algorand blockchains, in the
+			<code>OP RETURN</code> and <code>Note</code> fields respectively, using the transactions below.
+			In short, this proves that these photos and the signature both existed at the time the
+			transactions were written to the Bitcoin Cash and Algorand blockchains.  A future blog post
+			will have more details.
 		</p>
-		<p class="article-info"><a target="_blank" href="https://blockchair.com/bitcoin-cash/transaction/${SHOOT_TXID}">view on blockchair.com: ${SHOOT_TXID}</a></p>
+		<p class="article-info"><a target="_blank" href="https://blockchair.com/bitcoin-cash/transaction/${SHOOT_BCH_TXID}">view BCH tx on blockchair.com: ${SHOOT_BCH_TXID}</a></p>
+		<p class="article-info"><a target="_blank" href="https://algoexplorer.io/tx/${SHOOT_ALGO_TXID}">view ALGO tx on algoexplorer.io: ${SHOOT_ALGO_TXID}</a></p>
+xxxxxEOFxxxxx
+else
+cat << xxxxxEOFxxxxx >> "${GALLERY_PAGE}"
+		<p>
+			The above <code>hashes-&lt;date&gt;.txt</code> file contains SHA-256 hashes of all the photos
+			from this shoot.  The <code>hashes-&lt;date&gt;.txt.sig</code> is a signature of that hashes
+			file, created with <a href="${SITE_ROOT_REL}/about">my PGP key</a>.  The signature file
+			itself was written to the Bitcoin Cash blockchain, in the <code>OP RETURN</code> field,
+			using the transaction below. In short, this proves that these photos and the signature both
+			existed at the time the transaction was written to the Bitcoin Cash blockchain.  A future blog
+			post will have more details.
+		</p>
+		<p class="article-info"><a target="_blank" href="https://blockchair.com/bitcoin-cash/transaction/${SHOOT_BCH_TXID}">view BCH tx on blockchair.com: ${SHOOT_BCH_TXID}</a></p>
+xxxxxEOFxxxxx
+fi
+cat << xxxxxEOFxxxxx >> "${GALLERY_PAGE}"
 	</details>
 	<p style="clear:both;"></p>
 </div>
