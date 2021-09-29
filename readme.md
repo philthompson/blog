@@ -4,4 +4,4 @@ The blog post discussing this repo is [here](https://philthompson.me/2018/New-Si
 
 #### License
 
-With the exception of article files, all other files in this repository are distributed under the MIT license.  Article files (in `gen/articles/`) are distributed under traditional copyright with all rights reserved.
+Article files (such as in `gen/articles/`) and images are distributed under traditional copyright with all rights reserved.  All other files, such as source code files and "wordlist" files, are distributed under the MIT license.
