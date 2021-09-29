@@ -34,6 +34,8 @@ SITE_ROOT_REL="${5}"
 GALLERY_OUT="${OUT_DIR}/gallery"
 mkdir -p "${GALLERY_OUT}"
 
+GALLERY_REL="${SITE_ROOT_REL}/gallery"
+
 GALLERY_IMG="${STATIC_DIR}/gallery-img"
 
 # the first (most recent) hashes file generates the gallery/index.html page,
@@ -220,14 +222,26 @@ do
 	# - output photos in date order, earlier-to-later
 	# - put links at bottom, too, for previous gallery page and next page
 	#
-	GALLERY_PAGE="${GALLERY_OUT}/index.html"
-	if [ -s "${GALLERY_PAGE}" ]
+	GALLERY_PAGE_FILENAME="gallery-`echo "${HASHES_ID}" | cut -d '-' -f 2-`.html"
+	GALLERY_INDEX_PAGE="${GALLERY_OUT}/index.html"
+
+	#GALLERY_PAGE_COUNT=`ls -1 "${GALLERY_OUT}" | wc -l | tr -d '[:blank:]'`
+	#GALLERY_PAGE="${GALLERY_OUT}/older${GALLERY_PAGE_COUNT}.html"
+	#GALLERY_PAGE_COUNT=$(($GALLERY_PAGE_COUNT + 1))
+	#PAGE_TITLE="Gallery ${GALLERY_PAGE_COUNT}"
+	GALLERY_PAGE="${GALLERY_OUT}/${GALLERY_PAGE_FILENAME}"
+
+	if [ ! -s "${GALLERY_INDEX_PAGE}" ]
 	then
-		#GALLERY_PAGE_COUNT=`ls -1 "${GALLERY_OUT}" | wc -l | tr -d '[:blank:]'`
-		#GALLERY_PAGE="${GALLERY_OUT}/older${GALLERY_PAGE_COUNT}.html"
-		#GALLERY_PAGE_COUNT=$(($GALLERY_PAGE_COUNT + 1))
-		#PAGE_TITLE="Gallery ${GALLERY_PAGE_COUNT}"
-		GALLERY_PAGE="${GALLERY_OUT}/gallery-`echo "${HASHES_ID}" | cut -d '-' -f 2-`.html"
+		cat << xxxxxEOFxxxxx >> "${GALLERY_INDEX_PAGE}"
+!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta http-equiv="refresh" content="0; url=${GALLERY_REL}/${GALLERY_PAGE_FILENAME}">
+	</head>
+	<body></body>
+</html>
+xxxxxEOFxxxxx
 	fi
 
 	SHOOT_DATA="`sqlite3 "${HASHES_DB}" "SELECT title_b64, description_b64, bch_txid_b64, algo_txid_b64, favorite_path_rel, default_favorite_path_rel, visible FROM shoot LIMIT 1;"`"
@@ -375,13 +389,13 @@ FIRST_PAGE="${SITE_ROOT_REL}/gallery/"
 LAST_PAGE="${SITE_ROOT_REL}/gallery/"
 PREV_PAGE=""
 NEXT_PAGE="older1.html"
-GALLERY_PAGES="`find "${GALLERY_OUT}" -type f -name "gallery-*.html" | sort -r`"
+GALLERY_PAGES="`find "${GALLERY_OUT}" -type f -name "gallery-*.html" | sort`"
 if [ $GALLERY_PAGE_COUNT -gt 1 ]
 then
 	sed -e 's@xxxxxPREVBUTTONxxxxx@@g' -i '' "${GALLERY_OUT}/index.html"
 	NEXT_PAGE="`echo "${GALLERY_PAGES}" | head -n 1`"
 	NEXT_PAGE="`basename "${NEXT_PAGE}"`"
-	sed -e "s@xxxxxNEXTBUTTONxxxxx@<a class='btn' href='${SITE_ROOT_REL}/gallery/${NEXT_PAGE}'>Next Gallery</a>@g" -i '' "${GALLERY_OUT}/index.html"
+	sed -e "s@xxxxxNEXTBUTTONxxxxx@<a class='btn' href='${SITE_ROOT_REL}/gallery/${NEXT_PAGE}'>Newer Gallery</a>@g" -i '' "${GALLERY_OUT}/index.html"
 	
 	echo "${GALLERY_PAGES}" | while read PAGE_PATH
 	do
@@ -395,13 +409,13 @@ then
 		else
 			PREV_PAGE="${SITE_ROOT_REL}/gallery/`basename "${PREV_PAGE}"`"
 		fi
-		sed -e "s@xxxxxPREVBUTTONxxxxx@<a class='btn' href='${PREV_PAGE}'>Previous Gallery</a>@g" -i '' "${PAGE_PATH}"
+		sed -e "s@xxxxxPREVBUTTONxxxxx@<a class='btn' href='${PREV_PAGE}'>Older Gallery</a>@g" -i '' "${PAGE_PATH}"
 		if [ "${NEXT_PAGE}" == "${PAGE_PATH}" ]
 		then
 			sed -e "s@xxxxxNEXTBUTTONxxxxx@@g" -i '' "${PAGE_PATH}"
 		else
 			NEXT_PAGE="${SITE_ROOT_REL}/gallery/`basename "${NEXT_PAGE}"`"
-			sed -e "s@xxxxxNEXTBUTTONxxxxx@<a class='btn' href='${NEXT_PAGE}'>Next Gallery</a>@g" -i '' "${PAGE_PATH}"
+			sed -e "s@xxxxxNEXTBUTTONxxxxx@<a class='btn' href='${NEXT_PAGE}'>Newer Gallery</a>@g" -i '' "${PAGE_PATH}"
 		fi
 		
 	done
