@@ -284,9 +284,9 @@ cat << xxxxxEOFxxxxx >> "${GALLERY_PAGE}"
 	<span class="article-title">${SHOOT_TITLE}</span>
 	${SHOOT_FAVORITE}
 	${SHOOT_DESC}
+	<p>These photos are © ${SHOOT_YEAR} Phil Thompson, all rights reserved.</p>
 	<details>
-		<summary>Copyright and Signature</summary>
-		<p>These photos are © ${SHOOT_YEAR} Phil Thompson, all rights reserved.</p>
+		<summary>Signature</summary>
 		<p><a target="_blank" href="${HASHES_DIR_REL}/${HASHES_ID}.txt">📄 ${HASHES_ID}.txt</a></p>
 		<p><a target="_blank" href="${HASHES_DIR_REL}/${HASHES_ID}.txt.sig">📄 ${HASHES_ID}.txt.sig</a></p>
 xxxxxEOFxxxxx
@@ -300,11 +300,12 @@ cat << xxxxxEOFxxxxx >> "${GALLERY_PAGE}"
 			itself was written to both the Bitcoin Cash and Algorand blockchains, in the
 			<code>OP RETURN</code> and <code>Note</code> fields respectively, using the transactions below.
 			In short, this proves that these photos and the signature both existed at the time the
-			transactions were written to the Bitcoin Cash and Algorand blockchains.  A future blog post
-			will have more details.
+			transactions were written to the Bitcoin Cash and Algorand blockchains.
+			<a target="_blank" href="${SITE_ROOT_REL}/2021/Publishing-Permanent-Photo-Signatures-with-Blockchains.html">
+			This blog post</a> has more details.
 		</p>
-		<p class="article-info"><a target="_blank" href="https://blockchair.com/bitcoin-cash/transaction/${SHOOT_BCH_TXID}">view BCH tx on blockchair.com: ${SHOOT_BCH_TXID}</a></p>
-		<p class="article-info"><a target="_blank" href="https://algoexplorer.io/tx/${SHOOT_ALGO_TXID}">view ALGO tx on algoexplorer.io: ${SHOOT_ALGO_TXID}</a></p>
+		<p class="article-info"><a target="_blank" href="https://blockchair.com/bitcoin-cash/transaction/${SHOOT_BCH_TXID}">view the BCH tx on blockchair.com: ${SHOOT_BCH_TXID}</a></p>
+		<p class="article-info"><a target="_blank" href="https://algoexplorer.io/tx/${SHOOT_ALGO_TXID}">view the ALGO tx on algoexplorer.io: ${SHOOT_ALGO_TXID}</a></p>
 xxxxxEOFxxxxx
 else
 cat << xxxxxEOFxxxxx >> "${GALLERY_PAGE}"
@@ -314,10 +315,11 @@ cat << xxxxxEOFxxxxx >> "${GALLERY_PAGE}"
 			file, created with <a href="${SITE_ROOT_REL}/about">my PGP key</a>.  The signature file
 			itself was written to the Bitcoin Cash blockchain, in the <code>OP RETURN</code> field,
 			using the transaction below. In short, this proves that these photos and the signature both
-			existed at the time the transaction was written to the Bitcoin Cash blockchain.  A future blog
-			post will have more details.
+			existed at the time the transaction was written to the Bitcoin Cash blockchain.
+			<a target="_blank" href="${SITE_ROOT_REL}/2021/Publishing-Permanent-Photo-Signatures-with-Blockchains.html">
+			This blog post</a> has more details.
 		</p>
-		<p class="article-info"><a target="_blank" href="https://blockchair.com/bitcoin-cash/transaction/${SHOOT_BCH_TXID}">view BCH tx on blockchair.com: ${SHOOT_BCH_TXID}</a></p>
+		<p class="article-info"><a target="_blank" href="https://blockchair.com/bitcoin-cash/transaction/${SHOOT_BCH_TXID}">view the BCH tx on blockchair.com: ${SHOOT_BCH_TXID}</a></p>
 xxxxxEOFxxxxx
 fi
 cat << xxxxxEOFxxxxx >> "${GALLERY_PAGE}"
