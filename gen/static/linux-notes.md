@@ -9,7 +9,7 @@
 
 This is a "cheat sheet" style collection of bash and other snippets, mainly for myself to refer to.
 
-## General / Local System Administrator
+## General / Local System Administration
 
 #### restart ubuntu menu to get clock to appear
 	
