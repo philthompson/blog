@@ -1,7 +1,7 @@
 
 [//]: # (gen-title: About)
 
-[//]: # (gen-keywords: blog, about, author, pgp, gpg)
+[//]: # (gen-keywords: blog, about, portfolio, author, contact, pgp, gpg)
 
 [//]: # (gen-description: About — philthompson.me)
 
@@ -72,3 +72,9 @@ Portfolio
  * a terminal-based calculator powered by bigdecimal math, written in Rust
 * <a target="_blank" href="${SITE_ROOT_REL}/screensavejs/">screensavejs</a> (interactive) / <a target="_blank" href="https://harvey.dog">harvey.dog</a> (non-interactive)
  * a JavaScript page that paints a blurry rendition of any image file
+
+Other Links
+---------
+
+* <a target="_blank" href="../linux-notes.html">Linux Notes</a>
+ * a "cheat sheet" style collection of bash and other snippets
