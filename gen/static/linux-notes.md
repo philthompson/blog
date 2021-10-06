@@ -11,6 +11,11 @@ This is a "cheat sheet" style collection of bash and other snippets, mainly for 
 
 ## General / Local System Administration
 
+#### see lifetime data written to SSD
+
+	# MacOS
+	$ brew install smartmontools && sudo smartctl —all /dev/disk0
+
 #### restart ubuntu menu to get clock to appear
 	
 	$ sudo killall unity-panel-service

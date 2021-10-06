@@ -72,6 +72,9 @@ Portfolio
  * a terminal-based calculator powered by bigdecimal math, written in Rust
 * <a target="_blank" href="${SITE_ROOT_REL}/screensavejs/">screensavejs</a> (interactive) / <a target="_blank" href="https://harvey.dog">harvey.dog</a> (non-interactive)
  * a JavaScript page that paints a blurry rendition of any image file
+* <a target="_blank" href="https://jsfiddle.net/b8w1coga/">Javascript toy: black & white box</a>
+ * finds a box (many are possible) describing the percentage of black and white pixels, where the text itself is counted
+ * inspired by the xkcd #688 <a target="_blank" href="https://xkcd.com/688/">Self-Description</a>
 
 Other Links
 ---------
