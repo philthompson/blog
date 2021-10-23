@@ -1,0 +1,18 @@
+-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA256
+
+As of 2021-10-22, the tip jar addresses published to:
+https://philthompson.me/tip-jar/
+
+are the following:
+
+Bitcoin Cash (BCH) - bitcoincash:qqagtltdz83nsk59dqmvyy90sz6x073d9u5kmvwz8h
+Bitcoin Cash (BCH) - bitcoincash:16LShupuDz7CaBEVsCAtRQaEE3sYWg1NDo
+Bitcoin      (BTC) - bitcoin:1E1Kh1tX16p8sk2RmDZfNswxKmVq8bmhY1
+-----BEGIN PGP SIGNATURE-----
+
+iHUEARYIAB0WIQTrWmr4U4hBQ/LDj79lhthTICF+pgUCYXMoBwAKCRBlhthTICF+
+ppIoAQDEpRfx3P/k/lT5/KOYYte/l0fh+RI9Irhs4hBJx9ZuiQEAu4Fw8JyaxeRi
+WqDiurH7z1MWtihWLWah8e8EcW6PMA4=
+=QNSa
+-----END PGP SIGNATURE-----

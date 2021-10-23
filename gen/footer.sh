@@ -17,6 +17,8 @@ cat << xxxxxEOFxxxxx
 						<a href="${SITE_ROOT_REL}/privacy">Privacy Policy</a>
 						&#x2027;
 						<a href="${SITE_ROOT_REL}/disclaimer">Disclaimer</a>
+						&#x2027;
+						<a href="${SITE_ROOT_REL}/tip-jar">Tip Jar</a>
 					</p>
 				</div>
 			</footer>

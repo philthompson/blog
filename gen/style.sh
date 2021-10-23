@@ -200,4 +200,8 @@ a:hover {
 	border-top: 1px solid #949b96;
 }
 
+summary {
+	cursor: pointer;
+}
+
 xxxxxEOFxxxxx
