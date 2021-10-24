@@ -65,14 +65,22 @@ PGP
 Portfolio
 ---------
 
-* <a target="_blank" href="https://github.com/philthompson/qrcodejs">qrcodejs</a>
- * a JavaScript page for interactively generating QR codes
- * the page is viewable at <a target="_blank" href="https://philthompson.me/qrcode.html">philthompson.me/qrcode.html</a>
-* <a target="_blank" href="https://github.com/philthompson/rust-calc-term">rust-calc-term</a>
+* <a target="_blank" href="${SITE_ROOT_REL}/very-plotter/">Very Plotter</a>, 2021
+ * view and interact with graphs of mathematical sequences
+ * the source code is available in its <a target="_blank" href="https://github.com/philthompson/visualize-primes">GitHub repository</a>
+* <a target="_blank" href="https://github.com/philthompson/rust-calc-term">rust-calc-term</a>, 2020
  * a terminal-based calculator powered by bigdecimal math, written in Rust
-* <a target="_blank" href="${SITE_ROOT_REL}/screensavejs/">screensavejs</a> (interactive) / <a target="_blank" href="https://harvey.dog">harvey.dog</a> (non-interactive)
+* <a target="_blank" href="${SITE_ROOT_REL}/qrcode.html">qrcodejs</a>, 2018
+ * a JavaScript page for interactively generating QR codes
+ * the source code is available in its <a target="_blank" href="https://github.com/philthompson/qrcodejs">GitHub repository</a>
+* this website, 2018
+ * a static site, without the use of JavaScript on the article pages
+ * background on the site generator was provided in <a target="_blank" href="${SITE_ROOT_REL}/2018/Writing-A-Static-Site-Generator.html">a blog post</a>.
+ * the source code is available in its <a target="_blank" href="https://github.com/philthompson/blog">GitHub repository</a>
+ * updated in 2021 with the static image <a target="_blank" href="${SITE_ROOT_REL}/gallery">gallery</a> pages
+* <a target="_blank" href="${SITE_ROOT_REL}/screensavejs/">screensavejs</a> (interactive, 2020) / <a target="_blank" href="https://harvey.dog">harvey.dog</a> (non-interactive, 2016)
  * a JavaScript page that paints a blurry rendition of any image file
-* <a target="_blank" href="https://jsfiddle.net/b8w1coga/">Javascript toy: black & white box</a>
+* <a target="_blank" href="https://jsfiddle.net/b8w1coga/">Javascript toy: black & white box</a>, 2015
  * finds a box (many are possible) describing the percentage of black and white pixels, where the text itself is counted
  * inspired by the xkcd #688 <a target="_blank" href="https://xkcd.com/688/">Self-Description</a>
 
