@@ -75,6 +75,11 @@ This is a "cheat sheet" style collection of bash and other snippets, mainly for 
 
 ## Network
 
+#### Run webserver from a directory
+
+	# python 2.7, serve on port 8080
+	$ python -m SimpleHTTPServer 8080
+
 #### Port forward remote port 443 to local port 1443 through SSH:
 
 	$ ssh -L 1443:<host1>:443 username@<host2>
