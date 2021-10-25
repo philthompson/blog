@@ -88,6 +88,18 @@ img {
 	padding-top: 0.4rem;
 }
 
+.width-resp-75-100 {
+	max-width: 100%;
+}
+
+@media screen and (min-width: 700px) {
+	.width-resp-75-100 {
+		padding-left: 2%;
+		padding-right: 2%;
+		max-width: 71%;
+	}
+}
+
 .width-resp-50-100 {
 	max-width: 100%;
 }
