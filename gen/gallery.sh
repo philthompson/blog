@@ -109,6 +109,12 @@ do
 			#   these pictures anymore, which is kind of the point anyway of
 			#   removing bird gallery pics from the git repo
 			PHOTO_PATH="${HOME}/Pictures/Birds/${PHOTO_YEAR}/${PHOTO_MONTH}/${PHOTO_FILENAME}"
+			# some photos are not of birds, but i'd like to publish their signature and
+			#   thumbnail pics anyway, so look in "Other" photos folder
+			if [ ! -s "${PHOTO_PATH}" ]
+			then
+				PHOTO_PATH="${HOME}/Pictures/Other/${PHOTO_YEAR}/${PHOTO_MONTH}/${PHOTO_FILENAME}"
+			fi
 			# this path is relative to the new on-webserver static images path
 			PHOTO_PATH_REL="${HASHES_YEAR}/${PHOTO_FILENAME}"
 			PHOTO_DATETIME_LEX="`/usr/local/bin/exiftool -d '%Y-%m-%d-%H%M%S' -DateTimeOriginal -S -s "${PHOTO_PATH}"`"
