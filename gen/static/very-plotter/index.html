@@ -5,8 +5,8 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <meta name="description" content="visualizer for prime numbers and other mathematical sequences">
-    <meta name="keywords" content="math, charts, graphs, interactive, prime numbers, trapped knight, javascript">
+    <meta name="description" content="visualizer for the Mandelbrot set, prime numbers, and other mathematical sequences">
+    <meta name="keywords" content="Mandelbrot, Mandelbrot set, math, charts, graphs, interactive, prime numbers, trapped knight, javascript">
     <meta name="robots" content="all">
     <meta name="revisit-after" content="30 days">
     <link rel="apple-touch-icon-precomposed" sizes="144×144" href="../icon-ipad-144x144.png">
@@ -37,7 +37,8 @@
         font-size: 1.5rem;
     }
     #menu {
-      max-height: 100%;
+      max-height: 80%;
+      padding-bottom: 20.0rem;
       /* for small screens, take up the whole width, and
        *   for large screens, only get up to 40 chars wide
            (thanks to https://stackoverflow.com/a/30515342/259456) */
@@ -71,14 +72,29 @@
     #help-menu {
       font-family: monospace;
       padding-left: 2.0rem;
+      padding-bottom: 20.0rem;
+      max-height: 80%;
     }
-    #help-menu div {
+    #help-menu details>div div, #keyboard-keycaps div {
       float: left;
       margin-right: 4.0rem;
     }
+    #help-menu button {
+      padding: 0.4rem 1.5rem 0.4rem 1.5rem;
+    }
+    #help-menu summary {
+      cursor: pointer;
+      padding-bottom: 1.0rem;
+    }
+    #help-menu details>div {
+      padding: 0.5rem 0 1.5rem 1.5rem;
+    }
+    #help-menu  input {
+      text-align:  right;
+    }
     #menu-contents {
     }
-    .sequence-desc {
+    .plot-desc {
       padding-top: 0.7rem;
       padding-left: 0.5rem;
       padding-right: 0.5rem;
@@ -88,13 +104,13 @@
       border-top: 0.1rem solid rgba(200,200,200,0.3);
       /* display: grid; */
     }
-    .sequence-desc button {
+    .plot-desc button {
       margin-right: 1.5rem;
       margin-left: 0.5rem;
       float: left;
       padding: 0.25rem;
     }
-    .sequence-desc.active-seq {
+    .plot-desc.active-plot {
       background-color: rgba(50, 50, 50, 0.5);
       border: 0.1rem solid rgba(200,200,200,0.6);
       color: #ccc;
@@ -122,6 +138,7 @@
       text-shadow: 0px 0px 5px #222;
       font-family: arial;
       font-size: 0.9rem;
+      pointer-events: none; /* thanks to https://stackoverflow.com/a/3538639/259456 */
     }
     #footer button a {
       text-decoration: none;
@@ -136,6 +153,8 @@
         height: 1.5rem;
         text-align: center;
         font-size: 1.3rem;
+        user-select: none;
+        cursor: pointer;
     }
     #menu-open {
         height: 1.5rem;
@@ -155,38 +174,59 @@
     </div>
     <div id="menu">
         <span style="position: fixed; right: 2.0rem; top: 2.0rem;" id="menu-close">×</span>
-        <p style="padding-right: 4rem;"c>Use a "View" button below to select a sequence.  Or, use the
-        buttons below or the number keys <kbd>1</kbd>&nbsp;to&nbsp;<kbd>4</kbd>
+        <p style="padding-right: 4rem;"c>Use a "View" button below to select a plot.  Or, use the
+        buttons below or the number keys <kbd id="kbd-1">1</kbd>&nbsp;to&nbsp;<kbd id="kbd-4">4</kbd>
         to view presets.
         <div id="menu-contents"></div>
     </div>
     <div id="help-menu">
         <span style="position: fixed; right: 2.0rem; top: 2.0rem;" id="help-menu-close">×</span>
-        <p style="margin-left: -1.0rem">mouse</p>
-        <p>
-            drag mouse to move &mdash; scroll mouse wheel to zoom
-        </p>
-        <p style="margin-left: -1.0rem">keyboard</p>
-        <div>help<br/>&nbsp;<kbd>H</kbd></div>
-        <div>menu<br/>&nbsp;<kbd>P</kbd></div>
-        <div>presets<br/>&nbsp;<kbd>1</kbd>&nbsp;-&nbsp;<kbd>4</kbd></div>
-        <div>center&nbsp;start<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<kbd>C</kbd></div>
-        <p style="clear: both"></p>
-        <div>move<br/>&nbsp;<kbd>W</kbd><br/><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd></div>
-        <div>move&nbsp;less<br/>&nbsp;&nbsp;&nbsp;&nbsp;<kbd>↑</kbd><br/>&nbsp;&nbsp;<kbd>←</kbd><kbd>↓</kbd><kbd>→</kbd></div>
-        <div>zoom<br/><kbd>Q</kbd>&nbsp;&nbsp;<kbd>E</kbd></div>
-        <div>zoom&nbsp;less<br/>&nbsp;&nbsp;&nbsp;<kbd>−</kbd>&nbsp;<kbd>+</kbd></div>
-        <p style="clear: both"></p>
-        <div>line&nbsp;width<br/>&nbsp;&nbsp;&nbsp;&nbsp;<kbd>Z</kbd></div>
-        <div>fewer/more&nbsp;points<br/>&nbsp;&nbsp;&nbsp;&nbsp;<kbd>N</kbd>&nbsp;<kbd>M</kbd></div>
-        <p style="clear: both"></p>
-        <div>sequence<br/>&nbsp;&nbsp;&nbsp;&nbsp;<kbd>X</kbd></div>
-        <div>line&nbsp;color<br/>&nbsp;&nbsp;&nbsp;&nbsp;<kbd>V</kbd></div>
-        <div>bg&nbsp;color<br/>&nbsp;&nbsp;&nbsp;<kbd>B</kbd></div>
+        <details>
+          <summary>go to location by center and scale</summary>
+          <div>
+            <div>center: <label>x<input id="go-to-c-x"/></label>, <label>y<input id="go-to-c-y"/></label></div><br/>
+            <div>&nbsp;scale:&nbsp;&nbsp;<input id="go-to-scale" type="" name="" /></div><br/>
+            <p style="clear: both;">scale is (pixels/unit)</p>
+            <button id="go-to-c-go">Go</button>
+            <button id="go-to-c-reset">Reset to Current Window</button>
+          </div>
+        </details>
+        <details>
+          <summary>go to location by bounds</summary>
+          <div>
+            <div>top left: <label>x<input id="go-to-tl-x"/></label>, <label>y<input id="go-to-tl-y"/></label></div><br/>
+            <div>bot right:<label>x<input id="go-to-br-x"/></label>, <label>y<input id="go-to-br-y"/></label></div>
+            <p style="clear: both;"></p>
+            <button id="go-to-b-go">Go</button>
+            <button id="go-to-b-reset">Reset to Current Window</button>
+          </div>
+        </details>
+        <p style="clear: both; margin-left: -1.0rem">mouse</p>
+        <p>drag mouse to move &mdash; scroll mouse wheel to zoom</p>
+        <p>hold shift and click to re-center (good for slow-to-draw plots)</p>
+        <p style="clear: both; margin-left: -1.0rem">keyboard (or click/tap key icons below)</p>
+        <div id="keyboard-keycaps">
+          <div>help<br/>&nbsp;<kbd id="kbd-H">H</kbd></div>
+          <div>plots<br/>&nbsp;<kbd id="kbd-P">P</kbd></div>
+          <div>presets<br/>&nbsp;<kbd id="kbd-1">1</kbd>&nbsp;-&nbsp;<kbd id="kbd-4">4</kbd></div>
+          <div>center&nbsp;at (0,0)<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<kbd id="kbd-C">C</kbd></div>
+          <p style="clear: both"></p>
+          <div>move<br/>&nbsp;<kbd id="kbd-W">W</kbd><br/><kbd id="kbd-A">A</kbd><kbd id="kbd-S">S</kbd><kbd id="kbd-D">D</kbd></div>
+          <div>move&nbsp;less<br/>&nbsp;&nbsp;&nbsp;&nbsp;<kbd id="kbd-ArrowUp">↑</kbd><br/>&nbsp;&nbsp;<kbd id="kbd-ArrowLeft">←</kbd><kbd id="kbd-ArrowDown">↓</kbd><kbd id="kbd-ArrowRight">→</kbd></div>
+          <div>zoom<br/><kbd id="kbd-Q">Q</kbd>&nbsp;&nbsp;<kbd id="kbd-E">E</kbd></div>
+          <div>zoom&nbsp;less<br/>&nbsp;&nbsp;&nbsp;<kbd id="kbd-−">−</kbd>&nbsp;<kbd id="kbd-+">+</kbd></div>
+          <p style="clear: both"></p>
+          <div>line&nbsp;width<br/>&nbsp;&nbsp;&nbsp;&nbsp;<kbd id="kbd-Z">Z</kbd></div>
+          <div>fewer/more&nbsp;points<br/>&nbsp;&nbsp;&nbsp;&nbsp;<kbd id="kbd-N">N</kbd>&nbsp;<kbd id="kbd-M">M</kbd></div>
+          <p style="clear: both"></p>
+          <div>change plot<br/>&nbsp;&nbsp;&nbsp;&nbsp;<kbd id="kbd-X">X</kbd></div>
+          <div>line&nbsp;color<br/>&nbsp;&nbsp;&nbsp;&nbsp;<kbd id="kbd-V">V</kbd></div>
+          <div>bg&nbsp;color<br/>&nbsp;&nbsp;&nbsp;<kbd id="kbd-B">B</kbd></div>
+        </div>
     </div>
     <div id="footer">
-        <span style="float:left"><a target="_blank" href="https://philthompson.me/2021/Very-Plotter.html">What is this?</a></span>
-        <button id="tip-btn" style="float:right"><a target="_blank" href="https://philthompson.me/tip-jar/">Tip Jar<a/></button>
+        <span style="float:left; pointer-events: visible"><a target="_blank" href="https://philthompson.me/2021/Very-Plotter.html">What is this?</a></span>
+        <button id="tip-btn" style="float:right; pointer-events: visible"><a target="_blank" href="https://philthompson.me/tip-jar/">Tip Jar<a/></button>
     </div>
     <script src="paint.min.js"></script>
 </body>
