@@ -16,6 +16,11 @@ This is a "cheat sheet" style collection of bash and other snippets, mainly for 
 	# MacOS
 	$ brew install smartmontools && sudo smartctl —all /dev/disk0
 
+#### see disk capacity usage
+
+	# MacOS
+	$ diskutil info `diskutil list | grep "<VolumeName>" | tr ' ' '\n' | grep "^disk"` | grep "Space\|Identifier\|Mount"
+
 #### restart ubuntu menu to get clock to appear
 	
 	$ sudo killall unity-panel-service
