@@ -194,6 +194,10 @@
       padding-left: 2.0rem;
       font-size: 1.0rem;
     }
+    #gradient-canvas {
+      width: 100%;
+      height: 2.5rem;
+    }
     </style>
 </head>
 <body>
@@ -305,7 +309,7 @@
             <button id="n-iter-reset">Reset to Current Value</button>
           </div>
         </details>
-        <details>
+        <details id="gradient-controls-details">
           <summary>gradient editor</summary>
           <details class="help-text">
             <summary>?</summary>
@@ -329,24 +333,26 @@
             <ul>
                 <li>repeat# - where # is the number of times to repeat the color series</li>
                 <li>shift# - where # is the number of colors to shift off the end of the series and move onto the beginning</li>
-                <!--
-                <li>mirror# - like "repeat" but reverses the series from one repetition to the next</li>
+                <li>mirror# - like "repeat" but adds the reverse of the entire series from one repetition to the next</li>
                 <li>width# - where # is the percentage of width the gradient should be squeezed into (if not given, the gradient takes up 100% of the possible colors to draw)</li>
                 <li>offset# - where # is the percentage to move the gradient if squeezed into a smaller width using the "width" option</li>
-                -->
             </ul>
             Examples:<br/>
             <br/>
             "roygbv-repeat2" creates a gradient with "roygbvroygbv"<br/>
             <br/>
             "pBpw-p~240.160.200" creates a gradient with "p" re-defined as pink<br/>
-            <!--<br/>
-            "roygbv-mirror1" creates a gradient with "roygbvbgyor"
-            -->
+            <br/>
+            "roygbv-mirror1" creates a gradient with "roygbvbgyor"<br/>
+            <br/>
+            "roygbv-width25-offset75" creates a rainbow gradient squeezed down to 25% of the available width, and moved all the way to the top end of the available width
           </details>
           <div>
             <table>
+              <tr><td colspan="2" id="gradient-canvas-tr"><canvas id="gradient-canvas"></canvas></td></tr>
+              <tr><td colspan="2" id="gradient-error"></td></tr>
               <tr><td>gradient:</td><td><input size="26" id="grad-grad"/></td></tr>
+              <tr><td>preset:</td><td><select style="font-size:1.2rem;" id="gradient-select"></select></td></tr>
             </table>
             <button id="grad-go">Go</button>
             <button id="grad-reset">Reset to Current Gradient</button>
@@ -395,7 +401,7 @@
         </div>
     </div>
     <div id="footer">
-        <span style="float:left; pointer-events: visible"><a target="_blank" href="https://philthompson.me/2021/Very-Plotter.html">What is this?</a>&nbsp;&nbsp;<small>(v0.3)</small></span>
+        <span style="float:left; pointer-events: visible"><a id="blog-link" target="_blank" href="https://philthompson.me/2021/Very-Plotter.html">What is this?</a><a id="blog-link-mandel" target="_blank" href="https://philthompson.me/2021/The-Mandelbrot-set-on-Very-Plotter.html">What is this?</a>&nbsp;&nbsp;<small>(v0.3.1)</small></span>
         <button id="tip-btn" style="float:right; pointer-events: visible"><a target="_blank" href="https://philthompson.me/tip-jar/">Tip Jar<a/></button>
     </div>
     <script src="infnum.js"></script>
