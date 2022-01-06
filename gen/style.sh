@@ -216,4 +216,12 @@ summary {
 	cursor: pointer;
 }
 
+.im-i {
+	letter-spacing: 0.2rem;
+	font-family: serif;
+	font-size: 1.2rem;
+	font-style: italic;
+	padding-left: 0.07rem;
+}
+
 xxxxxEOFxxxxx
