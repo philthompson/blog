@@ -280,6 +280,8 @@
               <tr><td>&nbsp;</td></tr>
               <tr><td>scale:</td><td><textarea rows="4" size="22" id="go-to-scale"></textarea></td></tr>
               <tr><td colspan="2" style="font-size:0.9rem">scale is (pixels/unit) so bigger = more zoom</td></tr>
+              <tr><td>magnification:</td><td><textarea rows="4" size="22" id="go-to-mag"></textarea></td></tr>
+              <tr><td colspan="2" style="font-size:0.9rem">magnification of 1 shows the entire plot.  2 shows the plot at 2x the size, 5e2 at 500x, etc.</td></tr>
             </table>
             <button id="go-to-c-go">Go</button>
             <button id="go-to-c-reset">Reset to Current Window</button>
@@ -308,7 +310,7 @@
           <summary id="n-iter-label1">iterations</summary>
           <div>
             <table>
-              <tr><td id="n-iter-label2">iterations:</td><td><input size="22" id="n-iter-n"/></td></tr>
+              <tr><td id="n-iter-label2">iterations:</td><td><input size="14" id="n-iter-n"/></td></tr>
             </table>
             <button id="n-iter-go">Go</button>
             <button id="n-iter-reset">Reset to Current Value</button>
@@ -363,15 +365,45 @@
             <button id="grad-reset">Reset to Current Gradient</button>
           </div>
         </details>
-        <label for="workers-select">workers </label>
-        <select style="font-size:1.2rem;" id="workers-select"></select>
-        <details class="help-text">
-          <summary>?</summary>
-            Increase workers to increase computation speed, depending on your computer/device.<br/><br/>
-            Increasing the number of workers will cause your computer/device to consume more power/battery, but the computation will be completed faster.<br/><br/>
-            Increasing the number of workers beyond a certain point will have no effect depending on the number of cores/threads your computer or browser can devote to this page.
+        <details id="workers-controls">
+          <summary>workers options</summary>
+          <label for="workers-select">workers </label>
+          <select style="font-size:1.2rem;" id="workers-select"></select>
+          <details class="help-text">
+            <summary>?</summary>
+              Increase workers to increase computation speed, depending on your computer/device.<br/><br/>
+              Increasing the number of workers will cause your computer/device to consume more power/battery, but the computation will be completed faster.<br/><br/>
+              Increasing the number of workers beyond a certain point will have no effect depending on the number of cores/threads your computer or browser can devote to this page.
+          </details>
         </details>
         <p id="workers-warning"></p>
+        <details>
+          <summary>window options</summary>
+          <details class="help-text">
+            <summary>?</summary>
+            Turning off auto-resize is useful when performing long-running calculations.  Otherwise, it's probably best left on.
+          </details>
+          <div>
+            <table>
+              <tr><td>auto-resize:</td><td><input id="auto-resize-cb" type="checkbox" checked /></td></tr>
+            </table>
+          </div>
+        </details>
+        <details id="algo-controls">
+          <summary>algorithm options</summary>
+          <details class="help-text">
+            <summary>?</summary>
+            The "auto" option picks the algorithm depending on the scale.  Users that are familiar with Mandelbrot set calculation algorithms may be able to select a better-performing algorithm at specific locations.
+          </details>
+          <div>
+            <table>
+              <tr><td>algorithm:</td><td><input size="16" id="algo-algo"/></td></tr>
+              <tr><td>options:</td><td><select style="font-size:0.9rem;" id="algo-select"></select></td></tr>
+            </table>
+            <button id="algo-go">Go</button>
+            <button id="algo-reset">Reset to Current Algorithm</button>
+          </div>
+        </details>
     </div>
     <div id="help-menu">
         <span style="position: fixed; left: 1.2rem; top: 1.2rem;" id="help-menu-close">×</span>
@@ -402,16 +434,16 @@
           <div>show&nbsp;params<br/>&nbsp;&nbsp;&nbsp;&nbsp;<kbd id="kbd-T">T</kbd></div>
           <p style="clear: both"></p>
           <div>fewer/more&nbsp;workers<br/>&nbsp;&nbsp;&nbsp;&nbsp;<kbd id="kbd-Y">Y</kbd>&nbsp;<kbd id="kbd-U">U</kbd></div>
-          <div>stop<br/>&nbsp;<kbd id="kbd-.">.</kbd></div>
+          <div>stop<br/>&nbsp;<kbd id="kbd-Escape">Esc</kbd></div>
         </div>
     </div>
     <div id="footer">
-        <span style="float:left; pointer-events: visible"><a id="blog-link" target="_blank" href="https://philthompson.me/2021/Very-Plotter.html">What is this?</a><a id="blog-link-mandel" target="_blank" href="https://philthompson.me/2021/The-Mandelbrot-set-on-Very-Plotter.html">What is this?</a>&nbsp;&nbsp;<small>(v0.5.0)</small></span>
+        <span style="float:left; pointer-events: visible"><a id="blog-link" target="_blank" href="https://philthompson.me/2021/Very-Plotter.html">What is this?</a><a id="blog-link-mandel" target="_blank" href="https://philthompson.me/2021/The-Mandelbrot-set-on-Very-Plotter.html">What is this?</a>&nbsp;&nbsp;<small>(v0.6.0)</small></span>
         <button id="tip-btn" style="float:right; pointer-events: visible"><a target="_blank" href="https://philthompson.me/tip-jar/">Tip Jar<a/></button>
     </div>
-    <script src="infnum.js?v=0.5.0"></script>
-    <script src="floatexp.js?v=0.5.0"></script>
-    <script src="plots.js?v=0.5.0"></script>
-    <script src="paint.js?v=0.5.0"></script>
+    <script src="infnum.js?v=0.6.0"></script>
+    <script src="floatexp.js?v=0.6.0"></script>
+    <script src="plots.js?v=0.6.0"></script>
+    <script src="paint.js?v=0.6.0"></script>
 </body>
 </html>
