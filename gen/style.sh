@@ -206,6 +206,7 @@ a:hover {
 
 .copyright {
 	text-align: center;
+	font-size: 0.95rem;
 }
 
 .top-border {
