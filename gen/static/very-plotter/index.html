@@ -24,7 +24,8 @@
     /* use overflow: hidden to stop scrolling on mobile devices, thanks;
          to https://stackoverflow.com/a/28411556/259456 */
     body, html {  height: 100%; overflow: hidden; }
-    #dc { position:absolute; width: 100%; height: 100%; z-index:10; }
+    #fit-size-canvas { position:absolute; width: 100%; height: 100%; z-index:10; }
+    #dc { display:none; }
     #menu, #help-menu, #controls-menu, #menu-open-wrap {
         position:fixed;
         width: 96%;
@@ -203,10 +204,17 @@
       width: 100%;
       height: 2.5rem;
     }
+    #grad-add-color-char {
+      text-align: center !important;
+    }
+    #grad-add-color-color {
+      margin: 0 0.2rem 0 0.2rem;
+    }
     </style>
 </head>
 <body>
     <canvas id="dc"></canvas>
+    <canvas id="fit-size-canvas"></canvas>
     <div id="menu-open-wrap">
         <div class="fixed-top-left-btn">
           <span id="help-menu-open"><kbd class="frosted-bg">?</kbd></span>
@@ -266,6 +274,10 @@
     </div>
     <div id="controls-menu">
         <span style="position: fixed; left: 1.2rem; top: 1.2rem;" id="controls-menu-close">×</span>
+        <p>
+          <button id="btn-download">Save Image</button><br>
+          <small>Adjust image size under "window options" below.</small>
+        </p>
         <details>
           <summary>go to location by center and scale</summary>
           <details class="help-text">
@@ -333,18 +345,21 @@
               <li>w - white</li>
               <li>B - Black</li>
             </ul>
-            Colors may be defined or re-defined with an <b>option</b> like "G~90.90.90" which defines an rgb gray color for the letter G.  See below about options.<br/>
+            Colors may be defined or re-defined with an <b>option</b> like "o.f1593c" which defines a hex orange color for the letter o, or like "G~90.90.90" which defines an rgb gray color for the letter G.<br/>
             <br/>
             <b>Options</b>: after the series of color letters are given, zero or more gradient options may be entered.
             Each option must be preceded with a dash "-".<br/>
             <ul>
+                <li>mod# - where # is the modulo to take for the number of values of N (for Mandelbrot, iterations) for each pixel (for example, if a pixel has 10,123 iterations, and mod10000 is used, the pixel will be colored as if it had 123 iterations) (this is incompatible with the "width" option)</li>
                 <li>repeat# - where # is the number of times to repeat the color series</li>
                 <li>shift# - where # is the number of colors to shift off the end of the series and move onto the beginning</li>
                 <li>mirror# - like "repeat" but adds the reverse of the entire series from one repetition to the next</li>
-                <li>width# - where # is the percentage of width the gradient should be squeezed into (if not given, the gradient takes up 100% of the possible colors to draw)</li>
-                <li>offset# - where # is the percentage to move the gradient if squeezed into a smaller width using the "width" option</li>
+                <li>width# - where # is the percentage of width the gradient should be squeezed into (if not given, the gradient takes up 100% of the possible colors to draw) (this is incompatible with the "mod" option)</li>
+                <li>offset# - where # is the percentage to move the gradient if squeezed into a smaller width using the "width" option (for gradients with the mod option, offset is a number to add to the value of the pixel before taking the modulus)</li>
             </ul>
             Examples:<br/>
+            <br/>
+            "roygbv-mod1000" creates a rainbow gradient that repeats every 1000 values of N (for mod plots only, like Mandelbrot set)<br/>
             <br/>
             "roygbv-repeat2" creates a gradient with "roygbvroygbv"<br/>
             <br/>
@@ -360,6 +375,7 @@
               <tr><td colspan="2" id="gradient-error"></td></tr>
               <tr><td>gradient:</td><td><textarea rows="4" id="grad-grad"></textarea></td></tr>
               <tr><td>preset:</td><td><select style="font-size:1.2rem;" id="gradient-select"></select></td></tr>
+              <tr><td>add color:</td><td><input id="grad-add-color-char" size="1" maxlength="2" placeholder="A"/><input id="grad-add-color-color" type="color"/><button id="grad-add-color-go">Add</button></td></tr>
             </table>
             <button id="grad-go">Go</button>
             <button id="grad-reset">Reset to Current Gradient</button>
@@ -381,11 +397,15 @@
           <summary>window options</summary>
           <details class="help-text">
             <summary>?</summary>
-            Turning off auto-resize is useful when performing long-running calculations.  Otherwise, it's probably best left on.
+            Turn on window lock if you are running a long render.  It will prevent the render from restarting if the browser asks the window to resize itself (which can happen when switching browser tabs, or turning off your monitor).  Window lock will also disable the keyboard and mouse controls (again, to avoid interfering with a long-running render). Otherwise, it's probably best left off.<br/>
+            <br/>
+            With photo editing software, you can resize the full size render down for a smaller, smoother-looking image.
           </details>
           <div>
             <table>
-              <tr><td>auto-resize:</td><td><input id="auto-resize-cb" type="checkbox" checked /></td></tr>
+              <tr><td>window lock:</td><td><input id="window-lock-cb" type="checkbox" /></td></tr>
+              <tr><td>render size:</td><td><select style="font-size:0.9rem;" id="full-size-select"></select></td></tr>
+              <tr><td colspan="2">Smaller images are fast, and good for exploring.  Larger images have much more detail but take a lot more time to render.  Use the "Save Image" button to download the full-size render.</td></tr>
             </table>
           </div>
         </details>
@@ -438,12 +458,13 @@
         </div>
     </div>
     <div id="footer">
-        <span style="float:left; pointer-events: visible"><a id="blog-link" target="_blank" href="https://philthompson.me/2021/Very-Plotter.html">What is this?</a><a id="blog-link-mandel" target="_blank" href="https://philthompson.me/2021/The-Mandelbrot-set-on-Very-Plotter.html">What is this?</a>&nbsp;&nbsp;<small>(v0.6.0)</small></span>
+        <span style="float:left; pointer-events: visible"><a id="blog-link" target="_blank" href="https://philthompson.me/2021/Very-Plotter.html">What is this?</a><a id="blog-link-mandel" target="_blank" href="https://philthompson.me/2021/The-Mandelbrot-set-on-Very-Plotter.html">What is this?</a>&nbsp;&nbsp;<small>(v0.7.0)</small></span>
         <button id="tip-btn" style="float:right; pointer-events: visible"><a target="_blank" href="https://philthompson.me/tip-jar/">Tip Jar<a/></button>
     </div>
-    <script src="infnum.js?v=0.6.0"></script>
-    <script src="floatexp.js?v=0.6.0"></script>
-    <script src="plots.js?v=0.6.0"></script>
-    <script src="paint.js?v=0.6.0"></script>
+    <script src="infnum.js?v=0.7.0"></script>
+    <script src="floatexp.js?v=0.7.0"></script>
+    <script src="mathiface.js?v=0.7.0"></script>
+    <script src="plots.js?v=0.7.0"></script>
+    <script src="paint.js?v=0.7.0"></script>
 </body>
 </html>
