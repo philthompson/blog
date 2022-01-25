@@ -66,7 +66,7 @@ Portfolio
 ---------
 
 * <a target="_blank" href="${SITE_ROOT_REL}/very-plotter/">Very Plotter</a>, 2021
- * view and interact with graphs of mathematical sequences
+ * view the Mandelbrot set, and plots of a few mathematical sequences
  * the source code is available in its <a target="_blank" href="https://github.com/philthompson/visualize-primes">GitHub repository</a>
 * <a target="_blank" href="https://github.com/philthompson/rust-calc-term">rust-calc-term</a>, 2020
  * a terminal-based calculator powered by bigdecimal math, written in Rust
