@@ -49,6 +49,13 @@ header .logo img {
 	height: 4rem;
 }
 
+header .icon img {
+	height: 2rem;
+	vertical-align: middle;
+	position: relative;
+	top: -0.2rem;
+}
+
 header .nav {
 	float: right;
 	margin: 0;
@@ -64,6 +71,7 @@ ul .nav {
 header .nav .nav-item {
 	display: inline-block;
 	padding: 1.5rem 0.5rem;
+	vertical-align: middle;
 }
 
 .container {

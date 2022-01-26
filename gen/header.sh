@@ -44,11 +44,18 @@ cat << xxxxxEOFxxxxx
 					<li class="nav-item">
 						<a href="${SITE_ROOT_REL}/archive" target="_self">Archive</a>
 					</li>
-					<li class="nav-item">
+					<li class="nav-item" style="padding-right: 0;">
 						<a href="${SITE_ROOT_REL}/gallery" target="_self">Gallery</a>
 					</li>
-					<li class="nav-item">
-						<a href="https://github.com/philthompson" target="_blank">GitHub</a>
+					<li class="nav-item" style="padding-right: 0;">
+						<a href="${SITE_ROOT_REL}/very-plotter/" class="icon">
+							<img src="${SITE_ROOT_REL}/img/mandel-icon.png">
+						</a>
+					</li>
+					<li class="nav-item" style="padding-right: 0;">
+						<a href="https://github.com/philthompson" target="_blank" class="icon">
+							<img src="${SITE_ROOT_REL}/img/GitHub-Mark-64px.png">
+						</a>
 					</li>
 				</ul>
 			</header>
