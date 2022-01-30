@@ -38,9 +38,130 @@ GALLERY_REL="${SITE_ROOT_REL}/gallery"
 
 GALLERY_IMG="${STATIC_DIR}/gallery-img"
 
+generateGalleryIndexPage() {
+cat << xxxxxEOFxxxxx
+!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta http-equiv="refresh" content="0; url=${1}">
+	</head>
+	<body></body>
+</html>
+xxxxxEOFxxxxx
+}
+
+generateHashSigInfo() {
+	SHOOT_TITLE="${1}"
+	SHOOT_FAVORITE="${2}"
+	SHOOT_DESC="${3}"
+	SHOOT_YEAR="${4}"
+	HASHES_DIR_REL="${5}"
+	HASHES_ID="${6}"
+	SHOOT_ALGO_TXID="${7}"
+	SITE_ROOT_REL="${8}"
+	SHOOT_BCH_TXID="${9}"
+	PREV_BUTTON="${10}"
+	NEXT_BUTTON="${11}"
+
+	# wow thanks to https://stackoverflow.com/a/15742338/259456 for pointing out that
+	#   HTML now has <details> and <summary> tags with auto-collapse!
+cat << xxxxxEOFxxxxx
+<div class="btns" style="margin:0 0 2rem 0">
+	${PREV_BUTTON}
+	${NEXT_BUTTON}
+</div>
+<div class="">
+	<span class="article-title">${SHOOT_TITLE}</span>
+	${SHOOT_FAVORITE}
+	${SHOOT_DESC}
+	<p>These photos are © ${SHOOT_YEAR} Phil Thompson, all rights reserved.</p>
+	<details>
+		<summary>Signature</summary>
+		<p><a target="_blank" href="${HASHES_DIR_REL}/${HASHES_ID}.txt">📄 ${HASHES_ID}.txt</a></p>
+		<p><a target="_blank" href="${HASHES_DIR_REL}/${HASHES_ID}.txt.sig">📄 ${HASHES_ID}.txt.sig</a></p>
+xxxxxEOFxxxxx
+if [ "${SHOOT_ALGO_TXID}" != "--" ]
+then
+cat << xxxxxEOFxxxxx
+		<p>
+			The above <code>hashes-&lt;date&gt;.txt</code> file contains SHA-256 hashes of all the photos
+			from this shoot.  The <code>hashes-&lt;date&gt;.txt.sig</code> is a signature of that hashes
+			file, created with <a href="${SITE_ROOT_REL}/about">my PGP key</a>.  The signature file
+			itself was written to both the Bitcoin Cash and Algorand blockchains, in the
+			<code>OP RETURN</code> and <code>Note</code> fields respectively, using the transactions below.
+			In short, this proves that these photos and the signature both existed at the time the
+			transactions were written to the Bitcoin Cash and Algorand blockchains.
+			<a target="_blank" href="${SITE_ROOT_REL}/2021/Publishing-Permanent-Photo-Signatures-with-Blockchains.html">
+			This blog post</a> has more details.
+		</p>
+		<p class="article-info"><a target="_blank" href="https://blockchair.com/bitcoin-cash/transaction/${SHOOT_BCH_TXID}">view the BCH tx on blockchair.com: ${SHOOT_BCH_TXID}</a></p>
+		<p class="article-info"><a target="_blank" href="https://algoexplorer.io/tx/${SHOOT_ALGO_TXID}">view the ALGO tx on algoexplorer.io: ${SHOOT_ALGO_TXID}</a></p>
+xxxxxEOFxxxxx
+else
+cat << xxxxxEOFxxxxx
+		<p>
+			The above <code>hashes-&lt;date&gt;.txt</code> file contains SHA-256 hashes of all the photos
+			from this shoot.  The <code>hashes-&lt;date&gt;.txt.sig</code> is a signature of that hashes
+			file, created with <a href="${SITE_ROOT_REL}/about">my PGP key</a>.  The signature file
+			itself was written to the Bitcoin Cash blockchain, in the <code>OP RETURN</code> field,
+			using the transaction below. In short, this proves that these photos and the signature both
+			existed at the time the transaction was written to the Bitcoin Cash blockchain.
+			<a target="_blank" href="${SITE_ROOT_REL}/2021/Publishing-Permanent-Photo-Signatures-with-Blockchains.html">
+			This blog post</a> has more details.
+		</p>
+		<p class="article-info"><a target="_blank" href="https://blockchair.com/bitcoin-cash/transaction/${SHOOT_BCH_TXID}">view the BCH tx on blockchair.com: ${SHOOT_BCH_TXID}</a></p>
+xxxxxEOFxxxxx
+fi
+cat << xxxxxEOFxxxxx
+	</details>
+	<p style="clear:both;"></p>
+</div>
+xxxxxEOFxxxxx
+# <p class="article-info"><a target="_blank" href="https://www.blockchain.com/bch/tx/${SHOOT_TXID}">view on blockchain.com: ${SHOOT_TXID}</a></p>
+# <p class="article-info"><a target="_blank" href="https://explorer.bitcoin.com/bch/tx/${SHOOT_TXID}">view on bitcoin.com: ${SHOOT_TXID}</a></p>
+}
+
+generatePhotoDiv() {
+	LINE="${1}"
+	SITE_ROOT_REL="${2}"
+	#echo "${HASHES_ID} photo: ${LINE}"
+	PHOTO_PATH="`echo "${LINE}" | cut -d '|' -f 1`"
+	PHOTO_DATE="`echo "${LINE}" | cut -d '|' -f 3 | sed 's/^0//'`"
+	PHOTO_SPECIES="`echo "${LINE}" | cut -d '|' -f 4 | base64 -d`"
+	PHOTO_DESC="`echo "${LINE}" | cut -d '|' -f 5 | base64 -d`"
+	PHOTO_VISIBLE="`echo "${LINE}" | cut -d '|' -f 6`"
+	if [ "${PHOTO_VISIBLE}" != "true" ]
+	then
+		#echo "photo ${PHOTO_PATH} of shoot ${HASHES_ID} is not visible, so skipping"
+		return
+	fi
+	if [ ! -z "${PHOTO_DESC}" ] && [ "${PHOTO_DESC}" != "--" ]
+	then
+		PHOTO_DESC="<p>${PHOTO_DESC}</p>"
+	else
+		PHOTO_DESC=""
+	fi
+
+cat << xxxxxEOFxxxxx
+<div class="container top-border">
+	<p>
+		<a href="${SITE_ROOT_REL}/s/img/${PHOTO_PATH}">
+			<img style="float: left" class="width-resp-50-100" src="${SITE_ROOT_REL}/s/img/${PHOTO_PATH}"/>
+		</a>
+		<p class="article-info">${PHOTO_DATE}</p>
+		<b>${PHOTO_SPECIES}</b>
+		${PHOTO_DESC}
+	</p>
+	<p style="clear:both;"></p>
+</div>
+xxxxxEOFxxxxx
+}
+
+HASHES_FILES_SORTED="`find "${GALLERY_IMG}" -type f -name "hashes-*.txt" | sort`"
+
 # the first (most recent) hashes file generates the gallery/index.html page,
 #   and older hashes files generate their own pages
-find "${GALLERY_IMG}" -type f -name "hashes-*.txt" | sort -r | while read HASHES_FILE
+echo "${HASHES_FILES_SORTED}" | while read HASHES_FILE
 do
 	HASHES_DIR="`dirname "${HASHES_FILE}"`"
 	HASHES_ID="`basename "${HASHES_FILE}" | cut -d '.' -f 1`"
@@ -217,6 +338,36 @@ do
 		sqlite3 "${HASHES_DB}" "INSERT INTO shoot (title_b64, description_b64, bch_txid_b64, algo_txid_b64, favorite_path_rel, default_favorite_path_rel, visible) VALUES ('${SHOOT_TITLE}', '${SHOOT_DESCRIPTION}', '${SHOOT_BCH_TXID}', '${SHOOT_ALGO_TXID}', '${SHOOT_FAVORITE}', '${SHOOT_DEFAULT_FAVORITE}', '${SHOOT_VISIBLE}');"
 	fi
 
+	# find the previous/next pages
+	# these are NOT in the database for this hashes file because we may
+	#   add a new hashes file between two existing ones, so we have
+	#   to always check all hashes files for prev/next
+	PREV_NEXT="$(echo "${HASHES_FILES_SORTED}" | cut -d ' ' -f 2 | grep -B 1 -A 1 "${HASHES_ID}")"
+
+	PREV_PAGE_FILE="$(basename "$(echo "${PREV_NEXT}" | head -n 1)" | cut -d '.' -f 1)"
+	NEXT_PAGE_FILE="$(basename "$(echo "${PREV_NEXT}" | tail -n 1)" | cut -d '.' -f 1)"
+
+	#if [[ "${HASHES_ID}" == "hashes-2021-02-07-211156" ]]
+	#then
+	#	echo "NEXT_PAGE_FILE: [${NEXT_PAGE_FILE}]"
+	#	echo "PREV_PAGE_FILE: [${PREV_PAGE_FILE}]"
+	#	exit
+	#fi
+
+	NEXT_BUTTON=""
+	if [[ "${NEXT_PAGE_FILE}" != "${HASHES_ID}" ]]
+	then
+		NEXT_PAGE_FILE="gallery-`echo "${NEXT_PAGE_FILE}" | cut -d '-' -f 2-`.html"
+		NEXT_BUTTON="<a class='btn' href='${SITE_ROOT_REL}/gallery/${NEXT_PAGE_FILE}'>Newer Gallery</a>"
+	fi
+
+	PREV_BUTTON=""
+	if [[ "${PREV_PAGE_FILE}" != "${HASHES_ID}" ]]
+	then
+		PREV_PAGE_FILE="gallery-`echo "${PREV_PAGE_FILE}" | cut -d '-' -f 2-`.html"
+		PREV_BUTTON="<a class='btn' href='${SITE_ROOT_REL}/gallery/${PREV_PAGE_FILE}'>Older Gallery</a>"
+	fi
+
 	# build the page for this hashes file
 	# - put page title/description/date at the top
 	# - put txid at the top
@@ -237,17 +388,15 @@ do
 	#PAGE_TITLE="Gallery ${GALLERY_PAGE_COUNT}"
 	GALLERY_PAGE="${GALLERY_OUT}/${GALLERY_PAGE_FILENAME}"
 
-	if [ ! -s "${GALLERY_INDEX_PAGE}" ]
+	# capture function stdout into a variable, thanks to:
+	#   https://unix.stackexchange.com/a/591153/210174
+	{ read -d '' GALLERY_INDEX_CONTENT; }< <(generateGalleryIndexPage "${GALLERY_REL}/${GALLERY_PAGE_FILENAME}")
+
+	if [[ ! -f "${GALLERY_INDEX_PAGE}" ]] || [[ "`echo "${GALLERY_INDEX_CONTENT}" | shasum -a 256 | cut -d ' ' -f 1`" != "`shasum -a 256 "${GALLERY_INDEX_PAGE}" | cut -d ' ' -f 1`" ]]
 	then
-		cat << xxxxxEOFxxxxx >> "${GALLERY_INDEX_PAGE}"
-!DOCTYPE html>
-<html lang="en">
-	<head>
-		<meta http-equiv="refresh" content="0; url=${GALLERY_REL}/${GALLERY_PAGE_FILENAME}">
-	</head>
-	<body></body>
-</html>
-xxxxxEOFxxxxx
+		echo "${GALLERY_INDEX_CONTENT}" > "${GALLERY_INDEX_PAGE}"
+	else
+		echo "gallery index [${GALLERY_INDEX_PAGE}] is unchanged"
 	fi
 
 	SHOOT_DATA="`sqlite3 "${HASHES_DB}" "SELECT title_b64, description_b64, bch_txid_b64, algo_txid_b64, favorite_path_rel, default_favorite_path_rel, visible FROM shoot LIMIT 1;"`"
@@ -277,154 +426,50 @@ xxxxxEOFxxxxx
 	fi
 	SHOOT_YEAR="`echo "${HASHES_ID}" | cut -d '-' -f 2`"
 
-	"${HEADER_SCRIPT}" "${SHOOT_TITLE}" "${SITE_ROOT_REL}" "bird photos gallery" "description here" 14 > "${GALLERY_PAGE}"
+	GALLERY_PAGE_CONTENT="`bash "${HEADER_SCRIPT}" "${SHOOT_TITLE}" "${SITE_ROOT_REL}" "bird photos gallery" "description here" 14`"
 
-# wow thanks to https://stackoverflow.com/a/15742338/259456 for pointing out that
-#   HTML now has <details> and <summary> tags with auto-collapse!
-cat << xxxxxEOFxxxxx >> "${GALLERY_PAGE}"
-<div class="btns" style="margin:0 0 2rem 0">
-	xxxxxPREVBUTTONxxxxx
-	xxxxxNEXTBUTTONxxxxx
-</div>
-<div class="">
-	<span class="article-title">${SHOOT_TITLE}</span>
-	${SHOOT_FAVORITE}
-	${SHOOT_DESC}
-	<p>These photos are © ${SHOOT_YEAR} Phil Thompson, all rights reserved.</p>
-	<details>
-		<summary>Signature</summary>
-		<p><a target="_blank" href="${HASHES_DIR_REL}/${HASHES_ID}.txt">📄 ${HASHES_ID}.txt</a></p>
-		<p><a target="_blank" href="${HASHES_DIR_REL}/${HASHES_ID}.txt.sig">📄 ${HASHES_ID}.txt.sig</a></p>
-xxxxxEOFxxxxx
-if [ "${SHOOT_ALGO_TXID}" != "--" ]
-then
-cat << xxxxxEOFxxxxx >> "${GALLERY_PAGE}"
-		<p>
-			The above <code>hashes-&lt;date&gt;.txt</code> file contains SHA-256 hashes of all the photos
-			from this shoot.  The <code>hashes-&lt;date&gt;.txt.sig</code> is a signature of that hashes
-			file, created with <a href="${SITE_ROOT_REL}/about">my PGP key</a>.  The signature file
-			itself was written to both the Bitcoin Cash and Algorand blockchains, in the
-			<code>OP RETURN</code> and <code>Note</code> fields respectively, using the transactions below.
-			In short, this proves that these photos and the signature both existed at the time the
-			transactions were written to the Bitcoin Cash and Algorand blockchains.
-			<a target="_blank" href="${SITE_ROOT_REL}/2021/Publishing-Permanent-Photo-Signatures-with-Blockchains.html">
-			This blog post</a> has more details.
-		</p>
-		<p class="article-info"><a target="_blank" href="https://blockchair.com/bitcoin-cash/transaction/${SHOOT_BCH_TXID}">view the BCH tx on blockchair.com: ${SHOOT_BCH_TXID}</a></p>
-		<p class="article-info"><a target="_blank" href="https://algoexplorer.io/tx/${SHOOT_ALGO_TXID}">view the ALGO tx on algoexplorer.io: ${SHOOT_ALGO_TXID}</a></p>
-xxxxxEOFxxxxx
-else
-cat << xxxxxEOFxxxxx >> "${GALLERY_PAGE}"
-		<p>
-			The above <code>hashes-&lt;date&gt;.txt</code> file contains SHA-256 hashes of all the photos
-			from this shoot.  The <code>hashes-&lt;date&gt;.txt.sig</code> is a signature of that hashes
-			file, created with <a href="${SITE_ROOT_REL}/about">my PGP key</a>.  The signature file
-			itself was written to the Bitcoin Cash blockchain, in the <code>OP RETURN</code> field,
-			using the transaction below. In short, this proves that these photos and the signature both
-			existed at the time the transaction was written to the Bitcoin Cash blockchain.
-			<a target="_blank" href="${SITE_ROOT_REL}/2021/Publishing-Permanent-Photo-Signatures-with-Blockchains.html">
-			This blog post</a> has more details.
-		</p>
-		<p class="article-info"><a target="_blank" href="https://blockchair.com/bitcoin-cash/transaction/${SHOOT_BCH_TXID}">view the BCH tx on blockchair.com: ${SHOOT_BCH_TXID}</a></p>
-xxxxxEOFxxxxx
-fi
-cat << xxxxxEOFxxxxx >> "${GALLERY_PAGE}"
-	</details>
-	<p style="clear:both;"></p>
-</div>
-xxxxxEOFxxxxx
-# <p class="article-info"><a target="_blank" href="https://www.blockchain.com/bch/tx/${SHOOT_TXID}">view on blockchain.com: ${SHOOT_TXID}</a></p>
-# <p class="article-info"><a target="_blank" href="https://explorer.bitcoin.com/bch/tx/${SHOOT_TXID}">view on bitcoin.com: ${SHOOT_TXID}</a></p>
+
+	# capture function stdout into a variable, thanks to:
+	#   https://unix.stackexchange.com/a/591153/210174
+	{ read -d '' GALLERY_PAGE_CONTENT_TMP; }< <(generateHashSigInfo \
+		"${SHOOT_TITLE}" \
+		"${SHOOT_FAVORITE}" \
+		"${SHOOT_DESC}" \
+		"${SHOOT_YEAR}" \
+		"${HASHES_DIR_REL}" \
+		"${HASHES_ID}" \
+		"${SHOOT_ALGO_TXID}" \
+		"${SITE_ROOT_REL}" \
+		"${SHOOT_BCH_TXID}" \
+		"${PREV_BUTTON}" \
+		"${NEXT_BUTTON}")
+
+	GALLERY_PAGE_CONTENT="$(echo -e "${GALLERY_PAGE_CONTENT}\n${GALLERY_PAGE_CONTENT_TMP}")"
+
 
 	# thanks to https://stackoverflow.com/a/51863033/259456 for row_number
 	#sqlite3 "${HASHES_DB}" "SELECT ROW_NUMBER() OVER(ORDER BY local_datetime_lex) AS rnum, path_rel, local_datetime_lex, local_datetime_disp, species_b64, description_b64 FROM photos ORDER BY local_datetime_lex DESC;" | while read LINE
-	sqlite3 "${HASHES_DB}" "SELECT path_rel, local_datetime_lex, local_datetime_disp, species_b64, description_b64, visible FROM photos ORDER BY local_datetime_lex ASC;" | while read LINE
+	#sqlite3 "${HASHES_DB}" "SELECT path_rel, local_datetime_lex, local_datetime_disp, species_b64, description_b64, visible FROM photos ORDER BY local_datetime_lex ASC;" | while read LINE
+	while read LINE
 	do
-		#echo "${HASHES_ID} photo: ${LINE}"
-		PHOTO_PATH="`echo "${LINE}" | cut -d '|' -f 1`"
-		PHOTO_DATE="`echo "${LINE}" | cut -d '|' -f 3 | sed 's/^0//'`"
-		PHOTO_SPECIES="`echo "${LINE}" | cut -d '|' -f 4 | base64 -d`"
-		PHOTO_DESC="`echo "${LINE}" | cut -d '|' -f 5 | base64 -d`"
-		PHOTO_VISIBLE="`echo "${LINE}" | cut -d '|' -f 6`"
-		if [ "${PHOTO_VISIBLE}" != "true" ]
-		then
-			#echo "photo ${PHOTO_PATH} of shoot ${HASHES_ID} is not visible, so skipping"
-			continue
-		fi
-		if [ ! -z "${PHOTO_DESC}" ] && [ "${PHOTO_DESC}" != "--" ]
-		then
-			PHOTO_DESC="<p>${PHOTO_DESC}</p>"
-		else
-			PHOTO_DESC=""
-		fi
+		{ read -d '' GALLERY_PAGE_CONTENT_TMP; }< <(generatePhotoDiv \
+			"${LINE}" \
+			"${SITE_ROOT_REL}")
+		GALLERY_PAGE_CONTENT="$(echo -e "${GALLERY_PAGE_CONTENT}\n${GALLERY_PAGE_CONTENT_TMP}")"
+	done <<< $(sqlite3 "${HASHES_DB}" "SELECT path_rel, local_datetime_lex, local_datetime_disp, species_b64, description_b64, visible FROM photos ORDER BY local_datetime_lex ASC;")
 
-cat << xxxxxEOFxxxxx >> "${GALLERY_PAGE}"
-<div class="container top-border">
-	<p>
-		<a href="${SITE_ROOT_REL}/s/img/${PHOTO_PATH}">
-			<img style="float: left" class="width-resp-50-100" src="${SITE_ROOT_REL}/s/img/${PHOTO_PATH}"/>
-		</a>
-		<p class="article-info">${PHOTO_DATE}</p>
-		<b>${PHOTO_SPECIES}</b>
-		${PHOTO_DESC}
-	</p>
-	<p style="clear:both;"></p>
-</div>
-xxxxxEOFxxxxx
+	#GALLERY_PAGE_CONTENT="$(echo -e "${GALLERY_PAGE_CONTENT}\n<div class=\"btns\" style=\"margin:0\">${PREV_BUTTON}\n${NEXT_BUTTON}\n</div>")"
+	GALLERY_PAGE_CONTENT_TMP="<div class=\"btns\" style=\"margin:0\">\n    ${PREV_BUTTON}\n    ${NEXT_BUTTON}\n</div>"
+	GALLERY_PAGE_CONTENT="$(echo -e "${GALLERY_PAGE_CONTENT}\n${GALLERY_PAGE_CONTENT_TMP}")"
 
-	done
+	GALLERY_PAGE_CONTENT_TMP="`bash "${FOOTER_SCRIPT}" "${ARTICLE_TITLE}" "${SITE_ROOT_REL}"`"
+	GALLERY_PAGE_CONTENT="$(echo -e "${GALLERY_PAGE_CONTENT}\n${GALLERY_PAGE_CONTENT_TMP}")"
 
-cat << xxxxxEOFxxxxx >> "${GALLERY_PAGE}"
-<div class="btns" style="margin:0">
-	xxxxxPREVBUTTONxxxxx
-	xxxxxNEXTBUTTONxxxxx
-</div>
-xxxxxEOFxxxxx
-
-	"${FOOTER_SCRIPT}" "${ARTICLE_TITLE}" "${SITE_ROOT_REL}" >> "${GALLERY_PAGE}"
+	if [[ ! -f "${GALLERY_PAGE}" ]] || [[ "`echo "${GALLERY_PAGE_CONTENT}" | shasum -a 256 | cut -d ' ' -f 1`" != "`shasum -a 256 "${GALLERY_PAGE}" | cut -d ' ' -f 1`" ]]
+	then
+		echo "gallery page [${GALLERY_PAGE}] IS changed"
+		echo "${GALLERY_PAGE_CONTENT}" > "${GALLERY_PAGE}"
+	#else
+	#	echo "gallery page [${GALLERY_PAGE}] is unchanged"
+	fi
 done
-
-# go back through all the gallery pages and add prev/next buttons,
-#   both to the top and the bottom of each page
-
-#<div class="btns">
-#	<a class="btn" href="../2020/Apple-Notes-Shapes.html">Previous</a>
-#	<a class="btn" href="../2020/Fundamentally-Broken-US-Government.html">Next</a>
-#</div>
-
-GALLERY_PAGE_COUNT=`ls -1 "${GALLERY_OUT}" | wc -l | tr -d '[:blank:]'`
-FIRST_PAGE="${SITE_ROOT_REL}/gallery/"
-LAST_PAGE="${SITE_ROOT_REL}/gallery/"
-PREV_PAGE=""
-NEXT_PAGE="older1.html"
-GALLERY_PAGES="`find "${GALLERY_OUT}" -type f -name "gallery-*.html" | sort`"
-if [ $GALLERY_PAGE_COUNT -gt 1 ]
-then
-	sed -e 's@xxxxxPREVBUTTONxxxxx@@g' -i '' "${GALLERY_OUT}/index.html"
-	NEXT_PAGE="`echo "${GALLERY_PAGES}" | head -n 1`"
-	NEXT_PAGE="`basename "${NEXT_PAGE}"`"
-	sed -e "s@xxxxxNEXTBUTTONxxxxx@<a class='btn' href='${SITE_ROOT_REL}/gallery/${NEXT_PAGE}'>Newer Gallery</a>@g" -i '' "${GALLERY_OUT}/index.html"
-	
-	echo "${GALLERY_PAGES}" | while read PAGE_PATH
-	do
-		PAGE_BASENAME="`basename "${PAGE_PATH}"`"
-		PREV_NEXT="`echo "${GALLERY_PAGES}" | grep -B 1 -A 1 "${PAGE_BASENAME}"`"
-		PREV_PAGE="`echo "${PREV_NEXT}" | head -n 1`"
-		NEXT_PAGE="`echo "${PREV_NEXT}" | tail -n 1`"
-		if [ "${PREV_PAGE}" == "${PAGE_PATH}" ]
-		then
-			PREV_PAGE="${SITE_ROOT_REL}/gallery/"
-		else
-			PREV_PAGE="${SITE_ROOT_REL}/gallery/`basename "${PREV_PAGE}"`"
-		fi
-		sed -e "s@xxxxxPREVBUTTONxxxxx@<a class='btn' href='${PREV_PAGE}'>Older Gallery</a>@g" -i '' "${PAGE_PATH}"
-		if [ "${NEXT_PAGE}" == "${PAGE_PATH}" ]
-		then
-			sed -e "s@xxxxxNEXTBUTTONxxxxx@@g" -i '' "${PAGE_PATH}"
-		else
-			NEXT_PAGE="${SITE_ROOT_REL}/gallery/`basename "${NEXT_PAGE}"`"
-			sed -e "s@xxxxxNEXTBUTTONxxxxx@<a class='btn' href='${NEXT_PAGE}'>Newer Gallery</a>@g" -i '' "${PAGE_PATH}"
-		fi
-		
-	done
-fi
