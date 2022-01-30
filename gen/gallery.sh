@@ -347,13 +347,6 @@ do
 	PREV_PAGE_FILE="$(basename "$(echo "${PREV_NEXT}" | head -n 1)" | cut -d '.' -f 1)"
 	NEXT_PAGE_FILE="$(basename "$(echo "${PREV_NEXT}" | tail -n 1)" | cut -d '.' -f 1)"
 
-	#if [[ "${HASHES_ID}" == "hashes-2021-02-07-211156" ]]
-	#then
-	#	echo "NEXT_PAGE_FILE: [${NEXT_PAGE_FILE}]"
-	#	echo "PREV_PAGE_FILE: [${PREV_PAGE_FILE}]"
-	#	exit
-	#fi
-
 	NEXT_BUTTON=""
 	if [[ "${NEXT_PAGE_FILE}" != "${HASHES_ID}" ]]
 	then
@@ -444,7 +437,10 @@ do
 		"${PREV_BUTTON}" \
 		"${NEXT_BUTTON}")
 
-	GALLERY_PAGE_CONTENT="$(echo -e "${GALLERY_PAGE_CONTENT}\n${GALLERY_PAGE_CONTENT_TMP}")"
+	#GALLERY_PAGE_CONTENT="$(echo -e "${GALLERY_PAGE_CONTENT}\n${GALLERY_PAGE_CONTENT_TMP}")"
+	# embed newline directly into variable
+	GALLERY_PAGE_CONTENT="${GALLERY_PAGE_CONTENT}
+${GALLERY_PAGE_CONTENT_TMP}"
 
 
 	# thanks to https://stackoverflow.com/a/51863033/259456 for row_number
@@ -455,15 +451,23 @@ do
 		{ read -d '' GALLERY_PAGE_CONTENT_TMP; }< <(generatePhotoDiv \
 			"${LINE}" \
 			"${SITE_ROOT_REL}")
-		GALLERY_PAGE_CONTENT="$(echo -e "${GALLERY_PAGE_CONTENT}\n${GALLERY_PAGE_CONTENT_TMP}")"
+		#GALLERY_PAGE_CONTENT="$(echo -e "${GALLERY_PAGE_CONTENT}\n${GALLERY_PAGE_CONTENT_TMP}")"
+		# embed newline directly into variable
+		GALLERY_PAGE_CONTENT="${GALLERY_PAGE_CONTENT}
+${GALLERY_PAGE_CONTENT_TMP}"
 	done <<< $(sqlite3 "${HASHES_DB}" "SELECT path_rel, local_datetime_lex, local_datetime_disp, species_b64, description_b64, visible FROM photos ORDER BY local_datetime_lex ASC;")
 
-	#GALLERY_PAGE_CONTENT="$(echo -e "${GALLERY_PAGE_CONTENT}\n<div class=\"btns\" style=\"margin:0\">${PREV_BUTTON}\n${NEXT_BUTTON}\n</div>")"
-	GALLERY_PAGE_CONTENT_TMP="<div class=\"btns\" style=\"margin:0\">\n    ${PREV_BUTTON}\n    ${NEXT_BUTTON}\n</div>"
-	GALLERY_PAGE_CONTENT="$(echo -e "${GALLERY_PAGE_CONTENT}\n${GALLERY_PAGE_CONTENT_TMP}")"
+	# embed newlines directly into variables
+	GALLERY_PAGE_CONTENT_TMP="<div class=\"btns\" style=\"margin:0\">
+    ${PREV_BUTTON}
+    ${NEXT_BUTTON}
+</div>"
+	GALLERY_PAGE_CONTENT="${GALLERY_PAGE_CONTENT}
+${GALLERY_PAGE_CONTENT_TMP}"
 
 	GALLERY_PAGE_CONTENT_TMP="`bash "${FOOTER_SCRIPT}" "${ARTICLE_TITLE}" "${SITE_ROOT_REL}"`"
-	GALLERY_PAGE_CONTENT="$(echo -e "${GALLERY_PAGE_CONTENT}\n${GALLERY_PAGE_CONTENT_TMP}")"
+	GALLERY_PAGE_CONTENT="${GALLERY_PAGE_CONTENT}
+${GALLERY_PAGE_CONTENT_TMP}"
 
 	if [[ ! -f "${GALLERY_PAGE}" ]] || [[ "`echo "${GALLERY_PAGE_CONTENT}" | shasum -a 256 | cut -d ' ' -f 1`" != "`shasum -a 256 "${GALLERY_PAGE}" | cut -d ' ' -f 1`" ]]
 	then

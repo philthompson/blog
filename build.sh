@@ -33,7 +33,7 @@ mkdir -p "${OUT_DIR}/archive"
 #     only copy a file if the checksum has changed,
 #     not just the timestamp
 # - note trailing slash for source (current directory)
-#     and no trailing slash for dest directory to 
+#     and no trailing slash for dest directory to
 #     populate with current dir’s contents
 # - note no delete option -- use this script without
 #     "in-place" argument for final full build without
@@ -134,7 +134,10 @@ do
 
 	# just do year for now -- create archive <a> tag later
 	#ARCHIVE_INDEX_CONTENT="$(echo -e "${ARCHIVE_INDEX_CONTENT}\n<a href=\"../${ARTICLE_YEAR}/\">${ARTICLE_YEAR}</a>")"
-	ARCHIVE_INDEX_CONTENT="$(echo -e "${ARCHIVE_INDEX_CONTENT}\n${ARTICLE_YEAR}")"
+	#ARCHIVE_INDEX_CONTENT="$(echo -e "${ARCHIVE_INDEX_CONTENT}\n${ARTICLE_YEAR}")"
+	# embed newline directly into variable
+	ARCHIVE_INDEX_CONTENT="${ARCHIVE_INDEX_CONTENT}
+${ARTICLE_YEAR}"
 
 	mkdir -p "${OUT_DIR}/${ARTICLE_YEAR}"
 
@@ -142,19 +145,13 @@ do
 	then
 		YEAR_PAGES_CONTENT[$ARTICLE_YEAR]="`bash "${GEN_DIR}/header.sh" "Archive — ${ARTICLE_YEAR}" '..' "blog, archive, history, year, ${ARTICLE_YEAR}" "Personal blog archive for ${ARTICLE_YEAR} — philthompson.me" 7`"
 	fi
-	#if [[ ! -s "${OUT_DIR}/${ARTICLE_YEAR}/index.html" ]]
-	#then
-	#	"${GEN_DIR}/header.sh" "Archive — ${ARTICLE_YEAR}" '..' "blog, archive, history, year, ${ARTICLE_YEAR}" "Personal blog archive for ${ARTICLE_YEAR} — philthompson.me" 7 > "${OUT_DIR}/${ARTICLE_YEAR}/index.html"
-	#fi
 
-	YEAR_PAGES_CONTENT[$ARTICLE_YEAR]="$(echo -e "${YEAR_PAGES_CONTENT[$ARTICLE_YEAR]}\n<div class=\"article-title\">")"
-	YEAR_PAGES_CONTENT[$ARTICLE_YEAR]="$(echo -e "${YEAR_PAGES_CONTENT[$ARTICLE_YEAR]}\n<small class=\"article-info\">${ARTICLE_DATE_REFORMAT}</small>")"
-	YEAR_PAGES_CONTENT[$ARTICLE_YEAR]="$(echo -e "${YEAR_PAGES_CONTENT[$ARTICLE_YEAR]}\n<a href=\"${ARTICLE_TITLE_URL}.html\">${ARTICLE_TITLE}</a>")"
-	YEAR_PAGES_CONTENT[$ARTICLE_YEAR]="$(echo -e "${YEAR_PAGES_CONTENT[$ARTICLE_YEAR]}\n</div>")"
-	#echo "<div class=\"article-title\">" >> "${OUT_DIR}/${ARTICLE_YEAR}/index.html"
-	#echo "<small class=\"article-info\">${ARTICLE_DATE_REFORMAT}</small>"  >> "${OUT_DIR}/${ARTICLE_YEAR}/index.html"
-	#echo "<a href=\"${ARTICLE_TITLE_URL}.html\">${ARTICLE_TITLE}</a>" >> "${OUT_DIR}/${ARTICLE_YEAR}/index.html"
-	#echo "</div>" >> "${OUT_DIR}/${ARTICLE_YEAR}/index.html"
+	# embed newlines directly into variables
+	YEAR_PAGES_CONTENT[$ARTICLE_YEAR]="${YEAR_PAGES_CONTENT[$ARTICLE_YEAR]}
+<div class=\"article-title\">
+<small class=\"article-info\">${ARTICLE_DATE_REFORMAT}</small>
+<a href=\"${ARTICLE_TITLE_URL}.html\">${ARTICLE_TITLE}</a>
+</div>"
 
 	PREV_NEXT="$(ls -1 "${GEN_DIR}/articles" | sort | grep -B 1 -A 1 "${ARTICLE_DATE}.md")"
 
@@ -194,24 +191,10 @@ do
 	# capture function stdout into a variable, thanks to:
 	#   https://unix.stackexchange.com/a/591153/210174
 	{ read -d '' ARTICLE_HOME_SNIPPET; }< <(buildHomepageArticleSnippet "${ARTICLE_DATE_REFORMAT}" "${ARTICLE_YEAR}" "${ARTICLE_TITLE_URL}" "${ARTICLE_TITLE}" "${ARTICLE_MARKDOWN_FILE}" "${MARKDOWN_PERL_SCRIPT}")
-	HOME_PAGES_CONTENT[$HOME_PAGE_IDX]="$(echo -e "${HOME_PAGES_CONTENT[$HOME_PAGE_IDX]}\n       ${ARTICLE_HOME_SNIPPET}")"
-#	if [[ 1 ]]
-#	then
-#		echo "	<div class=\"container\">"
-#		echo "		<div class=\"article-info\">${ARTICLE_DATE_REFORMAT}</div>"
-#		echo "		<h1 class=\"article-title\"><a href=\"./${ARTICLE_YEAR}/${ARTICLE_TITLE_URL}.html\">${ARTICLE_TITLE}</a></h1>"
-#
-#		if [[ -z "$(grep -m 1 "more://" "${ARTICLE_MARKDOWN_FILE}")" ]]
-#		then
-#			perl "${MARKDOWN_PERL_SCRIPT}" --html4tags "${ARTICLE_MARKDOWN_FILE}" | sed 's/${SITE_ROOT_REL}/./g' | sed "s#\${THIS_ARTICLE}#./${ARTICLE_YEAR}/${ARTICLE_TITLE_URL}.html#g"
-#		else
-#			perl "${MARKDOWN_PERL_SCRIPT}" --html4tags "${ARTICLE_MARKDOWN_FILE}" | grep -B 999 'more://' | grep -v 'more://' | sed 's/${SITE_ROOT_REL}/./g' | sed "s#\${THIS_ARTICLE}#./${ARTICLE_YEAR}/${ARTICLE_TITLE_URL}.html#g"
-#			echo "<a href=\"./${ARTICLE_YEAR}/${ARTICLE_TITLE_URL}.html\">continue reading...</a>"
-#		fi
-#
-#		echo "      <p style=\"clear:both;\"></p>"
-#		echo "	</div>"
-#	fi >> "${OUT_DIR}/${HOME_PAGE}"
+	# embed newline directly into variable
+	HOME_PAGES_CONTENT[$HOME_PAGE_IDX]="${HOME_PAGES_CONTENT[$HOME_PAGE_IDX]}
+       ${ARTICLE_HOME_SNIPPET}"
+
 done <<< "$(find "${GEN_DIR}/articles" -type f | sort -r)"
 
 COMMON_HOME_PAGE_FOOTER="`bash "${GEN_DIR}/footer.sh" Home .`"
@@ -224,8 +207,11 @@ do
 	HOME_PAGE_IDX="`echo "${HOME_PAGE_LINE}" | cut -d ' ' -f 1`"
 	HOME_PAGE="`echo "${HOME_PAGE_LINE}" | cut -d ' ' -f 2`"
 
-	HOME_PAGES_CONTENT[$HOME_PAGE_IDX]="$(echo -e "${HOME_PAGES_CONTENT[$HOME_PAGE_IDX]}\n<footer>")"
-	HOME_PAGES_CONTENT[$HOME_PAGE_IDX]="$(echo -e "${HOME_PAGES_CONTENT[$HOME_PAGE_IDX]}\n	<div class=\"btns\">")"
+	# embed newlines directly into variables
+	HOME_PAGES_CONTENT[$HOME_PAGE_IDX]="${HOME_PAGES_CONTENT[$HOME_PAGE_IDX]}
+<footer>"
+	HOME_PAGES_CONTENT[$HOME_PAGE_IDX]="${HOME_PAGES_CONTENT[$HOME_PAGE_IDX]}
+	<div class=\"btns\">"
 
 	PREV_NEXT="$(echo "${HOME_PAGES}" | cut -d ' ' -f 2 | grep -B 1 -A 1 "${HOME_PAGE}")"
 
@@ -234,16 +220,20 @@ do
 
 	if [[ "${NEXT_PAGE_FILE}" != "${HOME_PAGE}" ]]
 	then
-		HOME_PAGES_CONTENT[$HOME_PAGE_IDX]="$(echo -e "${HOME_PAGES_CONTENT[$HOME_PAGE_IDX]}\n<a class=\"btn\" href=\"./${NEXT_PAGE_FILE}\">Older Articles</a>")"
+		HOME_PAGES_CONTENT[$HOME_PAGE_IDX]="${HOME_PAGES_CONTENT[$HOME_PAGE_IDX]}
+<a class=\"btn\" href=\"./${NEXT_PAGE_FILE}\">Older Articles</a>"
 	fi
 
 	if [[ "${PREV_PAGE_FILE}" != "${HOME_PAGE}" ]]
 	then
-		HOME_PAGES_CONTENT[$HOME_PAGE_IDX]="$(echo -e "${HOME_PAGES_CONTENT[$HOME_PAGE_IDX]}\n<a class=\"btn\" href=\"./${PREV_PAGE_FILE}\">Newer Articles</a>")"
+		HOME_PAGES_CONTENT[$HOME_PAGE_IDX]="${HOME_PAGES_CONTENT[$HOME_PAGE_IDX]}
+<a class=\"btn\" href=\"./${PREV_PAGE_FILE}\">Newer Articles</a>"
 	fi
 
-	HOME_PAGES_CONTENT[$HOME_PAGE_IDX]="$(echo -e "${HOME_PAGES_CONTENT[$HOME_PAGE_IDX]}\n	</div>")"
-	HOME_PAGES_CONTENT[$HOME_PAGE_IDX]="$(echo -e "${HOME_PAGES_CONTENT[$HOME_PAGE_IDX]}\n${COMMON_HOME_PAGE_FOOTER}")"
+	HOME_PAGES_CONTENT[$HOME_PAGE_IDX]="${HOME_PAGES_CONTENT[$HOME_PAGE_IDX]}
+	</div>"
+	HOME_PAGES_CONTENT[$HOME_PAGE_IDX]="${HOME_PAGES_CONTENT[$HOME_PAGE_IDX]}
+${COMMON_HOME_PAGE_FOOTER}"
 
 	OUT_HOME_PAGE="${OUT_DIR}/${HOME_PAGE}"
 	if [[ ! -f "${OUT_HOME_PAGE}" ]] || [[ "`echo "${HOME_PAGES_CONTENT[$HOME_PAGE_IDX]}" | shasum -a 256 | cut -d ' ' -f 1`" != "`shasum -a 256 "${OUT_HOME_PAGE}" | cut -d ' ' -f 1`" ]]
@@ -258,7 +248,8 @@ done <<< "${HOME_PAGES}"
 COMMON_YEAR_PAGE_FOOTER="`bash "${GEN_DIR}/footer.sh" "ignoreme" ..`"
 for YEAR_FILE_YEAR in "${!YEAR_PAGES_CONTENT[@]}"
 do
-	YEAR_PAGES_CONTENT[$YEAR_FILE_YEAR]="$(echo -e "${YEAR_PAGES_CONTENT[$YEAR_FILE_YEAR]}\n${COMMON_YEAR_PAGE_FOOTER}")"
+	YEAR_PAGES_CONTENT[$YEAR_FILE_YEAR]="${YEAR_PAGES_CONTENT[$YEAR_FILE_YEAR]}
+${COMMON_YEAR_PAGE_FOOTER}"
 	YEAR_PAGE="${OUT_DIR}/${YEAR_FILE_YEAR}/index.html"
 	if [[ ! -f "${YEAR_PAGE}" ]] || [[ "`echo "${YEAR_PAGES_CONTENT[$YEAR_FILE_YEAR]}" | shasum -a 256 | cut -d ' ' -f 1`" != "`shasum -a 256 "${YEAR_PAGE}" | cut -d ' ' -f 1`" ]]
 	then
@@ -276,16 +267,19 @@ ARCHIVE_INDEX_SORT_U="`echo "${ARCHIVE_INDEX_CONTENT}" | sort -u | sed '/^$/d'`"
 ARCHIVE_INDEX_CONTENT=""
 while read LINE
 do
-	ARCHIVE_INDEX_CONTENT="$(echo -e "${ARCHIVE_INDEX_CONTENT}\n<div class=\"article-title\"><a href=\"../${LINE}/\">${LINE}</a></div>")"
+	ARCHIVE_INDEX_CONTENT="${ARCHIVE_INDEX_CONTENT}
+<div class=\"article-title\"><a href=\"../${LINE}/\">${LINE}</a></div>"
 done <<< "${ARCHIVE_INDEX_SORT_U}"
 
 
 TMP_FILE="`bash "${GEN_DIR}/header.sh" 'Archive' '..' "blog, archive, history, contents" "Personal blog archive — philthompson.me" 30`"
 # prepend header before existing archive file content
-ARCHIVE_INDEX_CONTENT="$(echo -e "${TMP_FILE}\n${ARCHIVE_INDEX_CONTENT}")"
+ARCHIVE_INDEX_CONTENT="${TMP_FILE}
+${ARCHIVE_INDEX_CONTENT}"
 TMP_FILE="`bash "${GEN_DIR}/footer.sh" 'Archive' '..'`"
 # append footer after existing archive file content
-ARCHIVE_INDEX_CONTENT="$(echo -e "${ARCHIVE_INDEX_CONTENT}\n${TMP_FILE}")"
+ARCHIVE_INDEX_CONTENT="${ARCHIVE_INDEX_CONTENT}
+${TMP_FILE}"
 
 ARCHIVE_FILE="${OUT_DIR}/archive/index.html"
 if [[ ! -f "${ARCHIVE_FILE}" ]] || [[ "`echo "${ARCHIVE_INDEX_CONTENT}" | shasum -a 256 | cut -d ' ' -f 1`" != "`shasum -a 256 "${ARCHIVE_FILE}" | cut -d ' ' -f 1`" ]]
