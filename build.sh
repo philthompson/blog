@@ -4,6 +4,16 @@
 #   version 5.x, as opposed to macOS built-in bash
 #   which is at version 3.x
 #
+# TODO: (for in-place mode) when a (.html) file is
+#   changed or unchanged, add its full path to a list.
+#   then, compare all (.html) files to that list to
+#   find (.html) files that should be deleted (move
+#   them to a out/in-place/trash-yyyymmddhhmmss dir).
+#   then after doing this, we should be able to also
+#   compare the gen/static dir to the out/in-place dir
+#   to find static files that have been deleted.
+#
+#
 
 THIS_SCRIPT="`perl -MCwd -le 'print Cwd::abs_path shift' "${0}"`"
 THIS_DIR="$(dirname "${THIS_SCRIPT}")"
