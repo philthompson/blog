@@ -23,7 +23,7 @@
     body, html, div { border: 0; margin: 0; padding: 0; }
     /* use overflow: hidden to stop scrolling on mobile devices, thanks;
          to https://stackoverflow.com/a/28411556/259456 */
-    body, html {  height: 100%; overflow: hidden; }
+    body, html {  height: 100%; overflow: hidden; font-size:15px }
     #fit-size-canvas { position:absolute; width: 100%; height: 100%; z-index:10; }
     #dc { display:none; }
     #menu, #help-menu, #controls-menu, #menu-open-wrap {
@@ -62,13 +62,19 @@
         cursor: pointer;
         z-index: 12;
     }
-    #menu-close, #help-menu-close, #controls-menu-close, #menu-open-wrap span {
+    #menu-close, #help-menu-close, #controls-menu-close, #menu-open-wrap div {
         color: #aaa;
         font-size: 1.75rem;
         font-weight: 700;
         margin-top: -.7rem;
         cursor: pointer;
         z-index: 12;
+    }
+    #menu-open-wrap>div>div {
+        margin-top: 0.35rem;
+    }
+    #menu-open-wrap>div>div:nth-child(1) {
+        margin-top: 0.05rem;
     }
     #help-menu {
       padding-top: 2.6rem;
@@ -183,13 +189,17 @@
         border: 2px solid #555;
         border-radius: 0.25rem;
         padding: 0.2rem;
-        width: 1.5rem;
+        width: 1.8rem;
         display: inline-block;
-        height: 1.5rem;
+        height: 1.8rem;
         text-align: center;
         font-size: 1.3rem;
         user-select: none;
         cursor: pointer;
+    }
+    kbd.kbd-icon-only {
+        border: 2px solid rgba(0,0,0,0);
+        cursor: default;
     }
     .frosted-bg {
       background-color: rgba(255, 255, 255, 0.6);
@@ -210,6 +220,27 @@
     #grad-add-color-color {
       margin: 0 0.2rem 0 0.2rem;
     }
+    #window-lock-icon {
+      display: none;
+    }
+    .wiggle {
+      background-color: rgba(255, 20, 30, 0.8);
+      animation: wiggle 0.5s;
+      animation-iteration-count: infinite;
+    }
+    @keyframes wiggle {
+        0% {transform: translate(-0.07rem,  0.00rem) rotate( 2deg) scale(1.0, 1.0);}
+       10% {transform: translate( 0.21rem, -0.21rem) rotate( 0deg) scale(1.1, 1.1);}
+       20% {transform: translate(-0.14rem,  0.07rem) rotate( 2deg) scale(1.3, 1.3);}
+       30% {transform: translate( 0.14rem, -0.07rem) rotate( 0deg) scale(0.7, 0.7);}
+       40% {transform: translate( 0.00rem,  0.14rem) rotate( 2deg) scale(0.7, 0.7);}
+       50% {transform: translate( 0.07rem, -0.14rem) rotate(-2deg);}
+       60% {transform: translate(-0.14rem,  0.00rem) rotate( 0deg);}
+       70% {transform: translate( 0.00rem, -0.14rem) rotate(-2deg);}
+       80% {transform: translate( 0.14rem,  0.14rem) rotate( 0deg);}
+       90% {transform: translate(-0.21rem,  0.21rem) rotate(-2deg);}
+      100% {transform: translate( 0.07rem, -0.07rem) rotate(-2deg);}
+    }
     </style>
 </head>
 <body>
@@ -217,12 +248,11 @@
     <canvas id="fit-size-canvas"></canvas>
     <div id="menu-open-wrap">
         <div class="fixed-top-left-btn">
-          <span id="help-menu-open"><kbd class="frosted-bg">?</kbd></span>
-          <span id="controls-menu-open"><kbd class="frosted-bg">
+          <div id="help-menu-open"><kbd class="frosted-bg" style="font-size: 1.75rem; font-weight: 700;">?</kbd></div>
+          <div id="controls-menu-open"><kbd class="frosted-bg" style="font-size: 1.75rem">
 <svg
-   style="position:relative; top:0.1rem;"
-   width="1.25rem"
-   height="1.25rem"
+   width="80%"
+   height="80%"
    viewBox="0 0 12.7 12.7"
    version="1.1"
    id="svg5"
@@ -238,19 +268,109 @@
        d="m 9.5171963,0.49079552 c 0,0 -1.3927992,0.0233937 -2.144837,0.26838086 C 6.620322,1.0041637 5.5921828,1.7300922 5.4101282,2.6780777 5.228074,3.6260636 4.9467988,4.2025534 5.7253763,5.0864316 4.2178041,6.5940036 1.5270944,9.3138949 0.69113445,10.149855 c -0.61567466,0.791434 0.30186849,1.534951 0.31303745,1.543964 0,0 0.00172,0.0016 0.00178,0.0018 0.00891,0.01101 0.7524724,0.928758 1.5439646,0.313034 0.8359516,-0.836 3.5562851,-3.5262672 5.0638571,-5.0338394 0.8838752,0.7786327 1.4603648,0.4973575 2.4083504,0.3153031 0.947986,-0.1820544 1.673912,-1.2101939 1.9189,-1.9622309 C 12.186015,4.5758076 12.20941,3.1830091 12.20941,3.1830091 L 10.674285,4.7305068 8.7602469,5.2853958 8.0488385,4.6518048 7.4148054,3.9399543 7.969695,2.0259166 Z" />
   </g>
 </svg></kbd>
-          </span>
-        </div>
-        <div class="fixed-top-right-btn">
-          <span id="menu-open"><kbd class="frosted-bg">
-<svg
-   style="position:relative; top:0.1rem;"
-   width="1.25rem"
-   height="1.25rem"
+          </div>
+          <div id="animate-playpause"><kbd class="frosted-bg" style="font-size: 1.75rem; font-weight: 700;">
+<svg id="animate-playpause-play"
+   width="80%"
+   height="80%"
    viewBox="0 0 12.7 12.7"
    version="1.1"
    id="svg5"
    xmlns="http://www.w3.org/2000/svg"
    xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs2" />
+  <g
+     id="layer1">
+    <path
+       id="path905"
+       style="fill:#6e6e6e;fill-opacity:1;stroke:#5a5a5a;stroke-width:0.264999;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 2.38125,1.5875 v 9.525 L 10.31875,6.35 Z" />
+  </g>
+</svg>
+<svg id="animate-playpause-pause"
+   width="80%"
+   height="80%"
+   viewBox="0 0 12.7 12.7"
+   version="1.1" id="svg5" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs2" />
+  <g
+     id="layer1">
+    <path
+       id="path905"
+       style="fill:#6e6e6e;fill-opacity:1;stroke:#5a5a5a;stroke-width:0.319101;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="M 10.186458,1.0583331 H 7.8845832 V 11.641667 h 2.3018748 z m -5.3710415,0 H 2.5135415 V 11.641667 h 2.301875 z" />
+  </g>
+</svg>
+          </kbd></div>
+          <div id="animate-restart"><kbd class="frosted-bg" style="font-size: 1.75rem; font-weight: 700;">
+<svg id="animate-restart-rewind"
+   width="80%"
+   height="80%"
+   viewBox="0 0 12.7 12.7"
+   version="1.1" id="svg5" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs2" />
+  <g
+     id="layer1">
+    <g
+       id="g1177"
+       transform="matrix(1.1375,0,0,1.1375,-0.9392708,-0.873125)">
+      <path
+         id="path905"
+         style="fill:#6e6e6e;fill-opacity:1;stroke:#5a5a5a;stroke-width:0.176666;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         d="m 6.3500003,3.175 v 6.35 L 1.0583333,6.35 Z" />
+      <path
+         id="path1173"
+         style="fill:#6e6e6e;fill-opacity:1;stroke:#5a5a5a;stroke-width:0.176666;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         d="m 11.641667,3.175 v 6.35 L 6.35,6.35 Z" />
+    </g>
+  </g>
+</svg>
+<svg id="animate-restart-reset"
+   width="80%"
+   height="80%"
+   viewBox="0 0 12.7 12.7"
+   version="1.1" id="svg5" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs2" />
+  <g
+     id="layer1">
+    <path
+       id="path905"
+       style="fill:#6e6e6e;fill-opacity:1;stroke:#5a5a5a;stroke-width:0.354558;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="M 4.1660185,0.41408664 1.9414626,3.3402085 5.5835417,3.8362905 4.9171862,2.9528021 C 6.8698919,2.135966 8.9744105,3.0532897 9.7638797,4.9405767 10.553311,6.8278795 9.6633922,8.9978013 7.7761063,9.7872711 5.888804,10.576702 3.7188804,9.6867831 2.9294114,7.7994966 L 1.4648813,8.4121213 C 2.5926942,11.108246 5.6926093,12.379613 8.3887316,11.251799 11.084858,10.123987 12.356222,7.024074 11.22841,4.3279503 10.1006,1.6318257 7.0006846,0.36045782 4.30456,1.4882731 Z" />
+  </g>
+</svg>
+          </kbd></div>
+          <div id="window-lock-icon" title="window lock is active"><kbd id="window-lock-icon-kbd" class="kbd-icon-only">
+<svg
+   width="80%"
+   height="80%"
+   viewBox="0 0 12.7 12.7"
+   version="1.1" id="svg5" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs2" />
+  <g
+     id="layer1">
+    <path
+       id="path42"
+       style="fill:#6e6e6e;fill-opacity:1;stroke:#5a5a5a;stroke-width:1.21px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="M 25,2 C 10,2 5,15 5,20 V 45 H 45 V 20 C 45,15 39.999999,2 25,2 Z m 0,5 c 10,0 14,8 14,15 H 11 C 11,15 15,7 25,7 Z"
+       transform="scale(0.26458333)" />
+  </g>
+</svg></kbd>
+          </div>
+        </div>
+        <div class="fixed-top-right-btn">
+          <span id="menu-open"><kbd class="frosted-bg">
+<svg
+   style="position:relative; top:0.1rem;"
+   width="80%"
+   height="80%"
+   viewBox="0 0 12.7 12.7"
+   version="1.1" id="svg5" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg">
   <defs
      id="defs2" />
   <g
@@ -381,6 +501,27 @@
             <button id="grad-reset">Reset to Current Gradient</button>
           </div>
         </details>
+        <details id="smooth-slope-controls">
+          <summary>smooth and slope</summary>
+          <details class="help-text">
+            <summary>?</summary>
+            <span class="large-bailout-ui">The "large bailout" option increases the bailout value for the Mandelbrot set algorithm to use while calculating iterations for each pixel.  When unchecked, the bailout value is the smallest possible bailout which allows faster computation for all locations.  When enabled, the bailout value is much larger which allows a few more iterations to occur for each pixel.  This is required for smooth coloring and slope shading.  If you don't want to enable smooth coloring or slope shading (while exploring, for example), you can turn this off for faster rendering.<br/>
+            <br/></span>
+            The "smooth" option creates smooth transitions between colors, and is especially useful with the "slope shading" options.  It requires the "large bailout" option.<br/>
+            <br/>
+            The "slope shading" option uses the final image to compute a local slope value for each pixel based on its neighboring pixels, and uses that information to add highlights and shadows.  This creates a 3D shading effect similar to relief carving.  Choose the location of the light source, and a depth value between 1 and 64.
+          </details>
+          <div>
+            <table>
+              <tr class="large-bailout-ui"><td>large bailout:</td><td><input id="grad-smooth-cb" type="checkbox" /><small>&nbsp;(changing causes full re-render)</small></td></tr>
+              <tr><td>smooth:</td><td><input id="grad-showsmooth-cb" type="checkbox" /></td></tr>
+              <tr><td>slope shading:</td><td><select style="font-size:0.9rem;" id="grad-slope-select"></select>&nbsp;<small>(smooth recommended)</small></td></tr>
+              <tr><td>slope depth:</td><td><input size="4" id="grad-slope-depth"/>&nbsp;<small>1-64</small></td></tr>
+            </table>
+            <button id="smooth-slope-go">Go</button>
+            <button id="smooth-slope-reset">Reset</button>
+          </div>
+        </details>
         <details id="workers-controls">
           <summary>workers options</summary>
           <label for="workers-select">workers </label>
@@ -424,11 +565,35 @@
             <button id="algo-reset">Reset to Current Algorithm</button>
           </div>
         </details>
+        <details id="chunk-ordering-controls">
+          <summary>chunk ordering</summary>
+          <details class="help-text">
+            <summary>?</summary>
+            By default, vertical stripes of pixels (chunks) are drawn in random order.  This helps provide a sense of the overall image earlier than if the chunks were drawn left-to-right.  While exploring very slow locations, enabling "center first" order may allow you to decide more quickly whether to continue zooming in.
+          </details>
+          <div>
+            <table>
+              <tr><td>chunk order:</td><td><select style="font-size:0.9rem;" id="chunk-order-select"></select></td></tr>
+            </table>
+            <button id="chunk-order-go">Go</button>
+            <button id="chunk-order-reset">Reset to Current Chunk Order</button>
+          </div>
+        </details>
+        <details id="animation-controls">
+          <summary>animation options</summary>
+          <div>
+            <table>
+              <tr><td>loop:</td><td><input id="animate-loop-cb" type="checkbox" /></td></tr>
+              <tr><td>step interval:</td><td><select style="font-size:0.9rem;" id="animate-interval-select"></select></td></tr>
+            </table>
+          </div>
+        </details>
     </div>
     <div id="help-menu">
         <span style="position: fixed; left: 1.2rem; top: 1.2rem;" id="help-menu-close">×</span>
         <p style="clear: both; margin-left: -1.0rem; padding-top: 1.0rem">mouse</p>
         <p>drag mouse to move &mdash; scroll mouse wheel to zoom</p>
+        <p>hold alt (option on Mac) and drag mouse to zoom</p>
         <p>hold shift and click to re-center (good for slow-to-draw plots)</p>
         <p style="clear: both; margin-left: -1.0rem">keyboard (or click/tap key icons below)</p>
         <div id="keyboard-keycaps">
@@ -458,13 +623,13 @@
         </div>
     </div>
     <div id="footer">
-        <span style="float:left; pointer-events: visible"><a id="blog-link" target="_blank" href="https://philthompson.me/2021/Very-Plotter.html">What is this?</a><a id="blog-link-mandel" target="_blank" href="https://philthompson.me/2021/The-Mandelbrot-set-on-Very-Plotter.html">What is this?</a>&nbsp;&nbsp;<small>(v0.7.3)</small></span>
+        <span style="float:left; pointer-events: visible"><a id="blog-link" target="_blank" href="https://philthompson.me/2021/Very-Plotter.html">What is this?</a><a id="blog-link-mandel" target="_blank" href="https://philthompson.me/2021/The-Mandelbrot-set-on-Very-Plotter.html">What is this?</a>&nbsp;&nbsp;<small>(v0.8.0)</small></span>
         <button id="tip-btn" style="float:right; pointer-events: visible"><a target="_blank" href="https://philthompson.me/tip-jar/">Tip Jar<a/></button>
     </div>
-    <script src="infnum.js?v=0.7.3"></script>
-    <script src="floatexp.js?v=0.7.3"></script>
-    <script src="mathiface.js?v=0.7.3"></script>
-    <script src="plots.js?v=0.7.3"></script>
-    <script src="paint.js?v=0.7.3"></script>
+    <script src="infnum.js?v=0.8.0"></script>
+    <script src="floatexp.js?v=0.8.0"></script>
+    <script src="mathiface.js?v=0.8.0"></script>
+    <script src="plots.js?v=0.8.0"></script>
+    <script src="paint.js?v=0.8.0"></script>
 </body>
 </html>
