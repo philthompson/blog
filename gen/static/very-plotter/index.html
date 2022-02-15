@@ -176,7 +176,7 @@
       margin: 0;
       z-index: 11;
       color: #999999;
-      text-shadow: 0px 0px 5px #222;
+      /* text-shadow: 0px 0px 5px #222; */
       font-family: arial;
       font-size: 0.9rem;
       pointer-events: none; /* thanks to https://stackoverflow.com/a/3538639/259456 */
@@ -398,6 +398,7 @@
           <button id="btn-download">Save Image</button><br>
           <small>Adjust image size under "window options" below.</small>
         </p>
+        <p id="workers-warning"></p>
         <details>
           <summary>go to location by center and scale</summary>
           <details class="help-text">
@@ -530,10 +531,10 @@
             <summary>?</summary>
               Increase workers to increase computation speed, depending on your computer/device.<br/><br/>
               Increasing the number of workers will cause your computer/device to consume more power/battery, but the computation will be completed faster.<br/><br/>
-              Increasing the number of workers beyond a certain point will have no effect depending on the number of cores/threads your computer or browser can devote to this page.
+              Increasing the number of workers beyond a certain point will have no effect depending on the number of cores/threads your computer or browser can devote to this page.<br/><br/>
+              Very Plotter uses one thread for the user interface and one for worker management.  Therefore if you want maximum performance, I recommend running one or two fewer workers than your computer core/thread count.  For example, if your computer has 8 high-performance cores/threads, I recommend using 6 or 7 workers.  If your computer has 4 high-performance cores and 4 efficiency cores, I recommend using 4 workers.  But of course, your results may vary depending on many factors.
           </details>
         </details>
-        <p id="workers-warning"></p>
         <details>
           <summary>window options</summary>
           <details class="help-text">
@@ -623,13 +624,13 @@
         </div>
     </div>
     <div id="footer">
-        <span style="float:left; pointer-events: visible"><a id="blog-link" target="_blank" href="https://philthompson.me/2021/Very-Plotter.html">What is this?</a><a id="blog-link-mandel" target="_blank" href="https://philthompson.me/2021/The-Mandelbrot-set-on-Very-Plotter.html">What is this?</a>&nbsp;&nbsp;<small>(v0.8.0)</small></span>
+        <span style="float:left; pointer-events: visible; background-color: rgb(120, 120, 120); padding:0.35rem"><a id="blog-link" target="_blank" href="https://philthompson.me/2021/Very-Plotter.html">What is this?</a><a id="blog-link-mandel" target="_blank" href="https://philthompson.me/2021/The-Mandelbrot-set-on-Very-Plotter.html">What is this?</a>&nbsp;<a target="_blank" href="https://github.com/philthompson/visualize-primes/releases">Release Notes</a>&nbsp;<small style="color:#BBB">(v0.8.1)&nbsp;</small></span>
         <button id="tip-btn" style="float:right; pointer-events: visible"><a target="_blank" href="https://philthompson.me/tip-jar/">Tip Jar<a/></button>
     </div>
-    <script src="infnum.js?v=0.8.0"></script>
-    <script src="floatexp.js?v=0.8.0"></script>
-    <script src="mathiface.js?v=0.8.0"></script>
-    <script src="plots.js?v=0.8.0"></script>
-    <script src="paint.js?v=0.8.0"></script>
+    <script src="infnum.js?v=0.8.1"></script>
+    <script src="floatexp.js?v=0.8.1"></script>
+    <script src="mathiface.js?v=0.8.1"></script>
+    <script src="plots.js?v=0.8.1"></script>
+    <script src="paint.js?v=0.8.1"></script>
 </body>
 </html>
