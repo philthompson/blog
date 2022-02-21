@@ -11,6 +11,15 @@ This is a "cheat sheet" style collection of bash and other snippets, mainly for 
 
 ## General / Local System Administration
 
+#### pipe to/from clipboard
+
+	# MacOS
+	$ somecmd | pbcopy
+	$ pbcopy < somefile
+
+	$ pbpaste | somecmd
+	$ pbpaste > somefile
+
 #### see lifetime data written to SSD
 
 	# MacOS
