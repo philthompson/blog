@@ -27,6 +27,12 @@ then
 	OUT_DIR="${THIS_DIR}/out/in-place"
 fi
 
+SKIP_BIRDS="false"
+if [[ "${2}" == "skip-birds" ]]
+then
+	SKIP_BIRDS="true"
+fi
+
 echo "${THIS_SCRIPT}"
 echo "${THIS_DIR}"
 echo "${OUT_DIR}"
@@ -294,9 +300,10 @@ ${TMP_FILE}"
 ARCHIVE_FILE="${OUT_DIR}/archive/index.html"
 if [[ ! -f "${ARCHIVE_FILE}" ]] || [[ "`echo "${ARCHIVE_INDEX_CONTENT}" | shasum -a 256 | cut -d ' ' -f 1`" != "`shasum -a 256 "${ARCHIVE_FILE}" | cut -d ' ' -f 1`" ]]
 then
+	echo "archive file [${ARCHIVE_FILE}] IS changed"
 	echo "${ARCHIVE_INDEX_CONTENT}" > "${ARCHIVE_FILE}"
-else
-	echo "archive file [${ARCHIVE_FILE}] is unchanged"
+#else
+#	echo "archive file [${ARCHIVE_FILE}] is unchanged"
 fi
 
 #tmp comment out to find double quote syntax error
@@ -344,10 +351,13 @@ ${TMP_FOOTER}"
 	#rm "${OUT_DIR}/${PAGE_DIR}/$(basename "${PAGE_MARKDOWN_FILE}")"
 done
 
-# run script to generate gallery/ pages
-bash "${GEN_DIR}/gallery.sh" \
-	"${STATIC_DIR}" \
-	"${OUT_DIR}" \
-	"${GEN_DIR}/header.sh" \
-	"${GEN_DIR}/footer.sh" \
-	".."
+if [[ "${SKIP_BIRDS}" == "false" ]]
+then
+	# run script to generate gallery/ pages
+	bash "${GEN_DIR}/gallery.sh" \
+		"${STATIC_DIR}" \
+		"${OUT_DIR}" \
+		"${GEN_DIR}/header.sh" \
+		"${GEN_DIR}/footer.sh" \
+		".."
+fi
