@@ -4,3 +4,4 @@ out/
 .DS_Store
 openAfterBuild.sh
 gen/static/gallery-img/*/hashes-*.db
+gen/static/mandelbrot-gallery/**/*.md

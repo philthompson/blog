@@ -1,0 +1,8 @@
+thumb:https://philthompson.me/s/img/2022/typhoons-1280x720.jpg
+title:"Typhoons" by me
+
+desc:Using earth tones and slope shading, this image at first glance may appear like a satellite imagery of a pair of tropical hurricanes or typhoons.
+
+params:?plot=Mandelbrot-set&v=5&n=30000&mag=1.34e10&centerX=2.320493047984879994e-1&centerY=5.3360657270468833131e-1&gradient=BSGSwDwDwDw-L.808080-B.85b2fe-S.ac9e7c-G.3f660a-D.b5b8df-shift10-mod10000-offset8550&bgColor=b&smooth=on-show&slopeLightDir=br&slopeDepth=5
+
+render01:https://philthompson.me/s/img/2022/typhoons-3200x1800.png

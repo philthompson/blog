@@ -1,0 +1,12 @@
+# comments must start with pound sign
+# all fields must be a single line
+# blank lines are ignored
+thumb:https://philthompson.me/s/img/2022/Dinkydau-Tick-Tock-1280x720.jpg
+title:"Tick Tock" by Dinkydau
+
+desc:This image was first <a target="_blank" href="https://www.fractalforums.com/images-showcase-(rate-my-fractal)/tick-tock/">shared on the fractalforums.com board in May, 2013</a>.  That original image is striking, apparently created by layering multiple gradients.  This version uses a simpler gradient plus slope shading to bring out more fine detail.
+
+params:?plot=Mandelbrot-set&v=5&n=80000&mag=2.2e141&centerX=-1.479946223325078880202580653442563833590828874828533272328919467504501428041551458102123157715213651035545943542078167348953885787341902612509987523844493790997569942182815961274e0&centerY=9.013973290203539801977918661971735662515668180451024110676303864886922871890491456215844360269342187635275772906318094547966181107674245803000517934891341563129581287143605336e-4&gradient=bwo-b.007978-o.ca5f00-mod4580-mirror3-offset4410&bgColor=b&smooth=on-show&algo=perturb-sapx32.4-float&slopeLightDir=br&slopeDepth=3
+
+# 0 or more large renders can be present (use multiple "render##:" lines for more than one)
+render01:https://philthompson.me/s/img/2022/Dinkydau-Tick-Tock-3200x1800.png
