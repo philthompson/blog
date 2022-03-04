@@ -1,11 +1,14 @@
-# comments must start with pound sign
-# all fields must be a single line
-# blank lines are ignored
+
 thumb:https://philthompson.me/s/img/2022/Spiral-Julia-1280x720.jpg
 title:"Spiral Julia" by me
 
 desc:I like this location for its spirals-made-of-spirals simplicity.
 
 params:?plot=Mandelbrot-set&v=5&n=12100&mag=1.8e7&centerX=-5.3116946593128245588e-1&centerY=6.6664631926017879912e-1&gradient=rBbwbB-repeat3-shift1&bgColor=b&smooth=on-show
+
+re:-0.53116946593128245588
+im:0.66664631926017879912
+mag:1.8e7
+scale:5.4e9
 
 render01:https://philthompson.me/s/img/2022/Spiral-Julia-3200x1800.png

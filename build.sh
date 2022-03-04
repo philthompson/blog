@@ -372,6 +372,9 @@ cat << xxxxxEOFxxxxx
 		border-top: 1px solid #949b96;
 		border-bottom: 1px solid #949b96;
 	}
+	#loc {
+		word-wrap: break-word;
+	}
 </style>
 
 ## ${THE_YEAR} Mandelbrot set Gallery
@@ -379,7 +382,7 @@ cat << xxxxxEOFxxxxx
 These images were all generated with
 <a href="\${SITE_ROOT_REL}/very-plotter" target="_self">Very Plotter</a>'s Mandelbrot set
 explorer.  Click any image below to view details, a link to open that location in your
-browser, and links for larger image downloads.
+browser, and larger renders.
 
 <div class="btns">${PREV_BUTTON}
 ${NEXT_BUTTON}</div>
@@ -393,7 +396,12 @@ generateMandelbrotImageHtml() {
 	IMG_DESC="${4}"
 	IMG_PARAMS="${5}"
 	IMG_RENDERS="${6}"
+	IMG_RE="${7}"
+	IMG_IM="${8}"
+	IMG_MAG="${9}"
+	IMG_SCALE="${10}"
 	RENDERS_HTML=""
+	# create html list of renders
 	if [[ ! -z "${IMG_RENDERS}" ]]
 	then
 		RENDERS_HTML="<p>Available renders:</p>
@@ -407,7 +415,7 @@ generateMandelbrotImageHtml() {
 		RENDERS_HTML="${RENDERS_HTML}
 </ul>"
 	fi
-cat << xxxxxEOFxxxxx
+cat <<- xxxxxEOFxxxxx
 <details class="width-resp-50-100">
 	<summary>
 		<img class="width-100" src="${IMG_THUMB}"/>
@@ -416,8 +424,13 @@ cat << xxxxxEOFxxxxx
 	<p>${IMG_DESC}</p>
 	<p>Click
 		<a target="_blank" href="\${SITE_ROOT_REL}/very-plotter/${IMG_PARAMS}">
-		here</a> to view in Very Plotter.</p>
+		here</a> to view this location in Very Plotter.</p>
 	${RENDERS_HTML}
+	<p id="loc">Location:<br/>
+	Re:&nbsp;${IMG_RE}<br/>
+	Im:&nbsp;${IMG_IM}<br/>
+	Magnification:&nbsp;${IMG_MAG} <small>(where 1.0 fits entire Mandelbrot set into the window)</small><br/>
+	Scale:&nbsp;${IMG_SCALE} <small>(pixels/unit)</small></p>
 </details>
 xxxxxEOFxxxxx
 }
@@ -467,6 +480,10 @@ do
 		IMG_DESC=""
 		IMG_PARAMS=""
 		IMG_RENDER_LINES=""
+		IMG_RE=""
+		IMG_IM=""
+		IMG_MAG=""
+		IMG_SCALE=""
 
 		while read IMG_LINE
 		do
@@ -484,6 +501,18 @@ do
 			elif [[ "${LINE_KEY}" == "params" ]]
 			then
 				IMG_PARAMS="${LINE_VAL}"
+			elif [[ "${LINE_KEY}" == "re" ]]
+			then
+				IMG_RE="${LINE_VAL}"
+			elif [[ "${LINE_KEY}" == "im" ]]
+			then
+				IMG_IM="${LINE_VAL}"
+			elif [[ "${LINE_KEY}" == "mag" ]]
+			then
+				IMG_MAG="${LINE_VAL}"
+			elif [[ "${LINE_KEY}" == "scale" ]]
+			then
+				IMG_SCALE="${LINE_VAL}"
 			# render01, render02, etc keys are matched and re-assembled into
 			#   one variable
 			elif [[ "${LINE_KEY:0:6}" == "render" ]]
@@ -496,7 +525,7 @@ ${LINE_KEY}:${LINE_VAL}"
 		# sort render01, render02, etc lines then drop line keys
 		IMG_RENDERS="$(echo "${IMG_RENDER_LINES}" | grep -v "^$" | sort -n | cut -d : -f 2-)"
 
-		{ read -d '' MANDELBROT_IMG_HTML; }< <(generateMandelbrotImageHtml "${IMG_DATE}" "${IMG_THUMB}" "${IMG_TITLE}" "${IMG_DESC}" "${IMG_PARAMS}" "${IMG_RENDERS}")
+		{ read -d '' MANDELBROT_IMG_HTML; }< <(generateMandelbrotImageHtml "${IMG_DATE}" "${IMG_THUMB}" "${IMG_TITLE}" "${IMG_DESC}" "${IMG_PARAMS}" "${IMG_RENDERS}" "${IMG_RE}" "${IMG_IM}" "${IMG_MAG}" "${IMG_SCALE}" | grep -v "^$" | grep -v "<p></p>")
 
 		# embed newlines directly into variable
 		MANDELBROT_PAGE_CONTENT="${MANDELBROT_PAGE_CONTENT}
