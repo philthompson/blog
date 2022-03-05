@@ -1,0 +1,14 @@
+
+thumb:https://philthompson.me/s/img/2022/Wireframe-1280x720.jpg
+title:"Wireframe" by me
+
+desc:This Julia set location has unique wireframe-like lines both surrounding the formation and between features within it.  In the spiral areas the lines create a seashell appearance with a sense of curvature.
+
+params:?plot=Mandelbrot-set&v=5&n=88960&mag=9.0e17&centerX=-5.2892475958706580927278758990604e-1&centerY=6.6853801918099938242995463616183e-1&gradient=Bw-B.001050-mod4600-offset500&bgColor=b&smooth=on-show
+
+re:-0.52892475958706580927278758990604
+im:0.66853801918099938242995463616183
+mag:9.0e17
+scale:2.7e20
+
+render01:https://philthompson.me/s/img/2022/Wireframe-3200x1800.png

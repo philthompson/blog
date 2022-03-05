@@ -1,0 +1,14 @@
+
+thumb:https://philthompson.me/s/img/2022/Wolfgang-Beyer-Islands-1280x720.jpg
+title:"Islands" by Wolfgang Beyer
+
+desc:This image sparked my interest in the Mandelbrot set, and I set out to re-create it in my own program.  It appears on the <a target="_blank" href="https://en.wikipedia.org/wiki/Mandelbrot_set">Mandelbrot set Wikipedia article</a> (details of this particular image are <a target="_blank" href="https://en.wikipedia.org/wiki/File:Mandel_zoom_14_satellite_julia_island.jpg">here</a>).  I really like the symmetry and complexity of Julia set "islands" that appear throughout the Mandelbrot set, and this is a particularly elegant one.
+
+params:?plot=Mandelbrot-set&v=5&n=20000&mag=8.2e10&centerX=-7.43643887037151e-1&centerY=1.3182590420533e-1&gradient=ywbo-repeat6&bgColor=b&smooth=off-hide
+
+re:-0.743643887037151
+im:0.13182590420533
+mag:8.2e10
+scale:9.84e13
+
+render01:https://philthompson.me/s/img/2022/Wolfgang-Beyer-Islands-3200x1800.png

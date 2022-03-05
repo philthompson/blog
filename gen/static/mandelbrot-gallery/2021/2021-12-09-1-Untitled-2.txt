@@ -1,0 +1,14 @@
+
+thumb:https://philthompson.me/s/img/2022/Untitled-2-1280x720.jpg
+title:"Untitled 2" by me
+
+desc:This location has a relatively high number of max iterations at 950,000, though much of the image has far fewer iterations than that.
+
+params:?plot=Mandelbrot-set&v=5&n=950000&mag=4.3e10&centerX=-7.219634036548636754424e-1&centerY=2.377819092261859232964e-1&gradient=rbwo-repeat12-shift1&bgColor=b&smooth=off-hide
+
+re:-0.7219634036548636754424
+im:0.2377819092261859232964
+mag:4.3e10
+scale:5.16e13
+
+render01:https://philthompson.me/s/img/2022/Untitled-2-3200x1800.png

@@ -1,0 +1,15 @@
+
+thumb:https://philthompson.me/s/img/2022/Untitled-3-1280x720.jpg
+title:"Untitled 3" by me
+
+desc:I liked the gradient effect at this location.  It was initially rendered before smooth colors were implemented in Very Plotter.  Renders are available for both the original banded colors and newer smooth colors.
+
+params:?plot=Mandelbrot-set&v=5&n=440&mag=2.0e7&centerX=-1.595765223376485341e0&centerY=4.326819366891362718e-3&gradient=Bpow-repeat2&bgColor=b&smooth=off-hide
+
+re:-1.595765223376485341
+im:0.004326819366891362718
+mag:2.0e7
+scale:2.4e10
+
+render01:https://philthompson.me/s/img/2022/Untitled-3-3200x1800.png
+render02:https://philthompson.me/s/img/2022/Untitled-3-smooth-3200x1800.png

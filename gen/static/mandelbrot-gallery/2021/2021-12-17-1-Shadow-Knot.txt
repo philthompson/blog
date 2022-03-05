@@ -1,0 +1,14 @@
+
+thumb:https://philthompson.me/s/img/2022/Shadow-Knot-1280x720.jpg
+title:"Shadow Knot" by me
+
+desc:
+
+params:?plot=Mandelbrot-set&v=5&n=45740&mag=3.2e8&centerX=-5.2670011974019453334e-1&centerY=6.1951248325817373334e-1&gradient=Bbgoyw-repeat12-shift2&bgColor=b&smooth=off-hide
+
+re:-0.52670011974019453334
+im:0.61951248325817373334
+mag:3.2e8
+scale:9.6e10
+
+render01:https://philthompson.me/s/img/2022/Shadow-Knot-3200x1800.png
