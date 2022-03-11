@@ -2,7 +2,7 @@
 thumb:https://philthompson.me/s/img/2022/Julia-Minibrot-1280x720.jpg
 title:"Julia Minibrot" by me
 
-desc:This particular Julia set is found relatively shallow zoom depth, so it was an early one I was exploring while writing Very Plotter.  You don't have to zoom in much at all into the center of the Julia set to find this minibrot.
+desc:This particular Julia set is found at a relatively shallow zoom depth, so it was an early one I was exploring while writing Very Plotter.  You don't have to zoom in much at all into the center of the Julia set to find this minibrot.
 
 params:?plot=Mandelbrot-set&v=5&n=12000&mag=8.2e11&centerX=-1.269262552901106e0&centerY=1.8028851740715046e-1&gradient=woBpy-B~40.40.40-repeat10&bgColor=b&smooth=off-hide
 
