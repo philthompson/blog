@@ -1,0 +1,14 @@
+
+thumb:https://philthompson.me/s/img/2022/Ridge-1280x720.jpg
+title:"Ridge" by me
+
+desc:Using slope shading without smooth colors gives a terraced look.  And by using a "too low" number of iterations, we get a black region along the very center of the ridge.  I'm not sure it made any difference but I like how the terrace "bumps" look when zoomed in on the image, so the 3200x1800 render is a cropped portion of a larger render.
+
+params:?plot=Mandelbrot-set&v=5&n=40&mag=7.08333333333e4&centerX=-1.2400481244888029097e0&centerY=4.1661890964075045932e-1&gradient=bBgwo-B.141414-shift2&bgColor=b&smooth=on-hide&slopeLightDir=tr&slopeDepth=12
+
+re:-1.2400481244888029097
+im:0.41661890964075045932
+mag:7.08333333333e4
+scale:8.49999999999e7
+
+render01:https://philthompson.me/s/img/2022/Ridge-3200x1800.png

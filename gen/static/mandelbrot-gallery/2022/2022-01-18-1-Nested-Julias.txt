@@ -1,0 +1,14 @@
+
+thumb:https://philthompson.me/s/img/2022/Nested-Julias-1280x720.jpg
+title:"Nested Julias" by me
+
+desc:This Julia set location has a prominent nested Julia set, which is a feature I hadn't seen before.  Usually I've seen much smaller, more complex central features.
+
+params:?plot=Mandelbrot-set&v=5&n=2060&mag=2.2e11&centerX=-1.18747328259617150199e0&centerY=3.042116636656827960577e-1&gradient=Bw-mod500&bgColor=b&smooth=on-show&slopeLightDir=tl&slopeDepth=2
+
+re:-1.18747328259617150199
+im:0.3042116636656827960577
+mag:2.2e11
+scale:2.64e14
+
+render01:https://philthompson.me/s/img/2022/Nested-Julias-3200x1800.png

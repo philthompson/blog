@@ -9,6 +9,6 @@ params:?plot=Mandelbrot-set&v=5&n=88960&mag=9.0e17&centerX=-5.289247595870658092
 re:-0.52892475958706580927278758990604
 im:0.66853801918099938242995463616183
 mag:9.0e17
-scale:2.7e20
+scale:1.08e21
 
 render01:https://philthompson.me/s/img/2022/Wireframe-3200x1800.png

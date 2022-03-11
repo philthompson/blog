@@ -1,0 +1,14 @@
+
+thumb:https://philthompson.me/s/img/2022/Untitled-6-1280x720.jpg
+title:"Untitled 6" by me
+
+desc:Another Julia set location.
+
+params:?plot=Mandelbrot-set&v=5&n=1060&mag=1.4e11&centerX=-1.028584483980947907835e0&centerY=3.608717788239502930329e-1&gradient=GBPwGBP.GBPw-G.1affb4-P.ff665b-mod500&bgColor=b&smooth=on-show&slopeLightDir=tl&slopeDepth=4
+
+re:-1.028584483980947907835
+im:0.3608717788239502930329
+mag:1.4e11
+scale:1.68e14
+
+render01:https://philthompson.me/s/img/2022/Untitled-6-3200x1800.png

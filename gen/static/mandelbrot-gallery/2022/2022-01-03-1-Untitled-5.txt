@@ -1,0 +1,14 @@
+
+thumb:https://philthompson.me/s/img/2022/Untitled-5-1280x720.jpg
+title:"Untitled 5" by me
+
+desc:
+
+params:?plot=Mandelbrot-set&v=5&n=1500&mag=3.0e20&centerX=-1.768534912655296681276669575288151909e0&centerY=-3.238612298963392406449390944502121069e-3&gradient=GBPwGBPwGBPw-P.FA22BC-G.496A03-mod350-offset198&bgColor=b&smooth=off-hide
+
+re:-1.768534912655296681276669575288151909
+im:-0.003238612298963392406449390944502121069
+mag:3.0e20
+scale:7.2e23
+
+render01:https://philthompson.me/s/img/2022/Untitled-5-3200x1800.png

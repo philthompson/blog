@@ -1,0 +1,14 @@
+
+thumb:https://philthompson.me/s/img/2022/New-Year-1280x720.jpg
+title:"New Year" by me
+
+desc:Toward the very edge of the Mandelbrot set, at a shallow zoom depth, with minimum bailout and banded, not smooth, colors, we get these pleasant interlocking petal shapes.  This image has a new years black and gold color palette and slope shading that makes it look subtly embossed.
+
+params:?plot=Mandelbrot-set&v=5&n=860&mag=5.66666666666e31&centerX=-1.99999999999999998715922416011970493698228766581e0&centerY=-1.7797958776413433333333331e-34&gradient=BGw-B.141414-G.D4AF37-mod14-offset36&bgColor=b&smooth=off-hide&slopeLightDir=br&slopeDepth=32
+
+re:-1.99999999999999998715922416011970493698228766581
+im:-0.00000000000000000000000000000000017797958776413433333333331
+mag:5.66666666666e31
+scale:1.35999999999e35
+
+render01:https://philthompson.me/s/img/2022/New-Year-3200x1800.png
