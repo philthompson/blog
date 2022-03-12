@@ -2,7 +2,7 @@
 thumb:https://philthompson.me/s/img/2022/Mitosis-Two-1280x720.jpg
 title:"Mitosis: Two" by me
 
-desc:This is the second image from my "Mitosis" location.  I like how the central diagonal line of spirals is, and how distinct it is from the rest of the overall formation.  Again here the main features are actually nearly vertical in the plot, so this render was rotated in post.
+desc:This is the second image from my "Mitosis" location.  I like the central diagonal line of spirals, and how distinct it is from the rest of the overall formation.  Again here this render was rotated in post.
 
 params:?plot=Mandelbrot-set&v=5&n=250000&mag=2.2e201&centerX=-6.9945103260120716376442001594992982550885119736258386192647673367012492763854651399632038824102026508260027261049264077628416895653881210054367905516100840461942100094251584307734928017740224630062049713981e-1&centerY=3.49219193468888187859404665365943333646276521777710279408261314455468040596135359741743074913283730226986143223488472538459586623429895016802541497625093045420059449771171496485083029502812245170672907845e-1&gradient=GBswGBswGBsw-P.FA22BC-G.496A03-s.d9af70-mod6000&bgColor=b&smooth=on-show
 
