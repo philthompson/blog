@@ -100,7 +100,7 @@ img {
 	max-width: 100%;
 }
 
-@media screen and (min-width: 700px) {
+@media screen and (min-width: 43rem) {
 	.width-resp-75-100 {
 		padding-left: 2%;
 		padding-right: 2%;
@@ -112,7 +112,7 @@ img {
 	max-width: 100%;
 }
 
-@media screen and (min-width: 700px) {
+@media screen and (min-width: 43rem) {
 	.width-resp-50-100 {
 		padding-left: 2%;
 		padding-right: 2%;
@@ -124,7 +124,7 @@ img {
 	max-width: 40%;
 }
 
-@media screen and (min-width: 700px) {
+@media screen and (min-width: 43rem) {
 	.width-resp-25-40 {
 		padding-left: 2%;
 		padding-right: 2%;

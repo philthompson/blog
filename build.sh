@@ -321,6 +321,13 @@ cat << xxxxxEOFxxxxx
 xxxxxEOFxxxxx
 }
 
+#
+# for nicer overall layout, the gallery pages' content will be wider
+#   than a normal blog post using a "wide-override" CSS class
+# to center the wider child <div> inside the narrower parent <div>,
+#   "wide-override" uses this: https://stackoverflow.com/a/48608339/259456
+#
+
 generateMandelbrotGalleryPageHeader() {
 	THE_YEAR="${1}"
 	PREV_YEAR="${2}"
@@ -374,6 +381,49 @@ cat << xxxxxEOFxxxxx
 	}
 	#loc {
 		word-wrap: break-word;
+	}
+	@media screen and (min-width: 64rem) {
+		.width-resp-50-100 {
+			padding-left: 1.25%;
+			padding-right: 1.25%;
+			max-width: 30%;
+		}
+	}
+	@media screen and (min-width: 104rem) {
+		.width-resp-50-100 {
+			padding-left: 1.2%;
+			padding-right: 1.2%;
+			max-width: 22%;
+		}
+	}
+	.wide-override {
+		width: 100%
+	}
+	@media screen and (min-width: 48rem) {
+		.wide-override {
+			width: 47rem;
+			left: 50%;
+			position: relative;
+			transform: translateX(-50%);
+		}
+	}
+	@media screen and (min-width: 54rem) {
+		.wide-override { width: 52rem; }
+	}
+	@media screen and (min-width: 64rem) {
+		.wide-override { width: 61rem; }
+	}
+	@media screen and (min-width: 74rem) {
+		.wide-override { width: 70rem; }
+	}
+	@media screen and (min-width: 84rem) {
+		.wide-override { width: 80rem; }
+	}
+	@media screen and (min-width: 94rem) {
+		.wide-override { width: 90rem; }
+	}
+	@media screen and (min-width: 104rem) {
+		.wide-override { width: 98rem; }
 	}
 </style>
 
@@ -464,6 +514,10 @@ do
 
 	{ read -d '' MANDELBROT_PAGE_CONTENT; }< <(generateMandelbrotGalleryPageHeader "${MANDELBROT_GALLERY_YEAR}" "${PREV_YEAR}" "${NEXT_YEAR}")
 
+	# embed newlines directly into variable
+	MANDELBROT_PAGE_CONTENT="${MANDELBROT_PAGE_CONTENT}
+<div class=\"wide-override\">"
+
 	while read MANDELBROT_IMG
 	do
 		IMG_BASENAME="$(basename "${MANDELBROT_IMG}")"
@@ -534,6 +588,9 @@ ${MANDELBROT_IMG_HTML}"
 	# image files are named with their date, so sorting will display them on
 	#   the page in date order
 	done <<< "$(find "${MANDELBROT_GALLERY_YEAR_DIR}" -type f | sort)"
+
+	MANDELBROT_PAGE_CONTENT="${MANDELBROT_PAGE_CONTENT}
+</div>"
 
 	if [[ ! -f "${MANDELBROT_MD_PAGE}" ]] || [[ "`echo "${MANDELBROT_PAGE_CONTENT}" | shasum -a 256 | cut -d ' ' -f 1`" != "`shasum -a 256 "${MANDELBROT_MD_PAGE}" | cut -d ' ' -f 1`" ]]
 	then
