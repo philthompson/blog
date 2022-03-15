@@ -10,5 +10,6 @@ re:-1.2400481244888029097
 im:0.41661890964075045932
 mag:7.08333333333e4
 scale:8.49999999999e7
+iterations:40
 
 render01:https://philthompson.me/s/img/2022/Ridge-3200x1800.png

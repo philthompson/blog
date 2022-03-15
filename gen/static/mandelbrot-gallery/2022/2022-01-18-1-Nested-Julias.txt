@@ -10,5 +10,6 @@ re:-1.18747328259617150199
 im:0.3042116636656827960577
 mag:2.2e11
 scale:2.64e14
+iterations:2060
 
 render01:https://philthompson.me/s/img/2022/Nested-Julias-3200x1800.png

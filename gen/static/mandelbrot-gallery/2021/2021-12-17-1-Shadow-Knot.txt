@@ -10,5 +10,6 @@ re:-0.52670011974019453334
 im:0.61951248325817373334
 mag:3.2e8
 scale:9.6e10
+iterations:45740
 
 render01:https://philthompson.me/s/img/2022/Shadow-Knot-3200x1800.png

@@ -10,5 +10,6 @@ re:-0.7219634036548636754424
 im:0.2377819092261859232964
 mag:4.3e10
 scale:5.16e13
+iterations:950000
 
 render01:https://philthompson.me/s/img/2022/Untitled-2-3200x1800.png

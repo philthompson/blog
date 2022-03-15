@@ -10,5 +10,6 @@ re:-0.53116946593128245588
 im:0.66664631926017879912
 mag:1.8e7
 scale:5.4e9
+iterations:12100
 
 render01:https://philthompson.me/s/img/2022/Spiral-Julia-3200x1800.png

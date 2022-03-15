@@ -450,6 +450,7 @@ generateMandelbrotImageHtml() {
 	IMG_IM="${8}"
 	IMG_MAG="${9}"
 	IMG_SCALE="${10}"
+	IMG_ITER="${11}"
 	RENDERS_HTML=""
 	# create html list of renders
 	if [[ ! -z "${IMG_RENDERS}" ]]
@@ -480,7 +481,8 @@ cat <<- xxxxxEOFxxxxx
 	Re:&nbsp;${IMG_RE}<br/>
 	Im:&nbsp;${IMG_IM}<br/>
 	Magnification:&nbsp;${IMG_MAG} <small>(where 1.0 fits entire Mandelbrot set into the window)</small><br/>
-	Scale:&nbsp;${IMG_SCALE} <small>(pixels/unit)</small></p>
+	Scale:&nbsp;${IMG_SCALE} <small>(pixels/unit, for renders seen here)</small><br/>
+	Iterations:&nbsp;${IMG_ITER}</p>
 </details>
 xxxxxEOFxxxxx
 }
@@ -538,6 +540,7 @@ do
 		IMG_IM=""
 		IMG_MAG=""
 		IMG_SCALE=""
+		IMG_ITER=""
 
 		while read IMG_LINE
 		do
@@ -567,6 +570,9 @@ do
 			elif [[ "${LINE_KEY}" == "scale" ]]
 			then
 				IMG_SCALE="${LINE_VAL}"
+			elif [[ "${LINE_KEY}" == "iterations" ]]
+			then
+				IMG_ITER="${LINE_VAL}"
 			# render01, render02, etc keys are matched and re-assembled into
 			#   one variable
 			elif [[ "${LINE_KEY:0:6}" == "render" ]]
@@ -579,7 +585,7 @@ ${LINE_KEY}:${LINE_VAL}"
 		# sort render01, render02, etc lines then drop line keys
 		IMG_RENDERS="$(echo "${IMG_RENDER_LINES}" | grep -v "^$" | sort -n | cut -d : -f 2-)"
 
-		{ read -d '' MANDELBROT_IMG_HTML; }< <(generateMandelbrotImageHtml "${IMG_DATE}" "${IMG_THUMB}" "${IMG_TITLE}" "${IMG_DESC}" "${IMG_PARAMS}" "${IMG_RENDERS}" "${IMG_RE}" "${IMG_IM}" "${IMG_MAG}" "${IMG_SCALE}" | grep -v "^$" | grep -v "<p></p>")
+		{ read -d '' MANDELBROT_IMG_HTML; }< <(generateMandelbrotImageHtml "${IMG_DATE}" "${IMG_THUMB}" "${IMG_TITLE}" "${IMG_DESC}" "${IMG_PARAMS}" "${IMG_RENDERS}" "${IMG_RE}" "${IMG_IM}" "${IMG_MAG}" "${IMG_SCALE}" "${IMG_ITER}" | grep -v "^$" | grep -v "<p></p>")
 
 		# embed newlines directly into variable
 		MANDELBROT_PAGE_CONTENT="${MANDELBROT_PAGE_CONTENT}

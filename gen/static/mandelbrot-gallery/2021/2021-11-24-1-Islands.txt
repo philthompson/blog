@@ -10,5 +10,6 @@ re:-0.743643887037151
 im:0.13182590420533
 mag:8.2e10
 scale:9.84e13
+iterations:20000
 
 render01:https://philthompson.me/s/img/2022/Wolfgang-Beyer-Islands-3200x1800.png

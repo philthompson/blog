@@ -9,5 +9,6 @@ re:0.2320493047984879994
 im:0.53360657270468833131
 mag:1.34e10
 scale:4.02e12
+iterations:30000
 
 render01:https://philthompson.me/s/img/2022/Typhoons-3200x1800.png

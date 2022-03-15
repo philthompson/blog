@@ -10,5 +10,6 @@ re:-1.269262552901106
 im:0.18028851740715046
 mag:8.2e11
 scale:9.84e14
+iterations:12000
 
 render01:https://philthompson.me/s/img/2022/Julia-Minibrot-3200x1800.png
