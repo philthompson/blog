@@ -425,6 +425,9 @@ cat << xxxxxEOFxxxxx
 	@media screen and (min-width: 104rem) {
 		.wide-override { width: 98rem; }
 	}
+	.btns {
+		margin: 1rem 0;
+	}
 </style>
 
 ## ${THE_YEAR} Mandelbrot set Gallery
