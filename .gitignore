@@ -1,7 +1,13 @@
+.DS_Store
 *.sublime-workspace
 *.sublime-project
-out/
-.DS_Store
+anon-analyze/
+autoGetLogFileStats.sh*
+old/
 openAfterBuild.sh
+out/
+gen/exiftool
 gen/static/gallery-img/*/hashes-*.db
 gen/static/mandelbrot-gallery/**/*.md
+gen/loc_names_locations.csv
+graphics/

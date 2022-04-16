@@ -1,0 +1,17 @@
+# from https://exiftool.org/forum/index.php?topic=6087.0
+%Image::ExifTool::UserDefined = (
+    'Image::ExifTool::Composite' => {
+        MD5 => {
+            Require => {
+                0 => 'FileName',
+                1 => 'Directory',
+            },
+            ValueConv => q{
+                my $md5 = `md5 "$val[1]/$val[0]"`;
+                chomp $md5;
+                $md5 =~ s/.* //; # isolate MD5
+                return $md5;
+            },
+        },
+    },
+);
