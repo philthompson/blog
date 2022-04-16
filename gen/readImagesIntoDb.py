@@ -83,7 +83,7 @@ loc_names_to_check_proximity = ["loc_home_1"]
 def create_tables_as_needed(conn, curs):
 	curs.execute('''
 		CREATE TABLE IF NOT EXISTS photos (
-			file_stem TEXT PRIMARY KEY,
+			file_name TEXT PRIMARY KEY,
 			md5_first_4_hex TEXT,
 			date_str TEXT,
 			year INTEGER,
@@ -95,7 +95,7 @@ def create_tables_as_needed(conn, curs):
 		)''')
 	curs.execute('''
 		CREATE TABLE IF NOT EXISTS photo_species (
-			file_stem TEXT,
+			file_name TEXT,
 			name TEXT,
 			sex TEXT DEFAULT 'unk',
 			incidental INTEGER DEFAULT 0
@@ -104,16 +104,16 @@ def create_tables_as_needed(conn, curs):
 
 # do we need to check the photo_species table too?
 def is_image_in_db(conn, curs, the_id):
-	curs.execute("SELECT * FROM photos WHERE file_stem = ? LIMIT 1", [the_id])
+	curs.execute("SELECT * FROM photos WHERE file_name = ? LIMIT 1", [the_id])
 	return curs.fetchone() is not None
 
 def is_image_hash_changed(conn, curs, the_id, tags):
-	curs.execute("SELECT md5_first_4_hex FROM photos WHERE file_stem = ? LIMIT 1", [the_id])
+	curs.execute("SELECT md5_first_4_hex FROM photos WHERE file_name = ? LIMIT 1", [the_id])
 	return curs.fetchone()[0] != tags['Composite:MD5'][0:4]
 
 def delete_image_from_db(conn, curs, the_id):
-	curs.execute("DELETE FROM photos WHERE file_stem = ?", [the_id])
-	curs.execute("DELETE FROM photo_species WHERE file_stem = ?", [the_id])
+	curs.execute("DELETE FROM photos WHERE file_name = ?", [the_id])
+	curs.execute("DELETE FROM photo_species WHERE file_name = ?", [the_id])
 	# not doing commit here
 
 def read_tags_from_image(the_path):
@@ -168,7 +168,7 @@ def write_image_to_db(conn, curs, exif, the_id, tags):
 				print("image [{}] is a match for [{}]({})".format(the_id, gps_locations[loc_name]["note"], loc_name))
 
 	curs.execute('''INSERT INTO photos
-		(file_stem, md5_first_4_hex, date_str, year, stars, favorite, loc_home_1, loc_lat, loc_lon) VALUES
+		(file_name, md5_first_4_hex, date_str, year, stars, favorite, loc_home_1, loc_lat, loc_lon) VALUES
 		(?, ?, ?, ?, ?, ?, ?, ?, ?)''',
 		(the_id,
 		tags['Composite:MD5'][0:4],
@@ -206,7 +206,7 @@ def write_image_to_db(conn, curs, exif, the_id, tags):
 		species_sex_params.append((the_id, species, sex))
 
 	curs.executemany('''INSERT INTO photo_species
-		(file_stem, name, sex, incidental) VALUES
+		(file_name, name, sex, incidental) VALUES
 		(?, ?, ?, 0)''',
 		species_sex_params)
 
@@ -229,7 +229,7 @@ with sqlite3.connect(db_path) as conn, exiftool.ExifToolHelper(config_file=exift
 			print("<images_path> does not end with .jpg, so stopping")
 			sys.exit(1)
 		print("===== handling photo {}".format(total_photos_count))
-		image_id = str(images_path.stem)
+		image_id = str(images_path.name)
 		tags = read_tags_from_image(images_path)
 		if is_image_in_db(conn, curs, image_id):
 			if not hash_check:
@@ -245,10 +245,10 @@ with sqlite3.connect(db_path) as conn, exiftool.ExifToolHelper(config_file=exift
 	else:
 		# match any .jpg, except for files named like -sm.jpg
 		# thanks to https://stackoverflow.com/a/243902/259456
-		for image_path in multi_glob(images_path, ['**/*[!s][!m].jpg', '**/*[!s][!m].jpeg']):
+		for image_path in multi_glob(images_path, ['**/*[!s][!m].jpg', '**/*[!s][!m].jpeg', '**/*[!s][!m].heif']):
 			total_photos_count += 1
 			print("===== handling photo {}".format(total_photos_count))
-			image_id = image_path.stem
+			image_id = image_path.name
 			tags = read_tags_from_image(image_path)
 			if is_image_in_db(conn, curs, image_id):
 				if not hash_check:
@@ -275,9 +275,9 @@ with sqlite3.connect(db_path) as conn, exiftool.ExifToolHelper(config_file=exift
 #   - home
 
 # "photo" table columns
-# - name (file stem only?) (text, unique)
+# - file_name (file name) (text, unique)
 # - md5_first_4_hex (text)
-# - date (ugh what timezone? maybe local, since i'm never able to travel faster than the earth spins)
+# - date_str (ugh what timezone? maybe local, since i'm never able to travel faster than the earth spins)
 # - year (int)
 # - stars (int)
 # - favorite (boolean)
@@ -286,7 +286,7 @@ with sqlite3.connect(db_path) as conn, exiftool.ExifToolHelper(config_file=exift
 # - loc_lon
 
 # "species" table columns
-# - photo_name (text, same as photo.name, not unique)
+# - file_name (text, same as photo.name, not unique)
 # - name (text)
 # - sex (default to "unk")
 # - incidental (boolean, default to false)
