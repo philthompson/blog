@@ -84,21 +84,31 @@ def create_tables_as_needed(conn, curs):
 	curs.execute('''
 		CREATE TABLE IF NOT EXISTS photos (
 			file_name TEXT PRIMARY KEY,
-			md5_first_4_hex TEXT,
-			date_str TEXT,
-			year INTEGER,
-			stars INTEGER,
-			favorite INTEGER,
-			loc_home_1 INTEGER,
-			loc_lat REAL,
-			loc_lon REAL
+			md5_first_4_hex TEXT NOT NULL,
+			date_str TEXT NOT NULL,
+			year INTEGER NOT NULL,
+			stars INTEGER NOT NULL,
+			favorite INTEGER NOT NULL,
+			loc_home_1 INTEGER NOT NULL,
+			loc_lat REAL DEFAULT 0,
+			loc_lon REAL DEFAULT 0
 		)''')
 	curs.execute('''
 		CREATE TABLE IF NOT EXISTS photo_species (
-			file_name TEXT,
-			name TEXT,
-			sex TEXT DEFAULT 'unk',
+			file_name TEXT NOT NULL,
+			name TEXT NOT NULL,
+			sex TEXT DEFAULT 'unk' NOT NULL,
 			incidental INTEGER DEFAULT 0
+		)''')
+	curs.execute('''
+		CREATE TABLE IF NOT EXISTS photo_species_overrides (
+			file_name TEXT NOT NULL,
+			name TEXT NOT NULL,
+			orig_name TEXT NOT NULL,
+			sex TEXT DEFAULT 'unk' NOT NULL,
+			orig_sex TEXT NOT NULL,
+			incidental INTEGER DEFAULT 0,
+			orig_incidental INTEGER NOT NULL
 		)''')
 	conn.commit()
 
