@@ -27,10 +27,10 @@ then
 	OUT_DIR="${THIS_DIR}/out/in-place"
 fi
 
-SKIP_BIRDS="false"
-if [[ "${2}" == "skip-birds" ]]
+SKIP_GALLERY="false"
+if [[ "${2}" == "skip-gallery" ]]
 then
-	SKIP_BIRDS="true"
+	SKIP_GALLERY="true"
 fi
 
 echo "${THIS_SCRIPT}"
@@ -661,7 +661,7 @@ ${TMP_FOOTER}"
 	#rm "${OUT_DIR}/${PAGE_DIR}/$(basename "${PAGE_MARKDOWN_FILE}")"
 done
 
-if [[ "${SKIP_BIRDS}" == "false" ]]
+if [[ "${SKIP_GALLERY}" == "false" ]]
 then
 	# run script to generate gallery/ pages
 	bash "${GEN_DIR}/gallery.sh" \
