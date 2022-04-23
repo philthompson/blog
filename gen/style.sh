@@ -92,6 +92,10 @@ header .nav .nav-item {
 	margin: 1.2rem 0;
 }
 
+.alt-text {
+	color: ${CLR_TEXT_ALT};
+}
+
 img {
 	padding-top: 0.4rem;
 }

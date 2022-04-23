@@ -255,7 +255,7 @@ with sqlite3.connect(db_path) as conn, exiftool.ExifToolHelper(config_file=exift
 	else:
 		# match any .jpg, except for files named like -sm.jpg
 		# thanks to https://stackoverflow.com/a/243902/259456
-		for image_path in multi_glob(images_path, ['**/*[!s][!m].jpg', '**/*[!s][!m].jpeg', '**/*[!s][!m].heif']):
+		for image_path in multi_glob(images_path, ['**/*[!s][!m].jpg', '**/*[!s][!m].jpeg', '**/*[!s][!m].heif', '**/*[!s][!m].heic']):
 			total_photos_count += 1
 			print("===== handling photo {}".format(total_photos_count))
 			image_id = image_path.name
