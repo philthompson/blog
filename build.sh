@@ -54,7 +54,13 @@ mkdir -p "${OUT_DIR}/archive"
 # - note no delete option -- use this script without
 #     "in-place" argument for final full build without
 #     deleted static files
-rsync -vrlpcgoD --exclude="*.md" --exclude="mandelbrot-gallery/*" "${STATIC_DIR}"/ "${OUT_DIR}"
+rsync -vrlpcgoD \
+  --exclude="*.md" \
+  --exclude="mandelbrot-gallery/*" \
+  --exclude="gallery-img/**/*.db" \
+  --exclude="gallery-img/**/*.supplement" \
+  --exclude="gallery-img/**/*.txid" \
+  "${STATIC_DIR}"/ "${OUT_DIR}"
 #cp -rp "${STATIC_DIR}"/* "${OUT_DIR}/"
 
 STYLE_FILE="${OUT_DIR}/css/style.css"

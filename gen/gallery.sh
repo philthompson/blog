@@ -249,7 +249,7 @@ do
 			#   keywords unchanged -- i'll have to capitalize them properly when initially
 			#   tagging them
 			#PHOTO_SPECIES="`/usr/local/bin/exiftool "-MWG:Keywords" -S -s "${PHOTO_PATH}" | sed 's/, /@/g' | tr '@' '\n' | grep species | sed 's/species://g' | tr 'A-Z' 'a-z' | awk '{for(i=1;i<=NF;i++){ $i=toupper(substr($i,1,1)) substr($i,2) }}1' | tr '\n' ',' | sed -e 's/,/, /g' -e 's/, $//' | base64`"
-			PHOTO_SPECIES="`/usr/local/bin/exiftool "-MWG:Keywords" -S -s "${PHOTO_PATH}" | sed 's/, /@/g' | tr '@' '\n' | grep species | sed 's/species://g' | tr '\n' ',' | sed -e 's/,/, /g' -e 's/, $//' | base64`"
+			PHOTO_SPECIES="`/usr/local/bin/exiftool "-MWG:Keywords" -S -s "${PHOTO_PATH}" | sed 's/, /@/g' | tr '@' '\n' | grep 'species:' | sed 's/species://g' | tr '\n' ',' | sed -e 's/,/, /g' -e 's/, $//' | base64`"
 			PHOTO_DESCRIPTION="`echo "--" | base64`"
 			PHOTO_VISIBLE="true"
 			PHOTO_STARS="`/usr/local/bin/exiftool "-MWG:Keywords" -S -s "${PHOTO_PATH}" | sed 's/, /@/g' | tr '@' '\n' | grep -m 1 "stars:[0-9]" | sed -E 's/.*stars:([0-9]).*/\1/'`"
