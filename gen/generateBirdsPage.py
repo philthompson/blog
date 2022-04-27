@@ -67,7 +67,8 @@ if sys.argv[3] != "all":
 	if sys.argv[2] != "all":
 		where_clause += ' AND'
 	title_location = ' at ' + location_aliases[sys.argv[3]]
-	where_clause += ' p.{} = 1'.format(sys.argv[3])
+	where_clause += ' l.location_name = :filter_location'
+	where_clause_values['filter_location'] = sys.argv[3]
 
 if len(where_clause) > 0:
 	where_clause = 'WHERE ' + where_clause
@@ -104,13 +105,66 @@ def run_query(conn, curs, photos_p_where_clause):
 			LEFT OUTER JOIN
 				photo_species_overrides o
 			ON
-				s.file_name = o.file_name AND ((
-					s.name = o.orig_name AND
-					s.sex = o.orig_sex AND
-					s.incidental = o.orig_incidental
-				) OR (
-					o.orig_name LIKE 'absent-%'
-				))
+				s.file_name = o.file_name AND
+				s.name = o.orig_name AND
+				s.sex = o.orig_sex AND
+				s.incidental = o.orig_incidental
+			UNION
+			SELECT
+				o.file_name,
+				o.name,
+				o.sex,
+				o.incidental
+			FROM
+				photo_species_overrides o
+			WHERE
+				o.orig_name LIKE 'absent-%'
+		),
+		apply_locations_overrides AS (
+			SELECT
+				l.file_name,
+				COALESCE(o.location_name, l.location_name) AS location_name
+			FROM
+				photo_locations l
+			LEFT OUTER JOIN
+				photo_locations_overrides o
+			ON
+				l.file_name = o.file_name AND
+				l.location_name = o.orig_location_name
+			UNION
+			SELECT
+				o.file_name,
+				o.location_name
+			FROM
+				photo_locations_overrides o
+			WHERE
+				o.orig_location_name LIKE 'absent-%'
+		),
+		photos_with_ratings AS (
+			SELECT
+				p.file_name,
+				p.date_str,
+				p.year,
+				COALESCE(r.stars, p.stars) AS stars,
+				COALESCE(r.favorite, p.favorite) AS favorite
+			FROM
+				photos p
+			LEFT OUTER JOIN
+				photo_ratings_overrides r
+			ON
+				p.file_name = r.file_name
+		),
+		photos_with_locations AS (
+			SELECT
+				p.*,
+				COALESCE(l.location_name, 'x') AS location_name
+			FROM
+				photos_with_ratings p
+			LEFT OUTER JOIN
+				apply_locations_overrides l
+			ON
+				p.file_name = l.file_name
+			{photos_p_where_clause}
 		),
 		species_and_subspecies AS (
 			SELECT
@@ -160,12 +214,11 @@ def run_query(conn, curs, photos_p_where_clause):
 					p.file_name,
 					s.name
 				FROM
-					photos p
+					photos_with_locations p
 				INNER JOIN
 					species_and_subspecies_and_sex s
 				ON
 					p.file_name = s.file_name
-				{photos_p_where_clause}
 			)
 		),
 		last_per_species AS (
@@ -181,12 +234,11 @@ def run_query(conn, curs, photos_p_where_clause):
 					p.file_name,
 					s.name
 				FROM
-					photos p
+					photos_with_locations p
 				INNER JOIN
 					species_and_subspecies_and_sex s
 				ON
 					p.file_name = s.file_name
-				{photos_p_where_clause}
 			)
 		),
 		best_per_species AS (
@@ -211,12 +263,11 @@ def run_query(conn, curs, photos_p_where_clause):
 					p.favorite,
 					(p.favorite * 2) + p.stars AS score
 				FROM
-					photos p
+					photos_with_locations p
 				INNER JOIN
 					species_and_subspecies_and_sex s
 				ON
 					p.file_name = s.file_name
-				{photos_p_where_clause}
 			)
 		)
 		SELECT
@@ -230,7 +281,7 @@ def run_query(conn, curs, photos_p_where_clause):
 		FROM
 			first_per_species f
 		INNER JOIN
-			photos p
+			photos_with_locations p
 		ON
 			p.file_name = f.file_name
 		WHERE
@@ -247,7 +298,7 @@ def run_query(conn, curs, photos_p_where_clause):
 		FROM
 			last_per_species l
 		INNER JOIN
-			photos p
+			photos_with_locations p
 		ON
 			p.file_name = l.file_name
 		WHERE

@@ -54,6 +54,7 @@ if not images_path.exists():
 	sys.exit(1)
 
 gps_locations = {}
+#loc_names_to_check_proximity = ["loc_home_1"]
 
 with open(loc_csv_path) as csvfile:
 	reader = csv.DictReader(csvfile)
@@ -78,7 +79,6 @@ with open(loc_csv_path) as csvfile:
 #if not images_path.is_dir():
 #	print("images_path is not a directory", file=sys.stderr)
 
-loc_names_to_check_proximity = ["loc_home_1"]
 
 def create_tables_as_needed(conn, curs):
 	curs.execute('''
@@ -89,7 +89,6 @@ def create_tables_as_needed(conn, curs):
 			year INTEGER NOT NULL,
 			stars INTEGER NOT NULL,
 			favorite INTEGER NOT NULL,
-			loc_home_1 INTEGER NOT NULL,
 			loc_lat REAL DEFAULT 0,
 			loc_lon REAL DEFAULT 0
 		)''')
@@ -110,6 +109,23 @@ def create_tables_as_needed(conn, curs):
 			incidental INTEGER DEFAULT 0,
 			orig_incidental INTEGER NOT NULL
 		)''')
+	curs.execute('''
+		CREATE TABLE IF NOT EXISTS photo_locations (
+			file_name TEXT NOT NULL,
+			location_name TEXT NOT NULL
+		)''')
+	curs.execute('''
+		CREATE TABLE IF NOT EXISTS photo_locations_overrides (
+			file_name TEXT NOT NULL,
+			location_name TEXT NOT NULL,
+			orig_location_name TEXT NOT NULL
+		)''')
+	curs.execute('''
+		CREATE TABLE IF NOT EXISTS photo_ratings_overrides (
+			file_name TEXT NOT NULL,
+			stars INTEGER NOT NULL,
+			favorite INTEGER NOT NULL
+		)''')
 	conn.commit()
 
 # do we need to check the photo_species table too?
@@ -124,6 +140,7 @@ def is_image_hash_changed(conn, curs, the_id, tags):
 def delete_image_from_db(conn, curs, the_id):
 	curs.execute("DELETE FROM photos WHERE file_name = ?", [the_id])
 	curs.execute("DELETE FROM photo_species WHERE file_name = ?", [the_id])
+	curs.execute("DELETE FROM photo_locations WHERE file_name = ?", [the_id])
 	# not doing commit here
 
 def read_tags_from_image(the_path):
@@ -159,26 +176,23 @@ def write_image_to_db(conn, curs, exif, the_id, tags):
 			elif keyword == "favorite":
 				is_favorite = 1
 
-	locations_bools = {}
-	for loc_name in loc_names_to_check_proximity:
-		locations_bools[loc_name] = 0
 	the_lat = 0.0
 	the_lon = 0.0
 	# do simple pythagorean distance check (won't work accurately for large radii)
 	if "Composite:GPSLatitude" in tags and "Composite:GPSLongitude" in tags:
 		the_lat = float(tags["Composite:GPSLatitude"])
 		the_lon = float(tags["Composite:GPSLongitude"])
-		for loc_name in loc_names_to_check_proximity:
+		for loc_name in gps_locations:
 			loc_radius_sq = gps_locations[loc_name]["dist_degrees_sq"]
 			distance_from_loc = \
 				(the_lat - gps_locations[loc_name]["lat"])**2 + \
 				(the_lon - gps_locations[loc_name]["lon"])**2
 			if distance_from_loc <= loc_radius_sq:
-				locations_bools[loc_name] = 1
 				print("image [{}] is a match for [{}]({})".format(the_id, gps_locations[loc_name]["note"], loc_name))
+				curs.execute('INSERT INTO photo_locations (file_name, location_name) VALUES (?, ?)', (the_id, loc_name))
 
 	curs.execute('''INSERT INTO photos
-		(file_name, md5_first_4_hex, date_str, year, stars, favorite, loc_home_1, loc_lat, loc_lon) VALUES
+		(file_name, md5_first_4_hex, date_str, year, stars, favorite, loc_lat, loc_lon) VALUES
 		(?, ?, ?, ?, ?, ?, ?, ?, ?)''',
 		(the_id,
 		tags['Composite:MD5'][0:4],
@@ -186,7 +200,6 @@ def write_image_to_db(conn, curs, exif, the_id, tags):
 		int(the_date[0:4]),
 		the_stars,
 		is_favorite,
-		locations_bools[loc_name],
 		the_lat,
 		the_lon
 		))
@@ -291,7 +304,6 @@ with sqlite3.connect(db_path) as conn, exiftool.ExifToolHelper(config_file=exift
 # - year (int)
 # - stars (int)
 # - favorite (boolean)
-# - loc_home_1 (boolean)
 # - loc_lat
 # - loc_lon
 

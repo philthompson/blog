@@ -159,7 +159,7 @@ with sqlite3.connect(db_path) as conn:
 			overridden_with = '(not overridden)'
 			if species_sex in overrides:
 				overridden_with = overrides[species_sex]['name'] + ':' + overrides[species_sex]['sex']
-				if overrides[species_sex]['incidental'] == '1':
+				if overrides[species_sex]['incidental'] == 1:
 					overridden_with += ' (incidental)'
 			numbered_options.append('{} -> {}'.format(species_sex, overridden_with))
 			print('#{}: {}'.format(len(numbered_options), numbered_options[-1]))
