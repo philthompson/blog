@@ -49,6 +49,7 @@ where_clause = ''
 where_clause_values = {}
 
 title_year = ''
+title_pronoun = "I've"
 title_location = ''
 title_sort = 'sorted by species'
 should_sort_by_date = False
@@ -59,6 +60,8 @@ if sys.argv[2] != "all":
 	should_sort_by_date = True
 	where_clause = "p.year = :filter_year"
 	where_clause_values["filter_year"] = int(sys.argv[2])
+	if date.today().year > int(sys.argv[2]):
+		title_pronoun = "I"
 
 if sys.argv[3] != "all":
 	if not sys.argv[3] in location_aliases:
@@ -420,8 +423,8 @@ def print_header():
 			}}
 		</style>
 		
-		## Birds I've Photographed{title_year}{title_location}, {title_sort}
-		""".format(title_year=title_year, title_location=title_location, title_sort=title_sort)))
+		## Birds {title_pronoun} Photographed{title_year}{title_location}, {title_sort}
+		""".format(title_pronoun=title_pronoun, title_year=title_year, title_location=title_location, title_sort=title_sort)))
 
 def image_sm_version(image_filename):
 	p = PurePosixPath(image_filename)
@@ -548,7 +551,7 @@ with sqlite3.connect(db_path) as conn:
 		year_range = 'in {}'.format(min_year)
 	print(inspect.cleandoc('''
 		<p>Click images to see my first, last, and best photos of each species.</p>
-		<p>These are my "keeper" and first images of these species {year_range}.</p>
+		<p>These are my "keeper" and first images of these species photographed {year_range}.</p>
 		<p>Available birds pages: <a href="${{SITE_ROOT_REL}}/birds/">All Birds</a>, <a href="${{SITE_ROOT_REL}}/birds/home.html">All Yard Birds</a>, <a href="${{SITE_ROOT_REL}}/birds/2021.html">2021 Birds</a>, <a href="${{SITE_ROOT_REL}}/birds/2022.html">2022 Birds</a>, <a href="${{SITE_ROOT_REL}}/birds/home-2021.html">2021 Yard Birds</a>, <a href="${{SITE_ROOT_REL}}/birds/home-2022.html">2022 Yard Birds</a></p>
 		<p>All these and other bird photos are published to my gallery pages.  See the <a href="${{SITE_ROOT_REL}}/gallery/">latest gallery page</a>.</p>
 		<p>These photos are © {year_range_num} Phil Thompson, all rights reserved.</p>

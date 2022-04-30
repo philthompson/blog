@@ -75,6 +75,7 @@ cat << xxxxxEOFxxxxx
 	${SHOOT_FAVORITE}
 	${SHOOT_DESC}
 	<p>These photos are © ${SHOOT_YEAR} Phil Thompson, all rights reserved.</p>
+	<p>My "birds in review" collages can be found <a target="${SITE_ROOT_REL}/birds/">here</a>.</p>
 	<details>
 		<summary>Signature</summary>
 		<p><a target="_blank" href="${HASHES_DIR_REL}/${HASHES_ID}.txt">📄 ${HASHES_ID}.txt</a></p>
