@@ -60,11 +60,6 @@ with exiftool.ExifToolHelper() as exif:
 	#   the first (0th) item in the returned list
 	tags = exif.get_tags(str(image_path), ["XMP:Subject"])[0]
 
-	# first read through tags to find species, and set them to
-	#   default of "unk"
-	# then, read through tags again to find if any of those
-	#   species are also specified as being of a specific sex
-
 	# first read through tags to find "species-sex:" pairs
 	# then, read through tags again to find "species:" tags
 	#   without an associated "species-sex:" tag, and set

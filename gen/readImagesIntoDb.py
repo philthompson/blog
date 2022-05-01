@@ -204,29 +204,68 @@ def write_image_to_db(conn, curs, exif, the_id, tags):
 		the_lon
 		))
 
-	# first read through tags to find species, and set them to
-	#   default of "unk"
-	# then, read through tags again to find if any of those
-	#   species are also specified as being of a specific sex
+	# first read through tags to find "species-sex:" pairs
+	# then, read through tags again to find "species:" tags
+	#   without an associated "species-sex:" tag, and set
+	#   those to the default sex of "unk"
 	species_sex_tags = {}
 	if "XMP:Subject" in tags:
 		for keyword in tags["XMP:Subject"]:
-			if keyword.startswith("species:"):
-				species_sex_tags[keyword[8:]] = "unk"
-		for keyword in tags["XMP:Subject"]:
 			if keyword.startswith("species-sex:"):
+				species = 'unk'
+				sex = 'unk'
+
 				# "species-sex:Varied Thrush:female" -> ":female"
 				if keyword[-7:] == ":female":
 					# "species-sex:Varied Thrush:female" -> "Varied Thrush"
-					species_sex_tags[keyword[12:-7]] = "female"
+					species = keyword[12:-7]
+					sex = "female"
 				# "species-sex:Varied Thrush:male" -> ":male"
 				elif keyword[-5:] == ":male":
 					# "species-sex:Varied Thrush:male" -> "Varied Thrush"
-					species_sex_tags[keyword[12:-5]] = "male"
+					species = keyword[12:-5]
+					sex = "male"
+				# "species-sex:Varied Thrush:unk" -> ":unk"
+				elif keyword[-4:] == ":unk":
+					# "species-sex:Varied Thrush:unk" -> "Varied Thrush"
+					species = keyword[12:-4]
+					sex = "unk"
+
+				if species == 'unk':
+					print("unknown sex for this keyword tag (expected male/female/unk): {}".format(keyword))
+					continue
+
+				if not species in species_sex_tags:
+					species_sex_tags[species] = set()
+
+				# if for some reason (by mistake?) the same sex is
+				#   tagged with both :male and :unk, or both
+				#   :female and :unk, then we won't track the :unk
+				if sex == "female" or sex == "male":
+					try:
+						species_sex_tags[species].remove('unk')
+					except KeyError:
+						pass
+
+				# if this new tag is ":unk" sex, and we've already
+				#   seen a :female or :male or :unk, then we don't
+				#   need to track this :unk
+				if sex == "unk" and len(species_sex_tags[species]) > 0:
+					continue
+
+				species_sex_tags[species].add(sex)
+
+		for keyword in tags["XMP:Subject"]:
+			if keyword.startswith("species:"):
+				species = keyword[8:]
+				if not species in species_sex_tags or len(species_sex_tags[species]) == 0:
+					species_sex_tags[species] = {'unk'}
+
 
 	species_sex_params = []
-	for species, sex in species_sex_tags.items():
-		species_sex_params.append((the_id, species, sex))
+	for species, sexes in species_sex_tags.items():
+		for sex in sexes:
+			species_sex_params.append((the_id, species, sex))
 
 	curs.executemany('''INSERT INTO photo_species
 		(file_name, name, sex, incidental) VALUES
