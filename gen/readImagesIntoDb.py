@@ -193,7 +193,7 @@ def write_image_to_db(conn, curs, exif, the_id, tags):
 
 	curs.execute('''INSERT INTO photos
 		(file_name, md5_first_4_hex, date_str, year, stars, favorite, loc_lat, loc_lon) VALUES
-		(?, ?, ?, ?, ?, ?, ?, ?, ?)''',
+		(?, ?, ?, ?, ?, ?, ?, ?)''',
 		(the_id,
 		tags['Composite:MD5'][0:4],
 		the_date,
