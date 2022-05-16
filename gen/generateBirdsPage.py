@@ -51,8 +51,11 @@ where_clause_values = {}
 title_year = ''
 title_pronoun = "I've"
 title_location = ''
-title_sort = 'sorted by species'
-should_sort_by_date = False
+# 2022-05-15: try sorting by date for all rollups
+#title_sort = 'sorted by species'
+#should_sort_by_date = False
+title_sort = 'sorted by date'
+should_sort_by_date = True
 
 if sys.argv[2] != "all":
 	title_year = ' in ' + sys.argv[2]
@@ -421,6 +424,10 @@ def print_header():
 			.btns {{
 				margin: 1rem 0;
 			}}
+			.species-label {{
+				padding-top: 1.0rem;
+				margin-bottom: 0.25rem;
+			}}
 		</style>
 		
 		## Birds {title_pronoun} Photographed{title_year}{title_location}, {title_sort}
@@ -446,12 +453,39 @@ def format_stars(stars, is_favorite):
 def format_date_day(date_str):
 	return date.fromisoformat(date_str[0:10].replace(':', '-')).strftime('%B %d, %Y')
 
-species_for_count = []
+top_level_species = set()
 
 def print_collapsable_item(species):
-	species_count_name = species.split('(')[0].strip()
-	if not species_count_name in species_for_count:
-		species_for_count.append(species_count_name)
+	# if this is not a "top level" species name (it
+	#   has a subspecies or sex in parens, or both)
+	#   then this function does nothing and just returns
+	top_level_name = species.split('(')[0].strip()
+	if top_level_name in top_level_species:
+		return
+	else:
+		top_level_species.add(top_level_name)
+
+	# find all related species:
+	# for any top-level species, related species
+	#   will have a space then open paren following
+	#   the species name
+
+	found_related_species = [top_level_name]
+
+	related_prefix = top_level_name + ' ('
+	for some_species in first_by_species:
+		if some_species.startswith(related_prefix):
+			found_related_species.append(some_species)
+
+	for related_species in sorted(found_related_species):
+		print_collapsed_content(related_species, top_level_name)
+
+	print(inspect.cleandoc("""
+			</div>
+		</details>
+		"""))
+
+def print_collapsed_content(species, top_level_name):
 
 	first_year = first_by_species[species]["year"]
 	first_img = image_sm_version(first_by_species[species]['file_name'])
@@ -468,15 +502,18 @@ def print_collapsable_item(species):
 	best_date = format_date_day(best_by_species[species]["date_str"])
 	best_stars = format_stars(best_by_species[species]['stars'], best_by_species[species]['favorite'])
 
-	print(inspect.cleandoc("""
-		<details class="width-resp-50-100">
-			<summary>
-				<!--<img class="width-100" src="${{SITE_ROOT_REL}}/s/img/{best_year}/{best_img}"/>-->
-				<img class="width-100" src="https://philthompson.me/s/img/{best_year}/{best_img}"/>
-				<p><span class="alt-text">{species_count}</span>&nbsp;{species}</p>
-			</summary>
-			<p class="article-info">(Click above image to re-collapse.)</p>
-			<div class="details-inner">""".format(best_year=best_year, species_count=len(species_for_count), species=species, best_img=best_img)))
+	if species == top_level_name:
+		species = species + " (overall)"
+		print(inspect.cleandoc("""
+			<details class="width-resp-50-100">
+				<summary>
+					<img class="width-100" src="https://philthompson.me/s/img/{best_year}/{best_img}"/>
+					<p><span class="alt-text">{species_count}</span>&nbsp;{species}</p>
+				</summary>
+				<p class="article-info">(Click above image to re-collapse.)</p>
+				<div class="details-inner">""".format(best_year=best_year, species_count=len(top_level_species), species=species, best_img=best_img)))
+
+	print("<h4 class=\"species-label\">{}</h4>".format(species))
 
 	first_label = "First"
 	if first_img == last_img and first_img == best_img:
@@ -488,38 +525,33 @@ def print_collapsable_item(species):
 	elif first_img == best_img:
 		first_label = "First/Best"
 	print(inspect.cleandoc("""
-				<!--<img style="float:left" src="${{SITE_ROOT_REL}}/s/img/{first_year}/{first_img}"/>-->
 				<img style="float:left" src="https://philthompson.me/s/img/{first_year}/{first_img}"/>
-				<p><br/>{first_label}: {first_date}</p>
+				<p><br/>{species}</p>
+				<p>{first_label}: {first_date}</p>
 				<p>{first_stars}</p>
 				<p style="clear:both"></p>
-		""".format(first_year=first_year, first_img=first_img, first_label=first_label, first_date=first_date, first_stars=first_stars)))
+		""".format(species=species, first_year=first_year, first_img=first_img, first_label=first_label, first_date=first_date, first_stars=first_stars)))
 	
 	if first_img != last_img:
 		last_label = "Last"
 		if last_img == best_img:
 			last_label = "Last/Best"
 		print(inspect.cleandoc("""
-				<!--<img style="float:left" src="${{SITE_ROOT_REL}}/s/img/{last_year}/{last_img}"/>-->
 				<img style="float:left" src="https://philthompson.me/s/img/{last_year}/{last_img}"/>
-				<p><br/>{last_label}: {last_date}</p>
+				<p><br/>{species}</p>
+				<p>{last_label}: {last_date}</p>
 				<p>{last_stars}</p>
 				<p style="clear:both"></p>
-			""".format(last_year=last_year, last_img=last_img, last_label=last_label, last_date=last_date, last_stars=last_stars)))
+			""".format(species=species, last_year=last_year, last_img=last_img, last_label=last_label, last_date=last_date, last_stars=last_stars)))
 	
 	if first_img != best_img and last_img != best_img:
 		print(inspect.cleandoc("""
-				<!--<img style="float:left" src="${{SITE_ROOT_REL}}/s/img/{best_year}/{best_img}"/>-->
 				<img style="float:left" src="https://philthompson.me/s/img/{best_year}/{best_img}"/>
-				<p><br/>Best: {best_date}</p>
+				<p><br/>{species}</p>
+				<p>Best: {best_date}</p>
 				<p>{best_stars}</p>
 				<p style="clear:both"></p>
-			""".format(best_year=best_year, best_img=best_img, best_date=best_date, best_stars=best_stars)))
-
-	print(inspect.cleandoc("""
-			</div>
-		</details>
-		"""))
+			""".format(species=species, best_year=best_year, best_img=best_img, best_date=best_date, best_stars=best_stars)))
 
 with sqlite3.connect(db_path) as conn:
 	curs = conn.cursor()
@@ -557,6 +589,7 @@ with sqlite3.connect(db_path) as conn:
 		<p>These photos are © {year_range_num} Phil Thompson, all rights reserved.</p>
 		'''.format(year_range=year_range, year_range_num=year_range.split(' ')[1])))
 	print('<div class="wide-override">')
+
 	if should_sort_by_date:
 		for species in first_by_species:
 			print_collapsable_item(species)
