@@ -39,10 +39,13 @@ cat << xxxxxEOFxxxxx
 				</a>
 				<ul class="nav">
 					<li class="nav-item">
-						<a href="${SITE_ROOT_REL}/mandelbrot-gallery" target="_self">Mandelbrot</a>
+						<a href="${SITE_ROOT_REL}/birds" target="_self">Birds</a>
+					</li>
+					<li class="nav-item">
+						<a href="${SITE_ROOT_REL}/mandelbrot-gallery" target="_self">Mandel</a>
 					</li>
 					<li class="nav-item" style="padding-right: 0;">
-						<a href="${SITE_ROOT_REL}/gallery" target="_self">Photos</a>
+						<a href="${SITE_ROOT_REL}/gallery" target="_self">Latest</a>
 					</li>
 					<li class="nav-item" style="padding-right: 0;">
 						<a href="${SITE_ROOT_REL}/very-plotter/" class="icon">

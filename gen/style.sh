@@ -46,7 +46,7 @@ header .logo {
 }
 
 header .logo img {
-	height: 4rem;
+	height: 3rem;
 }
 
 header .icon img {
@@ -70,7 +70,7 @@ ul .nav {
 
 header .nav .nav-item {
 	display: inline-block;
-	padding: 1.5rem 0.5rem;
+	padding: 1.0rem 0.25rem;
 	vertical-align: middle;
 }
 
