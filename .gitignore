@@ -9,5 +9,6 @@ out/
 gen/exiftool
 gen/static/gallery-img/*/hashes-*.db
 gen/static/mandelbrot-gallery/**/*.md
+gen/static/birds/*.md
 gen/loc_names_locations.csv
 graphics/
