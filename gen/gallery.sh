@@ -239,9 +239,9 @@ do
 			fi
 			# this path is relative to the new on-webserver static images path
 			PHOTO_PATH_REL="${HASHES_YEAR}/${PHOTO_FILENAME}"
-			PHOTO_DATETIME_LEX="`/usr/local/bin/exiftool -d '%Y-%m-%d-%H%M%S' -DateTimeOriginal -S -s "${PHOTO_PATH}"`"
-			PHOTO_DATETIME_DISP="`/usr/local/bin/exiftool -d '%I:%M%p %A %B %d, %Y' -DateTimeOriginal -S -s "${PHOTO_PATH}"`"
-			PHOTO_STARS="`/usr/local/bin/exiftool -d '%I:%M%p %A %B %d, %Y' -DateTimeOriginal -S -s "${PHOTO_PATH}"`"
+			PHOTO_DATETIME_LEX="`/opt/homebrew/bin/exiftool -d '%Y-%m-%d-%H%M%S' -DateTimeOriginal -S -s "${PHOTO_PATH}"`"
+			PHOTO_DATETIME_DISP="`/opt/homebrew/bin/exiftool -d '%I:%M%p %A %B %d, %Y' -DateTimeOriginal -S -s "${PHOTO_PATH}"`"
+			PHOTO_STARS="`/opt/homebrew/bin/exiftool -d '%I:%M%p %A %B %d, %Y' -DateTimeOriginal -S -s "${PHOTO_PATH}"`"
 			# i lowercased all species names, so now i have to re-capialize them here...
 			# thanks to https://stackoverflow.com/a/1541178/259456 for the awk script that
 			#   properly capitalizes things at word boundaries
@@ -249,11 +249,11 @@ do
 			#   it comes to bird species, so i'm going to leave capitalization of "species:"
 			#   keywords unchanged -- i'll have to capitalize them properly when initially
 			#   tagging them
-			#PHOTO_SPECIES="`/usr/local/bin/exiftool "-MWG:Keywords" -S -s "${PHOTO_PATH}" | sed 's/, /@/g' | tr '@' '\n' | grep species | sed 's/species://g' | tr 'A-Z' 'a-z' | awk '{for(i=1;i<=NF;i++){ $i=toupper(substr($i,1,1)) substr($i,2) }}1' | tr '\n' ',' | sed -e 's/,/, /g' -e 's/, $//' | base64`"
-			PHOTO_SPECIES="`/usr/local/bin/exiftool "-MWG:Keywords" -S -s "${PHOTO_PATH}" | sed 's/, /@/g' | tr '@' '\n' | grep 'species:' | sed 's/species://g' | tr '\n' ',' | sed -e 's/,/, /g' -e 's/, $//' | base64`"
+			#PHOTO_SPECIES="`/opt/homebrew/bin/exiftool "-MWG:Keywords" -S -s "${PHOTO_PATH}" | sed 's/, /@/g' | tr '@' '\n' | grep species | sed 's/species://g' | tr 'A-Z' 'a-z' | awk '{for(i=1;i<=NF;i++){ $i=toupper(substr($i,1,1)) substr($i,2) }}1' | tr '\n' ',' | sed -e 's/,/, /g' -e 's/, $//' | base64`"
+			PHOTO_SPECIES="`/opt/homebrew/bin/exiftool "-MWG:Keywords" -S -s "${PHOTO_PATH}" | sed 's/, /@/g' | tr '@' '\n' | grep 'species:' | sed 's/species://g' | tr '\n' ',' | sed -e 's/,/, /g' -e 's/, $//' | base64`"
 			PHOTO_DESCRIPTION="`echo "--" | base64`"
 			PHOTO_VISIBLE="true"
-			PHOTO_STARS="`/usr/local/bin/exiftool "-MWG:Keywords" -S -s "${PHOTO_PATH}" | sed 's/, /@/g' | tr '@' '\n' | grep -m 1 "stars:[0-9]" | sed -E 's/.*stars:([0-9]).*/\1/'`"
+			PHOTO_STARS="`/opt/homebrew/bin/exiftool "-MWG:Keywords" -S -s "${PHOTO_PATH}" | sed 's/, /@/g' | tr '@' '\n' | grep -m 1 "stars:[0-9]" | sed -E 's/.*stars:([0-9]).*/\1/'`"
 
 			if [ ! -z "${PHOTO_STARS}" ] && [ $PHOTO_STARS -gt $SHOOT_DEFAULT_FAVORITE_STARS ]
 			then

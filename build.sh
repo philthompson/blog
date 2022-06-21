@@ -1,4 +1,4 @@
-#!/usr/local/bin/bash
+#!/opt/homebrew/bin/bash
 #
 # using bash installed with homebrew, which is at
 #   version 5.x, as opposed to macOS built-in bash
