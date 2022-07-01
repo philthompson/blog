@@ -270,6 +270,7 @@ do
 				SUPP_SPECIES="`grep -m 1 "${PHOTO_FILENAME}:species:" "${HASHES_SUPP}" | cut -d ':' -f 3-`"
 				SUPP_DESCRIPTION="`grep -m 1 "${PHOTO_FILENAME}:description:" "${HASHES_SUPP}" | cut -d ':' -f 3-`"
 				SUPP_VISIBLE="`grep -m 1 "${PHOTO_FILENAME}:visible:" "${HASHES_SUPP}" | cut -d ':' -f 3 | tr 'A-Z' 'a-z'`"
+				SUPP_DATETIME_DISP="`grep -m 1 "${PHOTO_FILENAME}:datetimedisp:" "${HASHES_SUPP}" | cut -d ':' -f 3-`"
 				if [ ! -z "${SUPP_SPECIES}" ]
 				then
 					PHOTO_SPECIES="`echo "${SUPP_SPECIES}" | base64`"
@@ -281,6 +282,10 @@ do
 				if [ "${SUPP_VISIBLE}" == "false" ]
 				then
 					PHOTO_VISIBLE="${SUPP_VISIBLE}"
+				fi
+				if [ ! -z "${SUPP_DATETIME_DISP}" ]
+				then
+					PHOTO_DATETIME_DISP="`echo "${SUPP_DATETIME_DISP}"`"
 				fi
 			#else
 			#	echo "supplement file [${HASHES_SUPP}] does NOT exist"
