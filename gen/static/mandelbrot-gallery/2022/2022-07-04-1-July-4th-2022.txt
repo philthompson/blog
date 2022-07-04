@@ -1,0 +1,15 @@
+
+thumb:https://philthompson.me/s/img/2022/July-4th-2022-1280x720.jpg
+title:"July 4, 2022" by me
+
+desc:Without smooth colors, we get nice stripes of color that remind me of American 4th of July buntings.
+
+params:?plot=Mandelbrot-set&v=5&n=500&mag=8.57741795523e2&centerX=-7.83524738925e-1&centerY=1.40376021218e-1&gradient=rwb-repeat20&bgColor=b&smooth=off-hide
+
+re:-0.783524738925
+im:0.140376021218
+mag:8.57741795523e2
+scale:2.57322538656e5
+iterations:500
+
+render01:https://philthompson.me/s/img/2022/July-4th-2022-3200x1800.png
