@@ -237,6 +237,22 @@ do
 			then
 				PHOTO_PATH="${HOME}/Pictures/Other/${PHOTO_YEAR}/${PHOTO_MONTH}/${PHOTO_FILENAME}"
 			fi
+			if [ ! -s "${PHOTO_PATH}" ]
+			then
+				PHOTO_PATH="${HOME}/Pictures/Astro/${PHOTO_YEAR}/${PHOTO_MONTH}/${PHOTO_FILENAME}"
+			fi
+			if [ ! -s "${PHOTO_PATH}" ]
+			then
+				PHOTO_PATH="`find "${HOME}/Pictures/Birds" -type f -name "${PHOTO_FILENAME}" | head -n 1`"
+			fi
+			if [ -z "${PHOTO_PATH}" ] || [ ! -s "${PHOTO_PATH}" ]
+			then
+				PHOTO_PATH="`find "${HOME}/Pictures/Other" -type f -name "${PHOTO_FILENAME}" | head -n 1`"
+			fi
+			if [ -z "${PHOTO_PATH}" ] || [ ! -s "${PHOTO_PATH}" ]
+			then
+				PHOTO_PATH="`find "${HOME}/Pictures/Astro" -type f -name "${PHOTO_FILENAME}" | head -n 1`"
+			fi
 			# this path is relative to the new on-webserver static images path
 			PHOTO_PATH_REL="${HASHES_YEAR}/${PHOTO_FILENAME}"
 			PHOTO_DATETIME_LEX="`/opt/homebrew/bin/exiftool -d '%Y-%m-%d-%H%M%S' -DateTimeOriginal -S -s "${PHOTO_PATH}"`"
