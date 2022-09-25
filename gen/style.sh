@@ -33,6 +33,36 @@ h1, h2, h3, .article-title {
     padding: 0 1rem;
 }
 
+.wrap-wider-child {
+	width: 100%
+}
+@media screen and (min-width: 46rem) {
+	.wrap-wider-child {
+		width: 44rem;
+		left: 50%;
+		position: relative;
+		transform: translateX(-50%);
+	}
+}
+@media screen and (min-width: 48rem) {
+	.wrap-wider-child { width: 46rem; }
+}
+@media screen and (min-width: 50rem) {
+	.wrap-wider-child { width: 48rem; }
+}
+@media screen and (min-width: 52rem) {
+	.wrap-wider-child { width: 50rem; }
+}
+@media screen and (min-width: 54rem) {
+	.wrap-wider-child { width: 52rem; }
+}
+@media screen and (min-width: 56rem) {
+	.wrap-wider-child { width: 54rem; }
+}
+@media screen and (min-width: 58rem) {
+	.wrap-wider-child { width: 56rem; }
+}
+
 header {
 	padding: 1.5rem 0;
 	max-width: 42rem;

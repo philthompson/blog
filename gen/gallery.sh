@@ -128,6 +128,19 @@ generatePhotoDiv() {
 	#echo "${HASHES_ID} photo: ${LINE}"
 	PHOTO_PATH="`echo "${LINE}" | cut -d '|' -f 1`"
 	PHOTO_DATE="`echo "${LINE}" | cut -d '|' -f 3 | sed 's/^0//'`"
+	# replace most plain spaces in pre-formatted dates with
+	#   '&nbsp;' (non-breaking spaces)
+	# the regex below matches dates written by exiftool in this format:
+	#   '8:43AM Tuesday May 03, 2022'
+	if [[ "${PHOTO_DATE}" =~ ^[0-9]{1,2}:[0-9]{2}[AP]M\ [A-Za-z]{6,9}\ [A-Za-z]{3,9}\ [0-9]{1,2},\ 2[0-9]{3}$ ]]
+	then
+		# replace all spaces with &nbsp; then replace the 2nd &nbsp; with a space again
+		# this makes the final result of
+		#  '8:43AM&nbsp;Tuesday May&nbsp;03,&nbsp;2022'
+		# (where the line break can only happen between the day of the
+		# week and the month name, not anywhere else)
+		PHOTO_DATE="$(echo "${PHOTO_DATE}" | sed 's/ /\&nbsp;/g' | sed 's/\&nbsp;/ /2')"
+	fi
 	PHOTO_SPECIES="`echo "${LINE}" | cut -d '|' -f 4 | base64 -d`"
 	PHOTO_DESC="`echo "${LINE}" | cut -d '|' -f 5 | base64 -d`"
 	PHOTO_VISIBLE="`echo "${LINE}" | cut -d '|' -f 6`"
@@ -144,10 +157,10 @@ generatePhotoDiv() {
 	fi
 
 cat << xxxxxEOFxxxxx
-<div class="container top-border">
+<div class="wrap-wider-child container top-border">
 	<p>
 		<a href="${SITE_ROOT_REL}/s/img/${PHOTO_PATH}">
-			<img style="float: left" class="width-resp-50-100" src="${SITE_ROOT_REL}/s/img/${PHOTO_PATH}"/>
+			<img style="float: left" class="width-resp-75-100" src="${SITE_ROOT_REL}/s/img/${PHOTO_PATH}"/>
 		</a>
 		<p class="article-info">${PHOTO_DATE}</p>
 		<b>${PHOTO_SPECIES}</b>
@@ -256,8 +269,9 @@ do
 			# this path is relative to the new on-webserver static images path
 			PHOTO_PATH_REL="${HASHES_YEAR}/${PHOTO_FILENAME}"
 			PHOTO_DATETIME_LEX="`/opt/homebrew/bin/exiftool -d '%Y-%m-%d-%H%M%S' -DateTimeOriginal -S -s "${PHOTO_PATH}"`"
-			PHOTO_DATETIME_DISP="`/opt/homebrew/bin/exiftool -d '%I:%M%p %A %B %d, %Y' -DateTimeOriginal -S -s "${PHOTO_PATH}"`"
-			PHOTO_STARS="`/opt/homebrew/bin/exiftool -d '%I:%M%p %A %B %d, %Y' -DateTimeOriginal -S -s "${PHOTO_PATH}"`"
+			#PHOTO_DATETIME_DISP="`/opt/homebrew/bin/exiftool -d '%I:%M%p %A %B %d, %Y' -DateTimeOriginal -S -s "${PHOTO_PATH}"`"
+			PHOTO_DATETIME_DISP="`/opt/homebrew/bin/exiftool -d '%I:%M%p&nbsp;%A %B&nbsp;%d,&nbsp;%Y' -DateTimeOriginal -S -s "${PHOTO_PATH}"`"
+			#PHOTO_STARS="`/opt/homebrew/bin/exiftool -d '%I:%M%p %A %B %d, %Y' -DateTimeOriginal -S -s "${PHOTO_PATH}"`"
 			# i lowercased all species names, so now i have to re-capialize them here...
 			# thanks to https://stackoverflow.com/a/1541178/259456 for the awk script that
 			#   properly capitalizes things at word boundaries
