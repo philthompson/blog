@@ -62,6 +62,12 @@ h1, h2, h3, .article-title {
 @media screen and (min-width: 58rem) {
 	.wrap-wider-child { width: 56rem; }
 }
+@media screen and (min-width: 60rem) {
+	.wrap-wider-child { width: 58rem; }
+}
+@media screen and (min-width: 62rem) {
+	.wrap-wider-child { width: 60rem; }
+}
 
 header {
 	padding: 1.5rem 0;
