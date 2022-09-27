@@ -13,6 +13,17 @@ CLR_ONE_LIGHT="#ada8be"
 CLR_TWO_DARK="#627171"
 CLR_TWO_LIGHT="#949b96"
 
+# dark theme
+CLR_DARK_PAGE_BG="#2c2f36"
+CLR_DARK_PRE_BG="#251d2c"
+CLR_DARK_TEXT_MAIN="#b4b9bd"
+CLR_DARK_TEXT_ALT="#949b96"
+CLR_DARK_ONE_DARK="#251d2c"
+CLR_DARK_ONE_LIGHT="#ada8be"
+CLR_DARK_TWO_DARK="#808386"
+CLR_DARK_TWO_LIGHT="#949b96"
+CLR_DARK_LINK_LINE="#515663"
+
 cat << xxxxxEOFxxxxx
 body {
 	margin: 0;
@@ -271,6 +282,54 @@ summary {
 	font-size: 1.2rem;
 	font-style: italic;
 	padding-left: 0.07rem;
+}
+
+@media (prefers-color-scheme: dark) {
+	body {
+		color: ${CLR_DARK_TEXT_MAIN};
+		background-color: ${CLR_DARK_PAGE_BG};
+	}
+
+	.article-info {
+		color: ${CLR_DARK_TEXT_ALT};
+	}
+
+	.alt-text {
+		color: ${CLR_DARK_TEXT_ALT};
+	}
+
+	pre {
+		overflow-x: auto;
+		background-color: ${CLR_DARK_PRE_BG};
+	}
+
+	p code, ul code, ol code {
+		background-color: ${CLR_DARK_ONE_DARK};
+		color: ${CLR_DARK_ONE_LIGHT};
+	}
+
+	blockquote {
+		border-left: 4px solid ${CLR_DARK_ONE_LIGHT};
+	}
+
+	.btns .btn {
+		background-color: ${CLR_DARK_ONE_LIGHT};
+		color: ${CLR_DARK_ONE_DARK};
+		border-color: ${CLR_DARK_ONE_DARK};
+	}
+
+	a, a:active {
+		color: ${CLR_DARK_TWO_DARK};
+		text-decoration-color: ${CLR_DARK_LINK_LINE};
+	}
+
+	a:hover {
+		color: ${CLR_DARK_TWO_LIGHT};
+	}
+
+	.article-title a, .article-title a:hover {
+		color: ${CLR_DARK_TEXT_MAIN};
+	}
 }
 
 xxxxxEOFxxxxx
