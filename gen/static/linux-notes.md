@@ -11,6 +11,17 @@ This is a "cheat sheet" style collection of bash and other snippets, mainly for 
 
 ## General / Local System Administration
 
+#### find common/different lines in two files
+
+	# show only lines in file2 that are not in file1
+	$ comm -1 -3 <(sort -u file1.txt) <(sort -u file2.txt)
+
+	# show only lines in file1 that are not in file2
+	$ comm -2 -3 <(sort -u file1.txt) <(sort -u file2.txt)
+
+	# show only lines in both
+	$ comm -1 -2 <(sort -u file1.txt) <(sort -u file2.txt)
+
 #### pipe to/from clipboard
 
 	# MacOS
@@ -19,6 +30,10 @@ This is a "cheat sheet" style collection of bash and other snippets, mainly for 
 
 	$ pbpaste | somecmd
 	$ pbpaste > somefile
+
+	# Ubuntu
+	$ sudo apt-get install xclip
+	$ somecmd | xclip -selection clipboard
 
 #### see lifetime data written to SSD
 
@@ -33,11 +48,6 @@ This is a "cheat sheet" style collection of bash and other snippets, mainly for 
 #### restart ubuntu menu to get clock to appear
 	
 	$ sudo killall unity-panel-service
-
-#### copy content to clipboard
-
-	$ sudo apt-get install xclip
-	$ do-something-to-create-stdout | xclip -selection clipboard
 
 #### Generate N random characters:
 
