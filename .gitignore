@@ -2,7 +2,6 @@
 *.sublime-workspace
 *.sublime-project
 anon-analyze/
-autoGetLogFileStats.sh*
 old/
 openAfterBuild.sh
 out/
