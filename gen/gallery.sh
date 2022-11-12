@@ -201,12 +201,15 @@ buildGalleryRssItem() {
 
 HASHES_FILES_SORTED="`find "${GALLERY_IMG}" -type f -name "hashes-*.txt" | sort`"
 
-HASHES_FILES_LAST="$(echo "${HASHES_FILES_SORTED}" | tail -n 1)"
 HASHES_FILES_LAST_TEN="$(echo "${HASHES_FILES_SORTED}" | tail -n 10)"
 RSS_ITEMS_FILE_CONTENT=""
 
 # the first (most recent) hashes file generates a redirect for the gallery/index.html page
-echo "${HASHES_FILES_SORTED}" | while read HASHES_FILE
+# to allow variables outside while loop to be modified from within the
+#   loop, we will use a "here string" (at the "done <<< ..." line) to
+#   provide input to the while loop
+#   (see https://stackoverflow.com/a/16854326/259456)
+while read HASHES_FILE
 do
 	HASHES_DIR="`dirname "${HASHES_FILE}"`"
 	HASHES_ID="`basename "${HASHES_FILE}" | cut -d '.' -f 1`"
@@ -557,15 +560,10 @@ ${GALLERY_PAGE_CONTENT_TMP}"
 ${RSS_ITEM}"
 	fi
 
-	# because we can't access the RSS_ITEMS_FILE_CONTENT outside of
-	#   this while loop, we have to move this inside the loop and
-	#   check to see if we are at the last loop iteration
-	if [ ! -z "$(echo "${HASHES_FILES_LAST}" | grep "${HASHES_ID}")" ]
-	then
-		if [[ ! -f "${RSS_ITEMS_FILE}" ]] || [[ "`echo "${RSS_ITEMS_FILE_CONTENT}" | shasum -a 256 | cut -d ' ' -f 1`" != "`shasum -a 256 "${RSS_ITEMS_FILE}" | cut -d ' ' -f 1`" ]]
-		then
-			echo "gallery RSS items file [${RSS_ITEMS_FILE}] IS changed"
-			echo "${RSS_ITEMS_FILE_CONTENT}" > "${RSS_ITEMS_FILE}"
-		fi
-	fi
-done
+done <<< "${HASHES_FILES_SORTED}"
+
+if [[ ! -f "${RSS_ITEMS_FILE}" ]] || [[ "`echo "${RSS_ITEMS_FILE_CONTENT}" | shasum -a 256 | cut -d ' ' -f 1`" != "`shasum -a 256 "${RSS_ITEMS_FILE}" | cut -d ' ' -f 1`" ]]
+then
+	echo "gallery RSS items file [${RSS_ITEMS_FILE}] IS changed"
+	echo "${RSS_ITEMS_FILE_CONTENT}" > "${RSS_ITEMS_FILE}"
+fi
