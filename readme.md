@@ -1,4 +1,4 @@
-This is a set of scripts and Markdown documents for generating my personal site.
+This is a set of scripts and Markdown documents for generating my personal site at [philthompson.me](https://philthompson.me).
 
 The blog post discussing this repo is [here](https://philthompson.me/2018/New-Site.html).
 

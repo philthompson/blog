@@ -22,6 +22,9 @@ GEN_DIR="${THIS_DIR}/gen"
 STATIC_DIR="${THIS_DIR}/gen/static"
 MARKDOWN_PERL_SCRIPT="${THIS_DIR}/Markdown_1.0.1/Markdown.pl"
 
+# the top-level URL
+SITE_URL="https://philthompson.me"
+
 if [[ "${1}" == "in-place" ]]
 then
 	OUT_DIR="${THIS_DIR}/out/in-place"
@@ -41,6 +44,15 @@ echo "${OUT_DIR}"
 mkdir -p "${OUT_DIR}"
 
 mkdir -p "${OUT_DIR}/archive"
+
+RSS_FINAL_FILENAME="feed.xml"
+RSS_FINAL="${OUT_DIR}/${RSS_FINAL_FILENAME}"
+RSS_BIRDS_GALLERY_ITEMS="${OUT_DIR}/rss-birds-gallery-items.xml"
+RSS_BLOG_ARTICLE_ITEMS="${OUT_DIR}/rss-blog-article-items.xml"
+
+# overwrite RSS blog article items here, but only overwrite
+#   the birds gallery items if we're actually updating that
+echo -n "" > "${RSS_BLOG_ARTICLE_ITEMS}"
 
 # put static files in place, except for markdown files
 #   which are rendered to .html files later
@@ -122,6 +134,52 @@ buildHomepageArticleSnippet() {
 
 	echo "      <p style=\"clear:both;\"></p>"
 	echo "	</div>"
+}
+
+buildArticleRssItem() {
+	ARTICLE_DATE="${1}"
+	ARTICLE_YEAR="${2}"
+	ARTICLE_TITLE_URL="${3}"
+	ARTICLE_TITLE="${4}"
+	ARTICLE_MARKDOWN_FILE="${5}"
+	MARKDOWN_PERL_SCRIPT="${6}"
+	SITE_HOME_URL="${7}"
+	# since the articles are dated like:
+	#   YYYY-MM-DD, or
+	#   YYYY-MM-DD-N (where N is the Nth article for the day)
+	# we can use midnight for the time, plus N hours
+	# append "-0" to date if missing the 4th dash-delimited field
+	if [[ "${ARTICLE_DATE}" =~ ^[0-9]{4}-[0-9]{2}-[0-9]{2}$ ]]
+	then
+		ARTICLE_DATE="${ARTICLE_DATE}-0"
+	fi
+	# format according to https://www.w3.org/Protocols/rfc822/#z28
+	ARTICLE_DATE_RSS="$(date -j -f '%Y-%m-%d-%H' "${ARTICLE_DATE}" '+%a, %d %b %Y %H:00:00 %z')"
+
+	ABSOLUTE_ARTICLE_URL="${SITE_HOME_URL}/${ARTICLE_YEAR}/${ARTICLE_TITLE_URL}.html"
+
+	echo "  <item>"
+	echo "    <title>${ARTICLE_TITLE}</title>"
+	echo "    <link>${ABSOLUTE_ARTICLE_URL}</link>"
+	echo "    <pubDate>${ARTICLE_DATE_RSS}</pubDate>"
+	echo -n "    <description><![CDATA["
+
+	# it's probably not necessary, but remove leading/trailing whitespace
+	#   from all html lines
+	# important here, possibly, to replace relative links with absolute ones
+	#   so that links work in RSS readers
+	if [[ -z "$(grep -m 1 "more://" "${ARTICLE_MARKDOWN_FILE}")" ]]
+	then
+		perl "${MARKDOWN_PERL_SCRIPT}" --html4tags "${ARTICLE_MARKDOWN_FILE}" | sed "s#\${SITE_ROOT_REL}#${SITE_HOME_URL}#g" | sed "s#\${THIS_ARTICLE}#${ABSOLUTE_ARTICLE_URL}#g"
+	else
+		perl "${MARKDOWN_PERL_SCRIPT}" --html4tags "${ARTICLE_MARKDOWN_FILE}" | grep -B 999 'more://' | grep -v 'more://' | sed "s#\${SITE_ROOT_REL}#${SITE_HOME_URL}#g" | sed "s#\${THIS_ARTICLE}#${ABSOLUTE_ARTICLE_URL}#g"
+		echo "<a href=\"${ABSOLUTE_ARTICLE_URL}\">continue reading...</a>"
+	fi | grep -v '!-- Copyright' | sed 's/^[[:space:]]*//g' | sed 's/[[:space:]]*$//g' | tr -d '\n'
+
+	echo "]]></description>"
+	echo "    <category>articles</category>"
+	echo "    <guid>${ABSOLUTE_ARTICLE_URL}</guid>"
+	echo "  </item>"
 }
 
 # to allow variables outside while loop to be modified from within the
@@ -216,6 +274,13 @@ ${ARTICLE_YEAR}"
 	# embed newline directly into variable
 	HOME_PAGES_CONTENT[$HOME_PAGE_IDX]="${HOME_PAGES_CONTENT[$HOME_PAGE_IDX]}
        ${ARTICLE_HOME_SNIPPET}"
+
+	# for articles on the home page (the first 5 articles) or on
+	#   the first "older1.html" page, put them in the site's RSS
+	if [ "${HOME_PAGE_IDX}" == "0" ] || [ "${HOME_PAGE_IDX}" == "1" ]
+	then
+		buildArticleRssItem "${ARTICLE_DATE}" "${ARTICLE_YEAR}" "${ARTICLE_TITLE_URL}" "${ARTICLE_TITLE}" "${ARTICLE_MARKDOWN_FILE}" "${MARKDOWN_PERL_SCRIPT}" "${SITE_URL}" >> "${RSS_BLOG_ARTICLE_ITEMS}"
+	fi
 
 done <<< "$(find "${GEN_DIR}/articles" -type f | sort -r)"
 
@@ -669,5 +734,88 @@ then
 		"${OUT_DIR}" \
 		"${GEN_DIR}/header.sh" \
 		"${GEN_DIR}/footer.sh" \
-		".."
+		".." \
+		"${RSS_BIRDS_GALLERY_ITEMS}" \
+		"${SITE_URL}"
 fi
+
+# for RSS file, concatenate:
+# - header
+# - latest birds gallery items file
+# - latest blog items file
+# - footer
+
+if [ 1 ]
+then
+	# create array for <item> content, keyed by timestamp
+	# associative array
+	# content by year for page /<year>/index.html
+	declare -A ITEMS_BY_TIMESTAMP
+	# create variable for all timestamps, then sort
+	ITEM_TIMESTAMPS=""
+
+	WITHIN_ITEM="false"
+	THIS_ITEM_CONTENT=""
+	THIS_ITEM_TIMESTAMP=""
+
+	# to allow variables outside while loop to be modified from within the
+	#   loop, we will use a "here string" (at the "done <<< ..." line) to
+	#   provide input to the while loop
+	#   (see https://stackoverflow.com/a/16854326/259456)
+	while read ITEM_LINE
+	do
+		if [[ "${ITEM_LINE}" =~ "<item>" ]]
+		then
+			THIS_ITEM_CONTENT="${ITEM_LINE}"
+			WITHIN_ITEM="true"
+
+		elif [[ "${ITEM_LINE}" =~ "</item>" ]]
+		then
+			THIS_ITEM_CONTENT="${THIS_ITEM_CONTENT}
+${ITEM_LINE}"
+			if [ ! -z "${THIS_ITEM_TIMESTAMP}" ]
+			then
+				ITEMS_BY_TIMESTAMP[$THIS_ITEM_TIMESTAMP]="${THIS_ITEM_CONTENT}"
+				ITEM_TIMESTAMPS="${ITEM_TIMESTAMPS}
+${THIS_ITEM_TIMESTAMP}"
+			fi
+			WITHIN_ITEM="false"
+			THIS_ITEM_TIMESTAMP=""
+		elif [[ "${WITHIN_ITEM}" == "true" ]]
+		then
+			THIS_ITEM_CONTENT="${THIS_ITEM_CONTENT}
+${ITEM_LINE}"
+			if [[ "${ITEM_LINE}" =~ "<pubDate>" ]]
+			then
+				LINE_PUBDATE="$(echo "${ITEM_LINE}" | tr '<>' '\n' | grep -m 1 20)"
+				THIS_ITEM_TIMESTAMP="$(date -j -f '%a, %d %b %Y %H:%M:%S %z' "${LINE_PUBDATE}" +%s)"
+			fi
+		fi
+	done <<< "$(cat "${RSS_BIRDS_GALLERY_ITEMS}" "${RSS_BLOG_ARTICLE_ITEMS}")"
+
+
+	# format date according to https://www.w3.org/Protocols/rfc822/#z28
+	RSS_PUBLISH_DATE="$(date '+%a, %d %b %Y %H:%M:%S %z')"
+	echo '<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">'
+	echo "  <channel>"
+	echo "    <title>philthompson.me</title>"
+	echo "    <link>${SITE_URL}</link>"
+	echo "    <atom:link href=\"${SITE_URL}/${RSS_FINAL_FILENAME}\" rel=\"self\" type=\"application/rss+xml\" />"
+	echo "    <description>Phil Thompson's blog and photo galleries</description>"
+	echo "    <language>en-us</language>"
+	echo "    <copyright>Copyright $(date +%Y) Phil Thompson, All Rights Reserved</copyright>"
+	echo "    <pubDate>${RSS_PUBLISH_DATE}</pubDate>"
+	echo "    <lastBuildDate>${RSS_PUBLISH_DATE}</lastBuildDate>"
+
+	# pull out <item> contents in order to create final xml
+	ITEM_TIMESTAMPS="$(echo "${ITEM_TIMESTAMPS}" | grep -v "^$" | sort -n)"
+	while read ORDERED_ITEM_TIMESTAMP
+	do
+		echo "${ITEMS_BY_TIMESTAMP[$ORDERED_ITEM_TIMESTAMP]}"
+	done <<< "${ITEM_TIMESTAMPS}"
+	#cat "${RSS_BIRDS_GALLERY_ITEMS}"
+	#cat "${RSS_BLOG_ARTICLE_ITEMS}"
+
+	echo "  </channel>"
+	echo "</rss>"
+fi > "${RSS_FINAL}"

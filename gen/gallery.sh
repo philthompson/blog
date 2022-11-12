@@ -30,6 +30,8 @@ OUT_DIR="${2}"
 HEADER_SCRIPT="${3}"
 FOOTER_SCRIPT="${4}"
 SITE_ROOT_REL="${5}"
+RSS_ITEMS_FILE="${6}"
+SITE_HOME_URL="${7}"
 
 GALLERY_OUT="${OUT_DIR}/gallery"
 mkdir -p "${GALLERY_OUT}"
@@ -171,10 +173,39 @@ cat << xxxxxEOFxxxxx
 xxxxxEOFxxxxx
 }
 
+buildGalleryRssItem() {
+	SHOOT_ID="${1}"
+	GALLERY_PAGE_FILENAME="${2}"
+	SHOOT_TITLE="${3}"
+	SHOOT_DESC="${4}"
+	SITE_HOME_URL="${5}"
+	# since the shoots have IDs like:
+	#   hashes-YYYY-MM-DD-HHMMSS
+	# we can format according to https://www.w3.org/Protocols/rfc822/#z28
+	SHOOT_DATE="$(echo "${SHOOT_ID}" | cut -d - -f 2-)"
+	SHOOT_DATE_RSS="$(date -j -f '%Y-%m-%d-%H%M%S' "${SHOOT_DATE}" '+%a, %d %b %Y %H:%M:%S %z')"
+
+	ABSOLUTE_GALLERY_URL="${SITE_HOME_URL}/gallery/${GALLERY_PAGE_FILENAME}"
+
+	SHOOT_DESC="${SHOOT_DESC}<br/><br/><a href=\"${ABSOLUTE_GALLERY_URL}\">See this gallery at philthompson.me</a>."
+
+	echo "  <item>"
+	echo "    <title>${SHOOT_TITLE}</title>"
+	echo "    <link>${ABSOLUTE_GALLERY_URL}</link>"
+	echo "    <pubDate>${SHOOT_DATE_RSS}</pubDate>"
+	echo "    <description><![CDATA[${SHOOT_DESC}]]></description>"
+	echo "    <category>gallery</category>"
+	echo "    <guid>${ABSOLUTE_GALLERY_URL}</guid>"
+	echo "  </item>"
+}
+
 HASHES_FILES_SORTED="`find "${GALLERY_IMG}" -type f -name "hashes-*.txt" | sort`"
 
-# the first (most recent) hashes file generates the gallery/index.html page,
-#   and older hashes files generate their own pages
+HASHES_FILES_LAST="$(echo "${HASHES_FILES_SORTED}" | tail -n 1)"
+HASHES_FILES_LAST_TEN="$(echo "${HASHES_FILES_SORTED}" | tail -n 10)"
+RSS_ITEMS_FILE_CONTENT=""
+
+# the first (most recent) hashes file generates a redirect for the gallery/index.html page
 echo "${HASHES_FILES_SORTED}" | while read HASHES_FILE
 do
 	HASHES_DIR="`dirname "${HASHES_FILE}"`"
@@ -511,5 +542,30 @@ ${GALLERY_PAGE_CONTENT_TMP}"
 		echo "${GALLERY_PAGE_CONTENT}" > "${GALLERY_PAGE}"
 	#else
 	#	echo "gallery page [${GALLERY_PAGE}] is unchanged"
+	fi
+
+	# append to RSS items content if one of the last 10 galleries
+	if [ ! -z "$(echo "${HASHES_FILES_LAST_TEN}" | grep "${HASHES_ID}")" ]
+	then
+
+		# append article home page snippet to the appropriate home page
+		# capture function stdout into a variable, thanks to:
+		#   https://unix.stackexchange.com/a/591153/210174
+		{ read -d '' RSS_ITEM; }< <(buildGalleryRssItem "${HASHES_ID}" "${GALLERY_PAGE_FILENAME}" "${SHOOT_TITLE}" "${SHOOT_DESC}" "${SITE_HOME_URL}")
+		# embed newline directly into variable
+		RSS_ITEMS_FILE_CONTENT="${RSS_ITEMS_FILE_CONTENT}
+${RSS_ITEM}"
+	fi
+
+	# because we can't access the RSS_ITEMS_FILE_CONTENT outside of
+	#   this while loop, we have to move this inside the loop and
+	#   check to see if we are at the last loop iteration
+	if [ ! -z "$(echo "${HASHES_FILES_LAST}" | grep "${HASHES_ID}")" ]
+	then
+		if [[ ! -f "${RSS_ITEMS_FILE}" ]] || [[ "`echo "${RSS_ITEMS_FILE_CONTENT}" | shasum -a 256 | cut -d ' ' -f 1`" != "`shasum -a 256 "${RSS_ITEMS_FILE}" | cut -d ' ' -f 1`" ]]
+		then
+			echo "gallery RSS items file [${RSS_ITEMS_FILE}] IS changed"
+			echo "${RSS_ITEMS_FILE_CONTENT}" > "${RSS_ITEMS_FILE}"
+		fi
 	fi
 done

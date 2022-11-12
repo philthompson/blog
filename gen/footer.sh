@@ -23,6 +23,8 @@ cat << xxxxxEOFxxxxx
 						<a href="${SITE_ROOT_REL}/archive" target="_self">Archive</a>
 						&#x2027;
 						<a href="${SITE_ROOT_REL}/tip-jar">Tip Jar</a>
+						&#x2027;
+						<a href="${SITE_ROOT_REL}/feed.xml">RSS</a>
 					</p>
 				</div>
 			</footer>
