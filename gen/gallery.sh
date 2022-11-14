@@ -65,6 +65,13 @@ generateHashSigInfo() {
 	PREV_BUTTON="${10}"
 	NEXT_BUTTON="${11}"
 
+	if [[ "${SHOOT_FAVORITE}" =~ ^.*2[0-9]{3}-[0-9]{2}-[0-9]{2}-.*\.[jJ][pP][gG]$ ]]
+	then
+		SHOOT_FAVORITE="<a href=\"${SITE_ROOT_REL}/s/img/${SHOOT_FAVORITE}\"><img style=\"float: left\" class=\"width-resp-50-100\" src=\"${SITE_ROOT_REL}/s/img/${SHOOT_FAVORITE}\"/></a>"
+	else
+		SHOOT_FAVORITE=""
+	fi
+
 	# wow thanks to https://stackoverflow.com/a/15742338/259456 for pointing out that
 	#   HTML now has <details> and <summary> tags with auto-collapse!
 cat << xxxxxEOFxxxxx
@@ -178,7 +185,8 @@ buildGalleryRssItem() {
 	GALLERY_PAGE_FILENAME="${2}"
 	SHOOT_TITLE="${3}"
 	SHOOT_DESC="${4}"
-	SITE_HOME_URL="${5}"
+	SHOOT_FAVORITE="${5}"
+	SITE_HOME_URL="${6}"
 	# since the shoots have IDs like:
 	#   hashes-YYYY-MM-DD-HHMMSS
 	# we can format according to https://www.w3.org/Protocols/rfc822/#z28
@@ -187,7 +195,12 @@ buildGalleryRssItem() {
 
 	ABSOLUTE_GALLERY_URL="${SITE_HOME_URL}/gallery/${GALLERY_PAGE_FILENAME}"
 
-	SHOOT_DESC="${SHOOT_DESC}<br/><br/><a href=\"${ABSOLUTE_GALLERY_URL}\">See this gallery at philthompson.me</a>."
+	SHOOT_DESC="${SHOOT_DESC}<br/><a href=\"${ABSOLUTE_GALLERY_URL}\">See this gallery at philthompson.me</a>."
+
+	if [[ "${SHOOT_FAVORITE}" =~ ^.*2[0-9]{3}-[0-9]{2}-[0-9]{2}-.*\.[jJ][pP][gG]$ ]]
+	then
+		SHOOT_DESC="<a href=\"${ABSOLUTE_GALLERY_URL}\"><img style=\"float: left\" class=\"width-resp-75-100\" src=\"${SITE_HOME_URL}/s/img/${SHOOT_FAVORITE}\"/></a><br/>${SHOOT_DESC}"
+	fi
 
 	echo "  <item>"
 	echo "    <title>${SHOOT_TITLE}</title>"
@@ -267,7 +280,11 @@ do
 		SHOOT_DEFAULT_FAVORITE="`echo "--" | base64`"
 		SHOOT_DEFAULT_FAVORITE_STARS=0
 
-		grep "\-sm\." "${HASHES_FILE}" | while read LINE
+		# to allow variables outside while loop to be modified from within the
+		#   loop, we will use a "here string" (at the "done <<< ..." line) to
+		#   provide input to the while loop
+		#   (see https://stackoverflow.com/a/16854326/259456)
+		while read LINE
 		do
 			PHOTO_FILENAME="`echo "${LINE}" | cut -d ':' -f 1`"
 			PHOTO_YEAR="`echo "${PHOTO_FILENAME}" | cut -d - -f 1`"
@@ -358,7 +375,7 @@ do
 			#echo ""
 			#echo "INSERT INTO photos(path_rel, local_datetime_lex, local_datetime_disp, species_b64, description_b64) VALUES ('${PHOTO_PATH_REL}', '${PHOTO_DATETIME_LEX}', '${PHOTO_DATETIME_DISP}', '${PHOTO_SPECIES}', '${PHOTO_DESCRIPTION}');"
 			sqlite3 "${HASHES_DB}" "INSERT INTO photos(path_rel, local_datetime_lex, local_datetime_disp, species_b64, description_b64, visible) VALUES ('${PHOTO_PATH_REL}', '${PHOTO_DATETIME_LEX}', '${PHOTO_DATETIME_DISP}', '${PHOTO_SPECIES}', '${PHOTO_DESCRIPTION}', '${PHOTO_VISIBLE}');"
-		done
+		done <<< "$(grep "\-sm\." "${HASHES_FILE}")"
 
 		SHOOT_TITLE="`echo "${HASHES_ID}" | cut -d '-' -f 2-`"
 		SHOOT_TITLE="`echo "Shoot ${SHOOT_TITLE}" | base64`"
@@ -481,11 +498,9 @@ do
 	else
 		SHOOT_DESC=""
 	fi
-	if [ ! -z "${SHOOT_FAVORITE}" ] && [ "${SHOOT_FAVORITE}" != "--" ]
+	if [ -z "${SHOOT_FAVORITE}" ] || [ "${SHOOT_FAVORITE}" == "--" ]
 	then
-		SHOOT_FAVORITE="<a href=\"${SHOOT_FAVORITE}\"><img style=\"float: left\" class=\"width-resp-50-100\" src=\"${SHOOT_FAVORITE}\"/></a>"
-	else
-		SHOOT_FAVORITE=""
+		SHOOT_FAVORITE="${SHOOT_DEFAULT_FAVORITE}"
 	fi
 	SHOOT_YEAR="`echo "${HASHES_ID}" | cut -d '-' -f 2`"
 
@@ -554,7 +569,7 @@ ${GALLERY_PAGE_CONTENT_TMP}"
 		# append article home page snippet to the appropriate home page
 		# capture function stdout into a variable, thanks to:
 		#   https://unix.stackexchange.com/a/591153/210174
-		{ read -d '' RSS_ITEM; }< <(buildGalleryRssItem "${HASHES_ID}" "${GALLERY_PAGE_FILENAME}" "${SHOOT_TITLE}" "${SHOOT_DESC}" "${SITE_HOME_URL}")
+		{ read -d '' RSS_ITEM; }< <(buildGalleryRssItem "${HASHES_ID}" "${GALLERY_PAGE_FILENAME}" "${SHOOT_TITLE}" "${SHOOT_DESC}" "${SHOOT_FAVORITE}" "${SITE_HOME_URL}")
 		# embed newline directly into variable
 		RSS_ITEMS_FILE_CONTENT="${RSS_ITEMS_FILE_CONTENT}
 ${RSS_ITEM}"
