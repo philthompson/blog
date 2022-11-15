@@ -136,6 +136,22 @@ buildHomepageArticleSnippet() {
 	echo "	</div>"
 }
 
+buildHomepageBirdsGalleryLink() {
+	GALLERY_LATEST_FILE="${1}"
+	SITE_ROOT_REL="${2}"
+	GALLERY_PAGE_REL="$(head -n 1 "${GALLERY_LATEST_FILE}" | sed "s/SITE_ROOT_REL/${SITE_ROOT_REL}/g")"
+	SHOOT_FAVORITE="$(head -n 2 "${GALLERY_LATEST_FILE}" | tail -n 1 | sed "s/SITE_ROOT_REL/${SITE_ROOT_REL}/g")"
+	SHOOT_DATE="$(tail -n 1 "${GALLERY_LATEST_FILE}")"
+cat << xxxxxEOFxxxxx
+	<a href="${GALLERY_PAGE_REL}" style="text-decoration:none">
+		<div class="container" style="background-color:rgba(150,150,150,0.1); padding:1.0rem; overflow:hidden">
+			<img class="width-resp-25-40" style="float:right" src="${SHOOT_FAVORITE}" />
+			Latest Bird Gallery:<br/>${SHOOT_DATE}
+		</div>
+	</a>
+xxxxxEOFxxxxx
+}
+
 buildArticleRssItem() {
 	ARTICLE_DATE="${1}"
 	ARTICLE_YEAR="${2}"
@@ -181,6 +197,36 @@ buildArticleRssItem() {
 	echo "    <guid>${ABSOLUTE_ARTICLE_URL}</guid>"
 	echo "  </item>"
 }
+
+GALLERY_LATEST_FILE="${OUT_DIR}/gallery-latest.txt"
+
+# after the header, but before the article snippets,
+#   insert the latest birds gallery picture+link
+#   (this requires building the birds gallery pages
+#   here, before the articles)
+if [[ "${SKIP_GALLERY}" == "false" ]]
+then
+	# run script to generate gallery/ pages
+	bash "${GEN_DIR}/gallery.sh" \
+		"${STATIC_DIR}" \
+		"${OUT_DIR}" \
+		"${GEN_DIR}/header.sh" \
+		"${GEN_DIR}/footer.sh" \
+		".." \
+		"${RSS_BIRDS_GALLERY_ITEMS}" \
+		"${SITE_URL}" \
+		"${GALLERY_LATEST_FILE}"
+fi
+
+# capture function stdout into a variable, thanks to:
+#   https://unix.stackexchange.com/a/591153/210174
+{ read -d '' HOMEPAGE_BIRDS_GALLERY_LINK; }< <(buildHomepageBirdsGalleryLink "${GALLERY_LATEST_FILE}" "${SITE_ROOT_REL}")
+GALLERY_LATEST_FILE="${1}"
+
+# replace placeholder on home page with image and link for latest birds gallery
+# .width-resp-25-40
+HOME_PAGES_CONTENT["0"]="${HOME_PAGES_CONTENT["0"]}
+${HOMEPAGE_BIRDS_GALLERY_LINK}"
 
 # to allow variables outside while loop to be modified from within the
 #   loop, we will use a "here string" (at the "done <<< ..." line) to
@@ -725,19 +771,6 @@ ${TMP_FOOTER}"
 	#   not copied to the out dir in the first place
 	#rm "${OUT_DIR}/${PAGE_DIR}/$(basename "${PAGE_MARKDOWN_FILE}")"
 done
-
-if [[ "${SKIP_GALLERY}" == "false" ]]
-then
-	# run script to generate gallery/ pages
-	bash "${GEN_DIR}/gallery.sh" \
-		"${STATIC_DIR}" \
-		"${OUT_DIR}" \
-		"${GEN_DIR}/header.sh" \
-		"${GEN_DIR}/footer.sh" \
-		".." \
-		"${RSS_BIRDS_GALLERY_ITEMS}" \
-		"${SITE_URL}"
-fi
 
 # for RSS file, concatenate:
 # - header

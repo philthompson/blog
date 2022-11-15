@@ -32,11 +32,14 @@ FOOTER_SCRIPT="${4}"
 SITE_ROOT_REL="${5}"
 RSS_ITEMS_FILE="${6}"
 SITE_HOME_URL="${7}"
+GALLERY_LATEST_FILE="${8}"
 
 GALLERY_OUT="${OUT_DIR}/gallery"
 mkdir -p "${GALLERY_OUT}"
 
 GALLERY_REL="${SITE_ROOT_REL}/gallery"
+GALLERY_REL_NOT_INTERPRETED="SITE_ROOT_REL/gallery"
+STATIC_IMAGES_DIR_NOT_INTERPRETED="SITE_ROOT_REL/s/img"
 
 GALLERY_IMG="${STATIC_DIR}/gallery-img"
 
@@ -49,6 +52,19 @@ cat << xxxxxEOFxxxxx
 	</head>
 	<body></body>
 </html>
+xxxxxEOFxxxxx
+}
+
+generateGalleryLatestInfo() {
+	GALLERY_PAGE_REL="${1}"
+	SHOOT_FAVORITE="${2}"
+	SHOOT_ID="${3}"
+	SHOOT_DATE="$(echo "${SHOOT_ID}" | cut -d - -f 2-)"
+	SHOOT_DATE_FMT="$(date -j -f '%Y-%m-%d-%H%M%S' "${SHOOT_DATE}" '+%A %B %e, %Y' | sed 's/  / /')"
+cat << xxxxxEOFxxxxx
+${GALLERY_PAGE_REL}
+${SHOOT_FAVORITE}
+${SHOOT_DATE_FMT}
 xxxxxEOFxxxxx
 }
 
@@ -560,6 +576,17 @@ ${GALLERY_PAGE_CONTENT_TMP}"
 		echo "${GALLERY_PAGE_CONTENT}" > "${GALLERY_PAGE}"
 	#else
 	#	echo "gallery page [${GALLERY_PAGE}] is unchanged"
+	fi
+
+	# output latest gallery info to a file so it can be included on the
+	#   blog home page
+	{ read -d '' GALLERY_LATEST_CONTENT; }< <(generateGalleryLatestInfo "${GALLERY_REL_NOT_INTERPRETED}/${GALLERY_PAGE_FILENAME}" "${STATIC_IMAGES_DIR_NOT_INTERPRETED}/${SHOOT_FAVORITE}" "${HASHES_ID}")
+
+	if [[ ! -f "${GALLERY_LATEST_FILE}" ]] || [[ "`echo "${GALLERY_LATEST_CONTENT}" | shasum -a 256 | cut -d ' ' -f 1`" != "`shasum -a 256 "${GALLERY_LATEST_FILE}" | cut -d ' ' -f 1`" ]]
+	then
+		echo "${GALLERY_LATEST_CONTENT}" > "${GALLERY_LATEST_FILE}"
+	#else
+	#	echo "gallery index [${GALLERY_LATEST_FILE}] is unchanged"
 	fi
 
 	# append to RSS items content if one of the last 10 galleries

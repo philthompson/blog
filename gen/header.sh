@@ -45,16 +45,18 @@ cat << xxxxxEOFxxxxx
 						<a href="${SITE_ROOT_REL}/mandelbrot-gallery" target="_self">Mandel</a>
 					</li>
 					<li class="nav-item" style="padding-right: 0;">
-						<a href="${SITE_ROOT_REL}/gallery" target="_self">Latest</a>
-					</li>
-					<li class="nav-item" style="padding-right: 0;">
 						<a href="${SITE_ROOT_REL}/very-plotter/" class="icon">
-							<img src="${SITE_ROOT_REL}/img/mandel-icon.png">
+							<img src="${SITE_ROOT_REL}/img/mandel-icon-github-gray.png">
 						</a>
 					</li>
 					<li class="nav-item" style="padding-right: 0;">
 						<a href="https://github.com/philthompson" target="_blank" class="icon">
 							<img src="${SITE_ROOT_REL}/img/GitHub-Mark-64px.png">
+						</a>
+					</li>
+					<li class="nav-item" style="padding-right: 0;">
+						<a href="${SITE_ROOT_REL}/feed.xml" target="_self" class="icon">
+							<img src="${SITE_ROOT_REL}/img/rss-github-gray.png">
 						</a>
 					</li>
 				</ul>
