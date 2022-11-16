@@ -144,7 +144,7 @@ buildHomepageBirdsGalleryLink() {
 	SHOOT_DATE="$(tail -n 1 "${GALLERY_LATEST_FILE}")"
 cat << xxxxxEOFxxxxx
 	<a href="${GALLERY_PAGE_REL}" style="text-decoration:none">
-		<div class="container" style="background-color:rgba(150,150,150,0.1); padding:1.0rem; overflow:hidden">
+		<div class="container" style="background-color:rgba(150,150,150,0.1); padding:1.0rem; overflow:hidden; border-radius: 0.3rem">
 			<img class="width-resp-25-40" style="float:right" src="${SHOOT_FAVORITE}" />
 			Latest Bird Gallery:<br/>${SHOOT_DATE}
 		</div>
