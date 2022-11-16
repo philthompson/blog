@@ -193,6 +193,12 @@ img {
 	max-width: 45%;
 }
 
+.width-40 {
+	padding-left: 2%;
+	padding-right: 2%;
+	max-width: 36%;
+}
+
 .width-25 {
 	padding-left: 2%;
 	padding-right: 2%;
