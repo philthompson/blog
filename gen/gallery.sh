@@ -434,7 +434,7 @@ do
 			fi
 			if [ ! -z "${SUPP_FAVORITE}" ]
 			then
-				SHOOT_FAVORITE="`echo "${HASHES_DIR_REL}/${SUPP_FAVORITE}" | base64`"
+				SHOOT_FAVORITE="`echo "${HASHES_YEAR}/${SUPP_FAVORITE}" | base64`"
 			fi
 		fi
 
