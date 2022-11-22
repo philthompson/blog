@@ -39,23 +39,23 @@ cat << xxxxxEOFxxxxx
 				</a>
 				<ul class="nav">
 					<li class="nav-item">
-						<a href="${SITE_ROOT_REL}/birds" target="_self">Birds</a>
+						<a href="${SITE_ROOT_REL}/birds" target="_self" title="Bird Photos Overview Gallery">Birds</a>
 					</li>
 					<li class="nav-item">
-						<a href="${SITE_ROOT_REL}/mandelbrot-gallery" target="_self">Mandel</a>
+						<a href="${SITE_ROOT_REL}/mandelbrot-gallery" target="_self" title="Mandelbrot Set Gallery">Mandel</a>
 					</li>
 					<li class="nav-item" style="padding-right: 0;">
-						<a href="${SITE_ROOT_REL}/very-plotter/" class="icon">
+						<a href="${SITE_ROOT_REL}/very-plotter/" class="icon" title="Very Plotter">
 							<img src="${SITE_ROOT_REL}/img/mandel-icon-github-gray.png">
 						</a>
 					</li>
 					<li class="nav-item" style="padding-right: 0;">
-						<a href="https://github.com/philthompson" target="_blank" class="icon">
+						<a href="https://github.com/philthompson" target="_blank" class="icon" title="My GitHub Profile">
 							<img src="${SITE_ROOT_REL}/img/GitHub-Mark-64px.png">
 						</a>
 					</li>
 					<li class="nav-item" style="padding-right: 0;">
-						<a href="${SITE_ROOT_REL}/feed.xml" target="_self" class="icon">
+						<a href="${SITE_ROOT_REL}/feed.xml" target="_self" class="icon" title="RSS Feed">
 							<img src="${SITE_ROOT_REL}/img/rss-github-gray.png">
 						</a>
 					</li>
