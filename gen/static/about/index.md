@@ -65,6 +65,10 @@ PGP
 Portfolio
 ---------
 
+* <a target="_blank" href="${SITE_ROOT_REL}/2022/Birds-Favorites-Pages.html">birds "year in review" and favorites pages</a>, 2022
+ * created by writing photo metadata into a SQLite database, and then running queries and writing static pages, all with python 3
+* photography <a target="_blank" href="${SITE_ROOT_REL}/gallery">gallery</a> pages, 2021
+ * these galleries are statically generated with a bash script, including some SQLite for faster re-generation of previously pre-processed gallery content
 * <a target="_blank" href="${SITE_ROOT_REL}/jars/">Water Jars game</a>, 2021
  * also added a bare-bones generalized <a target="_blank" href="${SITE_ROOT_REL}/jars/solver.html">water jars solver page</a>
  * the source code is available in its <a target="_blank" href="https://github.com/philthompson/water-jars">GitHub repository</a>
@@ -77,12 +81,10 @@ Portfolio
  * a JavaScript page for interactively generating QR codes
  * the source code is available in its <a target="_blank" href="https://github.com/philthompson/qrcodejs">GitHub repository</a>
 * this website, 2018
- * static site files are generated with bash scripts
+ * static site files are mostly generated with bash scripts
  * no JavaScript, except for some individual JavaScript-based pages mentioned here
  * background on the site generator was provided in <a target="_blank" href="${SITE_ROOT_REL}/2018/Writing-A-Static-Site-Generator.html">a blog post</a>.
  * the source code is available in its <a target="_blank" href="https://github.com/philthompson/blog">GitHub repository</a>
- * updated in 2021 with the static image <a target="_blank" href="${SITE_ROOT_REL}/gallery">gallery</a> pages
- * updated in 2022 with <a target="_blank" href="${SITE_ROOT_REL}/2022/Birds-Favorites-Pages.html">birds "year in review" and favorites pages</a>
 * <a target="_blank" href="${SITE_ROOT_REL}/screensavejs/">screensavejs</a> (interactive, 2018) / <a target="_blank" href="https://harvey.dog">harvey.dog</a> (non-interactive, 2016)
  * a JavaScript page that paints a blurry rendition of any image file
 * <a target="_blank" href="https://jsfiddle.net/b8w1coga/">Javascript toy: black & white box</a>, 2015
