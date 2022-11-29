@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>Divide and Conquer</title>
+    <style type="text/css">
+    body {
+        background-color: #333;
+        color: #111;
+        font-size: 1.2rem;
+        font-family: sans-serif;
+    }
+    body, html, div { border: 0; margin: 0; padding: 0; }
+    #menu, #help-menu, #menu-open-wrap {
+        position:fixed;
+        width: 96%;
+        padding: 2.0rem;
+        margin: 0;
+        z-index: 11;
+        font-size: 1.5rem;
+    }
+    #menu {
+      max-height: 95%;
+      width: 97%;
+      right: 0px;
+    }
+    #menu, #help-menu {
+        background-color: rgba(255,255,255,1.0);
+        display: none;
+        overflow-y: auto;
+    }
+    #menu p, #help-menu p {
+        padding-bottom: 1rem;
+        margin-top: 0;
+        margin-bottom: 0.5rem;
+    }
+    button {
+        font-size: 1rem;
+        cursor: pointer;
+        z-index: 12;
+    }
+    #menu-close, #help-menu-close, #menu-open-wrap span {
+        color: #aaa;
+        font-size: 1.75rem;
+        font-weight: 700;
+        margin-top: -.7rem;
+        cursor: pointer;
+        z-index: 12;
+    }
+    #help-menu {
+      padding-left: 2.0rem;
+    }
+    #help-menu div {
+      float: left;
+      margin-right: 4.0rem;
+    }
+    #menu-contents {
+        padding: 2.0rem;
+    }
+    .fixed-top-right-btn {
+      position: fixed;
+      right: 2.0rem;
+      top: 2.0rem;
+    }
+    .fixed-top-left-btn {
+      position: fixed;
+      left: 2.0rem;
+      top: 2.0rem;
+    }
+    kbd {
+        border: 2px solid #555;
+        border-radius: 0.25rem;
+        padding: 0.2rem;
+        width: 1.5rem;
+        display: inline-block;
+        height: 1.5rem;
+        text-align: center;
+        font-size: 1.3rem;
+    }
+    .rounded {
+        border-radius: 1.0rem;
+        border: 1px solid #000;
+        padding: 1.0rem;
+    }
+    .blue-bg {
+        background-color: #75d7fe;
+    }
+    .blue-text {
+        color: #001a94;
+    }
+    .blue-border {
+        border: 0.4rem solid #75d7fe;
+    }
+    .purple-bg {
+        background-color: #511993;
+    }
+    .white-bg {
+        background-color: #ffffff;
+    }
+    .white-text {
+        color: #FFF;
+    }
+    #grid-outer {
+        display: grid;
+        grid-template-areas:
+            "title"
+            "right-very-top"
+            "right-mid"
+            "right-very-bottom"
+            "left-bottom"
+            "left-top";
+        gap: 1.0rem;
+        padding: 1.0rem;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    @media (min-width: 40rem) {
+        #grid-outer {
+            grid-template-columns: 1fr 1fr;
+            grid-template-areas:
+                "title title"
+                ". right-very-top"
+                "left-top right-mid"
+                "left-bottom right-mid"
+                ". right-very-bottom";
+            max-width: 60rem;
+        }
+    }
+    #title {
+        grid-area: title;
+        font-size: 2.5rem;
+        letter-spacing: 0.2rem;
+        font-weight: bold;
+        font-style: italic;
+        border: 4px solid #FFF;
+        text-align: center;
+    }
+    #left-top {
+        grid-area: left-top;
+    }
+    #left-bottom {
+        grid-area: left-bottom;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1.0rem;
+    }
+    #select-jars {
+        grid-row: 1;
+        grid-column: 1;
+    }
+    #moves {
+        grid-row: 1;
+        grid-column: 2;
+    }
+    #right-very-top {
+        grid-area: right-very-top;
+        font-size: 1.5rem;
+    }
+    #right-very-top p {
+        margin-bottom: 0;
+    }
+    #right-mid {
+        grid-area: right-mid;
+        display: grid;
+        grid-template-columns: auto;
+        grid-template-rows: 1fr 5fr 1fr;
+        gap: 1.0rem;
+        font-size: 1.5rem;
+    }
+    #capacity {
+        grid-row: 1;
+        grid-column: 1;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+    #capacity div, #contents div {
+        position: relative;
+        top: -0.35rem;
+        text-align: center;
+    }
+    #capacity-1 {
+        grid-column: 1;
+    }
+    #capacity-2 {
+        grid-column: 2;
+    }
+    #capacity-3 {
+        grid-column: 3;
+    }
+    #jars {
+        grid-row: 2;
+        grid-column: 1;
+        max-width: 40rem;
+        max-height: 30rem;
+    }
+    #jars canvas {
+        width: 100%;
+        height: 100%;
+    }
+    #contents {
+        grid-row: 3;
+        grid-column: 1;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-rows: auto;
+    }
+    #contents-1 {
+        grid-column: 1;
+    }
+    #contents-2 {
+        grid-column: 2;
+    }
+    #contents-3 {
+        grid-column: 3;
+    }
+    #right-very-bottom {
+        grid-area: right-very-bottom;
+        font-size: 1.5rem;
+    }
+    #select-jars div {
+        text-align: center;
+    }
+    #select-jars div button {
+        width: 8.0rem;
+        padding: 0.2rem;
+        margin-top: 0.3rem;
+    }
+    #moves p {
+        font-size: 2.5rem;
+        font-weight: bold;
+        font-style: italic;
+    }
+    details {
+        padding: 3.0rem;
+    }
+    #game-log summary {
+        cursor: pointer;
+    }
+    #game-log th, #game-log td {
+        text-align: center;
+    }
+    </style>
+</head>
+<body class="purple-bg">
+    <div id="menu-open-wrap">
+        <span class="fixed-top-left-btn" id="help-menu-open"><kbd>?</kbd></span>
+    </div>
+    <div id="menu" class="blue-text" style="position: absolute; left: 0; max-width: 40rem; width: 90%;">
+        <span style="position: relative; float: left;" id="menu-close">×</span>
+        <div id="menu-contents"></div>
+    </div>
+    <div id="help-menu" class="blue-text" style="position: absolute; left: 0; max-width: 40rem; width: 90%;">
+        <span style="position: relative; float: left;" id="help-menu-close">×</span>
+        <p>
+            Help/info content here.
+        </p>
+    </div>
+    <div id="grid-outer" class="purple-bg">
+        <div id="title" class="rounded white-text">
+            ÷÷÷÷÷÷÷ Divide and Conquer ÷÷÷÷÷÷÷
+        </div>
+        <div id="left-top" class="rounded blue-bg blue-text">
+            <p>The problem: You have three jars of different
+            sizes. The largest one is filled with water.
+            Divide the water evenly between jars A and
+            B, in the fewest number of moves.</p>
+            <p>Pour water from one jar to another to reach
+            the goal. To pour from A to B, click on jar A
+            then click on jar B.</p>
+            <p>To measure accurately, you must either fill a
+            jar to the top, or empty out a jar.</p>
+        </div>
+        <div id="left-bottom" class="rounded blue-bg blue-text">
+            <div id="select-jars">
+                <p style="text-align: center;">Select jars</p>
+                <div id="select-jars-btns">
+                </div>
+            </div>
+            <div id="moves">
+                <p style="text-align: center;">Moves</p>
+                <p style="text-align: center;" id="moves-display">0</p>
+            </div>
+        </div>
+        <div id="right-very-top">
+            <p style="text-align: center;" class="white-text">Capacity</p>
+        </div>
+        <div id="right-mid">
+            <div id="capacity" class="rounded white-bg blue-border blue-text">
+                <div id="capacity-1">1</div>
+                <div id="capacity-2">2</div>
+                <div id="capacity-3">3</div>
+            </div>
+            <div id="jars">
+                <canvas id="c"></canvas>
+            </div>
+            <div id="contents" class="rounded white-bg blue-border blue-text">
+                <div id="contents-1">1</div>
+                <div id="contents-2">2</div>
+                <div id="contents-3">3</div>
+            </div>
+        </div>
+        <div id="right-very-bottom">
+            <p style="text-align: center;" class="white-text">Contents</p>
+        </div>
+    </div>
+    <details id="game-log" class="white-text purple-bg">
+        <summary>Game Log</summary>
+    </details>
+    <script type="text/javascript">
+
+const canvas = document.getElementById('c');
+const ctx = canvas.getContext('2d');
+var resizeTimeout = null;
+
+const bgColor = "#511993";
+const glassColor = "rgba(220,220,255,0.8)";
+const glassBottomColor = "rgba(220,220,255,0.15)";
+const waterLineColor = "rgba(120,120,255,0.7)";
+//const waterColor = "rgba(120,120,255,0.4)";
+const waterColor = "rgba(46,84,100,0.6)";
+const selectedColor = "rgba(255,30,30,1.0)";
+
+const jarWidthHeightRatio = 1/3; // diameter over height
+const verticalPaddingPct = 0.2;
+
+const jars = [];
+var gapPixels = 0;
+var maxJarPixWidth = 0;
+
+const animFrames = 30;
+var animTimeout = null;
+var animating = false;
+
+const games = [
+    {"id": "6-4-1", "minMoves": 3},
+    {"id": "8-5-3", "minMoves": 7},
+    {"id": "12-7-4", "minMoves": 7},
+    {"id": "14-9-5", "minMoves": 13},
+    {"id": "16-10-3", "minMoves": 11}
+];
+var selectedGameIndex = 0;
+var gameOver = false;
+var gameMoves = 0;
+var gameLog = [];
+var gameStartMs = 0;
+
+var buttonsHtml = [];
+for (let i = 0; i < games.length; i++) {
+    buttonsHtml.push("<button class=\"select-game\" id=\"" + games[i].id + "\">" + games[i].id + "</button>");
+}
+buttonsHtml = buttonsHtml.join("<br/>");
+
+document.getElementById('select-jars-btns').innerHTML += buttonsHtml;
+
+var selectGameBtn = function(e) {
+    selectGameId(e.target.id);
+};
+
+function selectGameId(volumesStrings) {
+    const jarStrings = volumesStrings.split("-");
+    if (jarStrings.length != 3) {
+        console.log("Unexpected number of hyphen-delimited jar volumes in \"id\" of select-game button [" + volumesStrings + "]");
+        return;
+    }
+    selectedGameIndex = -1;
+    for (let i = 0; i < games.length; i++) {
+        if (games[i].id == volumesStrings) {
+            selectedGameIndex = i;
+            break;
+        }
+    }
+    if (selectedGameIndex == -1) {
+        console.log("Unexpected game id [" + volumesStrings + "]");
+        return;
+    }
+    resetJars(jarStrings);
+    resizeJars();
+    draw();
+}
+
+var resetJars = function(jarVolumes) {
+    closeMenu();
+    closeHelpMenu();
+    gameOver = false;
+    gameMoves = 0;
+    gameLog = [];
+    // delete any previous jars
+    jars.length = 0;
+    var largestJarVolume = 0;
+    var largestJarIndex = 0;
+    for (let i = 0; i < jarVolumes.length; i++) {
+        jars[i] = {"volume": parseInt(jarVolumes[i]), "contents": 0};
+        if (jars[i].volume > largestJarVolume) {
+            largestJarVolume = jars[i].volume;
+            largestJarIndex = i;
+        }
+        jars[i].clicked = false;
+    }
+    jars[largestJarIndex].contents = largestJarVolume;
+    // wait for first move to start the clock
+    gameStartMs = 0;
+}
+
+var resizeJars = function() {
+    var maxHeightUnscaled = 0;
+    var totalWidthUnscaled = 0;
+    for (let i = 0; i < jars.length; i++) {
+        const proportions = calculateJarProportions(jars[i].volume);
+        if (proportions.h > maxHeightUnscaled) {
+            maxHeightUnscaled = proportions.h;
+        }
+        totalWidthUnscaled += (proportions.r * 2);
+        jars[i] = Object.assign(jars[i], proportions);
+    }
+    const scale = calculateJarPixelScale(maxHeightUnscaled, totalWidthUnscaled);
+    const totalWidth = totalWidthUnscaled * scale;
+    gapPixels = (canvas.width - totalWidth) / (jars.length + 1);
+    var offsetXPixels = 0;
+    // reset global var
+    maxJarWidth = 0;
+    for (let i = 0; i < jars.length; i++) {
+        offsetXPixels += gapPixels;
+        const pixels = calculateJarPixelDimensions(scale, jars[i].r);
+        jars[i] = Object.assign(jars[i], pixels);
+        jars[i]["leftX"] = offsetXPixels;
+        jars[i]["rightX"] = offsetXPixels + jars[i].wPixels;
+        offsetXPixels += jars[i].wPixels;
+        if (jars[i].wPixels > maxJarWidth) {
+            maxJarWidth = jars[i].wPixels;
+        }
+    }
+};
+
+function calculateJarProportions(volume) {
+    const radius = Math.cbrt((volume * jarWidthHeightRatio) / (2 * Math.PI));
+    const height = (2 * radius) / jarWidthHeightRatio;
+    return {"r": radius, "h": height};
+}
+
+function calculateJarPixelScale(maxHeightUnscaled, totalWidthUnscaled) {
+    // scale everything to fit the tallest jar
+    var heightScale = (canvas.height * (1.0 - verticalPaddingPct - verticalPaddingPct)) / maxHeightUnscaled;
+    var heightScaleWidth = totalWidthUnscaled * heightScale;
+    var scale = heightScale;
+    // if width is too wide after adjusting for max height, scale everything
+    //   down again
+    if (heightScaleWidth/canvas.width > 0.95) {
+        scale = (canvas.width * 0.95) / heightScaleWidth;
+    }
+    return scale;
+}
+
+function calculateJarPixelDimensions(scale, radiusUnscaled) {
+    var width = radiusUnscaled * 2 * scale;
+    var height = width / jarWidthHeightRatio;
+    return {"wPixels": width, "hPixels": height};
+}
+
+function draw() {
+    ctx.fillStyle = bgColor;
+    ctx.fillRect(0,0,canvas.width, canvas.height);
+
+    const verticalPadding = canvas.height * verticalPaddingPct;
+    const ellipseHeightMax = verticalPadding / 6;
+    const textHeight = verticalPadding * 0.4;
+
+    for (let i = 0; i < jars.length; i++) {
+        ctx.strokeStyle = glassColor;
+        ctx.lineWidth = 2;
+
+        const jarBottomY = canvas.height - verticalPadding;
+        const jarTopY = jarBottomY - jars[i].hPixels;
+        const ellipseHeight = (jars[i].wPixels / maxJarWidth) * ellipseHeightMax;
+
+        ctx.beginPath();
+        ctx.moveTo(jars[i].leftX, jarTopY);
+        ctx.lineTo(jars[i].leftX, jarBottomY);
+        ctx.moveTo(jars[i].leftX + jars[i].wPixels, jarTopY);
+        ctx.lineTo(jars[i].leftX + jars[i].wPixels, jarBottomY);
+        ctx.stroke();
+        const jarCenterX = jars[i].leftX + (jars[i].wPixels / 2);
+        // draw top ellipse as white if not full
+        if (jars[i].contents < jars[i].volume) {
+            ctx.beginPath();
+            ctx.ellipse(jarCenterX, jarTopY, jars[i].wPixels / 2, ellipseHeight, 0, 0, 2 * Math.PI);
+            ctx.stroke();
+        }
+        // draw water line ellipse if not empty
+        if (jars[i].contents > 0) {
+            const jarWaterLineY = jarBottomY - (jars[i].hPixels * jars[i].contents / jars[i].volume);
+            ctx.fillStyle = waterColor;
+            ctx.beginPath();
+            ctx.ellipse(jarCenterX, jarWaterLineY, jars[i].wPixels / 2, ellipseHeight, 0, 0, 2 * Math.PI);
+            ctx.ellipse(jarCenterX, jarBottomY, jars[i].wPixels / 2, ellipseHeight, 0, 0, 2 * Math.PI);
+            ctx.rect(jars[i].leftX, jarWaterLineY, jars[i].wPixels, jarBottomY - jarWaterLineY);
+            ctx.fill();
+            ctx.strokeStyle = waterLineColor;
+            ctx.beginPath();
+            ctx.ellipse(jarCenterX, jarWaterLineY, jars[i].wPixels / 2, ellipseHeight, 0, 0, 2 * Math.PI);
+            ctx.stroke();
+        }
+        // only draw bottom ellipse as white if empty
+        if (jars[i].contents > 0) {
+            ctx.strokeStyle = waterLineColor;
+        } else {
+            ctx.strokeStyle = glassColor;
+        }
+        // always draw bottom ellipse
+        ctx.beginPath();
+        ctx.ellipse(jarCenterX, jarBottomY, jars[i].wPixels / 2, ellipseHeight, 0, 0, 2 * Math.PI);
+        ctx.stroke();
+        // fill bottom ellipse if empty
+        if (jars[i].contents == 0) {
+            ctx.fillStyle = glassBottomColor;
+            ctx.beginPath();
+            ctx.ellipse(jarCenterX, jarBottomY, jars[i].wPixels / 2, ellipseHeight, 0, 0, 2 * Math.PI);
+            ctx.fill();
+        }
+        // draw jar label
+        if (jars[i].clicked) {
+            ctx.fillStyle = selectedColor;
+        } else {
+            ctx.fillStyle = glassColor;
+        }
+        ctx.font = textHeight + "px sans-serif";
+        ctx.fillText(String.fromCharCode(65 + i), jarCenterX - (textHeight * 0.3), jarBottomY + (verticalPadding * 0.8));
+        // do DOM updates for volume/contents
+        document.getElementById("capacity-" + (i+1)).innerHTML = jars[i].volume;
+        document.getElementById("contents-" + (i+1)).innerHTML = Math.round(jars[i].contents * 10.0) / 10.0;
+    }
+    document.getElementById("moves-display").innerHTML = "" + gameMoves;
+}
+
+function animate() {
+    if (animTimeout != null) {
+        window.clearTimeout(animTimeout);
+    }
+    var animNeedsToContinue = false;
+    for (let i = 0; i < jars.length; i++) {
+        if ("endContents" in jars[i] && jars[i].endContents != jars[i].contents) {
+            const frameDiff = (jars[i].endContents - jars[i].startContents) / animFrames;
+            jars[i].contents += frameDiff;
+            if (Math.abs(jars[i].contents - jars[i].endContents) < Math.abs(frameDiff)) {
+                jars[i].contents = jars[i].endContents;
+            } else {
+                animNeedsToContinue = true;
+            }
+        }
+    }
+    draw();
+    if (animNeedsToContinue) {
+        animTimeout = window.setTimeout(animate, 15);
+    } else {
+        animating = false;
+        if (jars[0].contents == jars[1].contents && jars[2].contents == 0) {
+            const gameDurationMs = Date.now() - gameStartMs;
+            const gameDurationMin = Math.trunc(gameDurationMs / (1000 * 60));
+            const gameDurationSec = Math.trunc((gameDurationMs % (1000 * 60)) / 1000);
+            gameOver = true;
+            const gameName = games[selectedGameIndex].id;
+            const minMoves = games[selectedGameIndex].minMoves;
+            var tableHtml =
+                "<br/><table>" +
+                "<tr><td colspan='3'>Game=[" + gameName + "], duration [" + gameDurationMin + "m " + gameDurationSec + "s]<br/>moves=[" + gameMoves + "], minMoves=[" + minMoves + "]</td></tr>" +
+                "<tr><th></th><th>Move</th><th>Contents</th></tr>" +
+                gameLog.join("\n") +
+                "</table>";
+            document.getElementById("game-log").innerHTML += tableHtml;
+            if (gameMoves < games[selectedGameIndex].minMoves) {
+                openMenu(
+                    "<p>Game complete.</p>" +
+                    "<p>You completed the task in only " + gameMoves + " moves, faster than the known minimum of " + games[selectedGameIndex].minMoves + "!  Wow!</p>");
+            } else if (gameMoves == games[selectedGameIndex].minMoves) {
+                openMenu(
+                    "<p>Game complete.</p>" +
+                    "<p>You completed the task in the minimum of " + games[selectedGameIndex].minMoves + " moves.  Great job!</p>");
+            } else if (gameMoves > games[selectedGameIndex].minMoves) {
+                openMenu(
+                    "<p>Game complete.</p>" +
+                    "<p>It's possible to complete the task in " + games[selectedGameIndex].minMoves + " moves.  Try again!</p>");
+            }
+        }
+    }
+}
+
+function pour(fromIndex, toIndex) {
+    if (jars[fromIndex].contents == 0) {
+        draw();
+        return;
+    }
+    const availableCapacity = jars[toIndex].volume - jars[toIndex].contents;
+    if (availableCapacity == 0) {
+        draw();
+        return;
+    }
+    if (gameStartMs == 0) {
+        gameStartMs = Date.now();
+    }
+    gameMoves++;
+    // set contents of all jars from last move
+    const contents = [];
+    for (let i = 0; i < jars.length; i++) {
+        contents.push(jars[i].contents);
+    }
+    jars[toIndex].startContents = jars[toIndex].contents;
+    jars[fromIndex].startContents = jars[fromIndex].contents;
+    if (availableCapacity >= jars[fromIndex].contents) {
+        jars[toIndex].endContents = jars[toIndex].contents + jars[fromIndex].contents;
+        jars[fromIndex].endContents = 0;
+    } else {
+        jars[toIndex].endContents = jars[toIndex].contents + availableCapacity;
+        jars[fromIndex].endContents = jars[fromIndex].contents - availableCapacity;
+    }
+    // overwrite contents of jars that are changing
+    contents[fromIndex] = jars[fromIndex].endContents;
+    contents[toIndex] = jars[toIndex].endContents;
+    gameLog.push("<tr><td>" + (gameLog.length + 1) + ".</td><td>" + "LMS".charAt(fromIndex) + " -> " + "LMS".charAt(toIndex) + "</td><td>" + contents.join("-") + "</td></tr>");
+    animating = true;
+    animate();
+}
+
+function setCanvasScaleVars() {
+    if (canvas.width != canvas.offsetWidth || canvas.height != canvas.offsetHeight) {
+        canvas.width = canvas.offsetWidth;
+        canvas.height = canvas.offsetHeight;
+        resizeJars();
+        draw();
+    }
+}
+
+const gameButtons = document.getElementsByClassName('select-game');
+for (let i = 0; i < gameButtons.length; i++) {
+    console.log(gameButtons[i].id);
+    gameButtons[i].addEventListener('click', selectGameBtn);
+}
+
+// re-draw if there's been a window resize and more than 250ms has elapsed
+window.addEventListener("resize", function() {
+    if (resizeTimeout !== null) {
+        window.clearTimeout(resizeTimeout);
+    }
+    resizeTimeout = window.setTimeout(setCanvasScaleVars, 250);
+});
+
+var mouseUpHandler = function(e) {
+    if (animating) {
+        return;
+    }
+    if (gameOver) {
+        openMenu("Use a \"Select jars\" button to reset the game.");
+        return;
+    }
+    // this might help prevent strange ios/mobile weirdness
+    e.preventDefault();
+    const mouseX = e.pageX - canvas.offsetLeft;
+    //const mouseY = e.pageY - canvas.offsetTop;
+    for (let i = 0; i < jars.length; i++) {
+        if (mouseX >= jars[i].leftX && mouseX <= jars[i].rightX) {
+            console.log("clicked inside " + i);
+            if (jars[i].clicked) {
+                jars[i].clicked = false;
+                draw();
+                return;
+            } else {
+                for (let j = 0; j < jars.length; j++) {
+                    if (j == i) {
+                        continue;
+                    }
+                    if (jars[j].clicked) {
+                        jars[j].clicked = false;
+                        pour(j, i);
+                        return;
+                    }
+                }
+                jars[i].clicked = true;
+                draw();
+                return;
+            }
+            break;
+        }
+    }
+};
+
+canvas.addEventListener("mouseup", mouseUpHandler);
+canvas.addEventListener("touchend", mouseUpHandler);
+
+document.getElementById('menu-close').addEventListener("click", function(e) {
+  closeMenu();
+  closeHelpMenu();
+}, true);
+document.getElementById('help-menu-open').addEventListener("click", function(e) {
+  openHelpMenu();
+}, true);
+document.getElementById('help-menu-close').addEventListener("click", function(e) {
+  closeHelpMenu();
+}, true);
+
+function closeMenu() {
+    menuVisible = false;
+    document.getElementById('menu').style.display = 'none';
+    document.getElementById('menu-open-wrap').style.display = 'block';
+}
+
+function openMenu(html) {
+    document.getElementById("menu-contents").innerHTML = html;
+    menuVisible = true;
+    closeHelpMenu();
+    document.getElementById('menu').style.display = 'block';
+    document.getElementById('menu-open-wrap').style.display = 'none';
+}
+
+function closeHelpMenu() {
+    helpVisible = false;
+    document.getElementById('help-menu').style.display = 'none';
+    document.getElementById('menu-open-wrap').style.display = 'block';
+}
+
+function openHelpMenu() {
+    closeMenu();
+    helpVisible = true;
+    document.getElementById('help-menu').style.display = 'block';
+    document.getElementById('menu-open-wrap').style.display = 'none';
+}
+
+setCanvasScaleVars();
+selectGameId(games[0].id);
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>Divide and Conquer</title>
+    <style type="text/css">
+    body {
+        background-color: #333;
+        color: #111;
+        font-size: 1.2rem;
+        font-family: sans-serif;
+    }
+    body, html, div { border: 0; margin: 0; padding: 0; }
+    #menu, #help-menu, #menu-open-wrap {
+        position:fixed;
+        width: 96%;
+        padding: 2.0rem;
+        margin: 0;
+        z-index: 11;
+        font-size: 1.5rem;
+    }
+    #menu {
+      max-height: 95%;
+      width: 97%;
+      right: 0px;
+    }
+    #menu, #help-menu {
+        background-color: rgba(255,255,255,1.0);
+        display: none;
+        overflow-y: auto;
+    }
+    #menu p, #help-menu p {
+        padding-bottom: 1rem;
+        margin-top: 0;
+        margin-bottom: 0.5rem;
+    }
+    button {
+        font-size: 1rem;
+        cursor: pointer;
+        z-index: 12;
+    }
+    #menu-close, #help-menu-close, #menu-open-wrap span {
+        color: #aaa;
+        font-size: 1.75rem;
+        font-weight: 700;
+        margin-top: -.7rem;
+        cursor: pointer;
+        z-index: 12;
+    }
+    #help-menu {
+      padding-left: 2.0rem;
+    }
+    #help-menu div {
+      float: left;
+      margin-right: 4.0rem;
+    }
+    #menu-contents {
+        padding: 2.0rem;
+    }
+    .fixed-top-right-btn {
+      position: fixed;
+      right: 2.0rem;
+      top: 2.0rem;
+    }
+    .fixed-top-left-btn {
+      position: fixed;
+      left: 2.0rem;
+      top: 2.0rem;
+    }
+    kbd {
+        border: 2px solid #555;
+        border-radius: 0.25rem;
+        padding: 0.2rem;
+        width: 1.5rem;
+        display: inline-block;
+        height: 1.5rem;
+        text-align: center;
+        font-size: 1.3rem;
+    }
+    .rounded {
+        border-radius: 1.0rem;
+        border: 1px solid #000;
+        padding: 1.0rem;
+    }
+    .blue-bg {
+        background-color: #75d7fe;
+    }
+    .blue-text {
+        color: #001a94;
+    }
+    .blue-border {
+        border: 0.4rem solid #75d7fe;
+    }
+    .purple-bg {
+        background-color: #511993;
+    }
+    .white-bg {
+        background-color: #ffffff;
+    }
+    .white-text {
+        color: #FFF;
+    }
+    #grid-outer {
+        display: grid;
+        grid-template-areas:
+            "title"
+            "right-very-top"
+            "right-mid"
+            "right-very-bottom"
+            "left-bottom"
+            "left-top";
+        gap: 1.0rem;
+        padding: 1.0rem;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    @media (min-width: 40rem) {
+        #grid-outer {
+            grid-template-columns: 1fr 1fr;
+            grid-template-areas:
+                "title title"
+                ". right-very-top"
+                "left-top right-mid"
+                "left-bottom right-mid"
+                ". right-very-bottom";
+            max-width: 60rem;
+        }
+    }
+    #title {
+        grid-area: title;
+        font-size: 2.5rem;
+        letter-spacing: 0.2rem;
+        font-weight: bold;
+        font-style: italic;
+        border: 4px solid #FFF;
+        text-align: center;
+    }
+    #left-top {
+        grid-area: left-top;
+    }
+    #left-bottom {
+        grid-area: left-bottom;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1.0rem;
+    }
+    #select-jars {
+        grid-row: 1;
+        grid-column: 1;
+    }
+    #moves {
+        grid-row: 1;
+        grid-column: 2;
+    }
+    #right-very-top {
+        grid-area: right-very-top;
+        font-size: 1.5rem;
+    }
+    #right-very-top p {
+        margin-bottom: 0;
+    }
+    #right-mid {
+        grid-area: right-mid;
+        display: grid;
+        grid-template-columns: auto;
+        grid-template-rows: 1fr 5fr 1fr;
+        gap: 1.0rem;
+        font-size: 1.5rem;
+    }
+    #capacity {
+        grid-row: 1;
+        grid-column: 1;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+    #capacity div, #contents div {
+        position: relative;
+        top: -0.35rem;
+        text-align: center;
+    }
+    #capacity-1 {
+        grid-column: 1;
+    }
+    #capacity-2 {
+        grid-column: 2;
+    }
+    #capacity-3 {
+        grid-column: 3;
+    }
+    #jars {
+        grid-row: 2;
+        grid-column: 1;
+        max-width: 40rem;
+        max-height: 30rem;
+    }
+    #jars canvas {
+        width: 100%;
+        height: 100%;
+    }
+    #contents {
+        grid-row: 3;
+        grid-column: 1;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-rows: auto;
+    }
+    #contents-1 {
+        grid-column: 1;
+    }
+    #contents-2 {
+        grid-column: 2;
+    }
+    #contents-3 {
+        grid-column: 3;
+    }
+    #right-very-bottom {
+        grid-area: right-very-bottom;
+        font-size: 1.5rem;
+    }
+    #select-jars div {
+        text-align: center;
+    }
+    #select-jars div button {
+        width: 8.0rem;
+        padding: 0.2rem;
+        margin-top: 0.3rem;
+    }
+    #moves p {
+        font-size: 2.5rem;
+        font-weight: bold;
+        font-style: italic;
+    }
+    details {
+        padding: 3.0rem;
+    }
+    #game-log summary {
+        cursor: pointer;
+    }
+    #game-log th, #game-log td {
+        text-align: center;
+    }
+    </style>
+</head>
+<body class="purple-bg">
+    <div id="menu-open-wrap">
+        <span class="fixed-top-left-btn" id="help-menu-open"><kbd>?</kbd></span>
+    </div>
+    <div id="menu" class="blue-text" style="position: absolute; left: 0; max-width: 40rem; width: 90%;">
+        <span style="position: relative; float: left;" id="menu-close">×</span>
+        <div id="menu-contents"></div>
+    </div>
+    <div id="help-menu" class="blue-text" style="position: absolute; left: 0; max-width: 40rem; width: 90%;">
+        <span style="position: relative; float: left;" id="help-menu-close">×</span>
+        <p>
+            Help/info content here.
+        </p>
+    </div>
+    <div id="grid-outer" class="purple-bg">
+        <div id="title" class="rounded white-text">
+            ÷÷÷÷÷÷÷ Divide and Conquer ÷÷÷÷÷÷÷
+        </div>
+        <div id="left-top" class="rounded blue-bg blue-text">
+            <p>The problem: You have three jars of different
+            sizes. The largest one is filled with water.
+            Divide the water evenly between jars A and
+            B, in the fewest number of moves.</p>
+            <p>Pour water from one jar to another to reach
+            the goal. To pour from A to B, click on jar A
+            then click on jar B.</p>
+            <p>To measure accurately, you must either fill a
+            jar to the top, or empty out a jar.</p>
+        </div>
+        <div id="left-bottom" class="rounded blue-bg blue-text">
+            <div id="select-jars">
+                <p style="text-align: center;">Select jars</p>
+                <div id="select-jars-btns">
+                </div>
+            </div>
+            <div id="moves">
+                <p style="text-align: center;">Moves</p>
+                <p style="text-align: center;" id="moves-display">0</p>
+            </div>
+        </div>
+        <div id="right-very-top">
+            <p style="text-align: center;" class="white-text">Capacity</p>
+        </div>
+        <div id="right-mid">
+            <div id="capacity" class="rounded white-bg blue-border blue-text">
+                <div id="capacity-1">1</div>
+                <div id="capacity-2">2</div>
+                <div id="capacity-3">3</div>
+            </div>
+            <div id="jars">
+                <canvas id="c"></canvas>
+            </div>
+            <div id="contents" class="rounded white-bg blue-border blue-text">
+                <div id="contents-1">1</div>
+                <div id="contents-2">2</div>
+                <div id="contents-3">3</div>
+            </div>
+        </div>
+        <div id="right-very-bottom">
+            <p style="text-align: center;" class="white-text">Contents</p>
+        </div>
+    </div>
+    <details id="game-log" class="white-text purple-bg">
+        <summary>Game Log</summary>
+    </details>
+    <script src="waterJar.js"></script>
+</body>
+</html>
