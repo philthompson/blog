@@ -570,6 +570,17 @@ ${GALLERY_PAGE_CONTENT_TMP}"
 	GALLERY_PAGE_CONTENT="${GALLERY_PAGE_CONTENT}
 ${GALLERY_PAGE_CONTENT_TMP}"
 
+	# since page path from root is eqivalent to the
+	#   page path without the OUT_DIR prefix, we can
+	#   get the length of OUT_DIR and ignore those
+	#   first number of characters
+	OUT_DIR_LEN=${#OUT_DIR}
+	# do substring here ${VAR:start:count}, with no :count
+	#   to include the rest of the string
+	PAGE_PATH_FROM_ROOT="${GALLERY_PAGE:$OUT_DIR_LEN}"
+	# replace page path into page content
+	GALLERY_PAGE_CONTENT="$(echo "${GALLERY_PAGE_CONTENT}" | sed "s#REPLACE_PAGE_URL#${PAGE_PATH_FROM_ROOT}#")"
+
 	if [[ ! -f "${GALLERY_PAGE}" ]] || [[ "`echo "${GALLERY_PAGE_CONTENT}" | shasum -a 256 | cut -d ' ' -f 1`" != "`shasum -a 256 "${GALLERY_PAGE}" | cut -d ' ' -f 1`" ]]
 	then
 		echo "gallery page [${GALLERY_PAGE}] IS changed"

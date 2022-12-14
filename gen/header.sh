@@ -6,6 +6,8 @@ PAGE_KEYWORDS="${3}"
 PAGE_DESCRIPTION="${4}"
 PAGE_REVISIT_AFTER_DAYS="${5}"
 
+#URL_ENCODED_TITLE="$(echo -n "${PAGE_TITLE}" | python3 -c "import urllib.parse, sys; print(urllib.parse.quote(sys.stdin.read()))")"
+
 cat << xxxxxEOFxxxxx
 <!DOCTYPE html>
 <html lang="en">
@@ -34,6 +36,8 @@ cat << xxxxxEOFxxxxx
 	<body>
 		<div class="wrap">
 			<header>
+				<!-- this is unused, but may be useful later -->
+				<!-- page URL: REPLACE_PAGE_URL -->
 				<a href="${SITE_ROOT_REL}/" class="logo">
 					<img src="${SITE_ROOT_REL}/img/logo.png">
 				</a>

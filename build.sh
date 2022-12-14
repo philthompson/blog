@@ -303,7 +303,12 @@ ${ARTICLE_YEAR}"
 		"${GEN_DIR}/header.sh" \
 		"${GEN_DIR}/footer.sh" \
 		"..")"
-	ARTICLE_FILE="${OUT_DIR}/${ARTICLE_YEAR}/${ARTICLE_TITLE_URL}.html"
+
+	PAGE_PATH_FROM_ROOT="/${ARTICLE_YEAR}/${ARTICLE_TITLE_URL}.html"
+	ARTICLE_FILE="${OUT_DIR}${PAGE_PATH_FROM_ROOT}"
+	# replace page path into page content
+	TMP_FILE="$(echo "${TMP_FILE}" | sed "s#REPLACE_PAGE_URL#${PAGE_PATH_FROM_ROOT}#")"
+
 	if [[ ! -f "${ARTICLE_FILE}" ]] || [[ "`echo "${TMP_FILE}" | shasum -a 256 | cut -d ' ' -f 1`" != "`shasum -a 256 "${ARTICLE_FILE}" | cut -d ' ' -f 1`" ]]
 	then
 		echo "article file [${ARTICLE_FILE}] IS changed"
@@ -368,7 +373,11 @@ do
 	HOME_PAGES_CONTENT[$HOME_PAGE_IDX]="${HOME_PAGES_CONTENT[$HOME_PAGE_IDX]}
 ${COMMON_HOME_PAGE_FOOTER}"
 
-	OUT_HOME_PAGE="${OUT_DIR}/${HOME_PAGE}"
+	PAGE_PATH_FROM_ROOT="/${HOME_PAGE}"
+	OUT_HOME_PAGE="${OUT_DIR}${PAGE_PATH_FROM_ROOT}"
+	# replace page path into page content
+	HOME_PAGES_CONTENT[$HOME_PAGE_IDX]="$(echo "${HOME_PAGES_CONTENT[$HOME_PAGE_IDX]}" | sed "s#REPLACE_PAGE_URL#${PAGE_PATH_FROM_ROOT}#")"
+
 	if [[ ! -f "${OUT_HOME_PAGE}" ]] || [[ "`echo "${HOME_PAGES_CONTENT[$HOME_PAGE_IDX]}" | shasum -a 256 | cut -d ' ' -f 1`" != "`shasum -a 256 "${OUT_HOME_PAGE}" | cut -d ' ' -f 1`" ]]
 	then
 		echo "home page [${OUT_HOME_PAGE}] IS changed"
@@ -383,7 +392,13 @@ for YEAR_FILE_YEAR in "${!YEAR_PAGES_CONTENT[@]}"
 do
 	YEAR_PAGES_CONTENT[$YEAR_FILE_YEAR]="${YEAR_PAGES_CONTENT[$YEAR_FILE_YEAR]}
 ${COMMON_YEAR_PAGE_FOOTER}"
-	YEAR_PAGE="${OUT_DIR}/${YEAR_FILE_YEAR}/index.html"
+
+
+	PAGE_PATH_FROM_ROOT="/${YEAR_FILE_YEAR}/index.html"
+	YEAR_PAGE="${OUT_DIR}${PAGE_PATH_FROM_ROOT}"
+	# replace page path into page content
+	YEAR_PAGES_CONTENT[$YEAR_FILE_YEAR]="$(echo "${YEAR_PAGES_CONTENT[$YEAR_FILE_YEAR]}" | sed "s#REPLACE_PAGE_URL#${PAGE_PATH_FROM_ROOT}#")"
+
 	if [[ ! -f "${YEAR_PAGE}" ]] || [[ "`echo "${YEAR_PAGES_CONTENT[$YEAR_FILE_YEAR]}" | shasum -a 256 | cut -d ' ' -f 1`" != "`shasum -a 256 "${YEAR_PAGE}" | cut -d ' ' -f 1`" ]]
 	then
 		echo "year page [${YEAR_PAGE}] IS changed"
@@ -414,7 +429,11 @@ TMP_FILE="`bash "${GEN_DIR}/footer.sh" 'Archive' '..'`"
 ARCHIVE_INDEX_CONTENT="${ARCHIVE_INDEX_CONTENT}
 ${TMP_FILE}"
 
-ARCHIVE_FILE="${OUT_DIR}/archive/index.html"
+PAGE_PATH_FROM_ROOT="/archive/index.html"
+ARCHIVE_FILE="${OUT_DIR}${PAGE_PATH_FROM_ROOT}"
+# replace page path into page content
+ARCHIVE_INDEX_CONTENT="$(echo "${ARCHIVE_INDEX_CONTENT}" | sed "s#REPLACE_PAGE_URL#${PAGE_PATH_FROM_ROOT}#")"
+
 if [[ ! -f "${ARCHIVE_FILE}" ]] || [[ "`echo "${ARCHIVE_INDEX_CONTENT}" | shasum -a 256 | cut -d ' ' -f 1`" != "`shasum -a 256 "${ARCHIVE_FILE}" | cut -d ' ' -f 1`" ]]
 then
 	echo "archive file [${ARCHIVE_FILE}] IS changed"
@@ -609,13 +628,18 @@ xxxxxEOFxxxxx
 
 MANDELBROT_GALLERY_YEAR_DIRS="$(find "${STATIC_DIR}/mandelbrot-gallery" -type d -name "2*")"
 
-MANDELBROT_GALLERY_INDEX_PAGE="${OUT_DIR}/mandelbrot-gallery/index.html"
+PAGE_PATH_FROM_ROOT="/mandelbrot-gallery/index.html"
+MANDELBROT_GALLERY_INDEX_PAGE="${OUT_DIR}${PAGE_PATH_FROM_ROOT}"
+
 LATEST_MANDELBROT_GALLERY_YEAR="$(echo "${MANDELBROT_GALLERY_YEAR_DIRS}" | sort -nr | head -n 1)"
 LATEST_MANDELBROT_GALLERY_YEAR="$(basename "${LATEST_MANDELBROT_GALLERY_YEAR}")"
 
 # capture function stdout into a variable, thanks to:
 #   https://unix.stackexchange.com/a/591153/210174
 { read -d '' MANDELBROT_GALLERY_INDEX_CONTENT; }< <(generateMandelbrotGalleryIndexPage "./${LATEST_MANDELBROT_GALLERY_YEAR}.html")
+
+# replace page path into page content
+MANDELBROT_GALLERY_INDEX_CONTENT="$(echo "${MANDELBROT_GALLERY_INDEX_CONTENT}" | sed "s#REPLACE_PAGE_URL#${PAGE_PATH_FROM_ROOT}#")"
 
 if [[ ! -f "${MANDELBROT_GALLERY_INDEX_PAGE}" ]] || [[ "`echo "${MANDELBROT_GALLERY_INDEX_CONTENT}" | shasum -a 256 | cut -d ' ' -f 1`" != "`shasum -a 256 "${MANDELBROT_GALLERY_INDEX_PAGE}" | cut -d ' ' -f 1`" ]]
 then
@@ -758,7 +782,11 @@ do
 ${TMP_CONTENT}
 ${TMP_FOOTER}"
 
-	STATIC_HTML_FILE="${OUT_DIR}/${PAGE_HTML_FILE}"
+	PAGE_PATH_FROM_ROOT="/${PAGE_HTML_FILE}"
+	STATIC_HTML_FILE="${OUT_DIR}${PAGE_PATH_FROM_ROOT}"
+	# replace page path into page content
+	TMP_CONTENT="$(echo "${TMP_CONTENT}" | sed "s#REPLACE_PAGE_URL#${PAGE_PATH_FROM_ROOT}#")"
+
 	if [[ ! -f "${STATIC_HTML_FILE}" ]] || [[ "`echo "${TMP_CONTENT}" | shasum -a 256 | cut -d ' ' -f 1`" != "`shasum -a 256 "${STATIC_HTML_FILE}" | cut -d ' ' -f 1`" ]]
 	then
 		echo "static file [${STATIC_HTML_FILE}] IS changed"
