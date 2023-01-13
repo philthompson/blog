@@ -666,10 +666,13 @@ def main_stuff(conn):
 				<a href="${{SITE_ROOT_REL}}/birds/home.html">All Yard Birds</a>,
 				<a href="${{SITE_ROOT_REL}}/birds/2021.html">2021 Birds</a>,
 				<a href="${{SITE_ROOT_REL}}/birds/2022.html">2022 Birds</a>,
+				<a href="${{SITE_ROOT_REL}}/birds/2023.html">2023 Birds</a>,
 				<a href="${{SITE_ROOT_REL}}/birds/favorites-2021.html">2021 Favorites</a>,
 				<a href="${{SITE_ROOT_REL}}/birds/favorites-2022.html">2022 Favorites</a>,
+				<a href="${{SITE_ROOT_REL}}/birds/favorites-2023.html">2023 Favorites</a>,
 				<a href="${{SITE_ROOT_REL}}/birds/home-2021.html">2021 Yard Birds</a>,
-				<a href="${{SITE_ROOT_REL}}/birds/home-2022.html">2022 Yard Birds</a>
+				<a href="${{SITE_ROOT_REL}}/birds/home-2022.html">2022 Yard Birds</a>,
+				<a href="${{SITE_ROOT_REL}}/birds/home-2023.html">2023 Yard Birds</a>
 			</p>
 			<p>All these and other bird photos are published to my gallery pages.  See the <a href="${{SITE_ROOT_REL}}/gallery/">latest gallery page</a>.</p>
 			<p>These photos are © {year} Phil Thompson, all rights reserved.</p>
@@ -725,10 +728,13 @@ def main_stuff(conn):
 			<a href="${{SITE_ROOT_REL}}/birds/home.html">All Yard Birds</a>,
 			<a href="${{SITE_ROOT_REL}}/birds/2021.html">2021 Birds</a>,
 			<a href="${{SITE_ROOT_REL}}/birds/2022.html">2022 Birds</a>,
+			<a href="${{SITE_ROOT_REL}}/birds/2023.html">2023 Birds</a>,
 			<a href="${{SITE_ROOT_REL}}/birds/favorites-2021.html">2021 Favorites</a>,
 			<a href="${{SITE_ROOT_REL}}/birds/favorites-2022.html">2022 Favorites</a>,
+			<a href="${{SITE_ROOT_REL}}/birds/favorites-2023.html">2023 Favorites</a>,
 			<a href="${{SITE_ROOT_REL}}/birds/home-2021.html">2021 Yard Birds</a>,
-			<a href="${{SITE_ROOT_REL}}/birds/home-2022.html">2022 Yard Birds</a>
+			<a href="${{SITE_ROOT_REL}}/birds/home-2022.html">2022 Yard Birds</a>,
+			<a href="${{SITE_ROOT_REL}}/birds/home-2023.html">2023 Yard Birds</a>
 		</p>
 		<p>All these and other bird photos are published to my gallery pages.  See the <a href="${{SITE_ROOT_REL}}/gallery/">latest gallery page</a>.</p>
 		<p>These photos are © {year_range_num} Phil Thompson, all rights reserved.</p>

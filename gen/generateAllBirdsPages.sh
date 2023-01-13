@@ -17,7 +17,7 @@ then
 	exit
 fi
 
-seq 2021 2022 | while read YEAR
+seq 2021 `date +%Y` | while read YEAR
 do
 	echo "generating ${YEAR} all ..." &&
 	python3 "${THIS_DIR}/generateBirdsPage.py" "${BIRDS_DB}" "${YEAR}" all > "${BIRDS_STATIC_DIR}/${YEAR}.md" &&
