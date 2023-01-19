@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Aquarium</title>
+</head>
+<body>
+
+<canvas id="aquarium"></canvas>
+
+<script>
+  // Get the canvas element
+  var canvas = document.getElementById("aquarium");
+
+  // Set the canvas size to the full width and height of the window
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+
+  // Get the canvas context
+  var ctx = canvas.getContext("2d");
+
+  // Set the background color to dark blue
+  ctx.fillStyle = "rgb(0, 0, 128)";
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+  // Set the number of fish
+  var numFish = 12;
+
+  // Create an array to store the fish data
+  var fish = [];
+
+  // Initialize the fish data
+  for (var i = 0; i < numFish; i++) {
+    fish[i] = {
+      x: Math.random() * canvas.width,
+      y: Math.random() * canvas.height,
+      speed: Math.random() * 0.5 + 0.5, // slower speed
+      angle: Math.random() * 90 - 45 // mostly horizontal movement
+    };
+  }
+
+  // Function to update the fish position and angle
+function updateFish() {
+    for (var i = 0; i < numFish; i++) {
+        fish[i].x += Math.cos(fish[i].angle * Math.PI / 180) * fish[i].speed;
+        fish[i].y += Math.sin(fish[i].angle * Math.PI / 180) * fish[i].speed;
+      
+        if (fish[i].x > canvas.width) {
+            fish[i].x = canvas.width;
+            fish[i].angle = (360 - fish[i].angle) + (Math.random() * 90 - 45);
+        } else if (fish[i].x < 0) {
+            fish[i].x = 0;
+            fish[i].angle = (360 - fish[i].angle) + (Math.random() * 90 - 45);
+        }
+
+        if (fish[i].y > canvas.height) {
+            fish[i].y = canvas.height;
+            fish[i].angle = (360 - fish[i].angle) + (Math.random() * 90 - 45);
+        } else if (fish[i].y < 0) {
+            fish[i].y = 0;
+            fish[i].angle = (360 - fish[i].angle) + (Math.random() * 90 - 45);
+        }
+        fish[i].angle = fish[i].angle % 360;
+
+        if (Math.random() < 1/(100*30)) {
+            fish[i].angle = (fish[i].angle + 180) % 360;
+        }
+    }
+}
+
+
+
+
+
+  // Function to draw the fish on the canvas
+function drawFish() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.fillStyle = "rgb(0, 0, 128)";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    ctx.font = "50px Arial";
+    for (var i = 0; i < numFish; i++) {
+        ctx.save();
+        ctx.translate(fish[i].x, fish[i].y);
+        if (Math.cos(fish[i].angle * Math.PI / 180) > 0) {
+            ctx.scale(-1, 1);
+        }
+        if (i > 1) {
+            ctx.fillText("🐟", 0, 0);
+        } else {
+            ctx.fillText("🐡", 0, 0);
+        }
+        ctx.restore();
+    }
+}
+
+
+
+
+  // Function to run the animation
+  function animate() {
+    updateFish();
+    drawFish();
+    window.requestAnimationFrame(animate);
+  }
+
+  // Start the animation
+  animate();
+</script>
+
+</body>
+</html>
+

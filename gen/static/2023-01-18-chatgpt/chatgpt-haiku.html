@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<!--
+
+generated on 2023-01-16 from prompt:
+
+"write an html file, with embedded javascript, that writes a haiku with a button labeled "write haiku"
+
+then
+"give the previous html page a muted dark mode color theme"
+
+then
+"for the previous html page, when the button is pressed, use a javascript ajax request to load another haiku from an online haiku service, or scrape one from a website.  also, show all previously-output haikus."
+
+then
+"modify the previous script to remove the ajax request on the button click.  instead, randomly show one of 10 haikus embedded into the javacsript."
+
+then
+"for the previous html page, display line breaks in the expected places in each haiku."
+
+then
+"for the previous html page, instead of displaying the new haiku instantly, display it with a "fade in" effect.  also, move the entire user interface into a centered scrolling box that's 50% the height of the window."
+(i had to manually update the css class to remove the "opacity: 0" and the html-writing code to include the "fade-in" class for the <p> elements, and the scrolling box didn't work as expected)
+
+then
+"modify the previous html page to remove the 'fade-in' class from the <p> elements created by the button"
+(it didn't actually show me the updated function)
+
+then
+"show me only the updated "displayHaiku" function"
+(the function was still the same, as before, without the "fade-in" class set on the <p> elements, and it doesn't do anything to remove the class)
+
+then
+"modify the .fade-in css class above to only affect the last sibling <p> element"
+
+
+-->
+<!DOCTYPE html>
+<html>
+<head>
+<title>Haiku Generator</title>
+<style>
+  /* add dark mode styles */
+  body {
+    background-color: #3f3f3f; /* muted dark gray */
+    color: #d9d9d9; /* muted light gray */
+  }
+  button {
+    background-color: #8a8a8a; /* muted dark gray */
+    color: white;
+  }
+  /* add styles for the scrolling box */
+  .scrolling-box {
+    height: 50%; /* set the height to 50% of the window */
+    overflow-y: scroll; /* enable vertical scrolling */
+    margin: auto; /* center the box horizontally */
+    text-align: center; /* center the text horizontally */
+  }
+  /* add styles for the fade in effect */
+  .fade-in:last-child {
+    /*opacity: 0; */ /* initially set the opacity to 0 */
+    animation: fade-in 1s linear; /* define the animation */
+  }
+  @keyframes fade-in {
+    from { opacity: 0; }
+    to { opacity: 1; } /* increase the opacity to 1 over 1 second */
+  }
+</style>
+</head>
+<body>
+
+<div class="scrolling-box">
+  <h1>Haiku Generator</h1>
+
+  <div id="haiku-container"></div>
+
+  <button onclick="loadHaiku()">Load Haiku</button>
+</div>
+
+<script>
+  var previousHaikus = [];
+  var haikus = [
+    "Autumn moonlight -\na worm digs silently\ninto the chestnut.",
+    "Winter twilight -\na world of dew,\nand within every dewdrop\na world of struggle.",
+    "Over the wintry\nForest, winds howl in rage\nWith no leaves to blow.",
+    "A world of dew,\nAnd within every dewdrop\nA world of struggle.",
+    "The light of a candle\nIs transferred to another candle—\nSpring twilight",
+    "Over the sea\nMountains rise in the distance—\nAutumn moon",
+    "Winter seclusion -\nListening, that evening,\nTo the rain in the mountain.",
+    "A world of dew,\nAnd within every dewdrop\nA world of struggle.",
+    "life’s little, our heads\nsad. Redeemed and wasting clay\nthis chance. Be of use.",
+    "life’s little, our heads\nsad. Redeemed and wasting clay\nthis chance. Be of use."
+  ];
+
+  function loadHaiku() {
+    var randomHaiku = haikus[Math.floor(Math.random()*haikus.length)];
+    displayHaiku(randomHaiku);
+  }
+
+  function displayHaiku(haiku) {
+    previousHaikus.push(haiku);
+    var haikuHTML = "";
+    for (var i = 0; i < previousHaikus.length; i++) {
+      haikuHTML += "<p class='fade-in'>" + previousHaikus[i].replace(/\n/g, "<br>") + "</p>";
+    }
+    document.getElementById("haiku-container").innerHTML = haikuHTML;
+  }
+
+</script>
+
+</body>
+</html>
+
