@@ -17,13 +17,13 @@ The headings used in this Privacy Policy are included for convenience only and w
 
 ### Personal Information We Collect
 
-When you visit the Site, we automatically collect certain information about your device, including information about your web browser, IP address, time zone, and some of the cookies that are installed on your device.  Additionally, as you browse the Site, we collect information about the individual web pages that you view, what websites or search terms referred you to the Site, and information about how you interact with the Site.  We refer to this automatically-collected information as "Device Information."
+When you visit the Site, we automatically collect certain information about your device, including information about your web browser, IP address, and time zone.  Since we do not set any cookies on your device, we never collect any cookies that are installed on your device.  Additionally, as you browse the Site, we collect information about the individual web pages that you view, what websites or search terms referred you to the Site, and information about how you interact with the Site.  We refer to this automatically-collected information as "Device Information."
 
 We collect Device Information using the following technologies:
     
 * "Log files," which track actions occurring on the Site and collect data including your IP address, browser type, Internet service provider, referring/exit pages, and date/time stamps.
 
-Third party sites may collect your Device Information using the following technologies:
+At the time of writing in 2023, the only third party site involved when you interact with the Site is GoatCounter, which is designed to receive none of your Device Information.  However, in the future, Third party sites may collect your Device Information using the following technologies:
 
 * "Web beacons," "tags," and "pixels," which are electronic files used to record information about how you browse the Site, and
 * "Cookies," which are small text files that may be read from or placed into your browser.
@@ -42,13 +42,13 @@ However, we may share your Personal Information to comply with applicable laws a
 
 Due to our errors or those of our hosting provider, we cannot guarantee that your Personal Information will never be disclosed.
 
-Third party sites may use and share your Personal Information according to and disclosed by their respective privacy policies.
+If the Site is ever, in the future, modified to incorporate third party services (such as a Content Delivery Network), those third party sites may use and share your Personal Information according to and disclosed by their respective privacy policies.
 
 ### Do Not Track
 
-We do not place first-party cookies in your browser nor perform any other web tracking behavior.  Since we do not track users in the first place, we do not alter our Site’s data collection and use practices when we see a Do Not Track signal from your browser.
+We do not place first-party cookies in your browser nor perform any other web tracking behavior.  Since we do not track users in the first place, we do not alter our Site's data collection and use practices when we see a Do Not Track signal from your browser.
 
-Third party sites may implement their own Do Not Track signal policy, independent of this Site's policy, according to and disclosed by their respective privacy policies.
+If the Site is ever, in the future, modified to incorporate third party services (such as a Content Delivery Network), those third party sites may implement their own Do Not Track signal policy, independent of this Site's policy, according to and disclosed by their respective privacy policies.
 
 ### Your Rights
 
@@ -58,7 +58,7 @@ Additionally, if you are a European resident we note that we are processing your
 
 ### Data Retention
 
-Device Information, including IP address, web browser "user agent" strings, and other information, is temporarily stored in log files for a period up to two months.  After that time, all log files are anonymized (processed to remove personally identifiable information) and these anonymous log files are stored for the purpose of analyzing our Site traffic.  The log files containing the original Device Information as collected are never retained for a period longer than two months.
+Device Information, including IP address, web browser "user agent" strings, and other information, is temporarily stored in log files for up to two months (to be more precise, usually fewer than 63 full days, depending on the day you visit the Site and the time and day the scheduled deletion occurs).  After that time, the log files containing the original Device Information as collected are automatically deleted.  Anonymized counts of visitors on a per-page basis (processed to remove personally identifiable information) are stored indefinitely by GoatCounter for the purpose of analyzing our historical Site traffic.
 
 ### Changes
 
