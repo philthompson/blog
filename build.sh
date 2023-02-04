@@ -21,6 +21,12 @@ OUT_DIR="${THIS_DIR}/out/$(date +%Y-%m-%d-%H%M%S)"
 GEN_DIR="${THIS_DIR}/gen"
 STATIC_DIR="${THIS_DIR}/gen/static"
 MARKDOWN_PERL_SCRIPT="${THIS_DIR}/Markdown_1.0.1/Markdown.pl"
+# installed with pip inside virtual environment:
+#   $ python3 -m venv python-venv
+#   $ source python-venv/bin/activate
+#   $ python3 -m pip install markdown-it-py
+#   $ deactivate
+COMMONMARK_SCRIPT="${THIS_DIR}/python-venv/bin/markdown-it"
 
 # the top-level URL
 SITE_URL="https://philthompson.me"
@@ -119,16 +125,25 @@ buildHomepageArticleSnippet() {
 	ARTICLE_TITLE_URL="${3}"
 	ARTICLE_TITLE="${4}"
 	ARTICLE_MARKDOWN_FILE="${5}"
-	MARKDOWN_PERL_SCRIPT="${6}"
 	echo "	<div class=\"container\">"
 	echo "		<div class=\"article-info\">${ARTICLE_DATE_REFORMAT}</div>"
 	echo "		<h1 class=\"article-title\"><a href=\"./${ARTICLE_YEAR}/${ARTICLE_TITLE_URL}.html\">${ARTICLE_TITLE}</a></h1>"
 
+	# thanks to https://stackoverflow.com/a/44055875/259456
+	#   for showing how to keep quoted command arguments in
+	#   a bash variable and execute them later without eval
+	MARKDOWN_CMD=("perl" "${MARKDOWN_PERL_SCRIPT}" "--html4tags")
+	if [[ ! -z "$(grep -m 1 '(gen-markdown-flavor: CommonMark)' "${ARTICLE_MARKDOWN_FILE}")" ]]
+	then
+		echo "article [${ARTICLE_MARKDOWN_FILE}] specifies it should use CommonMark" >&2
+		MARKDOWN_CMD=("${COMMONMARK_SCRIPT}")
+	fi
+
 	if [[ -z "$(grep -m 1 "more://" "${ARTICLE_MARKDOWN_FILE}")" ]]
 	then
-		perl "${MARKDOWN_PERL_SCRIPT}" --html4tags "${ARTICLE_MARKDOWN_FILE}" | sed 's/${SITE_ROOT_REL}/./g' | sed "s#\${THIS_ARTICLE}#./${ARTICLE_YEAR}/${ARTICLE_TITLE_URL}.html#g"
+		"${MARKDOWN_CMD[@]}" "${ARTICLE_MARKDOWN_FILE}" | sed 's/${SITE_ROOT_REL}/./g' | sed "s#\${THIS_ARTICLE}#./${ARTICLE_YEAR}/${ARTICLE_TITLE_URL}.html#g"
 	else
-		perl "${MARKDOWN_PERL_SCRIPT}" --html4tags "${ARTICLE_MARKDOWN_FILE}" | grep -B 999 'more://' | grep -v 'more://' | sed 's/${SITE_ROOT_REL}/./g' | sed "s#\${THIS_ARTICLE}#./${ARTICLE_YEAR}/${ARTICLE_TITLE_URL}.html#g"
+		"${MARKDOWN_CMD[@]}" "${ARTICLE_MARKDOWN_FILE}" | grep -B 999 'more://' | grep -v 'more://' | sed 's/${SITE_ROOT_REL}/./g' | sed "s#\${THIS_ARTICLE}#./${ARTICLE_YEAR}/${ARTICLE_TITLE_URL}.html#g"
 		echo "<a href=\"./${ARTICLE_YEAR}/${ARTICLE_TITLE_URL}.html\">continue reading...</a>"
 	fi
 
@@ -158,8 +173,7 @@ buildArticleRssItem() {
 	ARTICLE_TITLE_URL="${3}"
 	ARTICLE_TITLE="${4}"
 	ARTICLE_MARKDOWN_FILE="${5}"
-	MARKDOWN_PERL_SCRIPT="${6}"
-	SITE_HOME_URL="${7}"
+	SITE_HOME_URL="${6}"
 	# since the articles are dated like:
 	#   YYYY-MM-DD, or
 	#   YYYY-MM-DD-N (where N is the Nth article for the day)
@@ -180,15 +194,34 @@ buildArticleRssItem() {
 	echo "    <pubDate>${ARTICLE_DATE_RSS}</pubDate>"
 	echo -n "    <description><![CDATA["
 
+	#if [[ ! -z "$(grep '(gen-markdown-flavor: CommonMark)' "${ARTICLE_MARKDOWN_FILE}")" ]]
+	#then
+	#	echo "article [${ARTICLE_MARKDOWN_FILE}] specifies it should use CommonMark"
+	#	MARKDOWN_EXECUTABLE="${COMMONMARK_SCRIPT}"
+	#	MARKDOWN_ARGS=""
+	#fi
+
+	# thanks to https://stackoverflow.com/a/44055875/259456
+	#   for showing how to keep quoted command arguments in
+	#   a bash variable and execute them later without eval
+	MARKDOWN_CMD=("perl" "${MARKDOWN_PERL_SCRIPT}" "--html4tags")
+	if [[ ! -z "$(grep -m 1 '(gen-markdown-flavor: CommonMark)' "${ARTICLE_MARKDOWN_FILE}")" ]]
+	then
+		echo "article [${ARTICLE_MARKDOWN_FILE}] specifies it should use CommonMark"
+		MARKDOWN_CMD=("${COMMONMARK_SCRIPT}")
+	fi
+
 	# it's probably not necessary, but remove leading/trailing whitespace
 	#   from all html lines
 	# important here, possibly, to replace relative links with absolute ones
 	#   so that links work in RSS readers
 	if [[ -z "$(grep -m 1 "more://" "${ARTICLE_MARKDOWN_FILE}")" ]]
 	then
-		perl "${MARKDOWN_PERL_SCRIPT}" --html4tags "${ARTICLE_MARKDOWN_FILE}" | sed "s#\${SITE_ROOT_REL}#${SITE_HOME_URL}#g" | sed "s#\${THIS_ARTICLE}#${ABSOLUTE_ARTICLE_URL}#g"
+		#"${MARKDOWN_EXECUTABLE}" $MARKDOWN_ARGS "${ARTICLE_MARKDOWN_FILE}" | sed "s#\${SITE_ROOT_REL}#${SITE_HOME_URL}#g" | sed "s#\${THIS_ARTICLE}#${ABSOLUTE_ARTICLE_URL}#g"
+		"${MARKDOWN_CMD[@]}" "${ARTICLE_MARKDOWN_FILE}" | sed "s#\${SITE_ROOT_REL}#${SITE_HOME_URL}#g" | sed "s#\${THIS_ARTICLE}#${ABSOLUTE_ARTICLE_URL}#g"
 	else
-		perl "${MARKDOWN_PERL_SCRIPT}" --html4tags "${ARTICLE_MARKDOWN_FILE}" | grep -B 999 'more://' | grep -v 'more://' | sed "s#\${SITE_ROOT_REL}#${SITE_HOME_URL}#g" | sed "s#\${THIS_ARTICLE}#${ABSOLUTE_ARTICLE_URL}#g"
+		#"${MARKDOWN_EXECUTABLE}" $MARKDOWN_ARGS "${ARTICLE_MARKDOWN_FILE}" | grep -B 999 'more://' | grep -v 'more://' | sed "s#\${SITE_ROOT_REL}#${SITE_HOME_URL}#g" | sed "s#\${THIS_ARTICLE}#${ABSOLUTE_ARTICLE_URL}#g"
+		"${MARKDOWN_CMD[@]}" "${ARTICLE_MARKDOWN_FILE}" | grep -B 999 'more://' | grep -v 'more://' | sed "s#\${SITE_ROOT_REL}#${SITE_HOME_URL}#g" | sed "s#\${THIS_ARTICLE}#${ABSOLUTE_ARTICLE_URL}#g"
 		echo "<a href=\"${ABSOLUTE_ARTICLE_URL}\">continue reading...</a>"
 	fi | grep -v '!-- Copyright' | sed 's/^[[:space:]]*//g' | sed 's/[[:space:]]*$//g' | tr -d '\n'
 
@@ -234,6 +267,12 @@ ${HOMEPAGE_BIRDS_GALLERY_LINK}"
 #   (see https://stackoverflow.com/a/16854326/259456)
 while read ARTICLE_MARKDOWN_FILE
 do
+	if [[ ! "${ARTICLE_MARKDOWN_FILE}" =~ ^.*/20[0-9]{2}-[0-9]{2}-[0-9]{2}[^/]*\.md$ ]]
+	then
+		echo "skipping file [${ARTICLE_MARKDOWN_FILE}] not named like an article" >&2
+		continue
+	fi
+
 	ARTICLE_METADATA="$(grep -B 99 '^\[//\]: # (gen-meta-end)' "${ARTICLE_MARKDOWN_FILE}")"
 
 	ARTICLE_TITLE="$(echo "${ARTICLE_METADATA}" | grep -m 1 gen-title: | cut -d ' ' -f 4- | sed 's/)$//')"
@@ -257,6 +296,8 @@ do
 	sed 's/-12-/-December-/' | sed 's/-0/-/' | sed 's/-/ /g' | awk '{print $2" "$3", "$1}')"
 
 	ARTICLE_YEAR="$(echo "${ARTICLE_DATE}" | cut -d '-' -f 1)"
+
+	#echo "==== [${ARTICLE_MARKDOWN_FILE}] -> date [${ARTICLE_DATE}] -> year [${ARTICLE_YEAR}]" >&2
 
 	# just do year for now -- create archive <a> tag later
 	#ARCHIVE_INDEX_CONTENT="$(echo -e "${ARCHIVE_INDEX_CONTENT}\n<a href=\"../${ARTICLE_YEAR}/\">${ARTICLE_YEAR}</a>")"
@@ -302,7 +343,8 @@ ${ARTICLE_YEAR}"
 		"${NEXT_MARKDOWN_FILE_YEAR}/${NEXT_TITLE_URL}.html" \
 		"${GEN_DIR}/header.sh" \
 		"${GEN_DIR}/footer.sh" \
-		"..")"
+		".." \
+		"${COMMONMARK_SCRIPT}")"
 
 	PAGE_PATH_FROM_ROOT="/${ARTICLE_YEAR}/${ARTICLE_TITLE_URL}.html"
 	ARTICLE_FILE="${OUT_DIR}${PAGE_PATH_FROM_ROOT}"
@@ -321,7 +363,7 @@ ${ARTICLE_YEAR}"
 	# append article home page snippet to the appropriate home page
 	# capture function stdout into a variable, thanks to:
 	#   https://unix.stackexchange.com/a/591153/210174
-	{ read -d '' ARTICLE_HOME_SNIPPET; }< <(buildHomepageArticleSnippet "${ARTICLE_DATE_REFORMAT}" "${ARTICLE_YEAR}" "${ARTICLE_TITLE_URL}" "${ARTICLE_TITLE}" "${ARTICLE_MARKDOWN_FILE}" "${MARKDOWN_PERL_SCRIPT}")
+	{ read -d '' ARTICLE_HOME_SNIPPET; }< <(buildHomepageArticleSnippet "${ARTICLE_DATE_REFORMAT}" "${ARTICLE_YEAR}" "${ARTICLE_TITLE_URL}" "${ARTICLE_TITLE}" "${ARTICLE_MARKDOWN_FILE}")
 	# embed newline directly into variable
 	HOME_PAGES_CONTENT[$HOME_PAGE_IDX]="${HOME_PAGES_CONTENT[$HOME_PAGE_IDX]}
        ${ARTICLE_HOME_SNIPPET}"
@@ -330,7 +372,7 @@ ${ARTICLE_YEAR}"
 	#   the first "older1.html" page, put them in the site's RSS
 	if [ "${HOME_PAGE_IDX}" == "0" ] || [ "${HOME_PAGE_IDX}" == "1" ]
 	then
-		buildArticleRssItem "${ARTICLE_DATE}" "${ARTICLE_YEAR}" "${ARTICLE_TITLE_URL}" "${ARTICLE_TITLE}" "${ARTICLE_MARKDOWN_FILE}" "${MARKDOWN_PERL_SCRIPT}" "${SITE_URL}" >> "${RSS_BLOG_ARTICLE_ITEMS}"
+		buildArticleRssItem "${ARTICLE_DATE}" "${ARTICLE_YEAR}" "${ARTICLE_TITLE_URL}" "${ARTICLE_TITLE}" "${ARTICLE_MARKDOWN_FILE}" "${SITE_URL}" >> "${RSS_BLOG_ARTICLE_ITEMS}"
 	fi
 
 done <<< "$(find "${GEN_DIR}/articles" -type f | sort -r)"
@@ -753,7 +795,7 @@ done <<< "${MANDELBROT_GALLERY_YEAR_DIRS}"
 
 #tmp comment out to find double quote syntax error
 # render markdown files in their static locations, and add their headers and footers
-find "${GEN_DIR}/static" -type f -name "*.md" | sort -r | while read PAGE_MARKDOWN_FILE
+while read PAGE_MARKDOWN_FILE
 do
 	PAGE_DIR="$(dirname "${PAGE_MARKDOWN_FILE}" | sed 's#^.*static/*##')"
 	mkdir -p "${OUT_DIR}/${PAGE_DIR}"
@@ -798,7 +840,7 @@ ${TMP_FOOTER}"
 	# static/**/*.md files are excluded from rsync and thus are
 	#   not copied to the out dir in the first place
 	#rm "${OUT_DIR}/${PAGE_DIR}/$(basename "${PAGE_MARKDOWN_FILE}")"
-done
+done <<< $(find "${GEN_DIR}/static" -type f -name "*.md" | sort -r)
 
 # for RSS file, concatenate:
 # - header

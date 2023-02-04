@@ -11,3 +11,4 @@ gen/static/mandelbrot-gallery/**/*.md
 gen/static/birds/*.md
 gen/loc_names_locations.csv
 graphics/
+python-venv/

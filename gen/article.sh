@@ -16,6 +16,17 @@ HEADER_SCRIPT="${10}"
 FOOTER_SCRIPT="${11}"
 SITE_ROOT_REL="${12}"
 
+COMMONMARK_SCRIPT="${13}"
+
+# thanks to https://stackoverflow.com/a/44055875/259456
+#   for showing how to keep quoted command arguments in
+#   a bash variable and execute them later without eval
+MARKDOWN_CMD=("perl" "${MARKDOWN_PERL_SCRIPT}" "--html4tags")
+if [[ ! -z "$(grep -m 1 '(gen-markdown-flavor: CommonMark)' "${ARTICLE_MARKDOWN_FILE}")" ]]
+then
+	echo "article [${ARTICLE_MARKDOWN_FILE}] specifies it should use CommonMark" >&2
+	MARKDOWN_CMD=("${COMMONMARK_SCRIPT}")
+fi
 
 "${HEADER_SCRIPT}" "${ARTICLE_TITLE}" "${SITE_ROOT_REL}" "${ARTICLE_KEYWORDS}" "${ARTICLE_DESCRIPTION}" 14
 
@@ -25,7 +36,7 @@ cat << xxxxxEOFxxxxx
 				<div class="article-info">${ARTICLE_DATE}</div>
 xxxxxEOFxxxxx
 
-perl "${MARKDOWN_PERL_SCRIPT}" --html4tags "${ARTICLE_MARKDOWN_FILE}" | grep -v 'more://' | sed "s/\${SITE_ROOT_REL}/${SITE_ROOT_REL}/g" | sed "s#\${THIS_ARTICLE}#./${ARTICLE_TITLE_URL}.html#g"
+"${MARKDOWN_CMD[@]}" "${ARTICLE_MARKDOWN_FILE}" | grep -v 'more://' | sed "s/\${SITE_ROOT_REL}/${SITE_ROOT_REL}/g" | sed "s#\${THIS_ARTICLE}#./${ARTICLE_TITLE_URL}.html#g"
 
 cat << xxxxxEOFxxxxx
 			</div>
