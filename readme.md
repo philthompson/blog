@@ -17,6 +17,16 @@ To install python dependencies:
 	$ python3 -m pip install -r python-requirements.txt
 	$ deactivate
 
+To update or to install new dependencies:
+
+	$ source python-venv/bin/activate
+	$ python3 -m pip ...
+
+To update python dependencies file:
+
+	$ source python-venv/bin/activate
+	$ python3 -m pip freeze > python-requirements.txt
+
 #### License
 
 Article files (such as in `gen/articles/`) and images are distributed under traditional copyright with all rights reserved.  All other files, such as source code files and "wordlist" files, are distributed under the MIT license.

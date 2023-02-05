@@ -70,10 +70,11 @@ Portfolio
 * photography <a target="_blank" href="${SITE_ROOT_REL}/gallery">gallery</a> pages, 2021
  * these galleries are statically generated with a bash script, including some SQLite for faster re-generation of previously pre-processed gallery content
 * <a target="_blank" href="${SITE_ROOT_REL}/jars/">Water Jars game</a>, 2021
- * also added a bare-bones generalized <a target="_blank" href="${SITE_ROOT_REL}/jars/solver.html">water jars solver page</a>
+ * also added a bare-bones generalized <a target="_blank" href="${SITE_ROOT_REL}/jars/solver.html">water jars solver page</a> that uses a JavaScript worker
  * the source code is available in its <a target="_blank" href="https://github.com/philthompson/water-jars">GitHub repository</a>
 * <a target="_blank" href="${SITE_ROOT_REL}/very-plotter/">Very Plotter</a>, 2021
  * view the Mandelbrot set, and plots of a few mathematical sequences
+ * uses JavaScript worker threads, the number of which can be updated on-the-fly
  * the source code is available in its <a target="_blank" href="https://github.com/philthompson/visualize-primes">GitHub repository</a>
 * <a target="_blank" href="https://github.com/philthompson/rust-calc-term">rust-calc-term</a>, 2020
  * a terminal-based calculator powered by bigdecimal math, written in Rust
@@ -94,5 +95,7 @@ Portfolio
 Other Links
 ---------
 
+* <a target="_blank" href="https://www.astrobin.com/users/ptdotme/">My AstroBin profile</a>
+ * some of my astrophotography images
 * <a target="_blank" href="../linux-notes.html">Linux Notes</a>
  * a "cheat sheet" style collection of bash and other snippets
