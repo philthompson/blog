@@ -65,6 +65,9 @@ PGP
 Portfolio
 ---------
 
+* <a target="_blank" href="${SITE_ROOT_REL}/misc/smarter-than-a-chimp/">"Smarter than a Chimp" game</a>, 2023
+ * a simple JavaScript canvas-based memory game
+ * the source code is available in its <a target="_blank" href="https://github.com/philthompson/smarter-than-chimp">GitHub repository</a>
 * <a target="_blank" href="${SITE_ROOT_REL}/2022/Birds-Favorites-Pages.html">birds "year in review" and favorites pages</a>, 2022
  * created by writing photo metadata into a SQLite database, and then running queries and writing static pages, all with python 3
 * photography <a target="_blank" href="${SITE_ROOT_REL}/gallery">gallery</a> pages, 2021
