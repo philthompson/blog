@@ -3,7 +3,7 @@
 
 [//]: # (gen-keywords: linux, command, line, tips, terminal)
 
-[//]: # (gen-description: A collection of bash and other snippets")
+[//]: # (gen-description: A collection of bash and other snippets)
 
 [//]: # (gen-meta-end)
 
