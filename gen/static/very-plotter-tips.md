@@ -15,6 +15,7 @@ Mandelbrot set
 
 * [Screen shows black](#mandel-screen-black)
 * [Too few colors](#mandel-too-few-colors)
+* [Stripe Average Coloring](#mandel-stripes)
 * [Tips](#mandel-tips)
 
 General
@@ -54,6 +55,20 @@ This usually happens because you are "zoomed in" on an area containing similar c
   * if a "-mod#" is already there, try a larger or smaller value there
   * expand the "?" section inside the gradient editor for more information on how the "-mod#" works
 1. hit the "Go" button
+
+### <a name="mandel-stripes"></a>Stripe Average Coloring
+
+Try stripe average coloring!
+
+1. Click the wrench button to open the controls menu
+1. Expand the "gradient editor" section
+1. Add a zero to the gradient's "-mod#" option, or add "-mod50000" if there isn't already a "-mod#" option present
+1. Click the "Go" button to apply the gradient
+1. Expand the "algorithm options" section
+1. In the "options" dropdown list, select "automatic with stripes coloring"
+1. Click the "Go" button to run the new algorithm
+
+For more background, tips, and examples of stripe average coloring, see <a href="${SITE_ROOT_REL}/2023/Stripe-Average-Coloring.html">this blog post</a>.
 
 ### <a name="mandel-tips"></a>Tips
 
