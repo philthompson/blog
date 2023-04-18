@@ -1,0 +1,16 @@
+
+thumb:https://philthompson.me/s/img/2023/Arctic-1280x720.jpg
+title:"Arctic" by me
+
+desc:This is another simple, shallow location, but it uses the well-known (but new to Very Plotter) Stripe Average Coloring mode to reveal lots of detail in what would look like "empty" areas with normal iteration coloring.
+
+params:?plot=Mandelbrot-set&v=5&n=1000&mag=4.84851001083e3&centerX=-1.60185973664e-1&centerY=1.03805097785e0&gradient=Bbwgb-b.284b75-g.28755f-mod50000-shift4&bgColor=b&smooth=on-show&algo=basic-stripes-stripedensity6
+
+re:-0.160185973664
+im:1.03805097785
+mag:4.84851001083e3
+scale:1.45455300324e6
+iterations:1000
+
+render01:https://philthompson.me/s/img/2023/Arctic-3200x1800.png
+render02:https://philthompson.me/s/img/2023/Arctic-2560x1440.png

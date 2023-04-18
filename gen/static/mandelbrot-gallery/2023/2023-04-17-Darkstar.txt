@@ -1,0 +1,15 @@
+
+thumb:https://philthompson.me/s/img/2023/Darkstar-1280x720.jpg
+title:"Darkstar" by me
+
+desc:
+
+params:?plot=Mandelbrot-set&v=5&n=30000&mag=1.5e24&centerX=-1.2702288604303376058504939571344674642157173e-1&centerY=-9.8728474138900681012772183234313984426625069e-1&gradient=GBswGBswGBsw-P.FA22BC-G.496A03-s.d9af70-mod20000-offset0&bgColor=b&smooth=on-show&algo=perturb-stripes-stripedensity8-float
+
+re:-0.12702288604303376058504939571344674642157173
+im:-0.98728474138900681012772183234313984426625069
+mag:1.5e24
+scale:1.8e27
+iterations:30000
+
+render01:https://philthompson.me/s/img/2023/Darkstar-3200x1800.png

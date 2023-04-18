@@ -1,0 +1,15 @@
+
+thumb:https://philthompson.me/s/img/2023/Arrival-1280x720.jpg
+title:"Arrival" by me
+
+desc:The well-known Stripe Average Coloring is now available for use in Very Plotter's Mandelbrot set viewer!  This is an "easy" location that shows some of what Stripe Average Coloring can do.
+
+params:?plot=Mandelbrot-set&v=5&n=50000&mag=1.33333333333e2&centerX=-3.49877428384e-2&centerY=-9.84380520487e-1&gradient=wBvBwB-v.281457-mod90000&bgColor=w&smooth=on-show&algo=basic-stripes-stripedensity6-float
+
+re:-0.0349877428384
+im:-0.984380520487
+mag:1.33333333333e2
+scale:3.99999999999e4
+iterations:50000
+
+render01:https://philthompson.me/s/img/2023/Arrival-3200x1800.png
