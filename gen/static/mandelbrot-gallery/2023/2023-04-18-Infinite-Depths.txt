@@ -4,7 +4,7 @@ title:"Infinite-Depths" by me
 
 desc:This is a composite of an iteration coloring image and a separate stripe average coloring image that used a grayscale gradient.  Using Photoshop, I set the stripe layer to 15% opacity with the "Pin Light" blending mode.  I also made a slight levels and contrast adjustment to the composite image.
 
-params:?plot=Mandelbrot-set&v=5&n=120000&mag=1.99903333333e52&centerX=-7.43643927058028316631291361415826008739702757197807860510631347994998874371449081e-1&centerY=1.31825980877906947146424011940025164151924022214318464431311547636916892789256531e-1&gradient=Bbwgb-b.284b75-g.28755f-mod2242-shift2&bgColor=b&smooth=on-show&algo=perturb-sapx8-float&slopeLightDir=tl&slopeDepth=2
+params:?plot=Mandelbrot-set&v=5&n=120000&mag=1.99903333333e52&centerX=-7.43643927058028316631291361415826008739702757197807860510631347994998874371449081e-1&centerY=1.31825980877906947146424011940025164151924022214318464431311547636916892789256531e-1&gradient=Bbwgb-b.284b75-g.28755f-mod2242-shift2&bgColor=b&smooth=on-show&algo=bla-auto&slopeLightDir=tl&slopeDepth=2
 
 re:-0.743643927058028316631291361415826008739702757197807860510631347994998874371449081
 im:0.131825980877906947146424011940025164151924022214318464431311547636916892789256531

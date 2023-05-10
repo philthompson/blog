@@ -4,7 +4,7 @@ title:"Untitled 8" by Me
 
 desc:This is another composite image, this time of a relatively shallow location.  The stripe average coloring layer is blended on top of the base iteration-colored layer.   The stripe average coloring layer (which can be viewed <a target="_blank" href="https://philthompson.me/very-plotter/?plot=Mandelbrot-set&v=5&n=45000&mag=1.46484375e25&centerX=-8.43233764530751513324611729773572725750160827e-1&centerY=2.2381804155806995913989829482160200044199335e-1&gradient=Bbwgb-b.284b75-g.28755f-mod1100&bgColor=b&smooth=on-show&algo=perturb-stripes-stripedensity8-float">here</a>) is at 65% opacity using the "Pin Light" blending mode.
 
-params:?plot=Mandelbrot-set&v=5&n=45000&mag=1.46484375e25&centerX=-8.43233764530751513324611729773572725750160827e-1&centerY=2.2381804155806995913989829482160200044199335e-1&gradient=wBbwBb-b.082ace-shift4-mod350&bgColor=b&smooth=on-show&slopeLightDir=bl&slopeDepth=3
+params:?plot=Mandelbrot-set&v=5&n=45000&mag=1.46484375e25&centerX=-8.43233764530751513324611729773572725750160827e-1&centerY=2.2381804155806995913989829482160200044199335e-1&gradient=wBbwBb-b.082ace-shift4-mod350&bgColor=b&smooth=on-show&slopeLightDir=bl&slopeDepth=3&algo=bla-auto
 
 re:-0.843233764530751513324611729773572725750160827
 im:0.22381804155806995913989829482160200044199335
