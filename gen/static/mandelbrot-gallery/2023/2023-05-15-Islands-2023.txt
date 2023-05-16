@@ -1,0 +1,19 @@
+
+thumb:https://philthompson.me/s/img/2023/Wolfgang-Beyer-Islands-2023-1280x720.jpg
+title:"Islands" (2023 version) by Wolfgang Beyer
+
+desc:This is the same location as the first image in my Mandelbrot set gallery, from 2021.  As I said in the description for that render, this is the image that kicked off my Mandelbrot set journey.  It appears on the <a target="_blank" href="https://en.wikipedia.org/wiki/Mandelbrot_set">Mandelbrot set Wikipedia article</a> (details of this particular image are <a target="_blank" href="https://en.wikipedia.org/wiki/File:Mandel_zoom_14_satellite_julia_island.jpg">here</a>).<br/><br/>For this render, I created a 4-panel image that I stiched together in Photoshop.  Each image is a composite of a stripe coloring image (at 22% opacity with the "Luminosity" blend mode) on top of the iteration color image.  The stripe coloring can be viewed <a target="_blank" href="https://philthompson.me/very-plotter/?plot=Mandelbrot-set&v=5&n=20000&mag=3.16666666666e10&centerX=-7.43643927057876963e-1&centerY=1.3182598087768664078e-1&gradient=BwBw-mod10000-offset300&bgColor=b&smooth=on-show&algo=perturb-stripes-stripedensity10-float">here</a>.  I went overboard and ended up with a <b>1.1 gigapixel</b> render at 45,091 x 25,364 resolution.  Needless to say it's too large to share here as a download, but I'll think about how to share it.<br/><br/>Among the renders listed below I have a still very large 11,273 x 6,341 render, the usual 3,200 x 1,800 render, and a 2x 6,400 x 3,600.  I've also included "no stripe" renders at 3,200 x 1,800 and also 6,400 x 3,600. 
+
+params:?plot=Mandelbrot-set&v=5&n=20000&mag=3.16666666666e10&centerX=-7.43643927057876963e-1&centerY=1.3182598087768664078e-1&gradient=Bbwgb-b.284b75-g.28755f-mod2222-shift2&bgColor=b&smooth=on-show
+
+re:-0.743643927057876963
+im:0.13182598087768664078
+mag:3.16666666666e10
+scale:9.5e12
+iterations:20000
+
+render01:https://philthompson.me/s/img/2023/Wolfgang-Beyer-Islands-2023-3200x1800.png
+render02:https://philthompson.me/s/img/2023/Wolfgang-Beyer-Islands-2023-6400x3600.png
+render03:https://philthompson.me/s/img/2023/Wolfgang-Beyer-Islands-2023-11273x6341.png
+render04:https://philthompson.me/s/img/2023/Wolfgang-Beyer-Islands-2023-no-stripe-3200x1800.png
+render05:https://philthompson.me/s/img/2023/Wolfgang-Beyer-Islands-2023-no-stripe-6400x3600.png
