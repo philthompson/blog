@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<meta name="description" content="memory test">
+
+	<title>Are You Smarter than a Chimp?</title>
+	<style type="text/css">
+		/* * { border: 0; margin: 0; padding: 0; } */
+		body, html, div { border: 0; margin: 0; padding: 0; }
+		body, html {  height: 100%; }
+		#dc { position:absolute; width: 100%; height: 100%; z-index:10; }
+		#menu, #menu-open-wrap {
+			position:fixed;
+			width: 96%;
+			padding: 2%;
+			margin: 0;
+			z-index: 11;
+			color: #999999;
+			text-shadow: 0px 0px 5px #222;
+			font-family: arial;
+			font-size: 1.5rem;
+		}
+		#menu {
+			background-color: rgba(0,0,0,0.8);
+			display: none;
+		}
+		#menu p {
+			padding-bottom: 1rem;
+		}
+		button {
+			font-size: 1rem;
+			cursor: pointer;
+			z-index: 12;
+		}
+		#menu-close, #menu-open {
+			color: #aaa;
+			float: right;
+			font-size: 1.75rem;
+			font-weight: 700;
+			margin-top: -.7rem;
+			cursor: pointer;
+			z-index: 12;
+		}
+		#stats {
+			height: 30rem;
+			overflow-y: scroll;
+			font-size:1.0rem;
+		}
+	</style>
+  </head>
+  <body>
+	<canvas id="dc"></canvas>
+	<div id="menu-open-wrap">
+		<span id="menu-open">𑁔</span>
+	</div>
+	<div id="menu">
+		<span id="menu-close">×</span>
+			<p>
+				<span>Clear numbers and try again:&nbsp;</span><button id="reset">Restart</button>
+			</p>
+			<p>
+				Use numbers in range: 1 through <input id="rangeHi" type="number" min="2" max="100" inputmode="numeric" pattern="\d*"/>
+			</p>
+			<pre id="stats"></pre>
+	</div>
+	<script type="text/javascript">
+
+const rangeLo = 1;
+var rangeHi = 9;
+document.querySelector('#rangeHi').value = rangeHi;
+
+// thanks to https://stackoverflow.com/a/17762789/259456
+const buzzerAudio = new Audio('data:audio/mp3;base64,' + '/+NIxAAAAAAAAAAAAEluZm8AAAAPAAAACgAADGAAGRkZGRkZGRkZMzMzMzMzMzMzM0xMTExMTExMTExmZmZmZmZmZmZmgICAgICAgICAgJmZmZmZmZmZmZmzs7Ozs7Ozs7OzzMzMzMzMzMzMzObm5ubm5ubm5ub/////////////AAAAO0xBTUUzLjk5cgEoAAAAAAAAAAAUICQDwSIAACAAAAxgMicwy' + 'A'.repeat(159) + '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' + 'q'.repeat(44) + '/+NIxAAAAANIAcAAAExBTUUzLjk5LjWqqqqqqqqqqqqqTEFNRTMuOTkuNa' + 'q'.repeat(326));
+
+const initialPauseBeforeStartMs = 3000;
+
+const dCanvas = document.getElementById('dc');
+const dContext = dCanvas.getContext('2d');
+
+const gridSpacing = 10;
+var gridPadLeft = 0;
+var gridPadTop = 0;
+var gridSquareSize = 0;
+var gridWidthInSquares = 0;
+var gridHeightInSquares = 0;
+const requiredMinPad = 60;
+
+// used to cancel a setTimeout delay
+var delayTimeout = null;
+
+var gridPositionsUsed = {};
+var nextNumberToTap = 1;
+var startTimeMs = 0;
+
+var menuIsOpen = false;
+
+function closeMenu() {
+	document.getElementById('menu').style.display = 'none';
+	document.getElementById('menu-open-wrap').style.display = 'block';
+	menuIsOpen = false;
+}
+
+function openMenu() {
+	window.clearTimeout(delayTimeout);
+	document.getElementById('menu').style.display = 'block';
+	document.getElementById('menu-open-wrap').style.display = 'none';
+	menuIsOpen = true;
+}
+
+function fillBlack(ctx) {
+	const canvas = ctx.canvas;
+	ctx.fillStyle = "#000000";
+	ctx.fillRect(0,0,canvas.width, canvas.height);
+}
+
+function fillCenterText(ctx, text) {
+	const canvas = ctx.canvas;
+	var textSize = Math.min(canvas.width, canvas.height) / 12;
+	if (textSize < 8) {
+		textSize = 8;
+	}
+	ctx.font = textSize + 'px Arial';
+	ctx.fillStyle = "#444444";
+	ctx.textAlign = 'center';
+	ctx.fillText(text, canvas.width/2, canvas.height/2);
+}
+
+function fillCenterSubtext(ctx, text) {
+	const canvas = ctx.canvas;
+	var textSize = Math.min(canvas.width, canvas.height) / 25;
+	if (textSize < 5) {
+		textSize = 5;
+	}
+	ctx.font = textSize + 'px Arial';
+	ctx.fillStyle = "#444444";
+	ctx.textAlign = 'center';
+	ctx.fillText(text, canvas.width/2, canvas.height*12/20);
+}
+
+function setAndDrawNumber(ctx, number) {
+	const canvas = ctx.canvas;
+	let textSize = Math.floor(gridSquareSize * 0.6);
+	if (textSize < 5) {
+		textSize = 5;
+	}
+	ctx.font = textSize + 'px Arial';
+	ctx.fillStyle = "#FFF";
+	ctx.textAlign = 'center';
+	ctx.textBaseline = 'middle';
+
+	// random grid square
+	let dX, dY, posName;
+	do {
+		dX = Math.floor(Math.random() * gridWidthInSquares);
+		dY = Math.floor(Math.random() * gridHeightInSquares);
+		posName = dX + "," + dY;
+	} while (posName in gridPositionsUsed);
+
+	const squareX = (dX * (gridSquareSize + gridSpacing)) + gridPadLeft;
+	const squareY = (dY * (gridSquareSize + gridSpacing)) + gridPadTop;
+	gridPositionsUsed[posName] = {n:number, xMin: squareX, xMax: squareX + gridSquareSize, yMin: squareY, yMax: squareY + gridSquareSize};
+
+	//ctx.strokeStyle = "#FFF";
+	//ctx.strokeWidth = 2;
+	//ctx.strokeRect(squareX, squareY, gridSquareSize, gridSquareSize);
+
+	const centerX = squareX + (gridSquareSize / 2);
+	const centerY = squareY + (gridSquareSize / 2);
+	ctx.fillText("" + number, centerX, centerY);
+}
+
+function drawAllRemainingNumbers(ctx) {
+	fillBlack(ctx);
+	const canvas = ctx.canvas;
+	let textSize = Math.floor(gridSquareSize * 0.6);
+	if (textSize < 3) {
+		textSize = 3;
+	}
+	ctx.font = textSize + 'px Arial';
+	ctx.fillStyle = "#FFF";
+	ctx.textAlign = 'center';
+	ctx.textBaseline = 'middle';
+
+	let numObj;
+	for (k in gridPositionsUsed) {
+		numObj = gridPositionsUsed[k];
+		if (numObj.n < nextNumberToTap) {
+			continue;
+		}
+		const centerX = numObj.xMin + (gridSquareSize / 2);
+		const centerY = numObj.yMin + (gridSquareSize / 2);
+		ctx.fillStyle = "#FFF";
+		//ctx.strokeRect(numObj.xMin, numObj.yMin, gridSquareSize, gridSquareSize);
+		ctx.fillRect(numObj.xMin, numObj.yMin, gridSquareSize, gridSquareSize);
+		//ctx.fillStyle = "#CCC";
+		//ctx.fillText("" + numObj.n, centerX, centerY);
+	}
+}
+
+function setDScaleVars(forceReset, dCtx) {
+	var canvas = dCtx.canvas;
+	if (forceReset || canvas.width != canvas.offsetWidth || canvas.height != canvas.offsetHeight) {
+		// example in video was a grid 8 wide by 6 high, so we'll target
+		//   5 times the largest number
+		const targetTotalSquares = Math.max(25, rangeHi * 5);
+		canvas.width = canvas.offsetWidth;
+		canvas.height = canvas.offsetHeight;
+		const smallDim = Math.min(canvas.width, canvas.height) - (requiredMinPad * 2);
+		const largeDim = Math.max(canvas.width, canvas.height) - (requiredMinPad * 2);
+		var afterFiftyMet = 0;
+		var totalSquares = 0;
+		var closestToFifty = 0;
+		var squareSize;
+		var bestSquareSize = 0;
+		var smallDimSquares = 0;
+		while (afterFiftyMet <= 1) {
+			smallDimSquares++;
+			//console.log("trying " + smallDimSquares + " squares across the smaller dimension...");
+			squareSize = (smallDim - gridSpacing) / smallDimSquares;
+			squareSize = Math.floor(squareSize - gridSpacing);
+			totalSquares = Math.floor((smallDim - gridSpacing)/(squareSize + gridSpacing)) * Math.floor((largeDim - gridSpacing)/(squareSize + gridSpacing));
+			if (totalSquares >= targetTotalSquares) {
+				console.log({closest:closestToFifty, closestSize:bestSquareSize, current:totalSquares, currentSize:squareSize});
+				afterFiftyMet++;
+			}
+			if (Math.abs(targetTotalSquares - totalSquares) < Math.abs(targetTotalSquares - closestToFifty)) {
+				bestSquareSize = squareSize;
+				closestToFifty = totalSquares;
+			}
+		}
+		gridSquareSize = bestSquareSize;
+		gridWidthInSquares = Math.floor((canvas.width - requiredMinPad - requiredMinPad)/(gridSquareSize + gridSpacing));
+		gridPadLeft = canvas.width - (gridWidthInSquares * gridSquareSize) - ((gridWidthInSquares-1) * gridSpacing)
+		gridPadLeft /= 2;
+		gridHeightInSquares = Math.floor((canvas.height - requiredMinPad - requiredMinPad)/(gridSquareSize + gridSpacing));
+		gridPadTop = canvas.height - (gridHeightInSquares * gridSquareSize) - ((gridHeightInSquares-1) * gridSpacing)
+		gridPadTop /= 2;
+		console.log("final: ");
+		console.log({closest:closestToFifty, closestSize:bestSquareSize, width:gridWidthInSquares, height:gridHeightInSquares, padLeft:gridPadLeft, padTop:gridPadTop});
+	}
+}
+
+function resetIntroText() {
+	window.clearTimeout(delayTimeout);
+	nextNumberToTap = -1;
+	setDScaleVars(true, dContext);
+	fillBlack(dContext);
+	fillCenterText(dContext, 'Touch the numbers in order.');
+	fillCenterSubtext(dContext, 'Touch number 1 to begin.');
+}
+
+function setSuccessText() {
+	window.clearTimeout(delayTimeout);
+	setDScaleVars(true, dContext);
+	fillBlack(dContext);
+	fillCenterText(dContext, 'Great!');
+	fillCenterSubtext(dContext, 'Tap anywhere to restart.');
+}
+
+function setFailText() {
+	window.clearTimeout(delayTimeout);
+	setDScaleVars(true, dContext);
+	fillBlack(dContext);
+	fillCenterText(dContext, 'Sorry!');
+	fillCenterSubtext(dContext, 'Tap anywhere to restart.');
+}
+
+function startAfterDelay() {
+	resetIntroText();
+	delayTimeout = window.setTimeout(start, initialPauseBeforeStartMs);
+}
+
+function start() {
+	window.clearTimeout(delayTimeout);
+	closeMenu();
+	gridPositionsUsed = {};
+	nextNumberToTap = 1;
+	startTimeMs = Date.now();
+	fillBlack(dContext);
+	for (var i = rangeLo; i <= rangeHi; i++) {
+		setAndDrawNumber(dContext, i);
+	}
+}
+
+// from https://developer.mozilla.org/en-US/docs/Web/API/Web_Storage_API/Using_the_Web_Storage_API
+function storageAvailable(type) {
+	let storage;
+	try {
+		storage = window[type];
+		const x = '__storage_test__';
+		storage.setItem(x, x);
+		storage.removeItem(x);
+		return true;
+	}
+	catch (e) {
+		return e instanceof DOMException && (
+			// everything except Firefox
+			e.code === 22 ||
+			// Firefox
+			e.code === 1014 ||
+			// test name field too, because code might not be present
+			// everything except Firefox
+			e.name === 'QuotaExceededError' ||
+			// Firefox
+			e.name === 'NS_ERROR_DOM_QUOTA_REACHED') &&
+			// acknowledge QuotaExceededError only if there's something already stored
+			(storage && storage.length !== 0);
+	}
+}
+
+
+function saveResult(wasSuccess, totalCorrect, startMs) {
+	if (!storageAvailable('localStorage')) {
+		console.log("no localStorage available");
+		return;
+	}
+	const gameName = rangeLo + '-' + rangeHi;
+	let gameNames = JSON.parse(localStorage.getItem('games'));
+	if (gameNames == null) {
+		gameNames = [gameName];
+	} else if (gameNames.indexOf(gameName) == -1) {
+		gameNames.push(gameName);
+	}
+	localStorage.setItem('games', JSON.stringify(gameNames));
+
+	let results = JSON.parse(localStorage.getItem(gameName));
+	if (results == null) {
+		results = {overall: {}, byDate: {}};
+	}
+	//const todayDate = new Date().toDateString();
+	const todayDate = new Date().toISOString().substring(0, 10);
+	const elapsedMs = Date.now() - startMs;
+	if (!results.byDate.hasOwnProperty(todayDate)) {
+		results.byDate[todayDate] = [];
+	}
+	results.byDate[todayDate].push({correct: totalCorrect, ms: elapsedMs});
+	localStorage.setItem(gameName, JSON.stringify(results));
+
+	// update the results listing
+	showResults();
+}
+
+function showResults() {
+	if (!storageAvailable('localStorage')) {
+		console.log("no localStorage available");
+		return;
+	}
+	let gameNames = JSON.parse(localStorage.getItem('games'));
+	if (gameNames == null) {
+		return;
+	}
+	const statsPre = document.querySelector('#stats');
+	statsPre.innerHTML = '';
+	for (let i = 0; i < gameNames.length; i++) {
+		let results = JSON.parse(localStorage.getItem(gameNames[i]));
+		if (results == null) {
+			continue;
+		}
+		const gameHi = parseInt(gameNames[i].split('-')[1]);
+		const gameHiF = parseFloat(gameHi);
+		const dates = [];
+		for (date in results.byDate) {
+			dates.push(date);
+		}
+		dates.sort();
+		//const todayDate = new Date().toISOString().substring(0, 10);
+		//dates.splice(0, 0, todayDate);
+		let allGames = 0;
+		let allWins = 0;
+		let allWinSeconds = 0;
+		let allFastest = -1;
+		let allFastestDate = '';
+		let dayCorrect = 0;
+		let allCorrect = 0;
+		//let allCorrectPct = 0;
+		const contentLines = []
+
+		//contentLines.push('\n' + gameNames[i] + ':');
+		for (let j = 0; j < dates.length; j++) {
+			const date = dates[j];
+			let dayGames = results.byDate[date].length;
+			allGames += dayGames;
+			let dayWins = 0;
+			let dayWinSeconds = 0;
+			let gameSeconds;
+			let fastestGame = -1;
+			for (let k = 0; k < dayGames; k++) {
+				gameSeconds = results.byDate[date][k].ms / 1000.0;
+				let correct = results.byDate[date][k].correct;
+				if (correct == gameHi) {
+					dayWins++;
+					dayWinSeconds += gameSeconds;
+					allWins++;
+					allWinSeconds += gameSeconds;
+					if (fastestGame == -1 || gameSeconds < fastestGame) {
+						fastestGame = gameSeconds;
+					}
+					if (allFastest == -1 || gameSeconds < allFastest) {
+						allFastest = gameSeconds;
+						allFastestDate = date;
+					}
+				}
+				dayCorrect += correct;
+				allCorrect += correct;
+				//allCorrectPct += (parseFloat(correct) / gameHiF);
+			}
+			contentLines.push('');
+			contentLines.push(gameNames[i] + ' games on ' + date + ':');
+			contentLines.push('         games: ' + dayGames + '');
+			contentLines.push('          wins: ' + dayWins + " (" + Math.round(dayWins * 100.0 / dayGames) + '%)');
+			contentLines.push('avg. # correct: ' + (Math.round((dayCorrect * 100) / dayGames) / 100.0));
+			if (dayWins > 0) {
+				contentLines.push(' seconds / win: ' + (Math.round(dayWinSeconds * 100.0 / dayWins) / 100.0) + 's');
+				contentLines.push('   fastest win: ' + (Math.round(fastestGame * 100.0) / 100.0) + 's');
+			} else {
+				contentLines.push(' seconds / win: --');
+				contentLines.push('   fastest win: --');
+			}
+		}
+		const overallLines = []
+		overallLines.push('');
+		overallLines.push('overall for ' + gameNames[i] + ':');
+		overallLines.push('         games: ' + allGames + '');
+		overallLines.push('          wins: ' + allWins + " (" + Math.round(allWins * 100.0 / allGames) + '%)');
+		//overallLines.push('avg. % correct: ' + (Math.round((allCorrectPct * 10000) / allGames) / 100.0));
+		overallLines.push('avg. # correct: ' + (Math.round((allCorrect * 100) / allGames) / 100.0));
+		if (allWins > 0) {
+			overallLines.push(' seconds / win: ' + (Math.round(allWinSeconds * 100.0 / allWins) / 100.0) + 's');
+			overallLines.push('   fastest win: ' + (Math.round(allFastest * 100.0) / 100.0) + 's (on ' + allFastestDate + ')');
+		} else {
+			overallLines.push(' seconds / win: --');
+			overallLines.push('   fastest win: --');
+		}
+		statsPre.innerHTML += overallLines.join('\n') + '\n' + contentLines.join('\n') + '\n\n=========================================';
+	}
+}
+
+document.getElementById('reset').addEventListener("click", function(e) {
+	start();
+}, true);
+
+dCanvas.addEventListener("click", function(e) {
+	if (menuIsOpen) {
+		return;
+	}
+	// dismiss the intro text and start immediately
+	if (nextNumberToTap == -1) {
+		window.clearTimeout(delayTimeout);
+		start();
+		return;
+	} else if (nextNumberToTap > rangeHi) {
+		return;
+	}
+	// see which number was tapped, if any
+	const x = e.pageX;
+	const y = e.pageY;
+	let numberTapped = -1;
+	for (k in gridPositionsUsed) {
+		numObj = gridPositionsUsed[k];
+		if (	numObj.xMin > x || numObj.xMax < x ||
+				numObj.yMin > y || numObj.yMax < y ||
+				numObj.n < nextNumberToTap) {
+			continue;
+		}
+		numberTapped = numObj.n;
+		break;
+	}
+	// do nothing if no number tapped
+	if (numberTapped == -1) {
+		return;
+	}
+	// do nothing if 1 has not been tapped yet
+	if (numberTapped > 1 && nextNumberToTap == 1) {
+		return;
+	}
+	// if the correct number was tapped...
+	if (numberTapped == nextNumberToTap) {
+		nextNumberToTap++;
+		if (nextNumberToTap <= rangeHi) {
+			drawAllRemainingNumbers(dContext);
+		} else {
+			saveResult(true, rangeHi, startTimeMs);
+			nextNumberToTap = -1;
+			setSuccessText();
+		}
+	// if the wrong number was tapped
+	} else {
+		saveResult(false, nextNumberToTap - 1, startTimeMs);
+		nextNumberToTap = -1;
+		setFailText();
+		buzzerAudio.play();
+	}
+}, true);
+
+document.getElementById('menu-open').addEventListener("click", function(e) {
+	openMenu();
+}, true);
+
+document.getElementById('menu-close').addEventListener("click", function(e) {
+	closeMenu();
+}, true);
+
+document.querySelector('#rangeHi').addEventListener("change", function(e) {
+	const newMax = parseInt(e.target.value);
+	if (isNaN(newMax)) {
+		return;
+	}
+	rangeHi = Math.min(Math.max(newMax, 2), 100);
+	setDScaleVars(true, dContext);
+});
+
+showResults();
+startAfterDelay();
+
+	</script>
+  </body>
+</html>
