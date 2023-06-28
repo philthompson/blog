@@ -1,0 +1,17 @@
+
+# render already uploaded!
+thumb:https://philthompson.me/s/img/2023/Stars-and-Stripes-2023-1280x720.jpg
+title:"Stars and Stripes 2023" by me
+
+desc:In this image, we have 5-sided "stars" and bold red, white, and blue "stripes" created with Stripe Average Coloring.  Happy 4th of July!
+
+params:?plot=Mandelbrot-set&v=5&n=1776&mag=1.1e2&centerX=4.53356524534e-1&centerY=3.48110803291e-1&gradient=rwbrwb-mod70000&bgColor=w&smooth=on-show&algo=basic-stripes-stripedensity4-float
+
+re:0.453356524534
+im:0.348110803291
+mag:1.1e2
+scale:1.32e5
+iterations:1776
+
+# render already uploaded!
+render01:https://philthompson.me/s/img/2023/Stars-and-Stripes-2023-3200x1800.png
