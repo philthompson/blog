@@ -33,7 +33,8 @@ cat > "${NFL_ELO_STATIC_DIR}/index.html" << xxxxxEOFxxxxx
 </html>
 xxxxxEOFxxxxx
 
-seq 2023 ${FINAL_YEAR} | while read YEAR
+echo "running:"
+seq 2022 ${FINAL_YEAR} | while read YEAR
 do
 	STOP_ARG=""
 	if [ "${YEAR}" == "${FINAL_YEAR}" ]
@@ -46,6 +47,7 @@ do
 	#   entire year
 	# STOP_ARG is not quoted here, because it's only
 	#   included for the final year
+	echo "python3 \"${NFL_ELO_DIR}/outputYearMarkdown.py\" 2013 \"${YEAR}\" $STOP_ARG"
 	python3 "${NFL_ELO_DIR}/outputYearMarkdown.py" 2013 "${YEAR}" $STOP_ARG > "${NFL_ELO_STATIC_DIR}/${YEAR}.md"
 
 	if [ $? -ne 0 ]
@@ -53,4 +55,4 @@ do
 		exit
 	fi
 done
-
+echo "done"
