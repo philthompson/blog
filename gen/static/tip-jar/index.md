@@ -7,9 +7,19 @@
 
 [//]: # (gen-meta-end)
 
-Web hosting isn't free, and I spend an inordinate amount of time working on things to post on this site.  Any tip or donation would be received with tremendous gratitude.  I am interested in cryptocurrencies so I have published some addresses here.  If you are a user/proponent of some other cryptocurrency not listed here, let me know and I'll provide an address. 
+Web hosting isn't free, and I spend an inordinate amount of time working on things to post on this site.  Any tip or donation would be received with tremendous gratitude.  I am interested in cryptocurrencies so I have published some addresses here.  If you are a user/proponent of some other cryptocurrency not listed here, let me know and I'll provide an address.  Otherwise, you can buy me a coffee:
 
-<details open style="text-align: center; cursor:pointer">
+<details open style="text-align: center">
+	<summary>Buy Me A Coffee</summary>
+	<p>
+		<a style="height:3rem; background-color:rgb(255, 221, 0); padding:0.8rem; text-align:center; border-radius:0.7rem; text-decoration:none; color:black; font-size:1.3rem;" target="_blank" href="https://www.buymeacoffee.com/philthompson.me">☕️ Buy Me A Coffee</a>
+	</p>
+	<a target="_blank" href="https://www.buymeacoffee.com/philthompson.me">
+		<img style="padding:0; border:5px solid white;" class="width-resp-25-40 center-block" src="buymeacoffee-qr.png" title="buymeacoffee.com" alt="https://www.buymeacoffee.com/philthompson.me"/>
+	</a>
+</details>
+
+<details style="text-align: center; cursor:pointer">
 	<summary>Bitcoin Cash (BCH)</summary>
 	<p>Please make sure only your intended QR code is visible.<br/>ONLY send BCH to this address.</p>
 	<img style="" class="width-resp-25-40 center-block" src="BCH-tips.png" title="BCH Tip Address" alt="BCH Tip Address bitcoincash:qqagtltdz83nsk59dqmvyy90sz6x073d9u5kmvwz8h"/>
