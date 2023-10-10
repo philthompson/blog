@@ -47,8 +47,8 @@ do
 	#   entire year
 	# STOP_ARG is not quoted here, because it's only
 	#   included for the final year
-	echo "python3 \"${NFL_ELO_DIR}/outputYearMarkdown.py\" 2013 \"${YEAR}\" $STOP_ARG"
-	python3 "${NFL_ELO_DIR}/outputYearMarkdown.py" 2013 "${YEAR}" $STOP_ARG > "${NFL_ELO_STATIC_DIR}/${YEAR}.md"
+	echo "python3 \"${NFL_ELO_DIR}/outputYearMarkdown.py\" 2011 \"${YEAR}\" $STOP_ARG"
+	python3 "${NFL_ELO_DIR}/outputYearMarkdown.py" 2011 "${YEAR}" $STOP_ARG > "${NFL_ELO_STATIC_DIR}/${YEAR}.md"
 
 	if [ $? -ne 0 ]
 	then
