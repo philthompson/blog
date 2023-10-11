@@ -68,6 +68,10 @@ PGP
 Portfolio
 ---------
 
+* <a target="_blank" href="${SITE_ROOT_REL}/nfl-elo/">NFL Elo Power Rankings</a>, 2023
+ * written in Python
+ * parses Wikipedia data, calculates Elo ratings, and outputs the above linked page
+ * test harness for adjusting Elo rating model parameters, which backtests the model on several years' worth of NFL games (more than 10 full seasons at the time of writing)
 * <a target="_blank" href="${SITE_ROOT_REL}/misc/smarter-than-a-chimp/">"Smarter than a Chimp" game</a>, 2023
  * a simple JavaScript canvas-based memory game
  * the source code is available in its <a target="_blank" href="https://github.com/philthompson/smarter-than-chimp">GitHub repository</a>
