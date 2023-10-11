@@ -54,5 +54,14 @@ do
 	then
 		exit
 	fi
+
+	# generate the 2023-only.html page
+	echo "python3 \"${NFL_ELO_DIR}/outputYearMarkdown.py\" \"${YEAR}\" \"${YEAR}\" $STOP_ARG"
+	python3 "${NFL_ELO_DIR}/outputYearMarkdown.py" "${YEAR}" "${YEAR}" $STOP_ARG > "${NFL_ELO_STATIC_DIR}/${YEAR}-only.md"
+
+	if [ $? -ne 0 ]
+	then
+		exit
+	fi
 done
 echo "done"
