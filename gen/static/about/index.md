@@ -72,6 +72,11 @@ Portfolio
  * written in Python
  * parses Wikipedia data, calculates Elo ratings, and outputs the above linked page
  * test harness for adjusting Elo rating model parameters, which backtests the model on several years' worth of NFL games (more than 10 full seasons at the time of writing)
+* <a target="_blank" href="${SITE_ROOT_REL}/2023/Partial-String-Match-for-Birds.html">Partial String Match for Birds</a>, 2023
+ * tested out algorithms for finding partial string matches of bird species names
+ * I found my algorithm to work well enough, and to run fast enough, for use in smartphone apps (this would fix a gripe I have with the otherwise perfect eBird app)
+ * implemented the algorithm in JavaScript, and published pages for testing and running the algorithms
+ * in the above linked post, I outlined the steps taken to develop the algorithm
 * <a target="_blank" href="${SITE_ROOT_REL}/misc/smarter-than-a-chimp/">"Smarter than a Chimp" game</a>, 2023
  * a simple JavaScript canvas-based memory game
  * the source code is available in its <a target="_blank" href="https://github.com/philthompson/smarter-than-chimp">GitHub repository</a>
