@@ -21,7 +21,8 @@ then
 	exit
 fi
 
-FINAL_YEAR="`date +%Y`"
+# 3 months ago, which means in the playoffs we'll still get the correct season year
+FINAL_YEAR="`date -j -v-3m +%Y`"
 
 # output redirect page that points to current year page
 cat > "${NFL_ELO_STATIC_DIR}/index.html" << xxxxxEOFxxxxx
