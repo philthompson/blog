@@ -161,7 +161,7 @@ cat << xxxxxEOFxxxxx
 	<!-- <a> element is temporary during NFL season, and next <a>'s <div> has margin-top:1.0rem -->
 	<a href="${SITE_ROOT_REL}/nfl-elo/2023.html" style="text-decoration:none">
 		<div class="container" style="margin-bottom: 0rem; text-align: center; background-color:rgba(150,150,150,0.1); padding:1rem; overflow:hidden; border-radius: 0.3rem;">
-			🏈 2023 Pro Football Elo Power Rankings 🏈
+			🏈 2023 NFL Elo Power Rankings 🏈
 		</div>
 	</a>
 	<a href="${GALLERY_PAGE_REL}" style="text-decoration:none">
