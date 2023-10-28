@@ -1,0 +1,15 @@
+
+thumb:https://philthompson.me/s/img/2023/Halloween-2023-1280x720.jpg
+title:"Halloween 2023" by me
+
+desc:I saw this spider web while working on Stripe Average Coloring earlier this year.  Halloween colors and orange minibrots add to the fun.  To get orange minibrots, open your browser's JavaScript console and enter "bgColorSchemes['w'] = 'rgba(166,74,19,0)';" and cycle the minibrot/background color with the "b" key.
+
+params:?plot=Mandelbrot-set&v=5&n=25000&mag=1.9e6&centerX=-1.9408510363187962822e0&centerY=-6.7213130677203846807e-4&gradient=rBGrBGwBPGBG-G.2a5726-P.5320a4-P.36146b-r.6b310b-mod30000-offset700&bgColor=w&smooth=on-show&algo=auto-stripes
+
+re:-1.9408510363187962822
+im:-0.00067213130677203846807
+mag:1.9e6
+scale:4.56e9
+iterations:25,000
+
+render01:https://philthompson.me/s/img/2023/Halloween-2023-3200x1800.png
