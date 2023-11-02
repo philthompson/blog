@@ -80,6 +80,12 @@ Portfolio
 * <a target="_blank" href="${SITE_ROOT_REL}/misc/smarter-than-a-chimp/">"Smarter than a Chimp" game</a>, 2023
  * a simple JavaScript canvas-based memory game
  * the source code is available in its <a target="_blank" href="https://github.com/philthompson/smarter-than-chimp">GitHub repository</a>
+* <a target="_blank" href="${SITE_ROOT_REL}/2023/Faster-Mandelbrot-Set-Rendering-with-BLA-Bivariate-Linear-Approximation.html">Calculating the Mandelbrot set with BLA: Bivariate Linear Approximation</a>, 2023
+ * a JavaScript implementation of BLA for Very Plotter, my web Mandelbrot set viewer
+ * this was the cutting-edge Mandelbrot set approach, as of May 2023, which was developed by others (see <a target="_blank" href="https://fractalforums.org/index.php?topic=4360.30">the discussion at fractalforums.org</a>) starting at least as far back as 2021
+* <a target="_blank" href="${SITE_ROOT_REL}/2022/Advent-of-Code-2022.html">Advent of Code</a>, 2022
+ * solved nearly entirely by myself, with python 3, after nearly a month of concentrated effort
+ * my code is available <a target="_blank" href="https://github.com/philthompson/advent-of-code/tree/master/2022">on GitHub</a>
 * <a target="_blank" href="${SITE_ROOT_REL}/2022/Birds-Favorites-Pages.html">birds "year in review" and favorites pages</a>, 2022
  * created by writing photo metadata into a SQLite database, and then running queries and writing static pages, all with python 3
 * photography <a target="_blank" href="${SITE_ROOT_REL}/gallery">gallery</a> pages, 2021
