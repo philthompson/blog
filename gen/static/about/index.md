@@ -109,9 +109,10 @@ Portfolio
  * the source code is available in its <a target="_blank" href="https://github.com/philthompson/blog">GitHub repository</a>
 * <a target="_blank" href="${SITE_ROOT_REL}/screensavejs/">screensavejs</a> (interactive, 2018) / <a target="_blank" href="https://harvey.dog">harvey.dog</a> (non-interactive, 2016)
  * a JavaScript page that paints a blurry rendition of any image file
-* <a target="_blank" href="https://jsfiddle.net/b8w1coga/">Javascript toy: black & white box</a>, 2015
+* <a target="_blank" href="${SITE_ROOT_REL}/misc/black-and-white/">Javascript toy: black & white box</a>, 2015
  * finds a box (many are possible) describing the percentage of black and white pixels, where the text itself is counted
  * inspired by the xkcd #688 <a target="_blank" href="https://xkcd.com/688/">Self-Description</a>
+ * also available for fiddling with at <a target="_blank" href="https://jsfiddle.net/b8w1coga/">jsfiddle</a>
 
 Other Links
 ---------
