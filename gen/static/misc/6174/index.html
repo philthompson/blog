@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>6174 &mdash; philthompson.me</title>
+  </head>
+  <body style="padding:2.0rem;">
+  <h1>6174</h1>
+  <p>Enter a 4-digit number.  (See <a target="_blank" href="https://www.youtube.com/watch?v=d8TRcZklX_Q">Numberphile on YouTube</a>, and <a href="./n.html">the <i>n</i>-6174 page</a>.)</p>
+  <input type="number" id="i" /><br/>
+  <div id="p" style="font-family:monospace; margin-top:1.0rem;"></div>
+  <script type="text/javascript">
+
+var p = document.getElementById('p');
+var i = document.getElementById('i');
+
+var next = function(digitStr, iter) {
+  if (iter > 100) {
+    p.innerHTML += "<br/>stopping after 100 iterations<br/>";
+    return;
+  } else {
+    p.innerHTML += "<span style=\"opacity:0.4;\">" + (iter+1) + "</span><br/>";
+  }
+  while (digitStr.length < 4) {
+    digitStr = '0' + digitStr;
+  }
+  let d = [];
+  d[0] = parseInt(digitStr[0]);
+  d[1] = parseInt(digitStr[1]);
+  d[2] = parseInt(digitStr[2]);
+  d[3] = parseInt(digitStr[3]);
+  d.sort();
+  let rev = parseInt(d.join(""));
+  d.reverse();
+  let sor = parseInt(d.join(""));
+  let dif = sor - rev;
+  p.innerHTML += sor + " <-- sort digits<br/>";
+  if (rev < 10) {
+    p.innerHTML += "000";
+  } else if (rev < 100) {
+    p.innerHTML += "00";
+  } else if (rev < 1000) {
+    p.innerHTML += "0";
+  }
+  p.innerHTML += rev + " <-- reverse<br/>";
+  p.innerHTML += "----<br/>";
+  if (dif < 10) {
+    p.innerHTML += "000";
+  } else if (dif < 100) {
+    p.innerHTML += "00";
+  } else if (dif < 1000) {
+    p.innerHTML += "0";
+  }
+  p.innerHTML += dif + " <-- subtract <br/>";
+	if (dif == 6174) {
+    return;
+  }
+  p.innerHTML += "<br/>";
+  next(dif.toString(), iter + 1);
+};
+
+var start = function() {
+  p.innerHTML = "";
+  let s = i.value.replace(/[^0-9]*/g, '');
+  if (s.length == 0 || s.length > 4) {
+    p.innerHTML = "enter a number from 1-9998 using at least 2 different digits";
+    return;
+  }
+  if (s.length === 4 && s[0] === s[1] && s[1] === s[2] && s[2] === s[3]) {
+    p.innerHTML = "enter a number from 1-9998 using at least 2 different digits";
+    return;
+  }
+  let n = parseInt(s);
+  if (n <= 0 || n > 9998) {
+    p.innerHTML = "enter a number from 1-9998 using at least 2 different digits";
+  } else if (n >= 1 && n <= 9998) {
+    while (s.length < 4) {
+      s = '0' + s;
+    }
+    p.innerHTML = s + " <-- input<br/><br/>";
+	  next(s, 0);
+  }
+};
+
+i.addEventListener("input", start);
+if (i.value.length > 0) {
+  start();
+}
+
+  </script>
+  </body>
+</html>
