@@ -7,7 +7,7 @@
 
 [//]: # (gen-meta-end)
 
-Web hosting isn't free, and I spend an inordinate amount of time working on things to post on this site.  Any tip or donation would be received with tremendous gratitude.  I am interested in cryptocurrencies so I have published some addresses here.  If you are a user/proponent of some other cryptocurrency not listed here, let me know and I'll provide an address.  Otherwise, you can buy me a coffee:
+Web hosting isn't free, and I spend an inordinate amount of time working on things to post on this site.  This site is not monetized in any way with ads or user tracking.  Any tip or donation would be received with tremendous gratitude.  I am interested in cryptocurrencies so I have published some addresses here.  If you are a user/proponent of some other cryptocurrency not listed here, let me know and I'll provide an address.  Otherwise, you can buy me a coffee.  Thanks!
 
 <details open style="text-align: center">
 	<summary>Buy Me A Coffee</summary>
