@@ -11,6 +11,11 @@ This is a "cheat sheet" style collection of bash and other snippets, mainly for 
 
 ## General / Local System Administration
 
+#### side-by-side diff with color
+
+	# works on MacOS
+	$ diff --side-by-side --color=always <file1> <file2> | less -R
+
 #### find common/different lines in two files
 
 	# show only lines in file2 that are not in file1
