@@ -59,11 +59,6 @@ cat << xxxxxEOFxxxxx
 						</a>
 					</li>
 					<li class="nav-item" style="padding-right: 0;">
-						<a href="${SITE_ROOT_REL}/feed.xml" target="_self" class="icon" title="RSS Feed">
-							<img src="${SITE_ROOT_REL}/img/rss-github-gray.png">
-						</a>
-					</li>
-					<li class="nav-item" style="padding-right: 0; padding-left: 0;">
 						<a href="${SITE_ROOT_REL}/tip-jar/" target="_self" class="icon" title="Tip Jar">
 							<img src="${SITE_ROOT_REL}/img/donate-gray.png">
 						</a>

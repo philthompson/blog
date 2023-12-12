@@ -24,7 +24,9 @@ cat << xxxxxEOFxxxxx
 						&#x2027;
 						<a href="${SITE_ROOT_REL}/tip-jar">Tip Jar</a>
 						&#x2027;
-						<a href="${SITE_ROOT_REL}/feed.xml">RSS</a>
+						<a href="${SITE_ROOT_REL}/feed.xml">
+							<img style="height:1.2rem; position:relative; top:0.3rem; padding:inherit;" src="${SITE_ROOT_REL}/img/rss-github-gray.png">RSS
+						</a>
 					</p>
 				</div>
 			</footer>
