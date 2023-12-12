@@ -93,7 +93,13 @@ header .logo {
 }
 
 header .logo img {
-	height: 5rem;
+	height: 4rem;
+}
+
+@media screen and (min-width: 43rem) {
+	header .logo img {
+		height: 5rem;
+	}
 }
 
 header .icon img {
