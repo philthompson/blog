@@ -562,6 +562,7 @@ ${GALLERY_PAGE_CONTENT_TMP}"
 	# embed newlines directly into variables
 	GALLERY_PAGE_CONTENT_TMP="<div class=\"btns\" style=\"margin:0\">
     ${PREV_BUTTON}
+    <a class="btn" href="${SITE_ROOT_REL}/photo-galleries.html">All Galleries</a>
     ${NEXT_BUTTON}
 </div>"
 	GALLERY_PAGE_CONTENT="${GALLERY_PAGE_CONTENT}

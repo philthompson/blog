@@ -170,9 +170,23 @@ These photos are © {year} Phil Thompson, all rights reserved.
 		padding: 0.7rem 0 0.7rem 0;
 	}}
 	details summary img {{
-		border: 0.7rem solid white;
+		border: 0.2rem solid white;
 		padding: 0;
-		margin: 0;
+		margin: 0 0 0 -0.2rem;
+	}}
+	@media screen and (min-width: 32rem) {{
+		details summary img {{
+			border: 0.4rem solid white;
+			padding: 0;
+			margin: 0 0 0 -0.4rem;
+		}}
+	}}
+	@media screen and (min-width: 63rem) {{
+		details summary img {{
+			border: 0.7rem solid white;
+			padding: 0;
+			margin: 0;
+		}}
 	}}
 	<!-- thanks to https://stackoverflow.com/a/38215801/259456 for the animation idea -->
 	details[open] {{
