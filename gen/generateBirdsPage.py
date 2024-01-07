@@ -499,7 +499,11 @@ def print_header():
 				margin-bottom: 0.25rem;
 			}}
 		</style>
-		
+
+		<div class="btns" style="margin:0 0 2rem 0">
+			<a class="btn" href="../photo-galleries.html">All Galleries</a>
+		</div>
+
 		## {title}
 		""".format(title=title, description=description, title_pronoun=title_pronoun, title_year=title_year, title_location=title_location, title_sort=title_sort)))
 
@@ -661,19 +665,6 @@ def main_stuff(conn):
 		print(inspect.cleandoc('''
 			<p>These are my favorite photos of {year}.  The photos are
 			arranged here in date order.  Click the photo to enlarge.</p>
-			<p>Available birds pages:
-				<a href="${{SITE_ROOT_REL}}/birds/">All Birds</a>,
-				<a href="${{SITE_ROOT_REL}}/birds/home.html">All Yard Birds</a>,
-				<a href="${{SITE_ROOT_REL}}/birds/2021.html">2021 Birds</a>,
-				<a href="${{SITE_ROOT_REL}}/birds/2022.html">2022 Birds</a>,
-				<a href="${{SITE_ROOT_REL}}/birds/2023.html">2023 Birds</a>,
-				<a href="${{SITE_ROOT_REL}}/birds/favorites-2021.html">2021 Favorites</a>,
-				<a href="${{SITE_ROOT_REL}}/birds/favorites-2022.html">2022 Favorites</a>,
-				<a href="${{SITE_ROOT_REL}}/birds/favorites-2023.html">2023 Favorites</a>,
-				<a href="${{SITE_ROOT_REL}}/birds/home-2021.html">2021 Yard Birds</a>,
-				<a href="${{SITE_ROOT_REL}}/birds/home-2022.html">2022 Yard Birds</a>,
-				<a href="${{SITE_ROOT_REL}}/birds/home-2023.html">2023 Yard Birds</a>
-			</p>
 			<p>All these and other bird photos are published to my gallery pages.  See the <a href="${{SITE_ROOT_REL}}/gallery/">latest gallery page</a>.</p>
 			<p>These photos are © {year} Phil Thompson, all rights reserved.</p>
 			'''.format(year=plain_year)))
@@ -723,19 +714,6 @@ def main_stuff(conn):
 		<p>Click images to see my first, last, and best photos of each species.  The birds are
 		arranged here in order of when I first photographed them.</p>
 		<p>These are my "keeper" and first images of these species photographed {year_range}.</p>
-		<p>Available birds pages:
-			<a href="${{SITE_ROOT_REL}}/birds/">All Birds</a>,
-			<a href="${{SITE_ROOT_REL}}/birds/home.html">All Yard Birds</a>,
-			<a href="${{SITE_ROOT_REL}}/birds/2021.html">2021 Birds</a>,
-			<a href="${{SITE_ROOT_REL}}/birds/2022.html">2022 Birds</a>,
-			<a href="${{SITE_ROOT_REL}}/birds/2023.html">2023 Birds</a>,
-			<a href="${{SITE_ROOT_REL}}/birds/favorites-2021.html">2021 Favorites</a>,
-			<a href="${{SITE_ROOT_REL}}/birds/favorites-2022.html">2022 Favorites</a>,
-			<a href="${{SITE_ROOT_REL}}/birds/favorites-2023.html">2023 Favorites</a>,
-			<a href="${{SITE_ROOT_REL}}/birds/home-2021.html">2021 Yard Birds</a>,
-			<a href="${{SITE_ROOT_REL}}/birds/home-2022.html">2022 Yard Birds</a>,
-			<a href="${{SITE_ROOT_REL}}/birds/home-2023.html">2023 Yard Birds</a>
-		</p>
 		<p>All these and other bird photos are published to my gallery pages.  See the <a href="${{SITE_ROOT_REL}}/gallery/">latest gallery page</a>.</p>
 		<p>These photos are © {year_range_num} Phil Thompson, all rights reserved.</p>
 		'''.format(year_range=year_range, year_range_num=year_range.split(' ')[1])))

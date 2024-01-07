@@ -9,6 +9,8 @@ gen/exiftool
 gen/static/gallery-img/*/hashes-*.db
 gen/static/mandelbrot-gallery/**/*.md
 gen/static/birds/*.md
+gen/static/photo-galleries.md
+gen/static/photos/*.md
 gen/loc_names_locations.csv
 graphics/
 python-venv/

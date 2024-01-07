@@ -93,6 +93,7 @@ generateHashSigInfo() {
 cat << xxxxxEOFxxxxx
 <div class="btns" style="margin:0 0 2rem 0">
 	${PREV_BUTTON}
+	<a class="btn" href="${SITE_ROOT_REL}/photo-galleries.html">All Galleries</a>
 	${NEXT_BUTTON}
 </div>
 <div class="">

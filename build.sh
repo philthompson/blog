@@ -800,6 +800,9 @@ ${MANDELBROT_IMG_HTML}"
 
 done <<< "${MANDELBROT_GALLERY_YEAR_DIRS}"
 
+# generate photo galleries directory page
+python3 "${GEN_DIR}/generatePhotoDirectory.py" '.'
+
 #tmp comment out to find double quote syntax error
 # render markdown files in their static locations, and add their headers and footers
 while read PAGE_MARKDOWN_FILE
