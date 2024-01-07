@@ -34,7 +34,7 @@ sections = {
 			{ 'title': "At my Oregon Home", 'patt': re.compile('home-2[0-9]{3}\.md'), 'nonpatt': ["home.md"] }
 		]
 	},
-	"All Other Photos": {
+	"All Other Favorites by Year": {
 		"dir": "photos",
 		"rename": {
 		}
