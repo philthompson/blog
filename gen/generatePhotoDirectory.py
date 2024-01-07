@@ -57,10 +57,32 @@ directory_md_buf.write(f"""
 
 [//]: # (gen-meta-end)
 
+<style>
+	div.wrap-wider-child img {{
+		border: 0.2rem solid white;
+		padding: 0;
+		margin: 0 0 0 -0.2rem;
+	}}
+	@media screen and (min-width: 32rem) {{
+		div.wrap-wider-child img {{
+			border: 0.4rem solid white;
+			padding: 0;
+			margin: 0 0 0 -0.4rem;
+		}}
+	}}
+	@media screen and (min-width: 63rem) {{
+		div.wrap-wider-child img {{
+			border: 0.7rem solid white;
+			padding: 0;
+			margin: 0;
+		}}
+	}}
+</style>
+
 # Photo Galleries
 
 <div class="wrap-wider-child">
-	<img class="width-100" style="border: 0.7rem solid white; padding: 0; margin: 0;" src="{SITE_ROOT_REL}/s/img/2022/2022-09-01-193511-19-R6PT0790-photoshop-biggerthumb-sm.jpg"/>
+	<img class="width-100" src="{SITE_ROOT_REL}/s/img/2022/2022-09-01-193511-19-R6PT0790-photoshop-biggerthumb-sm.jpg"/>
 </div>
 
 ## Latest
