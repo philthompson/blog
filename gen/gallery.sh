@@ -122,7 +122,7 @@ cat << xxxxxEOFxxxxx
 			This blog post</a> has more details.
 		</p>
 		<p class="article-info"><a target="_blank" href="https://blockchair.com/bitcoin-cash/transaction/${SHOOT_BCH_TXID}">view the BCH tx on blockchair.com: ${SHOOT_BCH_TXID}</a></p>
-		<p class="article-info"><a target="_blank" href="https://algoexplorer.io/tx/${SHOOT_ALGO_TXID}">view the ALGO tx on algoexplorer.io: ${SHOOT_ALGO_TXID}</a></p>
+		<p class="article-info"><a target="_blank" href="https://explorer.perawallet.app/tx/${SHOOT_ALGO_TXID}/">view the ALGO tx on explorer.perawallet.app: ${SHOOT_ALGO_TXID}</a></p>
 xxxxxEOFxxxxx
 else
 cat << xxxxxEOFxxxxx
