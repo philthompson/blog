@@ -77,6 +77,9 @@ photos_data = {
 		{'url': '2023-11-13-085734-01-R6PT5484-sm.jpg',          'desc': 'Oregon, USA' },
 		{'url': '2023-12-16-135607-02-R6PT7245-Photoshop-sm.jpg','desc': 'Oregon, USA' },
 		{'url': '2023-12-22-123840-22-R6PT7677-Pano-sm.jpg',     'desc': 'Oregon, USA' }
+	],
+	2024: [
+		{'url': '2024-01-29-143254-00-R6PT0436-Enhanced-NR-16x9-sm.jpg', 'desc': 'Oregon, USA' }
 	]
 }
 
