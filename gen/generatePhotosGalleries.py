@@ -79,7 +79,12 @@ photos_data = {
 		{'url': '2023-12-22-123840-22-R6PT7677-Pano-sm.jpg',     'desc': 'Oregon, USA' }
 	],
 	2024: [
-		{'url': '2024-01-29-143254-00-R6PT0436-Enhanced-NR-16x9-sm.jpg', 'desc': 'Oregon, USA' }
+		{'url': '2024-01-29-143254-00-R6PT0436-Enhanced-NR-16x9-sm.jpg', 'desc': 'Oregon, USA' },
+		{'url': '2024-02-18-173517-42-R6PT1363-Photoshop-sm.jpg',        'desc': 'Oregon, USA' },
+		{'url': '2024-02-18-173456-60-R6PT1358-sm.jpg',                  'desc': 'Oregon, USA' },
+		{'url': '2024-02-18-105324-56-R6PT1255-sm.jpg',                  'desc': 'Oregon, USA' },
+		{'url': '2024-02-18-105333-33-R6PT1264-sm.jpg',                  'desc': 'Oregon, USA' },
+		{'url': '2024-02-18-105333-84-R6PT1268-sm.jpg',                  'desc': 'Oregon, USA' }
 	]
 }
 
