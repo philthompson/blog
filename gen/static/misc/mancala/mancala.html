@@ -318,7 +318,12 @@ function draw() {
 					// if the last seed is placed in the player's bank, that
 					//   player gets another turn
 					if (destPit.isBank) {
-						currentState = WAITING_FOR_PLAYER;
+						// switch player here, then immediately switch again
+						//   in playerTurnIsOver() -- this is needed in case
+						//   the player ends in their bank but has no remaining
+						//   seeds (playerTurnIsOver() will end the game)
+						currentPlayerTurn = currentPlayerTurn ^ 1;
+						playerTurnIsOver();
 					} else if (destPit.seeds.length === 1) {
 						capturedPits = [destPit];
 						const rightHandBankIndex = pitsPerSide + 1;
