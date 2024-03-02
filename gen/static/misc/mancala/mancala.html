@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<!--
+written by Phil Thompson on 2024-02-28
+-->
+<html>
+	<head>
+		<script src="../p5-v1.9.0.min.js"></script>
+		<script>
+const dispWidth = 1000;
+const dispHeight = dispWidth * .4;
+const roundRectRadius = dispWidth * .05;
+const padding = 22;
+const pitsPerSide = 6;
+const pitWidth = (dispWidth - (padding * (pitsPerSide + 2 + 1))) / (pitsPerSide + 2);
+const pitHeight = (dispHeight - (padding * 3)) / 2;
+const seedSize = 16;
+let boardColor;
+let pitColors = [];
+let seedColors = [];
+let seedColor;
+let seedsInHand = [];
+let destinationPitIndexes = [];
+
+const WAITING_FOR_PLAYER = 0;
+const PIECES_MOVING_FROM_HAND = 1;
+const PIECES_MOVING_TO_BANK = 2;
+let currentPlayerTurn = 0;
+let currentState = WAITING_FOR_PLAYER;
+let movingSeed = null;
+
+const INITIAL_SEEDS_IN_PIT = 4;
+const pits = [];
+let capturedPits = [];
+
+let fpsParagraph;
+let fpsLastTime = 0;
+const ANIMATION_FPS = 42;
+const STILL_FPS = 1;
+
+class SeedMovement {
+	constructor(startPos, endPos, seed, destinationPitIndex) {
+		this.seed = seed;
+		this.startPos = startPos;
+		this.endPos = endPos;
+		this.destinationPitIndex = destinationPitIndex;
+		this.fracComplete = 0.0;
+		// take about 1/4 second to reach the end position
+		this.fracStep = 4.0 / frameRate();
+	}
+
+	updateAndDraw() {
+		fill(this.seed.color);
+		this.fracComplete += this.fracStep;
+		if (this.fracComplete > 1.0) {
+			this.fracComplete = 1.0;
+		}
+		circle(lerp(this.startPos.x, this.endPos.x, this.fracComplete), lerp(this.startPos.y, this.endPos.y, this.fracComplete), seedSize);
+		return this.fracComplete == 1.0;
+	}
+}
+
+class Seed {
+	constructor(color) {
+		this.color = color;
+	}
+}
+
+class Pit {
+	constructor(x, y, width, height, seedCount, doSquareArrangement, playerIndex, isBank, index) {
+		this.x = x;
+		this.y = y;
+		this.width = width;
+		this.height = height;
+		this.midX = this.x + (this.width / 2);
+		this.midY = this.y + (this.height / 2);
+		this.seeds = [];
+		for (let i = 0; i < seedCount; i++) {
+			this.seeds.push(new Seed(seedColors[playerIndex]));
+		}
+		this.doSquareArrangement = doSquareArrangement;
+		this.playerIndex = playerIndex;
+		this.isBank = isBank;
+		this.index = index;
+	}
+
+	drawSeedCount() {
+		//fill(pitColors[this.playerIndex]);
+		//stroke(220,220,220);
+		//strokeWeight(4);
+		//fill(boardColor);
+		fill(seedColors[this.playerIndex]);
+		noStroke();
+		textFont('Helvetica');
+		textSize(dispWidth * 0.04);
+		textAlign(CENTER, CENTER);
+		text(this.seeds.length, this.midX, this.y + this.height - 24);
+	}
+
+	draw() {
+		if (currentPlayerTurn == this.playerIndex) {
+			stroke(200,200,200);
+			strokeWeight(5);
+		} else {
+			noStroke();
+		}
+		fill(pitColors[this.playerIndex]);
+		rect(this.x, this.y, this.width, this.height, roundRectRadius);
+		noStroke();
+		fill(seedColor);
+		drawSeeds(this.midX, this.midY, this.seeds, this.doSquareArrangement);
+	}
+
+	wasClicked(clickX, clickY) {
+		return currentState == WAITING_FOR_PLAYER && !this.isBank &&
+			currentPlayerTurn == this.playerIndex &&
+			this.seeds.length > 0 &&
+			clickX > this.x && clickX < (this.x + this.width) &&
+			clickY > this.y && clickY < (this.y + this.height);
+	}
+
+	getNextSeedPos() {
+		return drawSeeds(this.midX, this.midY, this.seeds, this.doSquareArrangement, true);
+	}
+
+	getLastSeedPos() {
+		return drawSeeds(this.midX, this.midY, this.seeds, this.doSquareArrangement, false);
+	}
+
+	addSeed(seed) {
+		this.seeds.push(seed);
+	}
+}
+
+function setup() {
+	frameRate(STILL_FPS);
+	noStroke();
+	boardColor = color(50,50,50);
+	pitColors[0] = color(150,130,130);
+	seedColors[0] = color(170,85,85);
+	pitColors[1] = color(130,130,150);
+	seedColors[1] = color(85,85,170);
+	seedColor = color(150,150,150);
+	createCanvas(dispWidth, dispHeight);
+	//let pitX = padding + pitWidth + padding;
+	let pitX = padding;
+	for (let i = 0; i < (pitsPerSide * 2) + 2; i++) {
+		// left-hand side large "bank" pit
+		if (i == 0) {
+			pits.push(new Pit(pitX, padding, pitWidth, dispHeight - padding - padding, 0, false, 1, true, i));
+			pitX += padding + pitWidth;
+
+		// right-hand side large "bank" pit
+		} else if (i == pitsPerSide + 1) {
+			pits.push(new Pit(pitX, padding, pitWidth, dispHeight - padding - padding, 0, false, 0, true, i));
+			pitX -= padding + pitWidth;
+
+		// bottom row of pits
+		} else if (i <= pitsPerSide) {
+			pits.push(new Pit(pitX, padding + pitHeight + padding, pitWidth, pitHeight, INITIAL_SEEDS_IN_PIT, true, 0, false, i));
+			pitX += padding + pitWidth;
+
+		// top row of pits
+		} else {
+			pits.push(new Pit(pitX, padding, pitWidth, pitHeight, INITIAL_SEEDS_IN_PIT, true, 1, false, i));
+			pitX -= padding + pitWidth;
+		}
+
+		//pits.push(new Pit(pitX, padding, pitWidth, pitHeight, 9, true));
+		////rect(pitX, padding, pitWidth, pitHeight);
+		//pits.push(new Pit(pitX, padding + pitHeight + padding, pitWidth, pitHeight, 4, true));
+		////rect(pitX, padding + pitHeight + padding, pitWidth, pitHeight);
+		//pitX += padding + pitWidth;
+	}
+	fpsParagraph = createElement('p');
+}
+
+function drawBoard() {
+	noStroke();
+	background(120,120,120);
+	fill(boardColor);
+	rect(0, 0, width, height, roundRectRadius);
+	//fill(pitColor);
+	// draw left bank
+	//rect(padding, padding, pitWidth, dispHeight - padding - padding);
+	// draw right bank
+	//rect(dispWidth - padding - pitWidth, padding, pitWidth, dispHeight - padding - padding);
+	for (const pit of pits) {
+		pit.draw();
+		if (currentPlayerTurn < 0 && pit.isBank) {
+			pit.drawSeedCount();
+		}
+	}
+}
+
+function shouldTurn(doSquareArrangement, i) {
+	if (doSquareArrangement) {
+		return [1,2,4,6,9,12,16,20,25,30,36,42,49,56,64,72,81].indexOf(i) > -1;
+	} else {
+		return [0,3,4,8,10,15,18,24,28,35,40,48,54,63,70,80,88,99].indexOf(i) > -1;
+	}
+}
+
+function drawSeeds(atPosX, atPosY, seeds, doSquareArrangement, onlyGetNextPos = false) {
+	let xPos = atPosX;
+	let yPos = atPosY;
+	let stepAngle = 0;
+	let xStep = seedSize * cos(stepAngle);
+	let yStep = seedSize * sin(stepAngle);
+	let lastX = 0;
+	let lastY = 0;
+	for (let i = 0; i < seeds.length; i++) {
+		if (!onlyGetNextPos) {
+			fill(seeds[i].color);
+			circle(xPos, yPos, seedSize);
+		}
+		lastX = xPos;
+		lastY = yPos;
+		//fill(0,0,0);
+		//textSize(10);
+		//textAlign(CENTER, CENTER);
+		//text(""+i, xPos, yPos);
+		const ithSqrt = Math.sqrt(i+1);
+		// turn 1/4 turn on square numbered seeds
+		//if (Math.floor(ithSqrt) == ithSqrt) {
+		if (shouldTurn(doSquareArrangement, i)) {
+			stepAngle += (PI/2);
+			xStep = seedSize * cos(stepAngle);
+			yStep = seedSize * sin(stepAngle);
+		}
+		xPos += xStep;
+		yPos += yStep;
+	}
+	if (onlyGetNextPos) {
+		return createVector(xPos, yPos);
+	} else {
+		return createVector(lastX, lastY);
+	}
+}
+
+// draw the number of held seeds
+function drawHand() {
+	//cursor(HAND);
+	//stroke(255,255,255,60);
+	//fill(200,70,70,70);
+	//textSize(100);
+	//textAlign(CENTER, CENTER);
+	//text('×', mouseX, mouseY);
+	return drawSeeds(mouseX, mouseY, seedsInHand, true);
+}
+
+function playerTurnIsOver() {
+	currentState = WAITING_FOR_PLAYER;
+	frameRate(STILL_FPS);
+	// XOR with 1 to alternate between 1 and 0
+	currentPlayerTurn = currentPlayerTurn ^ 1;
+	// check end game: if the player has no pits with seeds,
+	//   the other player captures all their pits' seeds
+	let somePitHasSeeds = false;
+	for (const pit of pits) {
+		if (pit.playerIndex == currentPlayerTurn && !pit.isBank && pit.seeds.length > 0) {
+			somePitHasSeeds = true;
+			break;
+		}
+	}
+	if (!somePitHasSeeds) {
+		// if neither player has any seeds in their pits, the game is over
+		let gameIsOver = true;
+		for (const pit of pits) {
+			if (!pit.isBank && pit.seeds.length > 0) {
+				gameIsOver = false;
+				break;
+			}
+		}
+		if (gameIsOver) {
+			currentState = WAITING_FOR_PLAYER;
+			frameRate(STILL_FPS);
+			currentPlayerTurn = -1;
+		} else {
+			currentState = PIECES_MOVING_TO_BANK;
+			frameRate(ANIMATION_FPS);
+			capturedPits = [];
+			for (const pit of pits) {
+				if (pit.playerIndex != currentPlayerTurn && !pit.isBank && pit.seeds.length > 0) {
+					capturedPits.push(pit);
+				}
+			}
+			// XOR with 1 to alternate between 1 and 0
+			currentPlayerTurn = currentPlayerTurn ^ 1;
+		}
+	}
+}
+
+function draw() {
+	drawBoard();
+	const lastSeedInHandPos = drawHand();
+	if (currentState == PIECES_MOVING_FROM_HAND) {
+		if (movingSeed === null) {
+			if (seedsInHand.length > 0) {
+				const destinationPitIndex = destinationPitIndexes.shift();
+				const destinationPos = pits[destinationPitIndex].getNextSeedPos();
+				movingSeed = new SeedMovement(lastSeedInHandPos, destinationPos, seedsInHand.pop(), destinationPitIndex);
+			} else {
+				playerTurnIsOver();
+			}
+		}
+		if (movingSeed !== null) {
+			const doneMoving = movingSeed.updateAndDraw();
+			if (doneMoving) {
+				const destPit = pits[movingSeed.destinationPitIndex];
+				destPit.addSeed(movingSeed.seed);
+				movingSeed = null;
+				// if this moved seed was the last seed in the hand,
+				//   check if the destination pit is owned by the
+				//   moving player and has only 1 seed.  if so, then
+				//   that player captures that seed and all the seeds
+				//   in the opposite pit.
+				if (seedsInHand.length === 0 && destPit.playerIndex == currentPlayerTurn) {
+					// if the last seed is placed in the player's bank, that
+					//   player gets another turn
+					if (destPit.isBank) {
+						currentState = WAITING_FOR_PLAYER;
+					} else if (destPit.seeds.length === 1) {
+						capturedPits = [destPit];
+						const rightHandBankIndex = pitsPerSide + 1;
+						// if the pit index is less than the midpoint of the pits array, it's
+						//   in the bottom row
+						if (destPit.index < pits.length / 2) {
+							const distToMidBank = rightHandBankIndex - destPit.index;
+							const oppositePitIndex = rightHandBankIndex + distToMidBank;
+							capturedPits.push(pits[oppositePitIndex]);
+						} else {
+							const distToMidBank = destPit.index - rightHandBankIndex;
+							const oppositePitIndex = rightHandBankIndex - distToMidBank;
+							capturedPits.push(pits[oppositePitIndex]);
+						}
+						currentState = PIECES_MOVING_TO_BANK;
+						frameRate(ANIMATION_FPS);
+					}
+				}
+			}
+		}
+	} else if (currentState == PIECES_MOVING_TO_BANK) {
+		// similar to "moving from hand" state
+		const destBankPitIndex = currentPlayerTurn == 1 ? 0 : pitsPerSide + 1;
+		if (movingSeed === null) {
+			if (capturedPits.length > 0 && capturedPits[0].seeds.length > 0) {
+				const startPos = capturedPits[0].getLastSeedPos();
+				const destinationPos = pits[destBankPitIndex].getNextSeedPos();
+				movingSeed = new SeedMovement(startPos, destinationPos, capturedPits[0].seeds.pop(), destBankPitIndex);
+			} else if (capturedPits.length > 1 && capturedPits[1].seeds.length > 0) {
+				capturedPits.shift();
+			} else {
+				playerTurnIsOver();
+			}
+		}
+		if (movingSeed !== null) {
+			const doneMoving = movingSeed.updateAndDraw();
+			if (doneMoving) {
+				const destPit = pits[movingSeed.destinationPitIndex];
+				destPit.addSeed(movingSeed.seed);
+				movingSeed = null;
+			}
+		}
+	}
+	if (random(0,10) < 1.0) {
+		const fpsTimeEpochMs = Date.now();
+		if (fpsTimeEpochMs - fpsLastTime > 1000) {
+			fpsLastTime = fpsTimeEpochMs;
+			fpsParagraph.html(round(frameRate()));
+		}
+	}
+}
+
+function mouseClicked() {
+	if (currentState == WAITING_FOR_PLAYER) {
+		for (const pit of pits) {
+			if (pit.wasClicked(mouseX, mouseY)) {
+				seedsInHand = pit.seeds;
+				pit.seeds = [];
+				currentState = PIECES_MOVING_FROM_HAND;
+				frameRate(ANIMATION_FPS);
+				destinationPitIndexes = [];
+				let pitCursor = pit.index;
+				for (let i = 0; i < seedsInHand.length; i++) {
+					pitCursor += 1;
+					if (pitCursor >= pits.length) {
+						pitCursor = 0;
+					}
+					if (pits[pitCursor].isBank && pits[pitCursor].playerIndex != currentPlayerTurn) {
+						i -= 1; // re-do this seed if we have to skip the other player's bank
+						continue;
+					}
+					destinationPitIndexes.push(pitCursor);
+				}
+				break;
+			}
+		}
+	}
+}
+
+		</script>
+	</head>
+	<body style="background-color: rgb(120,120,120)">
+		<main style="text-align:center; padding: 2.0rem;">
+		</main>
+	</body>
+</html>
