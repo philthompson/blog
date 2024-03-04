@@ -78,18 +78,19 @@ class Neuron {
 			//   most weights the same
 			// using 0.15 as std dev would result in most points from 0.7-1.3,
 			//   with a few outside of that range
-			let factor = randomGaussian(1.0, 0.15);
+			let factor = randomGaussian(1.0, 0.25);
 			// most of the time, don't flip the sign
 			if (random(0.0, 1.0) < 0.1) {
 				factor = -factor;
 			}
 			this.weights[i] *= factor;
 		}
-		let factor = randomGaussian(1.0, 0.15);
+		// since the bias can be negative, occasionally flip its sign
+		let biasFactor = randomGaussian(1.0, 0.25);
 		if (random(0.0, 1.0) < 0.1) {
-			factor = -factor;
+			biasFactor = -biasFactor;
 		}
-		this.bias_input *= factor;
+		this.bias_input *= biasFactor;
 	}
 
 	restore_prev_weights() {
@@ -114,7 +115,7 @@ class NeuronLayer {
 				for (let j = 0; j < numberOfInputs; j++) {
 					weights.push(random(-1, 1));
 				}
-				this.neurons.push(new Neuron(weights, random(-1, 1)));
+				this.neurons.push(new Neuron(weights, random(-5, 5)));
 			}
 		}
 	}
@@ -196,7 +197,7 @@ class NeuralNet {
 			nnOutputs = this.process_input(inputsArray[j]);
 			// use square of distance to penalize large distances more,
 			//   and for more fine-grained tuning of small distances
-			nnOutputs.forEach((val,idx) => baselineDist += Math.pow(Math.abs(desiredOutputsArray[j][idx] - val), 2));
+			nnOutputs.forEach((val,idx) => baselineDist += Math.pow(desiredOutputsArray[j][idx] - val, 2));
 		}
 		console.log("baselineDist before adjusting weights for [" + inputsArray.length + "] input/output pairs: [" + (Math.round(baselineDist*100.0)/100.0) + "]");
 
@@ -698,7 +699,7 @@ function playAITurn() {
 				currentPlayerTurn = originalPlayerTurn;
 			}
 			pitWinProbability[i] = gamesWon / gamesPlayed;
-			console.log("done simulating games, found win % of [" + pitWinProbability[i] + "]");
+			console.log("done simulating games, found win % of [" + gamesWon + "/" + gamesPlayed + " -> " + (Math.round(pitWinProbability[i]*1000.0)/1000.0) + "]");
 		}
 		console.log("adjusting weights...");
 		let allMovesGiveZeroWins = true;
