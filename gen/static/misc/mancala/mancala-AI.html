@@ -37,7 +37,9 @@ const AI_PLAYER_NN_BY_INDEX = {
 const TRAIN_AI_PLAYER_INDEXES = [0];
 let runningSimulation = false;
 let modelOutputParagraph;
-let aiTrainingGamesToRun = 100;
+let aiTrainingGamesToRun = 25;
+const recentInputsToTrainOn = [];
+const recentOutputsToTrainOn = [];
 
 const INITIAL_SEEDS_IN_PIT = 4;
 const pits = [];
@@ -71,12 +73,23 @@ class Neuron {
 		for (let i = 0; i < this.weights.length; i++) {
 			// more variation is less likely to get stuck in a local minimum,
 			//   but less variation is probably better for fine-tuning
-			let factor = random(0.6, 1.4);
-			if (round(random(0, 1)) == 1) {
+			//let factor = random(0.6, 1.4);
+			// using a normal distribution would be more likely to keep
+			//   most weights the same
+			// using 0.15 as std dev would result in most points from 0.7-1.3,
+			//   with a few outside of that range
+			let factor = randomGaussian(1.0, 0.15);
+			// most of the time, don't flip the sign
+			if (random(0.0, 1.0) < 0.1) {
 				factor = -factor;
 			}
 			this.weights[i] *= factor;
 		}
+		let factor = randomGaussian(1.0, 0.15);
+		if (random(0.0, 1.0) < 0.1) {
+			factor = -factor;
+		}
+		this.bias_input *= factor;
 	}
 
 	restore_prev_weights() {
@@ -175,14 +188,24 @@ class NeuralNet {
 		return this.outputLayer.process_input(layerOutput);
 	}
 
-	adjust_weights(iterations, inputs, desiredOutputs) {
+	adjust_weights(iterations, inputsArray, desiredOutputsArray) {
+		let nnOutputs = null;
+		let baselineDist = 0.0;
+		for (let j = 0; j < inputsArray.length; j++) {
+			// process input, and save the seed if it results in the closest yet output
+			nnOutputs = this.process_input(inputsArray[j]);
+			// use square of distance to penalize large distances more,
+			//   and for more fine-grained tuning of small distances
+			nnOutputs.forEach((val,idx) => baselineDist += Math.pow(Math.abs(desiredOutputsArray[j][idx] - val), 2));
+		}
+		console.log("baselineDist before adjusting weights for [" + inputsArray.length + "] input/output pairs: [" + (Math.round(baselineDist*100.0)/100.0) + "]");
+
 		// re-seed the rng for each iteration, and track which seed results
 		//   in outputs that are closest to desired
 		let seedTime = Date.now();
 		let bestDist = Infinity;
 		let bestSeed = 0;
 		let distOfAdjusted = 0;
-		let outputOfAdjusted = null;
 		for (let i = 0; i < iterations; i++) {
 			// adjust all layers' neurons after changing the rng seed
 			randomSeed(seedTime + i);
@@ -191,12 +214,15 @@ class NeuralNet {
 				layer.adjust_weights();
 			}
 			this.outputLayer.adjust_weights();
-			// process input, and save the seed if it results in the closest yet output
-			outputOfAdjusted = this.process_input(inputs);
-			distOfAdjusted = 0;
-			// use square of distance to penalize large distances more,
-			//   and for more fine-grained tuning of small distances
-			outputOfAdjusted.forEach((val,idx) => distOfAdjusted += Math.pow(Math.abs(desiredOutputs[idx] - val), 2));
+			// sum the total distance from desired output for all inputs
+			distOfAdjusted = 0.0;
+			for (let j = 0; j < inputsArray.length; j++) {
+				// process input, and save the seed if it results in the closest yet output
+				nnOutputs = this.process_input(inputsArray[j]);
+				// use square of distance to penalize large distances more,
+				//   and for more fine-grained tuning of small distances
+				nnOutputs.forEach((val,idx) => distOfAdjusted += Math.pow(desiredOutputsArray[j][idx] - val, 2));
+			}
 			if (distOfAdjusted < bestDist) {
 				bestDist = distOfAdjusted;
 				bestSeed = seedTime + i;
@@ -207,6 +233,11 @@ class NeuralNet {
 				layer.restore_prev_weights();
 			}
 			this.outputLayer.restore_prev_weights();
+		}
+		console.log("bestDist     after  adjusting weights for [" + inputsArray.length + "] input/output pairs: [" + (Math.round(bestDist*100.0)/100.0) + "]");
+		if (bestDist > baselineDist) {
+			console.log("skipping adjustment, since no better set of weights was found");
+			return;
 		}
 		// use the best found seed to do the final adjustment
 		randomSeed(bestSeed);
@@ -698,11 +729,16 @@ function playAITurn() {
 		if (allMovesGiveZeroWins) {
 			console.log("NOT adjusting weights since a win is impossible (perhaps train for highest total in bank instead here?)");
 		} else {
-			//adjust weights here providing arrays of inputs and outputs -- we
-			//want to keep the last 10? 100? input->output pairs working
-			//after adjusting weights
+			// adjust weights here providing arrays of inputs and outputs -- we keep
+			//   the most 50 recent input/output pairs to train on
 			console.log("adjusting weights with desired outputs [" + desiredOutputs + "]...");
-			ai.adjust_weights(500000, inputs, desiredOutputs);
+			recentOutputsToTrainOn.push(desiredOutputs);
+			if (recentInputsToTrainOn.push(inputs) > 50) {
+				// drop oldest inputs and outputs
+				recentOutputsToTrainOn.shift();
+				recentInputsToTrainOn.shift();
+			}
+			ai.adjust_weights(100000, recentInputsToTrainOn, recentOutputsToTrainOn);
 			console.log("done adjusting weights");
 		}
 
