@@ -79,26 +79,32 @@ class Neuron {
 		this.prev_weights = this.weights.slice(0); // clone array, thanks to https://stackoverflow.com/a/21514254/259456
 		this.prev_bias_input = this.bias_input;
 		for (let i = 0; i < this.weights.length; i++) {
-			// more variation is less likely to get stuck in a local minimum,
-			//   but less variation is probably better for fine-tuning
-			//let factor = random(0.6, 1.4);
+			// leave 1/3 of the weights unchanged
+			if (random(0.0, 1.0) < 0.33) {
+				continue;
+			}
 			// using a normal distribution would be more likely to keep
 			//   most weights the same
 			// using 0.15 as std dev would result in most points from 0.7-1.3,
 			//   with a few outside of that range
-			let factor = randomGaussian(1.0, 0.2);
+			//let factor = randomGaussian(1.0, 0.2);
+			let factor = random(0.5, 2.0);
 			// most of the time, don't flip the sign
 			if (random(0.0, 1.0) < 0.3) {
 				factor = -factor;
 			}
 			this.weights[i] *= factor;
 		}
-		// since the bias can be negative, occasionally flip its sign
-		let biasFactor = randomGaussian(1.0, 0.2);
-		if (random(0.0, 1.0) < 0.2) {
-			biasFactor = -biasFactor;
+		// leave 1/3 of the biases unchanged
+		if (random(0.0, 1.0) > 0.33) {
+			// since the bias can be negative, occasionally flip its sign
+			//let biasFactor = randomGaussian(1.0, 0.2);
+			let biasFactor = random(0.5, 2.0);
+			if (random(0.0, 1.0) < 0.2) {
+				biasFactor = -biasFactor;
+			}
+			this.bias_input *= biasFactor;
 		}
-		this.bias_input *= biasFactor;
 	}
 
 	restore_prev_weights() {
