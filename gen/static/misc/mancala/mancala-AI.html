@@ -39,13 +39,20 @@ const TRAIN_AI_PLAYER_INDEXES = [0];
 let runningSimulation = false;
 let modelOutputParagraph;
 let statusParagraph;
-let aiTrainingGamesToRun = 10;
+let aiTrainingGamesToRun = 4;
 const recentInputsToTrainOn = [];
 const recentOutputsToTrainOn = [];
-const adjustWeightsChunkIterations = 300;
+const adjustWeightsChunkIterations = 1000;
 const adjustWeightsChunks = 200;
 let adjustWeightsChunkCounter = 0;
-let adjustWeightsBaselineDist = 0;
+//let adjustWeightsBaselineDist = 0;
+const adjustWeightsBaselineDistByFactors = {
+	//'twentieth':{'factor': 0.05, 'count': 0, 'dist': Infinity},
+	'tenth':    {'factor': 0.1,  'count': 0, 'dist': Infinity},
+	'quarter':  {'factor': 0.25, 'count': 0, 'dist': Infinity},
+	'half':     {'factor': 0.5,  'count': 0, 'dist': Infinity},
+	'all':      {'factor': 1.0,  'count': 0, 'dist': Infinity},
+};
 let adjustWeightsBestDist = null;
 let adjustWeightsBestJson = null;
 
@@ -55,7 +62,7 @@ let capturedPits = [];
 
 let fpsParagraph;
 let fpsLastTime = 0;
-const ANIMATION_FPS = 42;
+const ANIMATION_FPS = 60;
 const STILL_FPS = 1;
 
 class Neuron {
@@ -231,18 +238,32 @@ class NeuralNet {
 				layer.adjust_weights();
 			}
 			this.outputLayer.adjust_weights();
-			// sum the total distance from desired output for all inputs
-			distOfAdjusted = 0.0;
-			for (let j = 0; j < inputsArray.length; j++) {
-				// process input, and save the seed if it results in the closest yet output
-				nnOutputs = this.process_input(inputsArray[j]);
-				// use square of distance to penalize large distances more,
-				//   and for more fine-grained tuning of small distances
-				nnOutputs.forEach((val,idx) => distOfAdjusted += Math.pow(desiredOutputsArray[j][idx] - val, 2));
-			}
-			if (distOfAdjusted < bestDist) {
-				bestDist = distOfAdjusted;
-				bestAdjustedModelJson = JSON.parse(this.export_to_json());
+
+			for (const partialBaselineName in adjustWeightsBaselineDistByFactors) {
+				const partialBaseline = adjustWeightsBaselineDistByFactors[partialBaselineName];
+				// sum the total distance from desired output for inputs
+				//   in the partial baseline
+				distOfAdjusted = 0.0;
+				for (let j = 0; j < partialBaseline.count; j++) {
+					// process input, and save the seed if it results in the closest yet output
+					nnOutputs = this.process_input(inputsArray[j]);
+					// use square of distance to penalize large distances more,
+					//   and for more fine-grained tuning of small distances
+					nnOutputs.forEach((val,idx) => distOfAdjusted += Math.pow(desiredOutputsArray[j][idx] - val, 2));
+				}
+				if (partialBaseline.factor == 1.0) {
+					if (distOfAdjusted < bestDist) {
+						bestDist = distOfAdjusted;
+						// only do JSON export if this is better than the baseline
+						if (distOfAdjusted < partialBaseline.dist) {
+							bestAdjustedModelJson = JSON.parse(this.export_to_json());
+						}
+					}
+				// do not continue testing this altered model if it doesn't improve
+				//   upon the partial baseline
+				} else if (distOfAdjusted >= partialBaseline.dist) {
+					break;
+				}
 			}
 			// restore all layers' neurons to their previous weights
 			this.inputLayer.restore_prev_weights();
@@ -264,7 +285,7 @@ class SeedMovement {
 		this.startPos = startPos;
 		this.endPos = endPos;
 		this.destinationPitIndex = destinationPitIndex;
-		this.fracComplete = 0.0;
+		this.fracComplete = runningSimulation ? 1.0 : 0.0;
 		// take about 1/4 second to reach the end position
 		this.fracStep = 4.0 / frameRate();
 	}
@@ -531,6 +552,9 @@ function playerTurnIsOver() {
 						//console.log("updated non-training AI NeuralNet, restarting game (" + aiTrainingGamesToRun + " games left to train on)");
 						console.log("restarting game (" + aiTrainingGamesToRun + " games left to train on)");
 						restartGame();
+					} else {
+						console.log("done training");
+						frameRate(STILL_FPS);
 					}
 				}
 			}
@@ -752,7 +776,7 @@ function playAITurnOrStartTraining() {
 			//   the most 50 recent input/output pairs to train on
 			console.log("adjusting weights with desired outputs [" + desiredOutputs + "]...");
 			recentOutputsToTrainOn.push(desiredOutputs);
-			if (recentInputsToTrainOn.push(inputs) > 64) {
+			if (recentInputsToTrainOn.push(inputs) > 128) {
 				// drop oldest inputs and outputs
 				recentOutputsToTrainOn.shift();
 				recentInputsToTrainOn.shift();
@@ -770,8 +794,18 @@ function playAITurnOrStartTraining() {
 			//   (in order to keep UI thread responsive) we set the frame rate
 			//   to the faster animation rate here
 			frameRate(ANIMATION_FPS);
-			adjustWeightsBaselineDist = ai.get_current_outputs_dist(recentInputsToTrainOn, recentOutputsToTrainOn);
-			console.log("baselineDist before adjusting weights for [" + recentInputsToTrainOn.length + "] input/output pairs: [" + roundToDecimalPlaces(adjustWeightsBaselineDist, 2) + "]");
+			// get baseline dist for 10%, 25%, 50%, and 100% of the input-output pairs
+			for (const partialBaselineName in adjustWeightsBaselineDistByFactors) {
+				const partialBaseline = adjustWeightsBaselineDistByFactors[partialBaselineName];
+				partialBaseline.count = Math.max(1, Math.floor(recentInputsToTrainOn.length * partialBaseline.factor));
+				console.log("partial baseline [" + partialBaselineName + "(" + partialBaseline.factor + ")] has count [" + partialBaseline.count + "]");
+				// filter to keep only the first 10%, 25%, etc, of input-output pairs
+				partialBaseline.dist = ai.get_current_outputs_dist(
+					recentInputsToTrainOn.filter((val,idx) => idx < partialBaseline.count),
+					recentOutputsToTrainOn.filter((val,idx) => idx < partialBaseline.count));
+			}
+			//adjustWeightsBaselineDist = ai.get_current_outputs_dist(recentInputsToTrainOn, recentOutputsToTrainOn);
+			console.log("baselineDist before adjusting weights for [" + recentInputsToTrainOn.length + "] input/output pairs: [" + roundToDecimalPlaces(adjustWeightsBaselineDistByFactors.all.dist, 2) + "]");
 			adjustWeightsChunkCounter = 0;
 			adjustWeightsBestDist = Infinity;
 			adjustWeightsBestJson = null;
@@ -840,6 +874,7 @@ function getPitIndexForNeuralNetworkOutputIndex(outputIndex) {
 }
 
 function simulateGameAfterSelectingPit(selectedPitIndex) {
+	frameRate(ANIMATION_FPS);
 	runningSimulation = true;
 	selectPitForPlay(pits[selectedPitIndex]);
 	while (currentState != GAME_OVER) {
@@ -859,7 +894,7 @@ function adjustWeightsInChunks() {
 	// after running all adjustment chunks, assign the best found new json
 	if (adjustWeightsChunkCounter >= adjustWeightsChunks) {
 		console.log("bestDist     after  adjusting weights for [" + recentInputsToTrainOn.length + "] input/output pairs: [" + roundToDecimalPlaces(adjustWeightsBestDist, 2) + "]");
-		if (adjustWeightsBestDist < adjustWeightsBaselineDist) {
+		if (adjustWeightsBestDist < adjustWeightsBaselineDistByFactors.all.dist) {
 			ai.restore_from_json(adjustWeightsBestJson);
 		} else {
 			console.log("skipping adjustment, since no better set of weights was found");
