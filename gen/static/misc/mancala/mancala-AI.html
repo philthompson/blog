@@ -78,16 +78,16 @@ class Neuron {
 			//   most weights the same
 			// using 0.15 as std dev would result in most points from 0.7-1.3,
 			//   with a few outside of that range
-			let factor = randomGaussian(1.0, 0.25);
+			let factor = randomGaussian(1.0, 0.2);
 			// most of the time, don't flip the sign
-			if (random(0.0, 1.0) < 0.1) {
+			if (random(0.0, 1.0) < 0.3) {
 				factor = -factor;
 			}
 			this.weights[i] *= factor;
 		}
 		// since the bias can be negative, occasionally flip its sign
-		let biasFactor = randomGaussian(1.0, 0.25);
-		if (random(0.0, 1.0) < 0.1) {
+		let biasFactor = randomGaussian(1.0, 0.2);
+		if (random(0.0, 1.0) < 0.2) {
 			biasFactor = -biasFactor;
 		}
 		this.bias_input *= biasFactor;
@@ -152,12 +152,7 @@ class NeuronLayer {
 class NeuralNet {
 	constructor(json = null, inputs = -1, inputNeurons = -1, hiddenLayerNeurons = -1, hiddenLayers = -1, outputNeurons = -1) {
 		if (json !== null) {
-			this.inputLayer = new NeuronLayer(-1, -1, json.inputLayer);
-			this.hiddenLayers = [];
-			for (let i = 0; i < json.hiddenLayers.length; i++) {
-				this.hiddenLayers.push(new NeuronLayer(-1, -1, json.hiddenLayers[i]));
-			}
-			this.outputLayer = new NeuronLayer(-1, -1, json.outputLayer);
+			this.restore_from_json(json);
 		} else {
 			this.inputLayer = new NeuronLayer(inputNeurons, inputs);
 			this.hiddenLayers = [];
@@ -167,6 +162,15 @@ class NeuralNet {
 			}
 			this.outputLayer = new NeuronLayer(outputNeurons, hiddenLayerNeurons);
 		}
+	}
+
+	restore_from_json(json) {
+		this.inputLayer = new NeuronLayer(-1, -1, json.inputLayer);
+		this.hiddenLayers = [];
+		for (let i = 0; i < json.hiddenLayers.length; i++) {
+			this.hiddenLayers.push(new NeuronLayer(-1, -1, json.hiddenLayers[i]));
+		}
+		this.outputLayer = new NeuronLayer(-1, -1, json.outputLayer);
 	}
 
 	export_to_json() {
@@ -203,13 +207,14 @@ class NeuralNet {
 
 		// re-seed the rng for each iteration, and track which seed results
 		//   in outputs that are closest to desired
-		let seedTime = Date.now();
+		//let seedTime = Date.now();
 		let bestDist = Infinity;
-		let bestSeed = 0;
+		//let bestSeed = 0;
 		let distOfAdjusted = 0;
+		let bestAdjustedModelJson = null;
 		for (let i = 0; i < iterations; i++) {
 			// adjust all layers' neurons after changing the rng seed
-			randomSeed(seedTime + i);
+			//randomSeed(seedTime + i);
 			this.inputLayer.adjust_weights();
 			for (const layer of this.hiddenLayers) {
 				layer.adjust_weights();
@@ -226,7 +231,8 @@ class NeuralNet {
 			}
 			if (distOfAdjusted < bestDist) {
 				bestDist = distOfAdjusted;
-				bestSeed = seedTime + i;
+				//bestSeed = seedTime + i;
+				bestAdjustedModelJson = JSON.parse(this.export_to_json());
 			}
 			// restore all layers' neurons to their previous weights
 			this.inputLayer.restore_prev_weights();
@@ -241,8 +247,9 @@ class NeuralNet {
 			return;
 		}
 		// use the best found seed to do the final adjustment
-		randomSeed(bestSeed);
-		this.inputLayer.adjust_weights();
+		//randomSeed(bestSeed);
+		//this.inputLayer.adjust_weights();
+		this.restore_from_json(bestAdjustedModelJson);
 	}
 }
 
@@ -389,10 +396,11 @@ function setup() {
 	modelOutputParagraph = createElement('p');
 
 	// create neural networks, where, for now, only player index 0 will be
-	//   trained -- the other will be left as a random player
+	//   trained -- the other will be loaded from json and then left alone
 	//AI_PLAYER_NN_BY_INDEX[0] = new NeuralNet(json = null, inputs = (pitsPerSide*2)+2, inputNeurons = (pitsPerSide*2)+2, hiddenLayerNeurons = 24, hiddenLayers = 3, outputNeurons = pitsPerSide);
+	//AI_PLAYER_NN_BY_INDEX[1] = new NeuralNet(json = null, inputs = (pitsPerSide*2)+2, inputNeurons = (pitsPerSide*2)+2, hiddenLayerNeurons = 24, hiddenLayers = 3, outputNeurons = pitsPerSide);
 	AI_PLAYER_NN_BY_INDEX[0] = new NeuralNet(json = LATEST_NN_MODEL);
-	AI_PLAYER_NN_BY_INDEX[1] = new NeuralNet(json = null, inputs = (pitsPerSide*2)+2, inputNeurons = (pitsPerSide*2)+2, hiddenLayerNeurons = 24, hiddenLayers = 3, outputNeurons = pitsPerSide);
+	AI_PLAYER_NN_BY_INDEX[1] = new NeuralNet(json = LATEST_NN_MODEL);
 }
 
 function drawBoard() {
@@ -499,21 +507,23 @@ function playerTurnIsOver() {
 			if (TRAIN_AI_PLAYER_INDEXES.length > 0 && AI_PLAYER_NN_BY_INDEX[0] !== null && AI_PLAYER_NN_BY_INDEX[1] !== null) {
 				if (!runningSimulation) {
 					aiTrainingGamesToRun -= 1;
-					// if no more games left to run, output the neural network weights
-					if (aiTrainingGamesToRun <= 0) {
-						for (const aiIdx of TRAIN_AI_PLAYER_INDEXES) {
-							const contentAlreadyPresent = modelOutputParagraph.html();
-							//console.log("current state of trained AI for player index [" + aiIdx + "]:");
-							//console.log(AI_PLAYER_NN_BY_INDEX[aiIdx].export_to_json());
-							modelOutputParagraph.html(contentAlreadyPresent + '<br/><br/>const LATEST_NN_MODEL = ' + AI_PLAYER_NN_BY_INDEX[aiIdx].export_to_json() + ';');
-						}
-					} else {
+					// output the neural network weights
+					modelOutputParagraph.html("nn model with " + aiTrainingGamesToRun + " games left to train on");
+					for (const aiIdx of TRAIN_AI_PLAYER_INDEXES) {
+						const contentAlreadyPresent = modelOutputParagraph.html();
+						//console.log("current state of trained AI for player index [" + aiIdx + "]:");
+						//console.log(AI_PLAYER_NN_BY_INDEX[aiIdx].export_to_json());
+						modelOutputParagraph.html(contentAlreadyPresent + '<br/><br/>const LATEST_NN_MODEL = ' + AI_PLAYER_NN_BY_INDEX[aiIdx].export_to_json() + ';');
+					}
+					// if more games left to run, restart
+					if (aiTrainingGamesToRun > 0) {
 						// update the non-training AI NN
-						const trainedAIPlayerIndex = TRAIN_AI_PLAYER_INDEXES[0];
-						const nonTrainedAIPlayerIndex = trainedAIPlayerIndex ^ 1; // XOR with 1 to alternate between 1 and 0
-						const trainedAINN = AI_PLAYER_NN_BY_INDEX[trainedAIPlayerIndex].export_to_json();
-						AI_PLAYER_NN_BY_INDEX[nonTrainedAIPlayerIndex] = new NeuralNet(json = JSON.parse(trainedAINN));
-						console.log("updated non-training AI NeuralNet, restarting game (" + aiTrainingGamesToRun + " games left to train on)");
+						//const trainedAIPlayerIndex = TRAIN_AI_PLAYER_INDEXES[0];
+						//const nonTrainedAIPlayerIndex = trainedAIPlayerIndex ^ 1; // XOR with 1 to alternate between 1 and 0
+						//const trainedAINN = AI_PLAYER_NN_BY_INDEX[trainedAIPlayerIndex].export_to_json();
+						//AI_PLAYER_NN_BY_INDEX[nonTrainedAIPlayerIndex] = new NeuralNet(json = JSON.parse(trainedAINN));
+						//console.log("updated non-training AI NeuralNet, restarting game (" + aiTrainingGamesToRun + " games left to train on)");
+						console.log("restarting game (" + aiTrainingGamesToRun + " games left to train on)");
 						restartGame();
 					}
 				}
