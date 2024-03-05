@@ -25,6 +25,7 @@ let destinationPitIndexes = [];
 const WAITING_FOR_PLAYER = 0;
 const PIECES_MOVING_FROM_HAND = 1;
 const PIECES_MOVING_TO_BANK = 2;
+const ADJUSTING_NEURAL_NETWORK_WEIGHTS = 10;
 const GAME_OVER = -1;
 let currentPlayerTurn = 0;
 let currentState = WAITING_FOR_PLAYER;
@@ -37,9 +38,16 @@ const AI_PLAYER_NN_BY_INDEX = {
 const TRAIN_AI_PLAYER_INDEXES = [0];
 let runningSimulation = false;
 let modelOutputParagraph;
-let aiTrainingGamesToRun = 25;
+let statusParagraph;
+let aiTrainingGamesToRun = 10;
 const recentInputsToTrainOn = [];
 const recentOutputsToTrainOn = [];
+const adjustWeightsChunkIterations = 300;
+const adjustWeightsChunks = 200;
+let adjustWeightsChunkCounter = 0;
+let adjustWeightsBaselineDist = 0;
+let adjustWeightsBestDist = null;
+let adjustWeightsBestJson = null;
 
 const INITIAL_SEEDS_IN_PIT = 4;
 const pits = [];
@@ -193,7 +201,7 @@ class NeuralNet {
 		return this.outputLayer.process_input(layerOutput);
 	}
 
-	adjust_weights(iterations, inputsArray, desiredOutputsArray) {
+	get_current_outputs_dist(inputsArray, desiredOutputsArray) {
 		let nnOutputs = null;
 		let baselineDist = 0.0;
 		for (let j = 0; j < inputsArray.length; j++) {
@@ -203,18 +211,15 @@ class NeuralNet {
 			//   and for more fine-grained tuning of small distances
 			nnOutputs.forEach((val,idx) => baselineDist += Math.pow(desiredOutputsArray[j][idx] - val, 2));
 		}
-		console.log("baselineDist before adjusting weights for [" + inputsArray.length + "] input/output pairs: [" + (Math.round(baselineDist*100.0)/100.0) + "]");
+		return baselineDist;
+	}
 
-		// re-seed the rng for each iteration, and track which seed results
-		//   in outputs that are closest to desired
-		//let seedTime = Date.now();
+	adjust_weights(iterations, inputsArray, desiredOutputsArray) {
+		let nnOutputs = null;
 		let bestDist = Infinity;
-		//let bestSeed = 0;
 		let distOfAdjusted = 0;
 		let bestAdjustedModelJson = null;
 		for (let i = 0; i < iterations; i++) {
-			// adjust all layers' neurons after changing the rng seed
-			//randomSeed(seedTime + i);
 			this.inputLayer.adjust_weights();
 			for (const layer of this.hiddenLayers) {
 				layer.adjust_weights();
@@ -231,7 +236,6 @@ class NeuralNet {
 			}
 			if (distOfAdjusted < bestDist) {
 				bestDist = distOfAdjusted;
-				//bestSeed = seedTime + i;
 				bestAdjustedModelJson = JSON.parse(this.export_to_json());
 			}
 			// restore all layers' neurons to their previous weights
@@ -241,15 +245,10 @@ class NeuralNet {
 			}
 			this.outputLayer.restore_prev_weights();
 		}
-		console.log("bestDist     after  adjusting weights for [" + inputsArray.length + "] input/output pairs: [" + (Math.round(bestDist*100.0)/100.0) + "]");
-		if (bestDist > baselineDist) {
-			console.log("skipping adjustment, since no better set of weights was found");
-			return;
-		}
-		// use the best found seed to do the final adjustment
-		//randomSeed(bestSeed);
-		//this.inputLayer.adjust_weights();
-		this.restore_from_json(bestAdjustedModelJson);
+		return {
+			'dist': bestDist,
+			'json': bestAdjustedModelJson
+		};
 	}
 }
 
@@ -393,6 +392,7 @@ function setup() {
 		//pitX += padding + pitWidth;
 	}
 	fpsParagraph = createElement('p');
+	statusParagraph = createElement('p');
 	modelOutputParagraph = createElement('p');
 
 	// create neural networks, where, for now, only player index 0 will be
@@ -620,7 +620,9 @@ function draw() {
 			}
 		}
 	} else if (currentState == WAITING_FOR_PLAYER && AI_PLAYER_NN_BY_INDEX[currentPlayerTurn] !== null) {
-		playAITurn();
+		playAITurnOrStartTraining();
+	} else if (currentState == ADJUSTING_NEURAL_NETWORK_WEIGHTS) {
+		adjustWeightsInChunks();
 	}
 	if (random(0,10) < 1.0) {
 		const fpsTimeEpochMs = Date.now();
@@ -679,7 +681,7 @@ function selectPitForPlay(pit) {
 	}
 }
 
-function playAITurn() {
+function playAITurnOrStartTraining() {
 	// if training this AI player, simulate the rest of the game
 	//   based on selecting each valid pit
 	if (!runningSimulation && TRAIN_AI_PLAYER_INDEXES.indexOf(currentPlayerTurn) > -1) {
@@ -695,7 +697,7 @@ function playAITurn() {
 			console.log("simulating games from this point after selecting pit [" + pit.index + "]...");
 			let gamesPlayed = 0.0;
 			let gamesWon = 0.0;
-			for (let j = 0; j < 200; j++) {
+			for (let j = 0; j < 100; j++) {
 				// simulate the game
 				simulateGameAfterSelectingPit(pit.index);
 				gamesPlayed += 1.0;
@@ -736,74 +738,93 @@ function playAITurn() {
 				desiredOutputs[i] = 0.0;
 			}
 		}
-		const ai = AI_PLAYER_NN_BY_INDEX[currentPlayerTurn];
 		if (allMovesGiveZeroWins) {
 			console.log("NOT adjusting weights since a win is impossible (perhaps train for highest total in bank instead here?)");
+			playAITurn();
 		} else {
 			// adjust weights here providing arrays of inputs and outputs -- we keep
 			//   the most 50 recent input/output pairs to train on
 			console.log("adjusting weights with desired outputs [" + desiredOutputs + "]...");
 			recentOutputsToTrainOn.push(desiredOutputs);
-			if (recentInputsToTrainOn.push(inputs) > 50) {
+			if (recentInputsToTrainOn.push(inputs) > 64) {
 				// drop oldest inputs and outputs
 				recentOutputsToTrainOn.shift();
 				recentInputsToTrainOn.shift();
+			} else if (recentInputsToTrainOn.length < 50) {
+				console.log("NOT adjusting weights since we have too few moves to train on (" + recentInputsToTrainOn.length + ")");
+				playAITurn();
+				return;
 			}
-			ai.adjust_weights(100000, recentInputsToTrainOn, recentOutputsToTrainOn);
-			console.log("done adjusting weights");
+			const ai = AI_PLAYER_NN_BY_INDEX[currentPlayerTurn];
+			//const inputs = pits.map((pit) => pit.seeds.length);
+			const outputs = ai.process_input(inputs);
+			console.log("nn outputs now [" + outputs.map((v) => roundToDecimalPlaces(v, 4)) + "]...");
+			currentState = ADJUSTING_NEURAL_NETWORK_WEIGHTS;
+			// since we use the main draw() loop to run weight adjustment in chunks,
+			//   (in order to keep UI thread responsive) we set the frame rate
+			//   to the faster animation rate here
+			frameRate(ANIMATION_FPS);
+			adjustWeightsBaselineDist = ai.get_current_outputs_dist(recentInputsToTrainOn, recentOutputsToTrainOn);
+			console.log("baselineDist before adjusting weights for [" + recentInputsToTrainOn.length + "] input/output pairs: [" + roundToDecimalPlaces(adjustWeightsBaselineDist, 2) + "]");
+			adjustWeightsChunkCounter = 0;
+			adjustWeightsBestDist = Infinity;
+			adjustWeightsBestJson = null;
+			// the next few calls to draw() will call adjustWeightsInChunks()
+			return;
 		}
 
-		// sort in reverse order, so highest liklihood of selecting
-		//   the pit is first
-		//const outputs = ai.process_input(inputs).sort((a,b) => b-a);
-		const outputs = ai.process_input(inputs);
-		console.log("nn outputs are now [" + outputs.map((v) => Math.round(v*10000.0)/10000.0) + "]...");
-		let selectedPitIndex = -1;
-		const selectedPitIndexOffset = getPitIndexForNeuralNetworkOutputIndex(0);
-		while (true) {
-			for (let i = 0; i < outputs.length; i++) {
-				if (pits[i+selectedPitIndexOffset].seeds.length == 0) {
-					continue;
-				}
-				if (random(0.0, 1.0) < outputs[i]) {
-					selectedPitIndex = i+selectedPitIndexOffset
-					break;
-				}
-			}
-			if (selectedPitIndex > 0) {
-				break;
-			}
-		}
-		selectPitForPlay(pits[selectedPitIndex]);
+		//const outputs = ai.process_input(inputs);
+		//console.log("nn outputs are now [" + outputs.map((v) => Math.round(v*10000.0)/10000.0) + "]...");
+		//let selectedPitIndex = -1;
+		//const selectedPitIndexOffset = getPitIndexForNeuralNetworkOutputIndex(0);
+		//while (true) {
+		//	for (let i = 0; i < outputs.length; i++) {
+		//		if (pits[i+selectedPitIndexOffset].seeds.length == 0) {
+		//			continue;
+		//		}
+		//		if (random(0.0, 1.0) < outputs[i]) {
+		//			selectedPitIndex = i+selectedPitIndexOffset
+		//			break;
+		//		}
+		//	}
+		//	if (selectedPitIndex > 0) {
+		//		break;
+		//	}
+		//}
+		//selectPitForPlay(pits[selectedPitIndex]);
 
 
-	// if not training this AI player, use the board state to
-	//   select a pit for play
+	// if not training this AI player (like when simulating games, or playing
+	//   an AI against a human), use the board state to select a pit for play
 	} else {
-		const ai = AI_PLAYER_NN_BY_INDEX[currentPlayerTurn];
-		const inputs = pits.map((pit) => pit.seeds.length);
-		// sort in reverse order, so highest liklihood of selecting
-		//   the pit is first
-		//const outputs = ai.process_input(inputs).sort((a,b) => b-a);
-		const outputs = ai.process_input(inputs);
-		let selectedPitIndex = -1;
-		const selectedPitIndexOffset = getPitIndexForNeuralNetworkOutputIndex(0);
-		while (true) {
-			for (let i = 0; i < outputs.length; i++) {
-				if (pits[i+selectedPitIndexOffset].seeds.length == 0) {
-					continue;
-				}
-				if (random(0.0, 1.0) < outputs[i]) {
-					selectedPitIndex = i+selectedPitIndexOffset
-					break;
-				}
+		playAITurn();
+	}
+}
+
+function playAITurn() {
+	const ai = AI_PLAYER_NN_BY_INDEX[currentPlayerTurn];
+	const inputs = pits.map((pit) => pit.seeds.length);
+	const outputs = ai.process_input(inputs);
+	if (currentState == ADJUSTING_NEURAL_NETWORK_WEIGHTS) {
+		console.log("nn outputs are [" + outputs.map((v) => roundToDecimalPlaces(v, 4)) + "]...");
+	}
+	let selectedPitIndex = -1;
+	const selectedPitIndexOffset = getPitIndexForNeuralNetworkOutputIndex(0);
+	while (true) {
+		for (let i = 0; i < outputs.length; i++) {
+			if (pits[i+selectedPitIndexOffset].seeds.length == 0) {
+				continue;
 			}
-			if (selectedPitIndex > 0) {
+			if (random(0.0, 1.0) < outputs[i]) {
+				selectedPitIndex = i+selectedPitIndexOffset
 				break;
 			}
 		}
-		selectPitForPlay(pits[selectedPitIndex]);
+		if (selectedPitIndex > 0) {
+			break;
+		}
 	}
+	selectPitForPlay(pits[selectedPitIndex]);
 }
 
 // 0 -> ith pit + 1
@@ -819,6 +840,35 @@ function simulateGameAfterSelectingPit(selectedPitIndex) {
 		draw();
 	}
 	runningSimulation = false;
+}
+
+function adjustWeightsInChunks() {
+	const ai = AI_PLAYER_NN_BY_INDEX[currentPlayerTurn];
+	const chunkBest = ai.adjust_weights(adjustWeightsChunkIterations, recentInputsToTrainOn, recentOutputsToTrainOn);
+	adjustWeightsChunkCounter += 1;
+	if (chunkBest.dist < adjustWeightsBestDist) {
+		adjustWeightsBestDist = chunkBest.dist;
+		adjustWeightsBestJson = chunkBest.json;
+	}
+	// after running all adjustment chunks, assign the best found new json
+	if (adjustWeightsChunkCounter >= adjustWeightsChunks) {
+		console.log("bestDist     after  adjusting weights for [" + recentInputsToTrainOn.length + "] input/output pairs: [" + roundToDecimalPlaces(adjustWeightsBestDist, 2) + "]");
+		if (adjustWeightsBestDist < adjustWeightsBaselineDist) {
+			ai.restore_from_json(adjustWeightsBestJson);
+		} else {
+			console.log("skipping adjustment, since no better set of weights was found");
+		}
+		// now that we are done adjusting weights, use the adjusted AI to play a move
+		//currentState = WAITING_FOR_PLAYER;
+		console.log("done adjusting weights chunk " + adjustWeightsChunkCounter + " of " + adjustWeightsChunks);
+		playAITurn();
+	}
+	statusParagraph.html("aiTrainingGamesToRun=" + aiTrainingGamesToRun + ", done adjusting weights chunk " + adjustWeightsChunkCounter + " of " + adjustWeightsChunks + " with best dist so far: " + roundToDecimalPlaces(adjustWeightsBestDist, 2));
+}
+
+function roundToDecimalPlaces(value, decimals) {
+	const tenPow = Math.pow(10.0, decimals);
+	return Math.round(value * tenPow) / tenPow;
 }
 
 function restartGame() {
