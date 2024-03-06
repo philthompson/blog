@@ -26,6 +26,17 @@ const WAITING_FOR_PLAYER = 0;
 const PIECES_MOVING_FROM_HAND = 1;
 const PIECES_MOVING_TO_BANK = 2;
 const ADJUSTING_NEURAL_NETWORK_WEIGHTS = 10;
+const SIMULATION_CTX = {
+	'originalPlayerTurn': null,
+	'originalState': null,
+	'ownBank': null,
+	'oppBank': null,
+	'selectablePits': [],
+	'pitWinProbability': null,
+	'ithSelectablePit': -1,
+	'gamesPlayed': 0.0,
+	'gamesWon': 0.0
+};
 const GAME_OVER = -1;
 let currentPlayerTurn = 0;
 let currentState = WAITING_FOR_PLAYER;
@@ -42,8 +53,8 @@ let statusParagraph;
 let aiTrainingGamesToRun = 4;
 const recentInputsToTrainOn = [];
 const recentOutputsToTrainOn = [];
-const adjustWeightsChunkIterations = 1000;
-const adjustWeightsChunks = 200;
+const adjustWeightsChunkIterations = 500;
+const adjustWeightsChunks = 400;
 let adjustWeightsChunkCounter = 0;
 //let adjustWeightsBaselineDist = 0;
 const adjustWeightsBaselineDistByFactors = {
@@ -62,7 +73,7 @@ let capturedPits = [];
 
 let fpsParagraph;
 let fpsLastTime = 0;
-const ANIMATION_FPS = 60;
+const ANIMATION_FPS = 90;
 const STILL_FPS = 1;
 
 class Neuron {
@@ -506,7 +517,7 @@ function drawHand() {
 
 function playerTurnIsOver() {
 	currentState = WAITING_FOR_PLAYER;
-	frameRate(STILL_FPS);
+	//frameRate(STILL_FPS);
 	// XOR with 1 to alternate between 1 and 0
 	currentPlayerTurn = currentPlayerTurn ^ 1;
 	// check end game: if the player has no pits with seeds,
@@ -529,7 +540,7 @@ function playerTurnIsOver() {
 		}
 		if (gameIsOver) {
 			currentState = GAME_OVER;
-			frameRate(STILL_FPS);
+			//frameRate(STILL_FPS);
 			currentPlayerTurn = -1;
 			if (TRAIN_AI_PLAYER_INDEXES.length > 0 && AI_PLAYER_NN_BY_INDEX[0] !== null && AI_PLAYER_NN_BY_INDEX[1] !== null) {
 				if (!runningSimulation) {
@@ -574,7 +585,11 @@ function playerTurnIsOver() {
 }
 
 function draw() {
-	drawBoard();
+	// don't need to draw the board for every simulated game,
+	//   but we always need to draw it when not simulating games
+	if (!runningSimulation || random(0,10) < 1.0) {
+		drawBoard();
+	}
 	const lastSeedInHandPos = drawHand();
 	if (currentState == PIECES_MOVING_FROM_HAND) {
 		if (movingSeed === null) {
@@ -651,16 +666,18 @@ function draw() {
 		}
 	} else if (currentState == WAITING_FOR_PLAYER && AI_PLAYER_NN_BY_INDEX[currentPlayerTurn] !== null) {
 		playAITurnOrStartTraining();
+	} else if (currentState == GAME_OVER && runningSimulation) {
+		playAITurnOrStartTraining();
 	} else if (currentState == ADJUSTING_NEURAL_NETWORK_WEIGHTS) {
 		adjustWeightsInChunks();
 	}
-	if (random(0,10) < 1.0) {
-		const fpsTimeEpochMs = Date.now();
-		if (fpsTimeEpochMs - fpsLastTime > 1000) {
-			fpsLastTime = fpsTimeEpochMs;
-			fpsParagraph.html(round(frameRate()));
-		}
-	}
+	//if (random(0,10) < 1.0) {
+	//	const fpsTimeEpochMs = Date.now();
+	//	if (fpsTimeEpochMs - fpsLastTime > 1000) {
+	//		fpsLastTime = fpsTimeEpochMs;
+	//		fpsParagraph.html(round(frameRate()));
+	//	}
+	//}
 }
 
 function mouseClicked() {
@@ -715,49 +732,44 @@ function playAITurnOrStartTraining() {
 	// if training this AI player, simulate the rest of the game
 	//   based on selecting each valid pit
 	if (!runningSimulation && TRAIN_AI_PLAYER_INDEXES.indexOf(currentPlayerTurn) > -1) {
-		const originalPlayerTurn = currentPlayerTurn;
-		const originalState = pits.map((p) => p.seeds.slice(0));
-		const ownBank = pits.filter((p) => p.playerIndex == currentPlayerTurn && p.isBank)[0];
-		const oppBank = pits.filter((p) => p.playerIndex != currentPlayerTurn && p.isBank)[0];
-		const selectablePits = pits.filter((p) => p.playerIndex == currentPlayerTurn && !p.isBank && p.seeds.length > 0);
-		const pitWinProbability = selectablePits.map((p) => 0.0);
-		// play a bunch of games after selecting each selectable pit
-		for (let i = 0; i < selectablePits.length; i++) {
-			const pit = selectablePits[i];
-			console.log("simulating games from this point after selecting pit [" + pit.index + "]...");
-			let gamesPlayed = 0.0;
-			let gamesWon = 0.0;
-			for (let j = 0; j < 100; j++) {
-				// simulate the game
-				simulateGameAfterSelectingPit(pit.index);
-				gamesPlayed += 1.0;
-				if (ownBank.seeds.length > oppBank.seeds.length) {
-					gamesWon += 1.0;
-				}
-				// restore state
-				for (let origStatePitIdx = 0; origStatePitIdx < originalState.length; origStatePitIdx++) {
-					pits[origStatePitIdx].seeds = originalState[origStatePitIdx].slice(0);
-				}
-				currentPlayerTurn = originalPlayerTurn;
-			}
-			pitWinProbability[i] = gamesWon / gamesPlayed;
-			console.log("done simulating games, found win % of [" + gamesWon + "/" + gamesPlayed + " -> " + (Math.round(pitWinProbability[i]*1000.0)/1000.0) + "]");
+
+		if (SIMULATION_CTX.ithSelectablePit == -1) {
+			SIMULATION_CTX.originalPlayerTurn = currentPlayerTurn;
+			SIMULATION_CTX.originalState = pits.map((p) => p.seeds.slice(0));
+			SIMULATION_CTX.ownBank = pits.filter((p) => p.playerIndex == currentPlayerTurn && p.isBank)[0];
+			SIMULATION_CTX.oppBank = pits.filter((p) => p.playerIndex != currentPlayerTurn && p.isBank)[0];
+			SIMULATION_CTX.selectablePits = pits.filter((p) => p.playerIndex == currentPlayerTurn && !p.isBank && p.seeds.length > 0);
+			SIMULATION_CTX.pitWinProbability = SIMULATION_CTX.selectablePits.map((p) => 0.0);
+			SIMULATION_CTX.gamesToSimulate = 100;
+			SIMULATION_CTX.ithSelectablePit = -1;
+			SIMULATION_CTX.gamesPlayed = 0.0;
+			SIMULATION_CTX.gamesWon = 0.0;
+			runningSimulation = true;
+			currentState = GAME_OVER; // set runningSimulation AND GAME_OVER to kick off the simulations below
+			return;
+
+		// if all games for all selectable pits have been simulated, use the results
+		//   as training data to adjust model weights
+		} else if (SIMULATION_CTX.ithSelectablePit < SIMULATION_CTX.selectablePits.length) {
+			console.log("should not be here");
+			return;
 		}
+
 		console.log("adjusting weights...");
 		let allMovesGiveZeroWins = true;
 		let bestPitIndex = -1;
 		let bestPitWins = -1;
-		for (let i = 0; i < pitWinProbability.length; i++) {
-			if (pitWinProbability[i] > 0.0) {
+		for (let i = 0; i < SIMULATION_CTX.pitWinProbability.length; i++) {
+			if (SIMULATION_CTX.pitWinProbability[i] > 0.0) {
 				allMovesGiveZeroWins = false;
 			}
-			if (pitWinProbability[i] > bestPitWins) {
-				bestPitWins = pitWinProbability[i];
+			if (SIMULATION_CTX.pitWinProbability[i] > bestPitWins) {
+				bestPitWins = SIMULATION_CTX.pitWinProbability[i];
 				bestPitIndex = i;
 			}
 		}
 		// the nth selectable pit is best, so get its overall pit[] array index
-		bestPitIndex = selectablePits[bestPitIndex].index;
+		bestPitIndex = SIMULATION_CTX.selectablePits[bestPitIndex].index;
 		// adjust weights
 		const inputs = pits.map((pit) => pit.seeds.length);
 		let desiredOutputs = [];
@@ -771,6 +783,7 @@ function playAITurnOrStartTraining() {
 		if (allMovesGiveZeroWins) {
 			console.log("NOT adjusting weights since a win is impossible (perhaps train for highest total in bank instead here?)");
 			playAITurn();
+			SIMULATION_CTX.ithSelectablePit = -1;
 		} else {
 			// adjust weights here providing arrays of inputs and outputs -- we keep
 			//   the most 50 recent input/output pairs to train on
@@ -780,9 +793,10 @@ function playAITurnOrStartTraining() {
 				// drop oldest inputs and outputs
 				recentOutputsToTrainOn.shift();
 				recentInputsToTrainOn.shift();
-			} else if (recentInputsToTrainOn.length < 50) {
+			} else if (recentInputsToTrainOn.length < 10) {
 				console.log("NOT adjusting weights since we have too few moves to train on (" + recentInputsToTrainOn.length + ")");
 				playAITurn();
+				SIMULATION_CTX.ithSelectablePit = -1;
 				return;
 			}
 			const ai = AI_PLAYER_NN_BY_INDEX[currentPlayerTurn];
@@ -813,26 +827,52 @@ function playAITurnOrStartTraining() {
 			return;
 		}
 
-		//const outputs = ai.process_input(inputs);
-		//console.log("nn outputs are now [" + outputs.map((v) => Math.round(v*10000.0)/10000.0) + "]...");
-		//let selectedPitIndex = -1;
-		//const selectedPitIndexOffset = getPitIndexForNeuralNetworkOutputIndex(0);
-		//while (true) {
-		//	for (let i = 0; i < outputs.length; i++) {
-		//		if (pits[i+selectedPitIndexOffset].seeds.length == 0) {
-		//			continue;
-		//		}
-		//		if (random(0.0, 1.0) < outputs[i]) {
-		//			selectedPitIndex = i+selectedPitIndexOffset
-		//			break;
-		//		}
-		//	}
-		//	if (selectedPitIndex > 0) {
-		//		break;
-		//	}
-		//}
-		//selectPitForPlay(pits[selectedPitIndex]);
+	} else if (runningSimulation && currentState == GAME_OVER) {
+		runningSimulation = false;
+		// if a simulated game has ended, track the result and restore the state
+		if (SIMULATION_CTX.ithSelectablePit >= 0) {
+			SIMULATION_CTX.gamesPlayed += 1.0;
+			if (SIMULATION_CTX.ownBank.seeds.length > SIMULATION_CTX.oppBank.seeds.length) {
+				SIMULATION_CTX.gamesWon += 1.0;
+			}
+			// restore state
+			for (let origStatePitIdx = 0; origStatePitIdx < SIMULATION_CTX.originalState.length; origStatePitIdx++) {
+				pits[origStatePitIdx].seeds = SIMULATION_CTX.originalState[origStatePitIdx].slice(0);
+			}
+			currentPlayerTurn = SIMULATION_CTX.originalPlayerTurn;
+			// simulate a bunch of games where the next pit is selected
+			if (SIMULATION_CTX.gamesPlayed >= SIMULATION_CTX.gamesToSimulate) {
+				SIMULATION_CTX.pitWinProbability[SIMULATION_CTX.ithSelectablePit] = SIMULATION_CTX.gamesWon / SIMULATION_CTX.gamesPlayed;
+				console.log("done simulating games, found win % of [" + SIMULATION_CTX.gamesWon + "/" + SIMULATION_CTX.gamesPlayed + " -> " + roundToDecimalPlaces(SIMULATION_CTX.pitWinProbability[SIMULATION_CTX.ithSelectablePit], 3) + "]");
+				SIMULATION_CTX.ithSelectablePit += 1;
+				SIMULATION_CTX.gamesPlayed = 0.0;
+				SIMULATION_CTX.gamesWon = 0.0;
+			}
+		// for the initial state, just increment i here
+		} else if (SIMULATION_CTX.ithSelectablePit == -1) {
+			SIMULATION_CTX.ithSelectablePit += 1;
+		}
+		// simulate the game again
+		if (SIMULATION_CTX.ithSelectablePit < SIMULATION_CTX.selectablePits.length) {
+			console.log("simulating games from this point after selecting pit [" + SIMULATION_CTX.selectablePits[SIMULATION_CTX.ithSelectablePit].index + "]...");
+			frameRate(ANIMATION_FPS);
+			runningSimulation = true;
+			selectPitForPlay(pits[SIMULATION_CTX.selectablePits[SIMULATION_CTX.ithSelectablePit].index]);
+			while (currentState != GAME_OVER) {
+				draw();
+			}
+			// return control to the main thread here, after simulating
+			//   this game
 
+		// if we are done simulating games for this pit, reset these things
+		//   to trigger the simulations for the next pit, but DO NOT
+		//   set SIMULATION_CTX.ithSelectablePit = -1 here, or else we'll
+		//   keep looping over the pits forever -- set that after playing
+		//   the next move
+		} else {
+			currentState = WAITING_FOR_PLAYER;
+			runningSimulation = false;
+		}
 
 	// if not training this AI player (like when simulating games, or playing
 	//   an AI against a human), use the board state to select a pit for play
@@ -873,16 +913,6 @@ function getPitIndexForNeuralNetworkOutputIndex(outputIndex) {
 	return outputIndex + 1 + (currentPlayerTurn * (pitsPerSide + 1));
 }
 
-function simulateGameAfterSelectingPit(selectedPitIndex) {
-	frameRate(ANIMATION_FPS);
-	runningSimulation = true;
-	selectPitForPlay(pits[selectedPitIndex]);
-	while (currentState != GAME_OVER) {
-		draw();
-	}
-	runningSimulation = false;
-}
-
 function adjustWeightsInChunks() {
 	const ai = AI_PLAYER_NN_BY_INDEX[currentPlayerTurn];
 	const chunkBest = ai.adjust_weights(adjustWeightsChunkIterations, recentInputsToTrainOn, recentOutputsToTrainOn);
@@ -903,6 +933,7 @@ function adjustWeightsInChunks() {
 		//currentState = WAITING_FOR_PLAYER;
 		console.log("done adjusting weights chunk " + adjustWeightsChunkCounter + " of " + adjustWeightsChunks);
 		playAITurn();
+		SIMULATION_CTX.ithSelectablePit = -1;
 	}
 	statusParagraph.html("aiTrainingGamesToRun=" + aiTrainingGamesToRun + ", done adjusting weights chunk " + adjustWeightsChunkCounter + " of " + adjustWeightsChunks + " with best dist so far: " + roundToDecimalPlaces(adjustWeightsBestDist, 2));
 }
