@@ -26,6 +26,8 @@ const WAITING_FOR_PLAYER = 0;
 const PIECES_MOVING_FROM_HAND = 1;
 const PIECES_MOVING_TO_BANK = 2;
 const ADJUSTING_NEURAL_NETWORK_WEIGHTS = 10;
+const GAME_OVER = -1;
+const CANCEL_EVERYTHING = -100;
 const SIMULATION_CTX = {
 	'originalPlayerTurn': null,
 	'originalState': null,
@@ -37,7 +39,6 @@ const SIMULATION_CTX = {
 	'gamesPlayed': 0.0,
 	'gamesWon': 0.0
 };
-const GAME_OVER = -1;
 let currentPlayerTurn = 0;
 let currentState = WAITING_FOR_PLAYER;
 let movingSeed = null;
@@ -50,11 +51,11 @@ const TRAIN_AI_PLAYER_INDEXES = [0];
 let runningSimulation = false;
 let modelOutputParagraph;
 let statusParagraph;
-let aiTrainingGamesToRun = 4;
+let aiTrainingGamesToRun = 10;
 const recentInputsToTrainOn = [];
 const recentOutputsToTrainOn = [];
 const adjustWeightsChunkIterations = 500;
-const adjustWeightsChunks = 400;
+const adjustWeightsChunks = 100;
 let adjustWeightsChunkCounter = 0;
 //let adjustWeightsBaselineDist = 0;
 const adjustWeightsBaselineDistByFactors = {
@@ -75,6 +76,85 @@ let fpsParagraph;
 let fpsLastTime = 0;
 const ANIMATION_FPS = 90;
 const STILL_FPS = 1;
+
+
+// thanks to https://gist.github.com/vaiorabbit/5657561
+// 32 bit FNV-1a hash
+// Ref.: http://isthe.com/chongo/tech/comp/fnv/
+const FNV1_32A_INIT = 0x811c9dc5;
+function fnv32a(str) {
+	let hval = FNV1_32A_INIT;
+	for (let i = 0; i < str.length; ++i) {
+		hval ^= str.charCodeAt(i);
+		hval += (hval << 1) + (hval << 4) + (hval << 7) + (hval << 8) + (hval << 24);
+	}
+	return hval >>> 0;
+}
+// version of above FNV-1a that doesn't take string
+//   input -- instead it takes one 32-bit input,
+//   mixes in each byte separately, and returns another
+//   32-bit output
+const MASK_32B_1 = 0b11111111000000000000000000000000;
+const MASK_32B_2 = 0b00000000111111110000000000000000;
+const MASK_32B_3 = 0b00000000000000001111111100000000;
+const MASK_32B_4 = 0b00000000000000000000000011111111;
+function fnv32a_32bitint(int32b) {
+	let hval = FNV1_32A_INIT;
+	hval ^= (int32b & MASK_32B_1);
+	hval += (hval << 1) + (hval << 4) + (hval << 7) + (hval << 8) + (hval << 24);
+	hval ^= (int32b & MASK_32B_2);
+	hval += (hval << 1) + (hval << 4) + (hval << 7) + (hval << 8) + (hval << 24);
+	hval ^= (int32b & MASK_32B_3);
+	hval += (hval << 1) + (hval << 4) + (hval << 7) + (hval << 8) + (hval << 24);
+	hval ^= (int32b & MASK_32B_4);
+	hval += (hval << 1) + (hval << 4) + (hval << 7) + (hval << 8) + (hval << 24);
+	return hval >>> 0;
+}
+function test_fnv32a_32bitint() {
+	const buckets = [];
+	for (let i = 0; i <= 10; i++) {
+		buckets.push(0);
+	}
+	for (let i = 0; i < 10000; i++) {
+		buckets[Math.floor(fasterRandom(0,10))] += 1;
+	}
+	console.log("random values 0-10, Math.floor(), then placed in buckets: [" + buckets + "]");
+}
+// this appears to confirm FNV-1a doesn't repeat itself
+//   after 100 million iterations
+function test_fnv32a_repeat(iters) {
+	const origHash = fnv32a(str(Date.now()));
+	let newHash = fnv32a_32bitint(origHash);
+	for (let i = 0; i < iters-1; i++) {
+		if (newHash === origHash) {
+			console.log("repeat hash DETECTED after [" + (i+1) + "] iterations");
+			return;
+		}
+		newHash = fnv32a_32bitint(origHash);
+	}
+	console.log("repeat hash not detected after [" + iters + "] iterations");
+}
+
+let fasterRandomUsage = 2000000;
+let fasterRandomHash = null;
+// since bit shifting clamps number values to 32-bit unsigned
+//   values, the maximum value the hash can have is this
+const MAX_UNSIGNED_HASH = 0b11111111111111111111111111111111;
+function fasterRandom(minInclusive, maxExclusive) {
+	if (fasterRandomUsage++ > 1000000) {
+		fasterRandomUsage = 0;
+		fasterRandomHash = fnv32a(str(Date.now()));
+		console.log("re-seeded FNV-1a PRNG with the current time");
+	}
+	fasterRandomHash = fnv32a_32bitint(fasterRandomHash);
+	const valueAsFrac = fasterRandomHash / MAX_UNSIGNED_HASH;
+	return minInclusive + (valueAsFrac * (maxExclusive - minInclusive));
+}
+
+function fasterRandomMathRandom(minInclusive, maxExclusive) {
+	// since p5js random() is slow, use Math.random()
+	return minInclusive + (Math.random() * (maxExclusive - minInclusive));
+}
 
 class Neuron {
 	constructor(weights, bias_input) {
@@ -97,8 +177,8 @@ class Neuron {
 		this.prev_weights = this.weights.slice(0); // clone array, thanks to https://stackoverflow.com/a/21514254/259456
 		this.prev_bias_input = this.bias_input;
 		for (let i = 0; i < this.weights.length; i++) {
-			// leave 1/3 of the weights unchanged
-			if (random(0.0, 1.0) < 0.33) {
+			// leave 90% of the weights unchanged
+			if (fasterRandom(0.0, 1.0) < 0.9) {
 				continue;
 			}
 			// using a normal distribution would be more likely to keep
@@ -106,23 +186,24 @@ class Neuron {
 			// using 0.15 as std dev would result in most points from 0.7-1.3,
 			//   with a few outside of that range
 			//let factor = randomGaussian(1.0, 0.2);
-			let factor = random(0.5, 2.0);
+			let factor = fasterRandom(0.5, 2.0);
 			// most of the time, don't flip the sign
-			if (random(0.0, 1.0) < 0.3) {
+			if (fasterRandom(0.0, 1.0) < 0.3) {
 				factor = -factor;
 			}
 			this.weights[i] *= factor;
 		}
-		// leave 1/3 of the biases unchanged
-		if (random(0.0, 1.0) > 0.33) {
-			// since the bias can be negative, occasionally flip its sign
-			//let biasFactor = randomGaussian(1.0, 0.2);
-			let biasFactor = random(0.5, 2.0);
-			if (random(0.0, 1.0) < 0.2) {
-				biasFactor = -biasFactor;
-			}
-			this.bias_input *= biasFactor;
+		// leave 90% of the biases unchanged
+		if (fasterRandom(0.0, 1.0) < 0.9) {
+			return;
 		}
+		// since the bias can be negative, occasionally flip its sign
+		//let biasFactor = randomGaussian(1.0, 0.2);
+		let biasFactor = fasterRandom(0.5, 2.0);
+		if (fasterRandom(0.0, 1.0) < 0.2) {
+			biasFactor = -biasFactor;
+		}
+		this.bias_input *= biasFactor;
 	}
 
 	restore_prev_weights() {
@@ -585,9 +666,14 @@ function playerTurnIsOver() {
 }
 
 function draw() {
+	if (currentState == CANCEL_EVERYTHING) {
+		frameRate(STILL_FPS);
+		statusParagraph.html("stopped");
+		return;
+	}
 	// don't need to draw the board for every simulated game,
 	//   but we always need to draw it when not simulating games
-	if (!runningSimulation || random(0,10) < 1.0) {
+	if (!runningSimulation || fasterRandom(0.0,1.0) < 0.01) {
 		drawBoard();
 	}
 	const lastSeedInHandPos = drawHand();
@@ -671,7 +757,7 @@ function draw() {
 	} else if (currentState == ADJUSTING_NEURAL_NETWORK_WEIGHTS) {
 		adjustWeightsInChunks();
 	}
-	//if (random(0,10) < 1.0) {
+	//if (fasterRandom(0,10) < 1.0) {
 	//	const fpsTimeEpochMs = Date.now();
 	//	if (fpsTimeEpochMs - fpsLastTime > 1000) {
 	//		fpsLastTime = fpsTimeEpochMs;
@@ -755,26 +841,21 @@ function playAITurnOrStartTraining() {
 			return;
 		}
 
-		console.log("adjusting weights...");
-		let allMovesGiveZeroWins = true;
-		let bestPitIndex = -1;
-		let bestPitWins = -1;
+		const allMovesGiveZeroWins = SIMULATION_CTX.pitWinProbability.every((val) => val == 0.0);
+		const bestPitWins = SIMULATION_CTX.pitWinProbability.reduce((acc,val) => Math.max(acc,val), 0);
+		console.log("adjusting weights with bestPitWins=" + bestPitWins + "...");
+		const bestPitIndexes = [];
 		for (let i = 0; i < SIMULATION_CTX.pitWinProbability.length; i++) {
-			if (SIMULATION_CTX.pitWinProbability[i] > 0.0) {
-				allMovesGiveZeroWins = false;
-			}
-			if (SIMULATION_CTX.pitWinProbability[i] > bestPitWins) {
-				bestPitWins = SIMULATION_CTX.pitWinProbability[i];
-				bestPitIndex = i;
+			if (SIMULATION_CTX.pitWinProbability[i] == bestPitWins) {
+				bestPitIndexes.push(SIMULATION_CTX.selectablePits[i].index);
 			}
 		}
-		// the nth selectable pit is best, so get its overall pit[] array index
-		bestPitIndex = SIMULATION_CTX.selectablePits[bestPitIndex].index;
-		// adjust weights
 		const inputs = pits.map((pit) => pit.seeds.length);
 		let desiredOutputs = [];
+		// we want the nn to output 1.0 for all the pits tied with the best win probability,
+		//   and 0.0 otherwise
 		for (let i = 0; i < pitsPerSide; i++) {
-			if (getPitIndexForNeuralNetworkOutputIndex(i) == bestPitIndex) {
+			if (bestPitIndexes.indexOf(getPitIndexForNeuralNetworkOutputIndex(i)) > -1) {
 				desiredOutputs[i] = 1.0;
 			} else {
 				desiredOutputs[i] = 0.0;
@@ -793,7 +874,7 @@ function playAITurnOrStartTraining() {
 				// drop oldest inputs and outputs
 				recentOutputsToTrainOn.shift();
 				recentInputsToTrainOn.shift();
-			} else if (recentInputsToTrainOn.length < 10) {
+			} else if (recentInputsToTrainOn.length < 40) {
 				console.log("NOT adjusting weights since we have too few moves to train on (" + recentInputsToTrainOn.length + ")");
 				playAITurn();
 				SIMULATION_CTX.ithSelectablePit = -1;
@@ -845,6 +926,9 @@ function playAITurnOrStartTraining() {
 				SIMULATION_CTX.pitWinProbability[SIMULATION_CTX.ithSelectablePit] = SIMULATION_CTX.gamesWon / SIMULATION_CTX.gamesPlayed;
 				console.log("done simulating games, found win % of [" + SIMULATION_CTX.gamesWon + "/" + SIMULATION_CTX.gamesPlayed + " -> " + roundToDecimalPlaces(SIMULATION_CTX.pitWinProbability[SIMULATION_CTX.ithSelectablePit], 3) + "]");
 				SIMULATION_CTX.ithSelectablePit += 1;
+				if (SIMULATION_CTX.ithSelectablePit < SIMULATION_CTX.selectablePits.length) {
+					console.log("simulating games from this point after selecting pit [" + SIMULATION_CTX.selectablePits[SIMULATION_CTX.ithSelectablePit].index + "]...");
+				}
 				SIMULATION_CTX.gamesPlayed = 0.0;
 				SIMULATION_CTX.gamesWon = 0.0;
 			}
@@ -854,7 +938,6 @@ function playAITurnOrStartTraining() {
 		}
 		// simulate the game again
 		if (SIMULATION_CTX.ithSelectablePit < SIMULATION_CTX.selectablePits.length) {
-			console.log("simulating games from this point after selecting pit [" + SIMULATION_CTX.selectablePits[SIMULATION_CTX.ithSelectablePit].index + "]...");
 			frameRate(ANIMATION_FPS);
 			runningSimulation = true;
 			selectPitForPlay(pits[SIMULATION_CTX.selectablePits[SIMULATION_CTX.ithSelectablePit].index]);
@@ -895,7 +978,7 @@ function playAITurn() {
 			if (pits[i+selectedPitIndexOffset].seeds.length == 0) {
 				continue;
 			}
-			if (random(0.0, 1.0) < outputs[i]) {
+			if (fasterRandom(0.0, 1.0) < outputs[i]) {
 				selectedPitIndex = i+selectedPitIndexOffset
 				break;
 			}
@@ -907,8 +990,8 @@ function playAITurn() {
 	selectPitForPlay(pits[selectedPitIndex]);
 }
 
-// 0 -> ith pit + 1
-// 1 -> ith pit + 8
+// player 0 -> ith pit + 1
+// player 1 -> ith pit + 8
 function getPitIndexForNeuralNetworkOutputIndex(outputIndex) {
 	return outputIndex + 1 + (currentPlayerTurn * (pitsPerSide + 1));
 }
@@ -953,7 +1036,7 @@ function restartGame() {
 	}
 
 	// randomize player turn
-	currentPlayerTurn = round(random(0,1));
+	currentPlayerTurn = round(fasterRandom(0,1));
 	currentState = WAITING_FOR_PLAYER;
 }
 
