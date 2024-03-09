@@ -6,8 +6,8 @@ written by Phil Thompson on 2024-02-28
 	<head>
 		<script src="../p5-v1.9.0.min.js"></script>
 		<script>
-const dispWidth = 1000;
-const dispHeight = dispWidth * .4;
+const dispWidth = 1100;
+const dispHeight = dispWidth * .38;
 const roundRectRadius = dispWidth * .05;
 const padding = 22;
 const pitsPerSide = 6;
@@ -172,6 +172,7 @@ function setup() {
 		//pitX += padding + pitWidth;
 	}
 	fpsParagraph = createElement('p');
+	currentPlayerTurn = round(random(0,1));
 }
 
 function drawBoard() {

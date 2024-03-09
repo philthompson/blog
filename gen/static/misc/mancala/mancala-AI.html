@@ -5,7 +5,7 @@ written by Phil Thompson on 2024-02-28
 <html>
 	<head>
 		<script src="../p5-v1.9.0.min.js"></script>
-		<script src="neural-network-model.js"></script>
+		<script src="neural-network-model-random-not-bpgd.js"></script>
 		<script>
 const dispWidth = 1100;
 const dispHeight = dispWidth * .38;
@@ -51,15 +51,17 @@ const TRAIN_AI_PLAYER_INDEXES = [0];
 let runningSimulation = false;
 let modelOutputParagraph;
 let statusParagraph;
-let aiTrainingGamesToRun = 10;
+let aiTrainingGamesToRun = 100;
+let maxTrainingSize = 512;
+let minTrainingSize = 20;
 const recentInputsToTrainOn = [];
 const recentOutputsToTrainOn = [];
 const adjustWeightsChunkIterations = 500;
-const adjustWeightsChunks = 100;
+const adjustWeightsChunks = 200;
 let adjustWeightsChunkCounter = 0;
 //let adjustWeightsBaselineDist = 0;
 const adjustWeightsBaselineDistByFactors = {
-	//'twentieth':{'factor': 0.05, 'count': 0, 'dist': Infinity},
+	'twentieth':{'factor': 0.05, 'count': 0, 'dist': Infinity},
 	'tenth':    {'factor': 0.1,  'count': 0, 'dist': Infinity},
 	'quarter':  {'factor': 0.25, 'count': 0, 'dist': Infinity},
 	'half':     {'factor': 0.5,  'count': 0, 'dist': Infinity},
@@ -144,7 +146,7 @@ function fasterRandom(minInclusive, maxExclusive) {
 	if (fasterRandomUsage++ > 1000000) {
 		fasterRandomUsage = 0;
 		fasterRandomHash = fnv32a(str(Date.now()));
-		console.log("re-seeded FNV-1a PRNG with the current time");
+		//console.log("re-seeded FNV-1a PRNG with the current time");
 	}
 	fasterRandomHash = fnv32a_32bitint(fasterRandomHash);
 	const valueAsFrac = fasterRandomHash / MAX_UNSIGNED_HASH;
@@ -186,7 +188,7 @@ class Neuron {
 			// using 0.15 as std dev would result in most points from 0.7-1.3,
 			//   with a few outside of that range
 			//let factor = randomGaussian(1.0, 0.2);
-			let factor = fasterRandom(0.5, 2.0);
+			let factor = fasterRandom(0.2, 5.0);
 			// most of the time, don't flip the sign
 			if (fasterRandom(0.0, 1.0) < 0.3) {
 				factor = -factor;
@@ -199,7 +201,7 @@ class Neuron {
 		}
 		// since the bias can be negative, occasionally flip its sign
 		//let biasFactor = randomGaussian(1.0, 0.2);
-		let biasFactor = fasterRandom(0.5, 2.0);
+		let biasFactor = fasterRandom(0.2, 5.0);
 		if (fasterRandom(0.0, 1.0) < 0.2) {
 			biasFactor = -biasFactor;
 		}
@@ -516,10 +518,21 @@ function setup() {
 
 	// create neural networks, where, for now, only player index 0 will be
 	//   trained -- the other will be loaded from json and then left alone
-	//AI_PLAYER_NN_BY_INDEX[0] = new NeuralNet(json = null, inputs = (pitsPerSide*2)+2, inputNeurons = (pitsPerSide*2)+2, hiddenLayerNeurons = 24, hiddenLayers = 3, outputNeurons = pitsPerSide);
-	//AI_PLAYER_NN_BY_INDEX[1] = new NeuralNet(json = null, inputs = (pitsPerSide*2)+2, inputNeurons = (pitsPerSide*2)+2, hiddenLayerNeurons = 24, hiddenLayers = 3, outputNeurons = pitsPerSide);
-	AI_PLAYER_NN_BY_INDEX[0] = new NeuralNet(json = LATEST_NN_MODEL);
-	AI_PLAYER_NN_BY_INDEX[1] = new NeuralNet(json = LATEST_NN_MODEL);
+	AI_PLAYER_NN_BY_INDEX[0] = new NeuralNet(json = null, inputs = (pitsPerSide*2)+2, inputNeurons = (pitsPerSide*2)+2, hiddenLayerNeurons = 24, hiddenLayers = 3, outputNeurons = pitsPerSide);
+	AI_PLAYER_NN_BY_INDEX[1] = new NeuralNet(json = null, inputs = (pitsPerSide*2)+2, inputNeurons = (pitsPerSide*2)+2, hiddenLayerNeurons = 24, hiddenLayers = 3, outputNeurons = pitsPerSide);
+	//AI_PLAYER_NN_BY_INDEX[0] = new NeuralNet(json = LATEST_NN_MODEL);
+	//AI_PLAYER_NN_BY_INDEX[1] = new NeuralNet(json = LATEST_NN_MODEL);
+
+	if (PREV_INPUTS) {
+		for (const prev_input of PREV_INPUTS) {
+			recentInputsToTrainOn.push(prev_input);
+		}
+	}
+	if (PREV_OUTPUTS) {
+		for (const prev_output of PREV_OUTPUTS) {
+			recentOutputsToTrainOn.push(prev_output);
+		}
+	}
 }
 
 function drawBoard() {
@@ -634,6 +647,7 @@ function playerTurnIsOver() {
 						//console.log(AI_PLAYER_NN_BY_INDEX[aiIdx].export_to_json());
 						modelOutputParagraph.html(contentAlreadyPresent + '<br/><br/>const LATEST_NN_MODEL = ' + AI_PLAYER_NN_BY_INDEX[aiIdx].export_to_json() + ';');
 					}
+					printRecentTrainingData();
 					// if more games left to run, restart
 					if (aiTrainingGamesToRun > 0) {
 						// update the non-training AI NN
@@ -673,7 +687,7 @@ function draw() {
 	}
 	// don't need to draw the board for every simulated game,
 	//   but we always need to draw it when not simulating games
-	if (!runningSimulation || fasterRandom(0.0,1.0) < 0.01) {
+	if (!runningSimulation || fasterRandom(0.0,1.0) < 0.001) {
 		drawBoard();
 	}
 	const lastSeedInHandPos = drawHand();
@@ -764,6 +778,11 @@ function draw() {
 	//		fpsParagraph.html(round(frameRate()));
 	//	}
 	//}
+}
+
+function printRecentTrainingData() {
+	modelOutputParagraph.html(modelOutputParagraph.html() + '<br/><br/>const PREV_INPUTS = ' + JSON.stringify(recentInputsToTrainOn.slice(-maxTrainingSize)) + ';');
+	modelOutputParagraph.html(modelOutputParagraph.html() + '<br/><br/>const PREV_OUTPUTS = ' + JSON.stringify(recentOutputsToTrainOn.slice(-maxTrainingSize)) + ';');
 }
 
 function mouseClicked() {
@@ -870,11 +889,11 @@ function playAITurnOrStartTraining() {
 			//   the most 50 recent input/output pairs to train on
 			console.log("adjusting weights with desired outputs [" + desiredOutputs + "]...");
 			recentOutputsToTrainOn.push(desiredOutputs);
-			if (recentInputsToTrainOn.push(inputs) > 128) {
+			if (recentInputsToTrainOn.push(inputs) > maxTrainingSize) {
 				// drop oldest inputs and outputs
 				recentOutputsToTrainOn.shift();
 				recentInputsToTrainOn.shift();
-			} else if (recentInputsToTrainOn.length < 40) {
+			} else if (recentInputsToTrainOn.length < minTrainingSize) {
 				console.log("NOT adjusting weights since we have too few moves to train on (" + recentInputsToTrainOn.length + ")");
 				playAITurn();
 				SIMULATION_CTX.ithSelectablePit = -1;
@@ -973,18 +992,30 @@ function playAITurn() {
 	}
 	let selectedPitIndex = -1;
 	const selectedPitIndexOffset = getPitIndexForNeuralNetworkOutputIndex(0);
-	while (true) {
+	// we use each move's probability as the chance to pick that move...
+	//   so if all moves have very very low probability, we could loop
+	//   absolutely forever.  in that case, just pick any of them.
+	for (let tries = 0; tries < 1000; tries++) {
 		for (let i = 0; i < outputs.length; i++) {
 			if (pits[i+selectedPitIndexOffset].seeds.length == 0) {
 				continue;
 			}
 			if (fasterRandom(0.0, 1.0) < outputs[i]) {
-				selectedPitIndex = i+selectedPitIndexOffset
+				selectedPitIndex = i+selectedPitIndexOffset;
 				break;
 			}
 		}
 		if (selectedPitIndex > 0) {
 			break;
+		}
+	}
+	if (selectedPitIndex == -1) {
+		for (let i = 0; i < pitsPerSide; i++) {
+			if (pits[i+selectedPitIndexOffset].seeds.length > 0) {
+				selectedPitIndex = i+selectedPitIndexOffset;
+				//console.log("no pit had high enough probability to be picked, so we just picked the first valid pit: " + selectedPitIndex);
+				break;
+			}
 		}
 	}
 	selectPitForPlay(pits[selectedPitIndex]);
