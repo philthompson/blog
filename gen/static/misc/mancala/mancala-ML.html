@@ -4,52 +4,16 @@
 - ensure non-learning AI player is somehow more random than the
     learning AI player (either less trained or intentionally
     made more random)
+- the network has 3 hidden layers with 24 neurons each
+    - the optimal network size is likely larger, but we'll see
+        how well a network of this size performs and how
+        well it can be trained to fit the training data
 
 python backpropagation/gradient descent are from:
-https://towardsdatascience.com/a-step-by-step-implementation-of-gradient-descent-and-backpropagation-d58bda486110
+https://www.youtube.com/watch?v=9RN2Wr8xvro
 
-with arbitrary number of hidden layers used for gradient descent from here:
+with arbitrary number of hidden layers used for gradient descent influenced by:
 https://stackoverflow.com/a/53323498/259456
-
-import numpy as np
-
-class NeuralNetwork:
-    def __init__(self):
-        np.random.seed(10) # for generating the same results
-        self.wij   = np.random.rand(3,4) # input to hidden layer weights
-        self.wjk   = np.random.rand(4,1) # hidden layer to output weights
-        
-    def sigmoid(self, x, w):
-        z = np.dot(x, w)
-        return 1/(1 + np.exp(-z))
-    
-    def sigmoid_derivative(self, x, w):
-        return self.sigmoid(x, w) * (1 - self.sigmoid(x, w))
-    
-    def gradient_descent(self, x, y, iterations):
-        for i in range(iterations):
-            Xi = x
-            Xj = self.sigmoid(Xi, self.wij)
-            yhat = self.sigmoid(Xj, self.wjk)
-            # gradients for hidden to output weights
-            g_wjk = np.dot(Xj.T, (y - yhat) * self.sigmoid_derivative(Xj, self.wjk))
-            # gradients for input to hidden weights
-            g_wij = np.dot(Xi.T, np.dot((y - yhat) * self.sigmoid_derivative(Xj, self.wjk), self.wjk.T) * self.sigmoid_derivative(Xi, self.wij))
-            # update weights
-            self.wij += g_wij
-            self.wjk += g_wjk
-        print('The final prediction from neural network are: ')
-        print(yhat)
-
-if __name__ == '__main__':
-    neural_network = NeuralNetwork()
-    print('Random starting input to hidden weights: ')
-    print(neural_network.wij)
-    print('Random starting hidden to output weights: ')
-    print(neural_network.wjk)
-    X = np.array([[0, 0, 1], [1, 1, 1], [1, 0, 1], [0, 1, 1]])
-    y = np.array([[0, 1, 1, 0]]).T
-    neural_network.gradient_descent(X, y, 10000)
 
 -->
 <html>
@@ -110,6 +74,19 @@ const recentOutputsToTrainOn = [];
 const adjustWeightsChunkIterations = 20;
 const adjustWeightsChunks = 500;
 let adjustWeightsChunkCounter = 0;
+// i have no idea about the strategy of mancala, so we are
+//   starting from scratch with training data.  the neural
+//   network will have to learn by playing itself.
+// because the training data is self-taught, the oldest data
+//   in the recent*ToTrainOn arrays reflect a worse player --
+//   if the learning rate is too fast, the neural network will
+//   be trained too much on those older inferior moves.  the
+//   network will then tend to make worse moves, which might
+//   impact the overall quality of the training data.  the network
+//   may train itself into an inferior local minima.  instead,
+//   by training slower, the model can slowly train itself while
+//   the training data itself slowly improves.  that's the idea
+//   anwyay behind a slow learning rate.
 //let learningRate = 0.0000001; // seems way too slow
 //let learningRate = 0.0000032; // might be too slow still
 //let learningRate = 0.0000048; // slow, but might be fine eventually
@@ -256,22 +233,6 @@ function matrixMultiply(a, b) {
 	);
 }
 
-// assume a has same number of columns as b has rows
-//function matrixMultiply(a, b) {
-//	const result = [];
-//	for (let a_row = 0; a_row < a.length; a_row++) {
-//		for (let b_col = 0; b_col < b[0].length; b_col++) {
-//			let row = [];
-//			for (let a_col = 0; a_col < a[a_row].length; a_col++) {
-//
-//			}
-//		}
-//		
-//		result.push(row)
-//	}
-//	a.map((a_row, a_row_idx) => a_row.map((a_col, a_col_idx) => 
-//}
-
 class Neuron {
 	constructor(weights, bias_input) {
 		this.weights = weights; // an array of floats
@@ -288,12 +249,6 @@ class Neuron {
 		// sigmoid function, thanks to https://dev.to/venture/writing-a-neural-network-in-javascript-2020-intro-to-neural-networks-2c4n
 		return 1.0 / (1.0 + Math.exp(-sum));
 	}
-
-	//process_input_no_bias(inputs) {
-	//	const sum = inputs.reduce((acc, val, idx) => acc + (val * this.weights[idx]));
-	//	// sigmoid function, thanks to https://dev.to/venture/writing-a-neural-network-in-javascript-2020-intro-to-neural-networks-2c4n
-	//	return 1.0 / (1.0 + Math.exp(-sum));
-	//}
 
 	adjust_weights() {
 		this.prev_weights = this.weights.slice(0); // clone array, thanks to https://stackoverflow.com/a/21514254/259456
@@ -371,10 +326,6 @@ class NeuronLayer {
 		return this.neurons.map((n) => n.process_input(inputs));
 	}
 
-	//process_input_no_bias(inputs) {
-	//	return this.neurons.map((n) => n.process_input_no_bias(inputs));
-	//}
-
 	adjust_weights() {
 		for (const neuron of this.neurons) {
 			neuron.adjust_weights();
@@ -445,50 +396,8 @@ class NeuralNet {
 		return baselineDist;
 	}
 
-	// does backpropagation and gradient descent, based on:
-	// https://towardsdatascience.com/a-step-by-step-implementation-of-gradient-descent-and-backpropagation-d58bda486110
-	//
-	// - this leaves the bias values unused and unchanged
 	learn(iterations, inputsArray, desiredOutputsArray) {
 		for (let i = 0; i < iterations; i++) {
-
-//			// use latest weights to process all inputs
-//			const input = inputsArray;
-//			const desiredOutput = desiredOutputsArray;
-//			let layerOutput = desiredOutput; //transposeArray(desiredOutput);
-//			let layerInput = input; //transposeArray(input);
-//			let layerInputs = [layerInput];
-//			layerInput = layerInput.map((val) => this.inputLayer.process_input_no_bias(val));
-//			layerInputs.push(layerInput);
-//			for (const hiddenLayer of this.hiddenLayers) {
-//				layerInput = layerInput.map((val) => hiddenLayer.process_input_no_bias(val));
-//				layerInputs.push(layerInput);
-//			}
-//			layerInput = layerInput.map((val) => this.outputLayer.process_input_no_bias(val));
-//			layerInputs.push(layerInput);
-//
-//			// work backward through layers to apply gradient steps,
-//			//   starting here with the output of the outputLayer
-//			let delta = layerInput.map((val,idx) => subtractArrays(val, desiredOutput[idx]));
-//			let temp;
-//			for (let k = this.hiddenLayers.length; k >= 0; k--) {
-//				temp = delta.map((diffArr, diffIdx) => diffArr.map((val, idx) => val * sigmoidDerivative(layerInputs[k+1][diffIdx][idx])));
-//				if (k == this.hiddenLayers.length) {
-//					// since this dotProduct() returns one value, not an array,
-//					//   i think i need to do a separate dotProduct() for each
-//					//   element of temp -- AND do similar for the dotProduct() in the next line
-//					delta = dotProduct(transposeArray(this.outputLayer.neurons.map((neuron) => neuron.weights)), temp);
-//					temp = dotProduct(temp, transposeArray(layerInputs[k])).map((val) => val * learningRate);
-//					this.outputLayer.neurons.forEach((neuron) => neuron.weights = subtractArrays(neuron.weights, temp));
-//				} else {
-//					// since this dotProduct() returns one value, not an array,
-//					//   i think i need to do a separate dotProduct() for each
-//					//   element of temp -- AND do similar for the dotProduct() in the next line
-//					delta = dotProduct(transposeArray(this.hiddenLayers[k].neurons.map((neuron) => neuron.weights)), temp);
-//					temp = dotProduct(temp, transposeArray(layerInputs[k])).map((val) => val * learningRate);
-//					this.hiddenLayers[k].neurons.forEach((neuron) => neuron.weights = subtractArrays(neuron.weights, temp));
-//				}
-//			}
 
 			// can probably use the array-of-arrays, but to keep things
 			//   simple for now we'll also iterate over each input-output
@@ -500,17 +409,13 @@ class NeuralNet {
 				// use latest weights to process all inputs
 				let layerOutput = desiredOutput; //transposeArray(desiredOutput);
 				let layerInput = input; //transposeArray(input);
-				//let layerInputs = [layerInput];
 				let layerInputs = [];
-				//layerInput = this.inputLayer.process_input_no_bias(layerInput);
 				layerInput = this.inputLayer.process_input(layerInput);
 				layerInputs.push(layerInput);
 				for (const hiddenLayer of this.hiddenLayers) {
-					//layerInput = hiddenLayer.process_input_no_bias(layerInput);
 					layerInput = hiddenLayer.process_input(layerInput);
 					layerInputs.push(layerInput);
 				}
-				//layerInput = this.outputLayer.process_input_no_bias(layerInput);
 				layerInput = this.outputLayer.process_input(layerInput);
 				layerInputs.push(layerInput);
 
@@ -537,8 +442,6 @@ class NeuralNet {
 						delta.forEach((val,nIdx) => outLayer.neurons[nIdx].bias_input -= learningRate * val);
 						nextLayer = outLayer;
 
-						//delta = temp.map((val,idx) =>  transposeArray(layerInputs[k])).map((val) => val * learningRate);
-						//this.outputLayer.neurons.forEach((neuron) => neuron.weights = subtractArrays(neuron.weights, temp));
 					} else {
 						outLayer = this.hiddenLayers[k];
 						let weights = transposeArray(nextLayer.neurons.map((neuron) => neuron.weights));
@@ -556,34 +459,7 @@ class NeuralNet {
 						delta.forEach((val,nIdx) => outLayer.neurons[nIdx].bias_input -= learningRate * val);
 						nextLayer = outLayer;
 
-
-						//delta = dotProduct(transposeArray(this.hiddenLayers[k].neurons.map((neuron) => neuron.weights)), temp);
-						//temp = dotProduct(temp, transposeArray(layerInputs[k])).map((val) => val * learningRate);
-						//this.hiddenLayers[k].neurons.forEach((neuron) => neuron.weights = subtractArrays(neuron.weights, temp));
 					}
-//					//let a = transposeArray(outLayer.neurons.map((neuron) => neuron.weights));
-//					//let b = transposeArray([temp]);
-//					//// somehow this is giving 24 1-element arrays, when it should be giving 24 arrays with 1 element per weight
-//					//delta = matrixMultiply(a, b);
-//
-//					let a = transposeArray(outLayer.neurons.map((neuron) => neuron.weights));
-//					//temp = multiplyArrays(a, delta);
-//					//let tryThis = matrixMultiply([delta], transposeArray(a));
-//
-//					//let temp2 = layerInputs[k+1].map((val) => sigmoidDerivative(val));
-//
-//					delta = matrixMultiply(a, delta);
-//
-//					// this seems to echo the 13:28 moment of youtube vid: delta is a vertical column, inputs are horiz w/one per neuron
-//					let maybe2 = matrixMultiply([delta], [layerInputs[k].map((val) => sigmoidDerivative(val))]);
-//					let maybe = matrixMultiply(transposeArray([delta]), [layerInputs[k].map((val) => sigmoidDerivative(val))]);
-//
-//					//delta = matrixMultiply(transposeArray(outLayer.neurons.map((neuron) => neuron.weights)), temp);
-//					//console.log("outLayer neuron weights before:");
-//					//for (const neuron of outLayer.neurons) {
-//					//	console.log("" + neuron.weights);
-//					//}
-//					transposeArray(temp).forEach((vals,nIdx) => vals.forEach((val,wIdx) => outLayer.neurons[nIdx].weights[wIdx] -= learningRate * val));
 					
 					//console.log("outLayer neuron weights after:");
 					//for (const neuron of outLayer.neurons) {
@@ -594,42 +470,6 @@ class NeuralNet {
 			}
 			//console.log("completed learn iteration " + (i+1));
 		}
-
-
-		//let layerOutput;
-		//let layerOutputs = [];
-		//let weightUpdates = [];
-		//let gradientStep;
-		//let gradientSteps = [];
-		//for (let i = 0; i < iterations; i++) {
-		//	// use latest weights to process all inputs
-		//	layerOutputs = [];
-		//	weightUpdates = [];
-		//	layerOutput = inputsArray.map((inputVals) => this.inputLayer.process_input_no_bias(inputVals));
-		//	layerOutputs.push(layerOutput);
-		//	for (const hiddenLayer of this.hiddenLayers) {
-		//		layerOutput = layerOutput.map((inputVals) => hiddenLayer.process_input_no_bias(inputVals));
-		//		layerOutputs.push(layerOutput);
-		//	}
-		//	layerOutput = layerOutput.map((inputVals) => this.outputLayer.process_input_no_bias(inputVals));
-		//	layerOutputs.push(layerOutput);
-		//	// work backward through layers to find gradient steps
-		//	let outputDistance = subtractArrays(transposeArray(layerOutput), transposeArray(desiredOutputsArray));
-		//	gradientSteps = [];
-		//	for (let inputCursor = layerOutputs.length - 1; inputCursor >= -1; inputCursor--) {
-		//		layerOutput = layerOutputs[inputCursor];
-		//		let tmp;
-		//		if (inputCursor + 1 == layerOutputs.length) {
-		//			tmp = multiplyArrays(outputDistance, sigmoidDerivative
-		//			outputDistance = subtractArrays(desiredOutputsArray, layerOutputs[inputCursor]);
-		//		} else if (inputCursor == -1) {
-		//			outputDistance = subtractArrays(
-		//		} else if ( {
-		//			outputDistance = subtractArrays(layerOutputs[inputCursor+1], layerOutputs[inputCursor]);
-		//		}
-		//		gradientStep = dotProduct(transposeArray(layerOutput), subtractArrays(desiredOutputsArray, layerOutputs[inputCursor]+1) );
-		//	}
-		//}
 	}
 
 	adjust_weights(iterations, inputsArray, desiredOutputsArray) {
@@ -816,12 +656,6 @@ function setup() {
 			pits.push(new Pit(pitX, padding, pitWidth, pitHeight, INITIAL_SEEDS_IN_PIT, true, 1, false, i));
 			pitX -= padding + pitWidth;
 		}
-
-		//pits.push(new Pit(pitX, padding, pitWidth, pitHeight, 9, true));
-		////rect(pitX, padding, pitWidth, pitHeight);
-		//pits.push(new Pit(pitX, padding + pitHeight + padding, pitWidth, pitHeight, 4, true));
-		////rect(pitX, padding + pitHeight + padding, pitWidth, pitHeight);
-		//pitX += padding + pitWidth;
 	}
 	fpsParagraph = createElement('p');
 	statusParagraph = createElement('p');
@@ -829,10 +663,10 @@ function setup() {
 
 	// create neural networks, where, for now, only player index 0 will be
 	//   trained -- the other will be loaded from json and then left alone
-	AI_PLAYER_NN_BY_INDEX[0] = new NeuralNet(json = null, inputs = (pitsPerSide*2)+2, inputNeurons = (pitsPerSide*2)+2, hiddenLayerNeurons = 24, hiddenLayers = 3, outputNeurons = pitsPerSide);
-	AI_PLAYER_NN_BY_INDEX[1] = new NeuralNet(json = null, inputs = (pitsPerSide*2)+2, inputNeurons = (pitsPerSide*2)+2, hiddenLayerNeurons = 24, hiddenLayers = 3, outputNeurons = pitsPerSide);
-	//AI_PLAYER_NN_BY_INDEX[0] = new NeuralNet(json = LATEST_NN_MODEL);
-	//AI_PLAYER_NN_BY_INDEX[1] = new NeuralNet(json = LATEST_NN_MODEL);
+	//AI_PLAYER_NN_BY_INDEX[0] = new NeuralNet(json = null, inputs = (pitsPerSide*2)+2, inputNeurons = (pitsPerSide*2)+2, hiddenLayerNeurons = 24, hiddenLayers = 3, outputNeurons = pitsPerSide);
+	//AI_PLAYER_NN_BY_INDEX[1] = new NeuralNet(json = null, inputs = (pitsPerSide*2)+2, inputNeurons = (pitsPerSide*2)+2, hiddenLayerNeurons = 24, hiddenLayers = 3, outputNeurons = pitsPerSide);
+	AI_PLAYER_NN_BY_INDEX[0] = new NeuralNet(json = LATEST_NN_MODEL);
+	AI_PLAYER_NN_BY_INDEX[1] = new NeuralNet(json = LATEST_NN_MODEL);
 
 	if (PREV_INPUTS) {
 		for (const prev_input of PREV_INPUTS) {
@@ -853,11 +687,7 @@ function drawBoard() {
 	background(120,120,120);
 	fill(boardColor);
 	rect(0, 0, width, height, roundRectRadius);
-	//fill(pitColor);
-	// draw left bank
-	//rect(padding, padding, pitWidth, dispHeight - padding - padding);
-	// draw right bank
-	//rect(dispWidth - padding - pitWidth, padding, pitWidth, dispHeight - padding - padding);
+
 	for (const pit of pits) {
 		pit.draw();
 		if (currentPlayerTurn < 0 && pit.isBank) {
