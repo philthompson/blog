@@ -1,0 +1,1406 @@
+<!DOCTYPE html>
+<!--
+
+- ensure non-learning AI player is somehow more random than the
+    learning AI player (either less trained or intentionally
+    made more random)
+
+python backpropagation/gradient descent are from:
+https://towardsdatascience.com/a-step-by-step-implementation-of-gradient-descent-and-backpropagation-d58bda486110
+
+with arbitrary number of hidden layers used for gradient descent from here:
+https://stackoverflow.com/a/53323498/259456
+
+import numpy as np
+
+class NeuralNetwork:
+    def __init__(self):
+        np.random.seed(10) # for generating the same results
+        self.wij   = np.random.rand(3,4) # input to hidden layer weights
+        self.wjk   = np.random.rand(4,1) # hidden layer to output weights
+        
+    def sigmoid(self, x, w):
+        z = np.dot(x, w)
+        return 1/(1 + np.exp(-z))
+    
+    def sigmoid_derivative(self, x, w):
+        return self.sigmoid(x, w) * (1 - self.sigmoid(x, w))
+    
+    def gradient_descent(self, x, y, iterations):
+        for i in range(iterations):
+            Xi = x
+            Xj = self.sigmoid(Xi, self.wij)
+            yhat = self.sigmoid(Xj, self.wjk)
+            # gradients for hidden to output weights
+            g_wjk = np.dot(Xj.T, (y - yhat) * self.sigmoid_derivative(Xj, self.wjk))
+            # gradients for input to hidden weights
+            g_wij = np.dot(Xi.T, np.dot((y - yhat) * self.sigmoid_derivative(Xj, self.wjk), self.wjk.T) * self.sigmoid_derivative(Xi, self.wij))
+            # update weights
+            self.wij += g_wij
+            self.wjk += g_wjk
+        print('The final prediction from neural network are: ')
+        print(yhat)
+
+if __name__ == '__main__':
+    neural_network = NeuralNetwork()
+    print('Random starting input to hidden weights: ')
+    print(neural_network.wij)
+    print('Random starting hidden to output weights: ')
+    print(neural_network.wjk)
+    X = np.array([[0, 0, 1], [1, 1, 1], [1, 0, 1], [0, 1, 1]])
+    y = np.array([[0, 1, 1, 0]]).T
+    neural_network.gradient_descent(X, y, 10000)
+
+-->
+<html>
+	<head>
+		<script src="../p5-v1.9.0.min.js"></script>
+		<script src="neural-network-model.js"></script>
+		<script>
+const dispWidth = 1100;
+const dispHeight = dispWidth * .38;
+const roundRectRadius = dispWidth * .05;
+const padding = 22;
+const pitsPerSide = 6;
+const pitWidth = (dispWidth - (padding * (pitsPerSide + 2 + 1))) / (pitsPerSide + 2);
+const pitHeight = (dispHeight - (padding * 3)) / 2;
+const seedSize = 16;
+let boardColor;
+let pitColors = [];
+let seedColors = [];
+let seedColor;
+let seedsInHand = [];
+let destinationPitIndexes = [];
+
+const WAITING_FOR_PLAYER = 0;
+const PIECES_MOVING_FROM_HAND = 1;
+const PIECES_MOVING_TO_BANK = 2;
+const ADJUSTING_NEURAL_NETWORK_WEIGHTS = 10;
+const GAME_OVER = -1;
+const CANCEL_EVERYTHING = -100;
+let donePrintingCancelOutput = false;
+const SIMULATION_CTX = {
+	'originalPlayerTurn': null,
+	'originalState': null,
+	'ownBank': null,
+	'oppBank': null,
+	'selectablePits': [],
+	'pitWinProbability': null,
+	'ithSelectablePit': -1,
+	'gamesPlayed': 0.0,
+	'gamesWon': 0.0
+};
+let currentPlayerTurn = 0;
+let currentState = WAITING_FOR_PLAYER;
+let movingSeed = null;
+const HUMAN_PLAYER_INDEX = -1;
+const AI_PLAYER_NN_BY_INDEX = {
+	0: null,
+	1: null
+};
+const TRAIN_AI_PLAYER_INDEXES = [0];
+let runningSimulation = false;
+let modelOutputParagraph;
+let statusParagraph;
+let aiTrainingGamesToRun = 100;
+let maxTrainingSize = 512;
+let minTrainingSize = 128;
+const recentInputsToTrainOn = [];
+const recentOutputsToTrainOn = [];
+const adjustWeightsChunkIterations = 20;
+const adjustWeightsChunks = 500;
+let adjustWeightsChunkCounter = 0;
+//let learningRate = 0.0000001; // seems way too slow
+//let learningRate = 0.0000032; // might be too slow still
+//let learningRate = 0.0000048; // slow, but might be fine eventually
+let   learningRate = 0.000008;
+//let adjustWeightsBaselineDist = 0;
+const adjustWeightsBaselineDistByFactors = {
+	//'twentieth':{'factor': 0.05, 'count': 0, 'dist': Infinity},
+	'tenth':    {'factor': 0.1,  'count': 0, 'dist': Infinity},
+	'quarter':  {'factor': 0.25, 'count': 0, 'dist': Infinity},
+	'half':     {'factor': 0.5,  'count': 0, 'dist': Infinity},
+	'all':      {'factor': 1.0,  'count': 0, 'dist': Infinity},
+};
+let adjustWeightsBestDist = null;
+let adjustWeightsBestJson = null;
+
+const INITIAL_SEEDS_IN_PIT = 4;
+const pits = [];
+let capturedPits = [];
+
+let fpsParagraph;
+let fpsLastTime = 0;
+const ANIMATION_FPS = 90;
+const STILL_FPS = 1;
+
+
+// thanks to https://gist.github.com/vaiorabbit/5657561
+// 32 bit FNV-1a hash
+// Ref.: http://isthe.com/chongo/tech/comp/fnv/
+const FNV1_32A_INIT = 0x811c9dc5;
+function fnv32a(str) {
+	let hval = FNV1_32A_INIT;
+	for (let i = 0; i < str.length; ++i) {
+		hval ^= str.charCodeAt(i);
+		hval += (hval << 1) + (hval << 4) + (hval << 7) + (hval << 8) + (hval << 24);
+	}
+	return hval >>> 0;
+}
+// version of above FNV-1a that doesn't take string
+//   input -- instead it takes one 32-bit input,
+//   mixes in each byte separately, and returns another
+//   32-bit output
+const MASK_32B_1 = 0b11111111000000000000000000000000;
+const MASK_32B_2 = 0b00000000111111110000000000000000;
+const MASK_32B_3 = 0b00000000000000001111111100000000;
+const MASK_32B_4 = 0b00000000000000000000000011111111;
+function fnv32a_32bitint(int32b) {
+	let hval = FNV1_32A_INIT;
+	hval ^= (int32b & MASK_32B_1);
+	hval += (hval << 1) + (hval << 4) + (hval << 7) + (hval << 8) + (hval << 24);
+	hval ^= (int32b & MASK_32B_2);
+	hval += (hval << 1) + (hval << 4) + (hval << 7) + (hval << 8) + (hval << 24);
+	hval ^= (int32b & MASK_32B_3);
+	hval += (hval << 1) + (hval << 4) + (hval << 7) + (hval << 8) + (hval << 24);
+	hval ^= (int32b & MASK_32B_4);
+	hval += (hval << 1) + (hval << 4) + (hval << 7) + (hval << 8) + (hval << 24);
+	return hval >>> 0;
+}
+function test_fnv32a_32bitint() {
+	const buckets = [];
+	for (let i = 0; i <= 10; i++) {
+		buckets.push(0);
+	}
+	for (let i = 0; i < 10000; i++) {
+		buckets[Math.floor(fasterRandom(0,10))] += 1;
+	}
+	console.log("random values 0-10, Math.floor(), then placed in buckets: [" + buckets + "]");
+}
+// this appears to confirm FNV-1a doesn't repeat itself
+//   after 100 million iterations
+function test_fnv32a_repeat(iters) {
+	const origHash = fnv32a(str(Date.now()));
+	let newHash = fnv32a_32bitint(origHash);
+	for (let i = 0; i < iters-1; i++) {
+		if (newHash === origHash) {
+			console.log("repeat hash DETECTED after [" + (i+1) + "] iterations");
+			return;
+		}
+		newHash = fnv32a_32bitint(origHash);
+	}
+	console.log("repeat hash not detected after [" + iters + "] iterations");
+}
+
+let fasterRandomUsage = 2000000;
+let fasterRandomHash = null;
+// since bit shifting clamps number values to 32-bit unsigned
+//   values, the maximum value the hash can have is this
+const MAX_UNSIGNED_HASH = 0b11111111111111111111111111111111;
+function fasterRandom(minInclusive, maxExclusive) {
+	if (fasterRandomUsage++ > 1000000) {
+		fasterRandomUsage = 0;
+		fasterRandomHash = fnv32a(str(Date.now()));
+		//console.log("re-seeded FNV-1a PRNG with the current time");
+	}
+	fasterRandomHash = fnv32a_32bitint(fasterRandomHash);
+	const valueAsFrac = fasterRandomHash / MAX_UNSIGNED_HASH;
+	return minInclusive + (valueAsFrac * (maxExclusive - minInclusive));
+}
+
+function fasterRandomMathRandom(minInclusive, maxExclusive) {
+	// since p5js random() is slow, use Math.random()
+	return minInclusive + (Math.random() * (maxExclusive - minInclusive));
+}
+
+function sigmoid(input) {
+	// sigmoid function, thanks to https://dev.to/venture/writing-a-neural-network-in-javascript-2020-intro-to-neural-networks-2c4n
+	return 1.0 / (1.0 + Math.exp(-input));
+}
+
+// thanks to https://math.stackexchange.com/questions/78575/derivative-of-sigmoid-function-sigma-x-frac11e-x
+function sigmoidDerivative(input) {
+	const s = sigmoid(input);
+	return s * (1 - s);
+}
+
+// thanks to https://stackoverflow.com/a/64816824/259456
+function dotProduct(a, b) {
+	return a.reduce((acc, val, idx) => acc + (val * b[idx]), 0.0);
+}
+
+function subtractArrays(a, b) {
+	return a.map((val, idx) => val - b[idx]);
+}
+
+// thanks to https://stackoverflow.com/a/13241545/259456
+function transposeArray(a) {
+    return Object.keys(a[0]).map(function(c) {
+        return a.map(function(r) { return r[c]; });
+    });
+}
+
+// assume each array within a has same length as b
+function multiplyArrays(a, b) {
+	return a.map((val) => val.map((inner,idx) => inner * b[idx]));
+}
+
+// thanks to https://stackoverflow.com/a/61523756/259456
+function matrixMultiply(a, b) {
+	return a.map((row, i) =>
+		b[0].map((_, j) =>
+			row.reduce((acc, _, n) =>
+				acc + a[i][n] * b[n][j], 0
+			)
+		)
+	);
+}
+
+// assume a has same number of columns as b has rows
+//function matrixMultiply(a, b) {
+//	const result = [];
+//	for (let a_row = 0; a_row < a.length; a_row++) {
+//		for (let b_col = 0; b_col < b[0].length; b_col++) {
+//			let row = [];
+//			for (let a_col = 0; a_col < a[a_row].length; a_col++) {
+//
+//			}
+//		}
+//		
+//		result.push(row)
+//	}
+//	a.map((a_row, a_row_idx) => a_row.map((a_col, a_col_idx) => 
+//}
+
+class Neuron {
+	constructor(weights, bias_input) {
+		this.weights = weights; // an array of floats
+		this.bias_input = bias_input; // a number
+		this.prev_weights = null;
+		this.prev_bias_input = null;
+	}
+
+	process_input(inputs) {
+		// start with the bias_input
+		let sum = this.bias_input;
+		// mulitply each input by its (corresponding by array position) weight
+		inputs.forEach((value, index) => sum += value * this.weights[index]);
+		// sigmoid function, thanks to https://dev.to/venture/writing-a-neural-network-in-javascript-2020-intro-to-neural-networks-2c4n
+		return 1.0 / (1.0 + Math.exp(-sum));
+	}
+
+	//process_input_no_bias(inputs) {
+	//	const sum = inputs.reduce((acc, val, idx) => acc + (val * this.weights[idx]));
+	//	// sigmoid function, thanks to https://dev.to/venture/writing-a-neural-network-in-javascript-2020-intro-to-neural-networks-2c4n
+	//	return 1.0 / (1.0 + Math.exp(-sum));
+	//}
+
+	adjust_weights() {
+		this.prev_weights = this.weights.slice(0); // clone array, thanks to https://stackoverflow.com/a/21514254/259456
+		this.prev_bias_input = this.bias_input;
+		for (let i = 0; i < this.weights.length; i++) {
+			// leave 90% of the weights unchanged
+			if (fasterRandom(0.0, 1.0) < 0.9) {
+				continue;
+			}
+			// using a normal distribution would be more likely to keep
+			//   most weights the same
+			// using 0.15 as std dev would result in most points from 0.7-1.3,
+			//   with a few outside of that range
+			//let factor = randomGaussian(1.0, 0.2);
+			let factor = fasterRandom(0.5, 2.0);
+			// most of the time, don't flip the sign
+			if (fasterRandom(0.0, 1.0) < 0.3) {
+				factor = -factor;
+			}
+			this.weights[i] *= factor;
+		}
+		// leave 90% of the biases unchanged
+		if (fasterRandom(0.0, 1.0) < 0.9) {
+			return;
+		}
+		// since the bias can be negative, occasionally flip its sign
+		//let biasFactor = randomGaussian(1.0, 0.2);
+		let biasFactor = fasterRandom(0.5, 2.0);
+		if (fasterRandom(0.0, 1.0) < 0.2) {
+			biasFactor = -biasFactor;
+		}
+		this.bias_input *= biasFactor;
+	}
+
+	restore_prev_weights() {
+		this.weights = this.prev_weights.slice(0);  // clone array
+		this.bias_input = this.prev_bias_input;
+	}
+}
+
+class NeuronLayer {
+	constructor(neurons, numberOfInputs, json = null) {
+		if (json !== null) {
+			this.numberOfInputs = json.numberOfInputs;
+			this.neurons = [];
+			for (let i = 0; i < json.neuronWeights.length; i++) {
+				this.neurons.push(new Neuron(json.neuronWeights[i], json.neuronBias[i]));
+			}
+		} else {
+			this.numberOfInputs = numberOfInputs;
+			this.neurons = [];
+			for (let i = 0; i < neurons; i++) {
+				let weights = [];
+				for (let j = 0; j < numberOfInputs; j++) {
+					weights.push(random(-1, 1));
+				}
+				this.neurons.push(new Neuron(weights, random(-1, 1)));
+			}
+		}
+	}
+
+	export_to_json() {
+		const json = {
+			neuronWeights: [],
+			neuronBias: []
+		};
+		for (const neuron of this.neurons) {
+			json.neuronWeights.push(neuron.weights);
+			json.neuronBias.push(neuron.bias_input);
+		}
+		return json;
+	}
+
+	process_input(inputs) {
+		return this.neurons.map((n) => n.process_input(inputs));
+	}
+
+	//process_input_no_bias(inputs) {
+	//	return this.neurons.map((n) => n.process_input_no_bias(inputs));
+	//}
+
+	adjust_weights() {
+		for (const neuron of this.neurons) {
+			neuron.adjust_weights();
+		}
+	}
+
+	restore_prev_weights() {
+		for (const neuron of this.neurons) {
+			neuron.restore_prev_weights();
+		}
+	}
+}
+
+class NeuralNet {
+	constructor(json = null, inputs = -1, inputNeurons = -1, hiddenLayerNeurons = -1, hiddenLayers = -1, outputNeurons = -1) {
+		if (json !== null) {
+			this.restore_from_json(json);
+		} else {
+			this.inputLayer = new NeuronLayer(inputNeurons, inputs);
+			this.hiddenLayers = [];
+			for (let i = 0; i < hiddenLayers; i++) {
+				const hiddenLayerInputs = i == 0 ? inputNeurons : hiddenLayerNeurons;
+				this.hiddenLayers.push(new NeuronLayer(hiddenLayerNeurons, hiddenLayerInputs));
+			}
+			this.outputLayer = new NeuronLayer(outputNeurons, hiddenLayerNeurons);
+		}
+	}
+
+	restore_from_json(json) {
+		this.inputLayer = new NeuronLayer(-1, -1, json.inputLayer);
+		this.hiddenLayers = [];
+		for (let i = 0; i < json.hiddenLayers.length; i++) {
+			this.hiddenLayers.push(new NeuronLayer(-1, -1, json.hiddenLayers[i]));
+		}
+		this.outputLayer = new NeuronLayer(-1, -1, json.outputLayer);
+	}
+
+	export_to_json() {
+		const json = {
+			inputLayer: this.inputLayer.export_to_json(),
+			hiddenLayers: [],
+			outputLayer: this.outputLayer.export_to_json(),
+		};
+		for (const layer of this.hiddenLayers) {
+			json.hiddenLayers.push(layer.export_to_json());
+		}
+		return JSON.stringify(json, null, "");
+	}
+
+	process_input(inputs) {
+		let layerOutput = this.inputLayer.process_input(inputs);
+		for (const layer of this.hiddenLayers) {
+			layerOutput = layer.process_input(layerOutput);
+		}
+		return this.outputLayer.process_input(layerOutput);
+	}
+
+	get_current_outputs_dist(inputsArray, desiredOutputsArray) {
+		let nnOutputs = null;
+		let baselineDist = 0.0;
+		for (let j = 0; j < inputsArray.length; j++) {
+			// process input, and save the seed if it results in the closest yet output
+			nnOutputs = this.process_input(inputsArray[j]);
+			// use square of distance to penalize large distances more,
+			//   and for more fine-grained tuning of small distances
+			nnOutputs.forEach((val,idx) => baselineDist += Math.pow(desiredOutputsArray[j][idx] - val, 2));
+		}
+		return baselineDist;
+	}
+
+	// does backpropagation and gradient descent, based on:
+	// https://towardsdatascience.com/a-step-by-step-implementation-of-gradient-descent-and-backpropagation-d58bda486110
+	//
+	// - this leaves the bias values unused and unchanged
+	learn(iterations, inputsArray, desiredOutputsArray) {
+		for (let i = 0; i < iterations; i++) {
+
+//			// use latest weights to process all inputs
+//			const input = inputsArray;
+//			const desiredOutput = desiredOutputsArray;
+//			let layerOutput = desiredOutput; //transposeArray(desiredOutput);
+//			let layerInput = input; //transposeArray(input);
+//			let layerInputs = [layerInput];
+//			layerInput = layerInput.map((val) => this.inputLayer.process_input_no_bias(val));
+//			layerInputs.push(layerInput);
+//			for (const hiddenLayer of this.hiddenLayers) {
+//				layerInput = layerInput.map((val) => hiddenLayer.process_input_no_bias(val));
+//				layerInputs.push(layerInput);
+//			}
+//			layerInput = layerInput.map((val) => this.outputLayer.process_input_no_bias(val));
+//			layerInputs.push(layerInput);
+//
+//			// work backward through layers to apply gradient steps,
+//			//   starting here with the output of the outputLayer
+//			let delta = layerInput.map((val,idx) => subtractArrays(val, desiredOutput[idx]));
+//			let temp;
+//			for (let k = this.hiddenLayers.length; k >= 0; k--) {
+//				temp = delta.map((diffArr, diffIdx) => diffArr.map((val, idx) => val * sigmoidDerivative(layerInputs[k+1][diffIdx][idx])));
+//				if (k == this.hiddenLayers.length) {
+//					// since this dotProduct() returns one value, not an array,
+//					//   i think i need to do a separate dotProduct() for each
+//					//   element of temp -- AND do similar for the dotProduct() in the next line
+//					delta = dotProduct(transposeArray(this.outputLayer.neurons.map((neuron) => neuron.weights)), temp);
+//					temp = dotProduct(temp, transposeArray(layerInputs[k])).map((val) => val * learningRate);
+//					this.outputLayer.neurons.forEach((neuron) => neuron.weights = subtractArrays(neuron.weights, temp));
+//				} else {
+//					// since this dotProduct() returns one value, not an array,
+//					//   i think i need to do a separate dotProduct() for each
+//					//   element of temp -- AND do similar for the dotProduct() in the next line
+//					delta = dotProduct(transposeArray(this.hiddenLayers[k].neurons.map((neuron) => neuron.weights)), temp);
+//					temp = dotProduct(temp, transposeArray(layerInputs[k])).map((val) => val * learningRate);
+//					this.hiddenLayers[k].neurons.forEach((neuron) => neuron.weights = subtractArrays(neuron.weights, temp));
+//				}
+//			}
+
+			// can probably use the array-of-arrays, but to keep things
+			//   simple for now we'll also iterate over each input-output
+			//   array pair
+			for (let j = 0; j < inputsArray.length; j++) {
+				const input = inputsArray[j];
+				const desiredOutput = desiredOutputsArray[j];
+
+				// use latest weights to process all inputs
+				let layerOutput = desiredOutput; //transposeArray(desiredOutput);
+				let layerInput = input; //transposeArray(input);
+				//let layerInputs = [layerInput];
+				let layerInputs = [];
+				//layerInput = this.inputLayer.process_input_no_bias(layerInput);
+				layerInput = this.inputLayer.process_input(layerInput);
+				layerInputs.push(layerInput);
+				for (const hiddenLayer of this.hiddenLayers) {
+					//layerInput = hiddenLayer.process_input_no_bias(layerInput);
+					layerInput = hiddenLayer.process_input(layerInput);
+					layerInputs.push(layerInput);
+				}
+				//layerInput = this.outputLayer.process_input_no_bias(layerInput);
+				layerInput = this.outputLayer.process_input(layerInput);
+				layerInputs.push(layerInput);
+
+				// work backward through layers to apply gradient steps,
+				//   starting here with the output of the outputLayer
+				let delta = subtractArrays(layerInput, desiredOutput);
+				// squared distance doesn't preserve the negative sign, which i think is an issue,
+				//   but can the minus sign be replaced after finding the squared distance?
+				//let delta = layerInput.map((val,idx) => Math.pow(val - desiredOutput[idx], 2));
+				let temp;
+				let nextLayer;
+				for (let k = this.hiddenLayers.length; k >= 0; k--) {
+					// don't need this anymore...
+					//delta = delta.map((val, idx) => val * sigmoidDerivative(layerInputs[k+1][idx]));
+					let outLayer;
+					// the first layer, working backwards, doesn't use the sigmoid derivative, and
+					//   also uses the output layer since it is one beyond the last hidden layer
+					if (k == this.hiddenLayers.length) {
+						outLayer = this.outputLayer;
+						// one-dimensional arrays are matrix multiplied here to create a two-dimensional array
+						// vertical delta @ horizontal neuron values --> 2D result
+						temp = matrixMultiply(transposeArray([delta]), [layerInputs[k]]);
+						temp.forEach((vals,nIdx) => vals.forEach((val,wIdx) => outLayer.neurons[nIdx].weights[wIdx] -= learningRate * val));
+						delta.forEach((val,nIdx) => outLayer.neurons[nIdx].bias_input -= learningRate * val);
+						nextLayer = outLayer;
+
+						//delta = temp.map((val,idx) =>  transposeArray(layerInputs[k])).map((val) => val * learningRate);
+						//this.outputLayer.neurons.forEach((neuron) => neuron.weights = subtractArrays(neuron.weights, temp));
+					} else {
+						outLayer = this.hiddenLayers[k];
+						let weights = transposeArray(nextLayer.neurons.map((neuron) => neuron.weights));
+						// two-dimensional weights array is matrix multiplied by one-dimensional here to create a one-dimensional array
+						// 2D weights @ vertical delta -> 1D result
+						temp = matrixMultiply(weights, transposeArray([delta]));
+						temp = transposeArray(temp)[0];
+						// two one-dimensional arrays are regular multipled to create a one-dimensional array
+						//   where temp and sigmoid derivatives arrays are the same length
+						delta = layerInputs[k+1].map((val, idx) => temp[idx] * sigmoidDerivative(val))
+						// one-dimensional arrays are matrix multiplied here to create a two-dimensional array
+						// vertical delta @ horizontal neuron values --> 2D result
+						temp = matrixMultiply(transposeArray([delta]), [layerInputs[k]]);
+						temp.forEach((vals,nIdx) => vals.forEach((val,wIdx) => outLayer.neurons[nIdx].weights[wIdx] -= learningRate * val));
+						delta.forEach((val,nIdx) => outLayer.neurons[nIdx].bias_input -= learningRate * val);
+						nextLayer = outLayer;
+
+
+						//delta = dotProduct(transposeArray(this.hiddenLayers[k].neurons.map((neuron) => neuron.weights)), temp);
+						//temp = dotProduct(temp, transposeArray(layerInputs[k])).map((val) => val * learningRate);
+						//this.hiddenLayers[k].neurons.forEach((neuron) => neuron.weights = subtractArrays(neuron.weights, temp));
+					}
+//					//let a = transposeArray(outLayer.neurons.map((neuron) => neuron.weights));
+//					//let b = transposeArray([temp]);
+//					//// somehow this is giving 24 1-element arrays, when it should be giving 24 arrays with 1 element per weight
+//					//delta = matrixMultiply(a, b);
+//
+//					let a = transposeArray(outLayer.neurons.map((neuron) => neuron.weights));
+//					//temp = multiplyArrays(a, delta);
+//					//let tryThis = matrixMultiply([delta], transposeArray(a));
+//
+//					//let temp2 = layerInputs[k+1].map((val) => sigmoidDerivative(val));
+//
+//					delta = matrixMultiply(a, delta);
+//
+//					// this seems to echo the 13:28 moment of youtube vid: delta is a vertical column, inputs are horiz w/one per neuron
+//					let maybe2 = matrixMultiply([delta], [layerInputs[k].map((val) => sigmoidDerivative(val))]);
+//					let maybe = matrixMultiply(transposeArray([delta]), [layerInputs[k].map((val) => sigmoidDerivative(val))]);
+//
+//					//delta = matrixMultiply(transposeArray(outLayer.neurons.map((neuron) => neuron.weights)), temp);
+//					//console.log("outLayer neuron weights before:");
+//					//for (const neuron of outLayer.neurons) {
+//					//	console.log("" + neuron.weights);
+//					//}
+//					transposeArray(temp).forEach((vals,nIdx) => vals.forEach((val,wIdx) => outLayer.neurons[nIdx].weights[wIdx] -= learningRate * val));
+					
+					//console.log("outLayer neuron weights after:");
+					//for (const neuron of outLayer.neurons) {
+					//	console.log("" + neuron.weights);
+					//	break;
+					//}
+				}
+			}
+			//console.log("completed learn iteration " + (i+1));
+		}
+
+
+		//let layerOutput;
+		//let layerOutputs = [];
+		//let weightUpdates = [];
+		//let gradientStep;
+		//let gradientSteps = [];
+		//for (let i = 0; i < iterations; i++) {
+		//	// use latest weights to process all inputs
+		//	layerOutputs = [];
+		//	weightUpdates = [];
+		//	layerOutput = inputsArray.map((inputVals) => this.inputLayer.process_input_no_bias(inputVals));
+		//	layerOutputs.push(layerOutput);
+		//	for (const hiddenLayer of this.hiddenLayers) {
+		//		layerOutput = layerOutput.map((inputVals) => hiddenLayer.process_input_no_bias(inputVals));
+		//		layerOutputs.push(layerOutput);
+		//	}
+		//	layerOutput = layerOutput.map((inputVals) => this.outputLayer.process_input_no_bias(inputVals));
+		//	layerOutputs.push(layerOutput);
+		//	// work backward through layers to find gradient steps
+		//	let outputDistance = subtractArrays(transposeArray(layerOutput), transposeArray(desiredOutputsArray));
+		//	gradientSteps = [];
+		//	for (let inputCursor = layerOutputs.length - 1; inputCursor >= -1; inputCursor--) {
+		//		layerOutput = layerOutputs[inputCursor];
+		//		let tmp;
+		//		if (inputCursor + 1 == layerOutputs.length) {
+		//			tmp = multiplyArrays(outputDistance, sigmoidDerivative
+		//			outputDistance = subtractArrays(desiredOutputsArray, layerOutputs[inputCursor]);
+		//		} else if (inputCursor == -1) {
+		//			outputDistance = subtractArrays(
+		//		} else if ( {
+		//			outputDistance = subtractArrays(layerOutputs[inputCursor+1], layerOutputs[inputCursor]);
+		//		}
+		//		gradientStep = dotProduct(transposeArray(layerOutput), subtractArrays(desiredOutputsArray, layerOutputs[inputCursor]+1) );
+		//	}
+		//}
+	}
+
+	adjust_weights(iterations, inputsArray, desiredOutputsArray) {
+		let nnOutputs = null;
+		let bestDist = Infinity;
+		let distOfAdjusted = 0;
+		let bestAdjustedModelJson = null;
+		for (let i = 0; i < iterations; i++) {
+			this.inputLayer.adjust_weights();
+			for (const layer of this.hiddenLayers) {
+				layer.adjust_weights();
+			}
+			this.outputLayer.adjust_weights();
+
+			for (const partialBaselineName in adjustWeightsBaselineDistByFactors) {
+				const partialBaseline = adjustWeightsBaselineDistByFactors[partialBaselineName];
+				// sum the total distance from desired output for inputs
+				//   in the partial baseline
+				distOfAdjusted = 0.0;
+				for (let j = 0; j < partialBaseline.count; j++) {
+					// process input, and save the seed if it results in the closest yet output
+					nnOutputs = this.process_input(inputsArray[j]);
+					// use square of distance to penalize large distances more,
+					//   and for more fine-grained tuning of small distances
+					nnOutputs.forEach((val,idx) => distOfAdjusted += Math.pow(desiredOutputsArray[j][idx] - val, 2));
+				}
+				if (partialBaseline.factor == 1.0) {
+					if (distOfAdjusted < bestDist) {
+						bestDist = distOfAdjusted;
+						// only do JSON export if this is better than the baseline
+						if (distOfAdjusted < partialBaseline.dist) {
+							bestAdjustedModelJson = JSON.parse(this.export_to_json());
+						}
+					}
+				// do not continue testing this altered model if it doesn't improve
+				//   upon the partial baseline
+				} else if (distOfAdjusted >= partialBaseline.dist) {
+					break;
+				}
+			}
+			// restore all layers' neurons to their previous weights
+			this.inputLayer.restore_prev_weights();
+			for (const layer of this.hiddenLayers) {
+				layer.restore_prev_weights();
+			}
+			this.outputLayer.restore_prev_weights();
+		}
+		return {
+			'dist': bestDist,
+			'json': bestAdjustedModelJson
+		};
+	}
+}
+
+class SeedMovement {
+	constructor(startPos, endPos, seed, destinationPitIndex) {
+		this.seed = seed;
+		this.startPos = startPos;
+		this.endPos = endPos;
+		this.destinationPitIndex = destinationPitIndex;
+		this.fracComplete = runningSimulation ? 1.0 : 0.0;
+		// take about 1/4 second to reach the end position
+		this.fracStep = 4.0 / frameRate();
+	}
+
+	updateAndDraw() {
+		fill(this.seed.color);
+		this.fracComplete += this.fracStep;
+		if (this.fracComplete > 1.0) {
+			this.fracComplete = 1.0;
+		}
+		circle(lerp(this.startPos.x, this.endPos.x, this.fracComplete), lerp(this.startPos.y, this.endPos.y, this.fracComplete), seedSize);
+		return this.fracComplete == 1.0;
+	}
+}
+
+class Seed {
+	constructor(color) {
+		this.color = color;
+	}
+}
+
+class Pit {
+	constructor(x, y, width, height, seedCount, doSquareArrangement, playerIndex, isBank, index) {
+		this.x = x;
+		this.y = y;
+		this.width = width;
+		this.height = height;
+		this.midX = this.x + (this.width / 2);
+		this.midY = this.y + (this.height / 2);
+		this.seeds = [];
+		this.doSquareArrangement = doSquareArrangement;
+		this.playerIndex = playerIndex;
+		this.isBank = isBank;
+		this.index = index;
+		this.resetWithNewSeeds(seedCount);
+	}
+
+	resetWithNewSeeds(seedCount) {
+		this.seeds = [];
+		for (let i = 0; i < seedCount; i++) {
+			this.seeds.push(new Seed(seedColors[this.playerIndex]));
+		}
+	}
+
+	drawSeedCount() {
+		//fill(pitColors[this.playerIndex]);
+		//stroke(220,220,220);
+		//strokeWeight(4);
+		//fill(boardColor);
+		fill(seedColors[this.playerIndex]);
+		noStroke();
+		textFont('Helvetica');
+		textSize(dispWidth * 0.04);
+		textAlign(CENTER, CENTER);
+		text(this.seeds.length, this.midX, this.y + this.height - 24);
+	}
+
+	draw() {
+		if (currentPlayerTurn == this.playerIndex) {
+			stroke(200,200,200);
+			strokeWeight(5);
+		} else {
+			noStroke();
+		}
+		fill(pitColors[this.playerIndex]);
+		rect(this.x, this.y, this.width, this.height, roundRectRadius);
+		noStroke();
+		fill(seedColor);
+		drawSeeds(this.midX, this.midY, this.seeds, this.doSquareArrangement);
+	}
+
+	wasClicked(clickX, clickY) {
+		return currentState == WAITING_FOR_PLAYER && !this.isBank &&
+			currentPlayerTurn == this.playerIndex &&
+			this.seeds.length > 0 &&
+			clickX > this.x && clickX < (this.x + this.width) &&
+			clickY > this.y && clickY < (this.y + this.height);
+	}
+
+	getNextSeedPos() {
+		return drawSeeds(this.midX, this.midY, this.seeds, this.doSquareArrangement, true);
+	}
+
+	getLastSeedPos() {
+		return drawSeeds(this.midX, this.midY, this.seeds, this.doSquareArrangement, false);
+	}
+
+	addSeed(seed) {
+		this.seeds.push(seed);
+	}
+}
+
+function setup() {
+	frameRate(STILL_FPS);
+	noStroke();
+	boardColor = color(50,50,50);
+	pitColors[0] = color(150,130,130);
+	seedColors[0] = color(170,85,85);
+	pitColors[1] = color(130,130,150);
+	seedColors[1] = color(85,85,170);
+	seedColor = color(150,150,150);
+	createCanvas(dispWidth, dispHeight);
+	//let pitX = padding + pitWidth + padding;
+	let pitX = padding;
+	for (let i = 0; i < (pitsPerSide * 2) + 2; i++) {
+		// left-hand side large "bank" pit
+		if (i == 0) {
+			pits.push(new Pit(pitX, padding, pitWidth, dispHeight - padding - padding, 0, false, 1, true, i));
+			pitX += padding + pitWidth;
+
+		// right-hand side large "bank" pit
+		} else if (i == pitsPerSide + 1) {
+			pits.push(new Pit(pitX, padding, pitWidth, dispHeight - padding - padding, 0, false, 0, true, i));
+			pitX -= padding + pitWidth;
+
+		// bottom row of pits
+		} else if (i <= pitsPerSide) {
+			pits.push(new Pit(pitX, padding + pitHeight + padding, pitWidth, pitHeight, INITIAL_SEEDS_IN_PIT, true, 0, false, i));
+			pitX += padding + pitWidth;
+
+		// top row of pits
+		} else {
+			pits.push(new Pit(pitX, padding, pitWidth, pitHeight, INITIAL_SEEDS_IN_PIT, true, 1, false, i));
+			pitX -= padding + pitWidth;
+		}
+
+		//pits.push(new Pit(pitX, padding, pitWidth, pitHeight, 9, true));
+		////rect(pitX, padding, pitWidth, pitHeight);
+		//pits.push(new Pit(pitX, padding + pitHeight + padding, pitWidth, pitHeight, 4, true));
+		////rect(pitX, padding + pitHeight + padding, pitWidth, pitHeight);
+		//pitX += padding + pitWidth;
+	}
+	fpsParagraph = createElement('p');
+	statusParagraph = createElement('p');
+	modelOutputParagraph = createElement('p');
+
+	// create neural networks, where, for now, only player index 0 will be
+	//   trained -- the other will be loaded from json and then left alone
+	AI_PLAYER_NN_BY_INDEX[0] = new NeuralNet(json = null, inputs = (pitsPerSide*2)+2, inputNeurons = (pitsPerSide*2)+2, hiddenLayerNeurons = 24, hiddenLayers = 3, outputNeurons = pitsPerSide);
+	AI_PLAYER_NN_BY_INDEX[1] = new NeuralNet(json = null, inputs = (pitsPerSide*2)+2, inputNeurons = (pitsPerSide*2)+2, hiddenLayerNeurons = 24, hiddenLayers = 3, outputNeurons = pitsPerSide);
+	//AI_PLAYER_NN_BY_INDEX[0] = new NeuralNet(json = LATEST_NN_MODEL);
+	//AI_PLAYER_NN_BY_INDEX[1] = new NeuralNet(json = LATEST_NN_MODEL);
+
+	if (PREV_INPUTS) {
+		for (const prev_input of PREV_INPUTS) {
+			recentInputsToTrainOn.push(prev_input);
+		}
+		console.log("loaded " + recentInputsToTrainOn.length + " PREV_INPUTS");
+	}
+	if (PREV_OUTPUTS) {
+		for (const prev_output of PREV_OUTPUTS) {
+			recentOutputsToTrainOn.push(prev_output);
+		}
+		console.log("loaded " + recentOutputsToTrainOn.length + " PREV_OUTPUTS");
+	}
+}
+
+function drawBoard() {
+	noStroke();
+	background(120,120,120);
+	fill(boardColor);
+	rect(0, 0, width, height, roundRectRadius);
+	//fill(pitColor);
+	// draw left bank
+	//rect(padding, padding, pitWidth, dispHeight - padding - padding);
+	// draw right bank
+	//rect(dispWidth - padding - pitWidth, padding, pitWidth, dispHeight - padding - padding);
+	for (const pit of pits) {
+		pit.draw();
+		if (currentPlayerTurn < 0 && pit.isBank) {
+			pit.drawSeedCount();
+		}
+	}
+}
+
+function shouldTurn(doSquareArrangement, i) {
+	if (doSquareArrangement) {
+		return [1,2,4,6,9,12,16,20,25,30,36,42,49,56,64,72,81].indexOf(i) > -1;
+	} else {
+		return [0,3,4,8,10,15,18,24,28,35,40,48,54,63,70,80,88,99].indexOf(i) > -1;
+	}
+}
+
+function drawSeeds(atPosX, atPosY, seeds, doSquareArrangement, onlyGetNextPos = false) {
+	let xPos = atPosX;
+	let yPos = atPosY;
+	let stepAngle = 0;
+	let xStep = seedSize * cos(stepAngle);
+	let yStep = seedSize * sin(stepAngle);
+	let lastX = 0;
+	let lastY = 0;
+	for (let i = 0; i < seeds.length; i++) {
+		if (!onlyGetNextPos) {
+			fill(seeds[i].color);
+			circle(xPos, yPos, seedSize);
+		}
+		lastX = xPos;
+		lastY = yPos;
+		//fill(0,0,0);
+		//textSize(10);
+		//textAlign(CENTER, CENTER);
+		//text(""+i, xPos, yPos);
+		const ithSqrt = Math.sqrt(i+1);
+		// turn 1/4 turn on square numbered seeds
+		//if (Math.floor(ithSqrt) == ithSqrt) {
+		if (shouldTurn(doSquareArrangement, i)) {
+			stepAngle += (PI/2);
+			xStep = seedSize * cos(stepAngle);
+			yStep = seedSize * sin(stepAngle);
+		}
+		xPos += xStep;
+		yPos += yStep;
+	}
+	if (onlyGetNextPos) {
+		return createVector(xPos, yPos);
+	} else {
+		return createVector(lastX, lastY);
+	}
+}
+
+// draw the number of held seeds
+function drawHand() {
+	//cursor(HAND);
+	//stroke(255,255,255,60);
+	//fill(200,70,70,70);
+	//textSize(100);
+	//textAlign(CENTER, CENTER);
+	//text('×', mouseX, mouseY);
+	return drawSeeds(mouseX, mouseY, seedsInHand, true);
+}
+
+function playerTurnIsOver() {
+	currentState = WAITING_FOR_PLAYER;
+	//frameRate(STILL_FPS);
+	// XOR with 1 to alternate between 1 and 0
+	currentPlayerTurn = currentPlayerTurn ^ 1;
+	// check end game: if the player has no pits with seeds,
+	//   the other player captures all their pits' seeds
+	let somePitHasSeeds = false;
+	for (const pit of pits) {
+		if (pit.playerIndex == currentPlayerTurn && !pit.isBank && pit.seeds.length > 0) {
+			somePitHasSeeds = true;
+			break;
+		}
+	}
+	if (!somePitHasSeeds) {
+		// if neither player has any seeds in their pits, the game is over
+		let gameIsOver = true;
+		for (const pit of pits) {
+			if (!pit.isBank && pit.seeds.length > 0) {
+				gameIsOver = false;
+				break;
+			}
+		}
+		if (gameIsOver) {
+			currentState = GAME_OVER;
+			//frameRate(STILL_FPS);
+			currentPlayerTurn = -1;
+			if (TRAIN_AI_PLAYER_INDEXES.length > 0 && AI_PLAYER_NN_BY_INDEX[0] !== null && AI_PLAYER_NN_BY_INDEX[1] !== null) {
+				if (!runningSimulation) {
+					aiTrainingGamesToRun -= 1;
+					// output the neural network weights
+					modelOutputParagraph.html("nn model with " + aiTrainingGamesToRun + " games left to train on");
+					for (const aiIdx of TRAIN_AI_PLAYER_INDEXES) {
+						//const contentAlreadyPresent = modelOutputParagraph.html();
+						//console.log("current state of trained AI for player index [" + aiIdx + "]:");
+						//console.log(AI_PLAYER_NN_BY_INDEX[aiIdx].export_to_json());
+						modelOutputParagraph.html(modelOutputParagraph.html() + '<br/><br/>const LATEST_NN_MODEL = ' + AI_PLAYER_NN_BY_INDEX[aiIdx].export_to_json() + ';');
+					}
+					printRecentTrainingData();
+					// if more games left to run, restart
+					if (aiTrainingGamesToRun > 0) {
+						// update the non-training AI NN
+						//const trainedAIPlayerIndex = TRAIN_AI_PLAYER_INDEXES[0];
+						//const nonTrainedAIPlayerIndex = trainedAIPlayerIndex ^ 1; // XOR with 1 to alternate between 1 and 0
+						//const trainedAINN = AI_PLAYER_NN_BY_INDEX[trainedAIPlayerIndex].export_to_json();
+						//AI_PLAYER_NN_BY_INDEX[nonTrainedAIPlayerIndex] = new NeuralNet(json = JSON.parse(trainedAINN));
+						//console.log("updated non-training AI NeuralNet, restarting game (" + aiTrainingGamesToRun + " games left to train on)");
+						console.log("restarting game (" + aiTrainingGamesToRun + " games left to train on)");
+						restartGame();
+					} else {
+						console.log("done training");
+						frameRate(STILL_FPS);
+					}
+				}
+			}
+		} else {
+			currentState = PIECES_MOVING_TO_BANK;
+			frameRate(ANIMATION_FPS);
+			capturedPits = [];
+			for (const pit of pits) {
+				if (pit.playerIndex != currentPlayerTurn && !pit.isBank && pit.seeds.length > 0) {
+					capturedPits.push(pit);
+				}
+			}
+			// XOR with 1 to alternate between 1 and 0
+			currentPlayerTurn = currentPlayerTurn ^ 1;
+		}
+	}
+}
+
+function draw() {
+	if (currentState == CANCEL_EVERYTHING) {
+		frameRate(STILL_FPS);
+		if (!donePrintingCancelOutput) {
+			statusParagraph.html("stopped");
+			printRecentTrainingData();
+			donePrintingCancelOutput = true;
+		}
+		return;
+	}
+	// don't need to draw the board for every simulated game,
+	//   but we always need to draw it when not simulating games
+	if (!runningSimulation || fasterRandom(0.0,1.0) < 0.001) {
+		drawBoard();
+	}
+	const lastSeedInHandPos = drawHand();
+	if (currentState == PIECES_MOVING_FROM_HAND) {
+		if (movingSeed === null) {
+			if (seedsInHand.length > 0) {
+				const destinationPitIndex = destinationPitIndexes.shift();
+				const destinationPos = pits[destinationPitIndex].getNextSeedPos();
+				movingSeed = new SeedMovement(lastSeedInHandPos, destinationPos, seedsInHand.pop(), destinationPitIndex);
+			} else {
+				playerTurnIsOver();
+			}
+		}
+		if (movingSeed !== null) {
+			const doneMoving = movingSeed.updateAndDraw();
+			if (doneMoving) {
+				const destPit = pits[movingSeed.destinationPitIndex];
+				destPit.addSeed(movingSeed.seed);
+				movingSeed = null;
+				// if this moved seed was the last seed in the hand,
+				//   check if the destination pit is owned by the
+				//   moving player and has only 1 seed.  if so, then
+				//   that player captures that seed and all the seeds
+				//   in the opposite pit.
+				if (seedsInHand.length === 0 && destPit.playerIndex == currentPlayerTurn) {
+					// if the last seed is placed in the player's bank, that
+					//   player gets another turn
+					if (destPit.isBank) {
+						// switch player here, then immediately switch again
+						//   in playerTurnIsOver() -- this is needed in case
+						//   the player ends in their bank but has no remaining
+						//   seeds (playerTurnIsOver() will end the game)
+						currentPlayerTurn = currentPlayerTurn ^ 1;
+						playerTurnIsOver();
+					} else if (destPit.seeds.length === 1) {
+						capturedPits = [destPit];
+						const rightHandBankIndex = pitsPerSide + 1;
+						// if the pit index is less than the midpoint of the pits array, it's
+						//   in the bottom row
+						if (destPit.index < pits.length / 2) {
+							const distToMidBank = rightHandBankIndex - destPit.index;
+							const oppositePitIndex = rightHandBankIndex + distToMidBank;
+							capturedPits.push(pits[oppositePitIndex]);
+						} else {
+							const distToMidBank = destPit.index - rightHandBankIndex;
+							const oppositePitIndex = rightHandBankIndex - distToMidBank;
+							capturedPits.push(pits[oppositePitIndex]);
+						}
+						currentState = PIECES_MOVING_TO_BANK;
+						frameRate(ANIMATION_FPS);
+					}
+				}
+			}
+		}
+	} else if (currentState == PIECES_MOVING_TO_BANK) {
+		// similar to "moving from hand" state
+		const destBankPitIndex = currentPlayerTurn == 1 ? 0 : pitsPerSide + 1;
+		if (movingSeed === null) {
+			if (capturedPits.length > 0 && capturedPits[0].seeds.length > 0) {
+				const startPos = capturedPits[0].getLastSeedPos();
+				const destinationPos = pits[destBankPitIndex].getNextSeedPos();
+				movingSeed = new SeedMovement(startPos, destinationPos, capturedPits[0].seeds.pop(), destBankPitIndex);
+			} else if (capturedPits.length > 1 && capturedPits[1].seeds.length > 0) {
+				capturedPits.shift();
+			} else {
+				playerTurnIsOver();
+			}
+		}
+		if (movingSeed !== null) {
+			const doneMoving = movingSeed.updateAndDraw();
+			if (doneMoving) {
+				const destPit = pits[movingSeed.destinationPitIndex];
+				destPit.addSeed(movingSeed.seed);
+				movingSeed = null;
+			}
+		}
+	} else if (currentState == WAITING_FOR_PLAYER && AI_PLAYER_NN_BY_INDEX[currentPlayerTurn] !== null) {
+		playAITurnOrStartTraining();
+	} else if (currentState == GAME_OVER && runningSimulation) {
+		playAITurnOrStartTraining();
+	} else if (currentState == ADJUSTING_NEURAL_NETWORK_WEIGHTS) {
+		adjustWeightsInChunks();
+	}
+	//if (fasterRandom(0,10) < 1.0) {
+	//	const fpsTimeEpochMs = Date.now();
+	//	if (fpsTimeEpochMs - fpsLastTime > 1000) {
+	//		fpsLastTime = fpsTimeEpochMs;
+	//		fpsParagraph.html(round(frameRate()));
+	//	}
+	//}
+}
+
+function printRecentTrainingData() {
+	modelOutputParagraph.html(modelOutputParagraph.html() + '<br/><br/>const PREV_INPUTS = ' + JSON.stringify(recentInputsToTrainOn.slice(-maxTrainingSize)) + ';');
+	modelOutputParagraph.html(modelOutputParagraph.html() + '<br/><br/>const PREV_OUTPUTS = ' + JSON.stringify(recentOutputsToTrainOn.slice(-maxTrainingSize)) + ';');
+}
+
+function mouseClicked() {
+	if (currentState == WAITING_FOR_PLAYER) {
+		for (const pit of pits) {
+			if (pit.wasClicked(mouseX, mouseY)) {
+				selectPitForPlay(pit);
+				//seedsInHand = pit.seeds;
+				//pit.seeds = [];
+				//currentState = PIECES_MOVING_FROM_HAND;
+				//frameRate(ANIMATION_FPS);
+				//destinationPitIndexes = [];
+				//let pitCursor = pit.index;
+				//for (let i = 0; i < seedsInHand.length; i++) {
+				//	pitCursor += 1;
+				//	if (pitCursor >= pits.length) {
+				//		pitCursor = 0;
+				//	}
+				//	if (pits[pitCursor].isBank && pits[pitCursor].playerIndex != currentPlayerTurn) {
+				//		i -= 1; // re-do this seed if we have to skip the other player's bank
+				//		continue;
+				//	}
+				//	destinationPitIndexes.push(pitCursor);
+				//}
+				break;
+			}
+		}
+	}
+}
+
+function selectPitForPlay(pit) {
+	seedsInHand = pit.seeds;
+	pit.seeds = [];
+	currentState = PIECES_MOVING_FROM_HAND;
+	frameRate(ANIMATION_FPS);
+	destinationPitIndexes = [];
+	let pitCursor = pit.index;
+	for (let i = 0; i < seedsInHand.length; i++) {
+		pitCursor += 1;
+		if (pitCursor >= pits.length) {
+			pitCursor = 0;
+		}
+		if (pits[pitCursor].isBank && pits[pitCursor].playerIndex != currentPlayerTurn) {
+			i -= 1; // re-do this seed if we have to skip the other player's bank
+			continue;
+		}
+		destinationPitIndexes.push(pitCursor);
+	}
+}
+
+function playAITurnOrStartTraining() {
+	// if training this AI player, simulate the rest of the game
+	//   based on selecting each valid pit
+	if (!runningSimulation && TRAIN_AI_PLAYER_INDEXES.indexOf(currentPlayerTurn) > -1) {
+
+		if (SIMULATION_CTX.ithSelectablePit == -1) {
+			SIMULATION_CTX.originalPlayerTurn = currentPlayerTurn;
+			SIMULATION_CTX.originalState = pits.map((p) => p.seeds.slice(0));
+			SIMULATION_CTX.ownBank = pits.filter((p) => p.playerIndex == currentPlayerTurn && p.isBank)[0];
+			SIMULATION_CTX.oppBank = pits.filter((p) => p.playerIndex != currentPlayerTurn && p.isBank)[0];
+			SIMULATION_CTX.selectablePits = pits.filter((p) => p.playerIndex == currentPlayerTurn && !p.isBank && p.seeds.length > 0);
+			SIMULATION_CTX.pitWinProbability = SIMULATION_CTX.selectablePits.map((p) => 0.0);
+			SIMULATION_CTX.gamesToSimulate = 100;
+			SIMULATION_CTX.ithSelectablePit = -1;
+			SIMULATION_CTX.gamesPlayed = 0.0;
+			SIMULATION_CTX.gamesWon = 0.0;
+			runningSimulation = true;
+			currentState = GAME_OVER; // set runningSimulation AND GAME_OVER to kick off the simulations below
+			return;
+
+		// if all games for all selectable pits have been simulated, use the results
+		//   as training data to adjust model weights
+		} else if (SIMULATION_CTX.ithSelectablePit < SIMULATION_CTX.selectablePits.length) {
+			console.log("should not be here");
+			return;
+		}
+
+		const allMovesGiveZeroWins = SIMULATION_CTX.pitWinProbability.every((val) => val == 0.0);
+		const bestPitWins = SIMULATION_CTX.pitWinProbability.reduce((acc,val) => Math.max(acc,val), 0);
+		console.log("adjusting weights with bestPitWins=" + bestPitWins + "...");
+		const bestPitIndexes = [];
+		for (let i = 0; i < SIMULATION_CTX.pitWinProbability.length; i++) {
+			if (SIMULATION_CTX.pitWinProbability[i] == bestPitWins) {
+				bestPitIndexes.push(SIMULATION_CTX.selectablePits[i].index);
+			}
+		}
+		const inputs = pits.map((pit) => pit.seeds.length);
+		let desiredOutputs = [];
+		// we want the nn to output 1.0 for all the pits tied with the best win probability,
+		//   and 0.0 otherwise
+		for (let i = 0; i < pitsPerSide; i++) {
+			if (bestPitIndexes.indexOf(getPitIndexForNeuralNetworkOutputIndex(i)) > -1) {
+				desiredOutputs[i] = 1.0;
+			} else {
+				desiredOutputs[i] = 0.0;
+			}
+		}
+		if (allMovesGiveZeroWins) {
+			console.log("NOT adjusting weights since a win is impossible (perhaps train for highest total in bank instead here?)");
+			playAITurn();
+			SIMULATION_CTX.ithSelectablePit = -1;
+		} else {
+			// adjust weights here providing arrays of inputs and outputs -- we keep
+			//   the most 50 recent input/output pairs to train on
+			console.log("adjusting weights with desired outputs [" + desiredOutputs + "]...");
+			recentOutputsToTrainOn.push(desiredOutputs);
+			if (recentInputsToTrainOn.push(inputs) > maxTrainingSize) {
+				// drop oldest inputs and outputs
+				recentOutputsToTrainOn.shift();
+				recentInputsToTrainOn.shift();
+			} else if (recentInputsToTrainOn.length < minTrainingSize) {
+				console.log("NOT adjusting weights since we have too few moves to train on (" + recentInputsToTrainOn.length + ")");
+				playAITurn();
+				SIMULATION_CTX.ithSelectablePit = -1;
+				return;
+			}
+			const ai = AI_PLAYER_NN_BY_INDEX[currentPlayerTurn];
+			//const inputs = pits.map((pit) => pit.seeds.length);
+			const outputs = ai.process_input(inputs);
+			console.log("nn outputs now [" + outputs.map((v) => roundToDecimalPlaces(v, 4)) + "]...");
+			currentState = ADJUSTING_NEURAL_NETWORK_WEIGHTS;
+			// since we use the main draw() loop to run weight adjustment in chunks,
+			//   (in order to keep UI thread responsive) we set the frame rate
+			//   to the faster animation rate here
+			frameRate(ANIMATION_FPS);
+			// get baseline dist for 10%, 25%, 50%, and 100% of the input-output pairs
+			for (const partialBaselineName in adjustWeightsBaselineDistByFactors) {
+				const partialBaseline = adjustWeightsBaselineDistByFactors[partialBaselineName];
+				partialBaseline.count = Math.max(1, Math.floor(recentInputsToTrainOn.length * partialBaseline.factor));
+				//console.log("partial baseline [" + partialBaselineName + "(" + partialBaseline.factor + ")] has count [" + partialBaseline.count + "]");
+				// filter to keep only the first 10%, 25%, etc, of input-output pairs
+				partialBaseline.dist = ai.get_current_outputs_dist(
+					recentInputsToTrainOn.filter((val,idx) => idx < partialBaseline.count),
+					recentOutputsToTrainOn.filter((val,idx) => idx < partialBaseline.count));
+			}
+			//adjustWeightsBaselineDist = ai.get_current_outputs_dist(recentInputsToTrainOn, recentOutputsToTrainOn);
+			console.log("baselineDist before adjusting weights for [" + recentInputsToTrainOn.length + "] input/output pairs: [" + roundToDecimalPlaces(adjustWeightsBaselineDistByFactors.all.dist, 2) + "]");
+			adjustWeightsChunkCounter = 0;
+			adjustWeightsBestDist = Infinity;
+			adjustWeightsBestJson = null;
+			// the next few calls to draw() will call adjustWeightsInChunks()
+			return;
+		}
+
+	} else if (runningSimulation && currentState == GAME_OVER) {
+		runningSimulation = false;
+		// if a simulated game has ended, track the result and restore the state
+		if (SIMULATION_CTX.ithSelectablePit >= 0) {
+			SIMULATION_CTX.gamesPlayed += 1.0;
+			if (SIMULATION_CTX.ownBank.seeds.length > SIMULATION_CTX.oppBank.seeds.length) {
+				SIMULATION_CTX.gamesWon += 1.0;
+			}
+			// restore state
+			for (let origStatePitIdx = 0; origStatePitIdx < SIMULATION_CTX.originalState.length; origStatePitIdx++) {
+				pits[origStatePitIdx].seeds = SIMULATION_CTX.originalState[origStatePitIdx].slice(0);
+			}
+			currentPlayerTurn = SIMULATION_CTX.originalPlayerTurn;
+			// simulate a bunch of games where the next pit is selected
+			if (SIMULATION_CTX.gamesPlayed >= SIMULATION_CTX.gamesToSimulate) {
+				SIMULATION_CTX.pitWinProbability[SIMULATION_CTX.ithSelectablePit] = SIMULATION_CTX.gamesWon / SIMULATION_CTX.gamesPlayed;
+				console.log("done simulating games, found win % of [" + SIMULATION_CTX.gamesWon + "/" + SIMULATION_CTX.gamesPlayed + " -> " + roundToDecimalPlaces(SIMULATION_CTX.pitWinProbability[SIMULATION_CTX.ithSelectablePit], 3) + "]");
+				SIMULATION_CTX.ithSelectablePit += 1;
+				if (SIMULATION_CTX.ithSelectablePit < SIMULATION_CTX.selectablePits.length) {
+					console.log("simulating games from this point after selecting pit [" + SIMULATION_CTX.selectablePits[SIMULATION_CTX.ithSelectablePit].index + "]...");
+				}
+				SIMULATION_CTX.gamesPlayed = 0.0;
+				SIMULATION_CTX.gamesWon = 0.0;
+			}
+		// for the initial state, just increment i here
+		} else if (SIMULATION_CTX.ithSelectablePit == -1) {
+			SIMULATION_CTX.ithSelectablePit += 1;
+			if (SIMULATION_CTX.ithSelectablePit < SIMULATION_CTX.selectablePits.length) {
+				console.log("simulating games from this point after selecting pit [" + SIMULATION_CTX.selectablePits[SIMULATION_CTX.ithSelectablePit].index + "]...");
+			}
+		}
+		// simulate the game again
+		if (SIMULATION_CTX.ithSelectablePit < SIMULATION_CTX.selectablePits.length) {
+			//console.log("simulating games from this point after selecting pit [" + SIMULATION_CTX.selectablePits[SIMULATION_CTX.ithSelectablePit].index + "]...");
+			frameRate(ANIMATION_FPS);
+			runningSimulation = true;
+			selectPitForPlay(pits[SIMULATION_CTX.selectablePits[SIMULATION_CTX.ithSelectablePit].index]);
+			while (currentState != GAME_OVER) {
+				draw();
+			}
+			// return control to the main thread here, after simulating
+			//   this game
+
+		// if we are done simulating games for this pit, reset these things
+		//   to trigger the simulations for the next pit, but DO NOT
+		//   set SIMULATION_CTX.ithSelectablePit = -1 here, or else we'll
+		//   keep looping over the pits forever -- set that after playing
+		//   the next move
+		} else {
+			currentState = WAITING_FOR_PLAYER;
+			runningSimulation = false;
+		}
+
+	// if not training this AI player (like when simulating games, or playing
+	//   an AI against a human), use the board state to select a pit for play
+	} else {
+		playAITurn();
+	}
+}
+
+function playAITurn() {
+	const ai = AI_PLAYER_NN_BY_INDEX[currentPlayerTurn];
+	const inputs = pits.map((pit) => pit.seeds.length);
+	const outputs = ai.process_input(inputs);
+	if (currentState == ADJUSTING_NEURAL_NETWORK_WEIGHTS) {
+		console.log("nn outputs are [" + outputs.map((v) => roundToDecimalPlaces(v, 4)) + "]...");
+	}
+	let selectedPitIndex = -1;
+	const selectedPitIndexOffset = getPitIndexForNeuralNetworkOutputIndex(0);
+	// we use each move's probability as the chance to pick that move...
+	//   so if all moves have very very low probability, we could loop
+	//   absolutely forever.  in that case, just pick any of them.
+	for (let tries = 0; tries < 1000; tries++) {
+		for (let i = 0; i < outputs.length; i++) {
+			if (pits[i+selectedPitIndexOffset].seeds.length == 0) {
+				continue;
+			}
+			if (fasterRandom(0.0, 1.0) < outputs[i]) {
+				selectedPitIndex = i+selectedPitIndexOffset;
+				break;
+			}
+		}
+		if (selectedPitIndex > 0) {
+			break;
+		}
+	}
+	if (selectedPitIndex == -1) {
+		for (let i = 0; i < pitsPerSide; i++) {
+			if (pits[i+selectedPitIndexOffset].seeds.length > 0) {
+				selectedPitIndex = i+selectedPitIndexOffset;
+				//console.log("no pit had high enough probability to be picked, so we just picked the first valid pit: " + selectedPitIndex);
+				break;
+			}
+		}
+	}
+	selectPitForPlay(pits[selectedPitIndex]);
+}
+
+// player 0 -> ith pit + 1
+// player 1 -> ith pit + 8
+function getPitIndexForNeuralNetworkOutputIndex(outputIndex) {
+	return outputIndex + 1 + (currentPlayerTurn * (pitsPerSide + 1));
+}
+
+function adjustWeightsInChunks() {
+	const ai = AI_PLAYER_NN_BY_INDEX[currentPlayerTurn];
+	//const preLearnDist = ai.get_current_outputs_dist(recentInputsToTrainOn, recentOutputsToTrainOn);
+	const chunkBest = ai.learn(adjustWeightsChunkIterations, recentInputsToTrainOn, recentOutputsToTrainOn);
+	adjustWeightsChunkCounter += 1;
+	const postLearnDist = ai.get_current_outputs_dist(recentInputsToTrainOn, recentOutputsToTrainOn);
+	if (adjustWeightsChunkCounter % 50 == 0) {
+		//console.log("preLearnDist: [" + preLearnDist + "], postLearnDist: [" + postLearnDist + "]");
+		console.log("after " + (adjustWeightsChunkIterations * adjustWeightsChunkCounter) + " iterations, postLearnDist: [" + postLearnDist + "]");
+	}
+	if (postLearnDist < adjustWeightsBestDist) {
+		adjustWeightsBestDist = postLearnDist;
+	}
+	// after running all adjustment chunks, assign the best found new json
+	if (adjustWeightsChunkCounter >= adjustWeightsChunks) {
+		console.log("bestDist     after  adjusting weights for [" + recentInputsToTrainOn.length + "] input/output pairs: [" + roundToDecimalPlaces(adjustWeightsBestDist, 2) + "]");
+		//if (adjustWeightsBestDist < adjustWeightsBaselineDistByFactors.all.dist) {
+		//	ai.restore_from_json(adjustWeightsBestJson);
+		//} else {
+		//	console.log("skipping adjustment, since no better set of weights was found");
+		//}
+		// now that we are done adjusting weights, use the adjusted AI to play a move
+		//currentState = WAITING_FOR_PLAYER;
+		console.log("done adjusting weights chunk " + adjustWeightsChunkCounter + " of " + adjustWeightsChunks);
+		playAITurn();
+		SIMULATION_CTX.ithSelectablePit = -1;
+	}
+	statusParagraph.html("aiTrainingGamesToRun=" + aiTrainingGamesToRun + ", done adjusting weights chunk " + adjustWeightsChunkCounter + " of " + adjustWeightsChunks + " with best dist so far: " + roundToDecimalPlaces(adjustWeightsBestDist, 10));
+}
+
+function roundToDecimalPlaces(value, decimals) {
+	const tenPow = Math.pow(10.0, decimals);
+	return Math.round(value * tenPow) / tenPow;
+}
+
+function restartGame() {
+	for (const pit of pits) {
+		if (pit.isBank) {
+			pit.resetWithNewSeeds(0);
+		} else {
+			pit.resetWithNewSeeds(INITIAL_SEEDS_IN_PIT);
+		}
+	}
+
+	// randomize player turn
+	currentPlayerTurn = round(fasterRandom(0,1));
+	currentState = WAITING_FOR_PLAYER;
+}
+
+		</script>
+	</head>
+	<body style="background-color: rgb(120,120,120)">
+		<main style="text-align:center; padding: 2.0rem;">
+		</main>
+	</body>
+</html>
