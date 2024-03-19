@@ -179,8 +179,8 @@ class Neuron {
 		this.prev_weights = this.weights.slice(0); // clone array, thanks to https://stackoverflow.com/a/21514254/259456
 		this.prev_bias_input = this.bias_input;
 		for (let i = 0; i < this.weights.length; i++) {
-			// leave 90% of the weights unchanged
-			if (fasterRandom(0.0, 1.0) < 0.9) {
+			// leave 80% of the weights unchanged
+			if (fasterRandom(0.0, 1.0) < 0.8) {
 				continue;
 			}
 			// using a normal distribution would be more likely to keep
@@ -188,20 +188,20 @@ class Neuron {
 			// using 0.15 as std dev would result in most points from 0.7-1.3,
 			//   with a few outside of that range
 			//let factor = randomGaussian(1.0, 0.2);
-			let factor = fasterRandom(0.2, 5.0);
+			let factor = fasterRandom(0.0, 1.0) < 0.5 ? fasterRandom(0.5, 0.99) : fasterRandom(1.01, 2.0);
 			// most of the time, don't flip the sign
 			if (fasterRandom(0.0, 1.0) < 0.3) {
 				factor = -factor;
 			}
 			this.weights[i] *= factor;
 		}
-		// leave 90% of the biases unchanged
-		if (fasterRandom(0.0, 1.0) < 0.9) {
+		// leave 80% of the biases unchanged
+		if (fasterRandom(0.0, 1.0) < 0.8) {
 			return;
 		}
 		// since the bias can be negative, occasionally flip its sign
 		//let biasFactor = randomGaussian(1.0, 0.2);
-		let biasFactor = fasterRandom(0.2, 5.0);
+		let biasFactor = fasterRandom(0.0, 1.0) < 0.5 ? fasterRandom(0.5, 0.99) : fasterRandom(1.01, 2.0);
 		if (fasterRandom(0.0, 1.0) < 0.2) {
 			biasFactor = -biasFactor;
 		}
@@ -518,10 +518,10 @@ function setup() {
 
 	// create neural networks, where, for now, only player index 0 will be
 	//   trained -- the other will be loaded from json and then left alone
-	AI_PLAYER_NN_BY_INDEX[0] = new NeuralNet(json = null, inputs = (pitsPerSide*2)+2, inputNeurons = (pitsPerSide*2)+2, hiddenLayerNeurons = 24, hiddenLayers = 3, outputNeurons = pitsPerSide);
-	AI_PLAYER_NN_BY_INDEX[1] = new NeuralNet(json = null, inputs = (pitsPerSide*2)+2, inputNeurons = (pitsPerSide*2)+2, hiddenLayerNeurons = 24, hiddenLayers = 3, outputNeurons = pitsPerSide);
-	//AI_PLAYER_NN_BY_INDEX[0] = new NeuralNet(json = LATEST_NN_MODEL);
-	//AI_PLAYER_NN_BY_INDEX[1] = new NeuralNet(json = LATEST_NN_MODEL);
+	//AI_PLAYER_NN_BY_INDEX[0] = new NeuralNet(json = null, inputs = (pitsPerSide*2)+2, inputNeurons = (pitsPerSide*2)+2, hiddenLayerNeurons = 24, hiddenLayers = 3, outputNeurons = pitsPerSide);
+	//AI_PLAYER_NN_BY_INDEX[1] = new NeuralNet(json = null, inputs = (pitsPerSide*2)+2, inputNeurons = (pitsPerSide*2)+2, hiddenLayerNeurons = 24, hiddenLayers = 3, outputNeurons = pitsPerSide);
+	AI_PLAYER_NN_BY_INDEX[0] = new NeuralNet(json = LATEST_NN_MODEL);
+	AI_PLAYER_NN_BY_INDEX[1] = new NeuralNet(json = LATEST_NN_MODEL);
 
 	if (PREV_INPUTS) {
 		for (const prev_input of PREV_INPUTS) {
