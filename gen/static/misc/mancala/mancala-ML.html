@@ -15,10 +15,7 @@ https://stackoverflow.com/a/53323498/259456
 <html>
 	<head>
 		<script src="../p5-v1.9.0.min.js"></script>
-		<!--<script src="neural-network-model.js"></script>-->
-		<!--<script src="neural-network-model-swish-smaller-1710512589.js"></script>-->
-		<!--<script src="neural-network-model-swish-1710513553.js"></script>-->
-		<script src="neural-network-model-leakyrelu-1710734839.js"></script>
+		<script src="neural-network-model-leakyrelu-1710972634.js"></script>
 		<script>
 const dispWidth = 1100;
 const dispHeight = dispWidth * .38;
@@ -69,7 +66,7 @@ let statusParagraph;
 let gamesToSimulatePerScenario = 100;
 let aiTrainingGamesToRun = 100;
 let shouldUpdateNonTrainedMLPlayerAfterEveryGame = true;
-let maxTrainingSize = 256;
+let maxTrainingSize = 320;
 // only train when the training data is a multiple of this size, and remove this many oldest items at a time
 // if this is smaller, individual input-output pairs are trained upon more times
 // for example, if maxTrainingSize=256, and multipleTrainingSize=64, then
@@ -766,33 +763,33 @@ function setup() {
 	// with leakyRelu(), had about 0.67 avg dist/err at 48 inputs
 	//ML_PLAYER_NN_BY_INDEX[0] = new NeuralNet(json = null, inputs = (pitsPerSide*2)+6, inputNeurons = (pitsPerSide*2)+6, hiddenLayerNeurons = 48, hiddenLayers = 64, outputNeurons = pitsPerSide);
 
-	// this one seems to be able to reach 0.33 avg dist/err with 128 inputs!
-	ML_PLAYER_NN_BY_INDEX[0] = new NeuralNet(json = null, inputs = (pitsPerSide*2)+6, inputNeurons = (pitsPerSide*2)+6, hiddenLayerNeurons = 256, hiddenLayers = 6, outputNeurons = pitsPerSide);
-	ML_PLAYER_NN_BY_INDEX[1] = new NeuralNet(json = null, inputs = (pitsPerSide*2)+6, inputNeurons = (pitsPerSide*2)+6, hiddenLayerNeurons = 16, hiddenLayers = 3, outputNeurons = pitsPerSide);
+	// this one seems to be able to reach 0.33 avg dist/err with 288 inputs!
+	//ML_PLAYER_NN_BY_INDEX[0] = new NeuralNet(json = null, inputs = (pitsPerSide*2)+6, inputNeurons = (pitsPerSide*2)+6, hiddenLayerNeurons = 256, hiddenLayers = 6, outputNeurons = pitsPerSide);
+	//ML_PLAYER_NN_BY_INDEX[1] = new NeuralNet(json = null, inputs = (pitsPerSide*2)+6, inputNeurons = (pitsPerSide*2)+6, hiddenLayerNeurons = 16, hiddenLayers = 3, outputNeurons = pitsPerSide);
 
 	// reconstruct neural network(s) from previously-exported json
-	//ML_PLAYER_NN_BY_INDEX[0] = new NeuralNet(json = LATEST_NN_MODEL);
-	//ML_PLAYER_NN_BY_INDEX[1] = new NeuralNet(json = LATEST_NN_MODEL);
+	ML_PLAYER_NN_BY_INDEX[0] = new NeuralNet(json = LATEST_NN_MODEL);
+	ML_PLAYER_NN_BY_INDEX[1] = new NeuralNet(json = LATEST_NN_MODEL);
 
-	//if (PREV_INPUTS) {
-	//	if (PREV_OUTPUTS) {
-	//		for (const prev_input of PREV_INPUTS) {
-	//			// ensure inputs are normalized from 0.0-1.0 (where we divide the number of seeds per pit by 48, the overall number of seeds)
-	//			// the JSON contains whole seed numbers to keep the file size small when/if
-	//			//   the training set becomes very large
-	//			if (prev_input.some((v) => v > 1.0)) {
-	//				recentInputsToTrainOn.push(prev_input.map((v) => v/(INITIAL_SEEDS_IN_PIT * pitsPerSide * 2)));
-	//			} else {
-	//				recentInputsToTrainOn.push(prev_input);
-	//			}
-	//		}
-	//		console.log("loaded " + recentInputsToTrainOn.length + " PREV_INPUTS");
-	//		for (const prev_output of PREV_OUTPUTS) {
-	//			recentOutputsToTrainOn.push(prev_output);
-	//		}
-	//		console.log("loaded " + recentOutputsToTrainOn.length + " PREV_OUTPUTS");
-	//	}
-	//}
+	if (PREV_INPUTS) {
+		if (PREV_OUTPUTS) {
+			for (const prev_input of PREV_INPUTS) {
+				// ensure inputs are normalized from 0.0-1.0 (where we divide the number of seeds per pit by 48, the overall number of seeds)
+				// the JSON contains whole seed numbers to keep the file size small when/if
+				//   the training set becomes very large
+				if (prev_input.some((v) => v > 1.0)) {
+					recentInputsToTrainOn.push(prev_input.map((v) => v/(INITIAL_SEEDS_IN_PIT * pitsPerSide * 2)));
+				} else {
+					recentInputsToTrainOn.push(prev_input);
+				}
+			}
+			console.log("loaded " + recentInputsToTrainOn.length + " PREV_INPUTS");
+			for (const prev_output of PREV_OUTPUTS) {
+				recentOutputsToTrainOn.push(prev_output);
+			}
+			console.log("loaded " + recentOutputsToTrainOn.length + " PREV_OUTPUTS");
+		}
+	}
 }
 
 function drawBoard() {
@@ -1110,19 +1107,37 @@ function selectPitForPlay(pit) {
 	}
 }
 
+// 0 13 12 11 10  9  8
+//    1  2  3  4  5  6  7
+const TOTAL_SEEDS_OVERALL = INITIAL_SEEDS_IN_PIT * pitsPerSide * 2;
 function getNNInputs() {
 	// ensure inputs are normalized from 0.0-1.0 (where we divide the number of seeds per pit by 48, the overall number of seeds)
-	let inputs = pits.map((pit) => pit.seeds.length / (INITIAL_SEEDS_IN_PIT * pitsPerSide * 2));
+	let inputs = pits.map((pit) => pit.seeds.length / TOTAL_SEEDS_OVERALL);
+	// if currentPlayerTurn == 1, we need to swap the inputs around so player
+	//   1 gets the same inputs that player 0 would get
+	if (currentPlayerTurn == 1) {
+		// start with the opponent's bank
+		let swappedInputs = [inputs[pitsPerSide+1]];
+		// then do own pits
+		// use strange "spread syntax" to concat the slice onto the end of the existing array
+		swappedInputs.push(...inputs.slice(pitsPerSide+2, pitsPerSide+pitsPerSide+2));
+		// then do own bank
+		swappedInputs.push(inputs[0]);
+		// finally, do oppoent's pits
+		swappedInputs.push(...inputs.slice(1, pitsPerSide+1));
+		inputs = swappedInputs;
+	}
 	// also add inputs for each player's total number of seeds
 	playerSeeds = [0, 0];
 	pits.forEach((pit) => playerSeeds[pit.playerIndex] += pit.seeds.length);
-	inputs.push(playerSeeds[0] / (INITIAL_SEEDS_IN_PIT * pitsPerSide * 2));
-	inputs.push(playerSeeds[1] / (INITIAL_SEEDS_IN_PIT * pitsPerSide * 2));
+	// XOR with currentPlayerTurn to swap 0 and 1 if currentPlayerTurn == 1
+	inputs.push(playerSeeds[0 ^ currentPlayerTurn] / TOTAL_SEEDS_OVERALL);
+	inputs.push(playerSeeds[1 ^ currentPlayerTurn] / TOTAL_SEEDS_OVERALL);
 	// also add inputs for each player's total number of non-bank seeds
 	playerNonBankSeeds = [0, 0];
 	pits.forEach((pit) => playerNonBankSeeds[pit.playerIndex] += pit.isBank ? 0 : pit.seeds.length);
-	inputs.push(playerNonBankSeeds[0] / (INITIAL_SEEDS_IN_PIT * pitsPerSide * 2));
-	inputs.push(playerNonBankSeeds[1] / (INITIAL_SEEDS_IN_PIT * pitsPerSide * 2));
+	inputs.push(playerNonBankSeeds[0 ^ currentPlayerTurn] / TOTAL_SEEDS_OVERALL);
+	inputs.push(playerNonBankSeeds[1 ^ currentPlayerTurn] / TOTAL_SEEDS_OVERALL);
 	return inputs;
 }
 
