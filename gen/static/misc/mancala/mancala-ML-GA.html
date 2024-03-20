@@ -10,7 +10,7 @@ genetic algorithm for improving a Mancala-playing NN:
 <html>
 	<head>
 		<script src="../p5-v1.9.0.min.js"></script>
-		<script src="neural-network-model-ga-1710959923.js"></script>
+		<script src="neural-network-model-ga-1710972192.js"></script>
 		<script src="neural-network-model-leakyrelu-for-ga-1710889002.js"></script>
 		<script>
 const dispWidth = 1100;
@@ -56,7 +56,7 @@ const ML_PLAYER_NN_BY_INDEX = {
 let runningSimulation = false;
 let modelOutputParagraph;
 let statusParagraph;
-let gamesToSimulatePerMatchup = 21; // odd number
+let gamesToSimulatePerMatchup = 15; // odd number
 let logMatchupsAndResults = false; // hashing the NNs really slows down generating a new batch of NNs for a new tournament
 
 let tournamentNextRound = [];
@@ -65,7 +65,7 @@ let tournamentBest = [];
 let tournamentEntrants = 0;
 let tournamentsCompleted = 0;
 let numberOfTournamentsToRun = 99999;
-let tournamentFinalistsToKeep = 4; // some power of 2
+let tournamentFinalistsToKeep = 8; // some power of 2
 let totalEntrants = 0; // when loading a saved NN, this is initialized from this value therein
 
 let speedGamesCounter = 100000;
@@ -316,10 +316,11 @@ class NeuralNet {
 			this.outputLayer = new NeuronLayer(outputNeurons, hiddenLayerNeurons);
 			this.generation = 1;
 			this.totalEntrants = 0;
+			this.gamesPlayed = 0;
+			this.gamesWon = 0;
+			this.tournamentsWon = 0;
+			this.tournamentsEntered = 1;
 		}
-		this.gamesPlayed = 0;
-		this.gamesWon = 0;
-		this.tournamentsWon = 0;
 		if (logMatchupsAndResults) {
 			updateHashId();
 		} else {
@@ -336,6 +337,10 @@ class NeuralNet {
 		this.outputLayer = new NeuronLayer(-1, -1, json.outputLayer);
 		this.generation = json.generation;
 		this.totalEntrants = json.totalEntrants;
+		this.gamesPlayed = json.gamesPlayed || 0;
+		this.gamesWon = json.gamesWon || 0;
+		this.tournamentsWon = json.tournamentsWon || 0;
+		this.tournamentsEntered = json.tournamentsEntered || 1;
 	}
 
 	export_to_json(additionalStuff = null) {
@@ -348,7 +353,7 @@ class NeuralNet {
 		for (const layer of this.hiddenLayers) {
 			json.hiddenLayers.push(layer.export_to_json());
 		}
-		// include things that change over time and aren't directly related to this NN itself
+		// include things that shouldn't be inherited or included in hash
 		if (additionalStuff !== null) {
 			for (const k in additionalStuff) {
 				json[k] = additionalStuff[k];
@@ -667,9 +672,17 @@ function printModelToScreen(neuralNetwork) {
 		"<br/>neurons per hidden layer: " + neuralNetwork.hiddenLayers[0].neurons.length +
 		"<br/>gamesPlayed: " + neuralNetwork.gamesPlayed.toLocaleString() +
 		"<br/>gamesWon: " + neuralNetwork.gamesWon.toLocaleString() + " (" + roundToDecimalPlaces((neuralNetwork.gamesWon * 100.0) / neuralNetwork.gamesPlayed, 3) + "%)" +
-		"<br/>tournamentsWon: " + neuralNetwork.tournamentsWon.toLocaleString());
+		"<br/>tournamentsWon: " + neuralNetwork.tournamentsWon.toLocaleString() +
+		"<br/>tournamentsEntered: " + neuralNetwork.tournamentsEntered.toLocaleString());
+	const additionalJsonKeys = {
+		'totalEntrants': totalEntrants,
+		'gamesPlayed': neuralNetwork.gamesPlayed,
+		'gamesWon': neuralNetwork.gamesWon,
+		'tournamentsWon': neuralNetwork.tournamentsWon,
+		'tournamentsEntered': neuralNetwork.tournamentsEntered
+	};
 	modelOutputParagraph.html(modelOutputParagraph.html() +
-		'<br/><br/>const BEST_NN_MODEL = ' + neuralNetwork.export_to_json({'totalEntrants':totalEntrants}) + ';');
+		'<br/><br/>const BEST_NN_MODEL = ' + neuralNetwork.export_to_json(additionalJsonKeys) + ';');
 }
 
 function playerTurnIsOver() {
@@ -721,7 +734,7 @@ function calcGamesPerSecond() {
 	const msNow = Date.now();
 	const msElapsed = msNow - speedTimeMsCounter;
 	const gamesPerSecond = speedGamesCounter / (msElapsed / 1000.0);
-	if (speedGamesCounter > 1000) {
+	if (speedGamesCounter > 500) {
 		speedGamesCounter = 0;
 		speedTimeMsCounter = msNow;
 	}
@@ -898,6 +911,7 @@ function getNNInputs() {
 function populateCurrRoundBasedOnNN(nn) {
 	///////////////////////////////////////////////////
 	// include given NN, unchanged
+	nn.tournamentsEntered += 1;
 	tournamentCurrRound.push(nn);
 	let nnJson = JSON.parse(nn.export_to_json());
 	///////////////////////////////////////////////////
