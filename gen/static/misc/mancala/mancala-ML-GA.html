@@ -64,7 +64,7 @@ let tournamentCurrRound = [];
 let tournamentBest = [];
 let tournamentEntrants = 0;
 let tournamentsCompleted = 0;
-let numberOfTournamentsToRun = 999;
+let numberOfTournamentsToRun = 99999;
 let tournamentFinalistsToKeep = 4; // some power of 2
 let totalEntrants = 0; // when loading a saved NN, this is initialized from this value therein
 
@@ -1105,7 +1105,8 @@ function playAITurnOrStartTraining() {
 		// restore intial game state
 		restartGame();
 		// simulate the game again
-		if (SIMULATION_CTX.gamesPlayed < gamesToSimulatePerMatchup) {
+		if (SIMULATION_CTX.gamesPlayed < gamesToSimulatePerMatchup &&
+				Math.abs(SIMULATION_CTX.idxZeroNetGamesWon) < (gamesToSimulatePerMatchup - SIMULATION_CTX.gamesPlayed)) { // if one player is ahead by more than the number of games remaining, this matchup can be ended without playing all the games
 			runningSimulation = true;
 			playAITurn();
 			while (currentState != GAME_OVER) {
