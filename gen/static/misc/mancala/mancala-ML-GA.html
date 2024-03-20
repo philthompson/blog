@@ -10,7 +10,7 @@ genetic algorithm for improving a Mancala-playing NN:
 <html>
 	<head>
 		<script src="../p5-v1.9.0.min.js"></script>
-		<script src="neural-network-model-ga-1710943657.js"></script>
+		<script src="neural-network-model-ga-1710959923.js"></script>
 		<script src="neural-network-model-leakyrelu-for-ga-1710889002.js"></script>
 		<script>
 const dispWidth = 1100;
@@ -62,9 +62,11 @@ let logMatchupsAndResults = false; // hashing the NNs really slows down generati
 let tournamentNextRound = [];
 let tournamentCurrRound = [];
 let tournamentBest = [];
+let tournamentEntrants = 0;
 let tournamentsCompleted = 0;
 let numberOfTournamentsToRun = 999;
 let tournamentFinalistsToKeep = 4; // some power of 2
+let totalEntrants = 0; // when loading a saved NN, this is initialized from this value therein
 
 let speedGamesCounter = 100000;
 let speedTimeMsCounter = Date.now();
@@ -313,6 +315,7 @@ class NeuralNet {
 			}
 			this.outputLayer = new NeuronLayer(outputNeurons, hiddenLayerNeurons);
 			this.generation = 1;
+			this.totalEntrants = 0;
 		}
 		this.gamesPlayed = 0;
 		this.gamesWon = 0;
@@ -332,9 +335,10 @@ class NeuralNet {
 		}
 		this.outputLayer = new NeuronLayer(-1, -1, json.outputLayer);
 		this.generation = json.generation;
+		this.totalEntrants = json.totalEntrants;
 	}
 
-	export_to_json() {
+	export_to_json(additionalStuff = null) {
 		const json = {
 			inputLayer: this.inputLayer.export_to_json(),
 			hiddenLayers: [],
@@ -343,6 +347,12 @@ class NeuralNet {
 		};
 		for (const layer of this.hiddenLayers) {
 			json.hiddenLayers.push(layer.export_to_json());
+		}
+		// include things that change over time and aren't directly related to this NN itself
+		if (additionalStuff !== null) {
+			for (const k in additionalStuff) {
+				json[k] = additionalStuff[k];
+			}
 		}
 		return JSON.stringify(json, null, "");
 	}
@@ -490,7 +500,7 @@ class Pit {
 }
 
 function setup() {
-	frameRate(STILL_FPS);
+	frameRate(ANIMATION_FPS);
 	noStroke();
 	boardColor = color(50,50,50);
 	pitColors[0] = color(150,130,130);
@@ -528,6 +538,11 @@ function setup() {
 	statusParagraph = createElement('p');
 	modelOutputParagraph = createElement('p');
 	
+	if ('totalEntrants' in BEST_NN_MODEL) {
+		totalEntrants = BEST_NN_MODEL['totalEntrants'];
+		console.log("resuming total entrants count from JSON-loaded value: " + totalEntrants.toLocaleString());
+	}
+
 	// reconstruct neural network(s) from previously-exported json
 	populateCurrRoundBasedOnNN(new NeuralNet(json = BEST_NN_MODEL));
 	// flesh out initial smaller tournament
@@ -539,6 +554,7 @@ function setup() {
 	tournamentCurrRound.pop();
 	tournamentCurrRound.push(new NeuralNet(json = TRAINED_NN_MODEL));
 	tournamentRoundStartingSize = tournamentCurrRound.length;
+	tournamentEntrants = tournamentRoundStartingSize;
 	beginNewMatchupFromCurrentRound();
 }
 
@@ -645,18 +661,19 @@ function printModelToScreen(neuralNetwork) {
 	neuralNetwork.updateHashId();
 	modelOutputParagraph.html("best nn model after " + tournamentsCompleted + " tournaments:" +
 		"<br/>hashId: " + neuralNetwork.getHashId() +
-		"<br/>generation: " + neuralNetwork.generation +
+		"<br/>generation: " + neuralNetwork.generation.toLocaleString() +
+		"<br/>totalEntrants: " + totalEntrants.toLocaleString() +
 		"<br/>hidden layers: " + neuralNetwork.hiddenLayers.length +
 		"<br/>neurons per hidden layer: " + neuralNetwork.hiddenLayers[0].neurons.length +
-		"<br/>gamesPlayed: " + neuralNetwork.gamesPlayed +
-		"<br/>gamesWon: " + neuralNetwork.gamesWon + " (" + roundToDecimalPlaces((neuralNetwork.gamesWon * 100.0) / neuralNetwork.gamesPlayed, 3) + "%)" +
-		"<br/>tournamentsWon: " + neuralNetwork.tournamentsWon);
-	modelOutputParagraph.html(modelOutputParagraph.html() + '<br/><br/>const BEST_NN_MODEL = ' + neuralNetwork.export_to_json() + ';');
+		"<br/>gamesPlayed: " + neuralNetwork.gamesPlayed.toLocaleString() +
+		"<br/>gamesWon: " + neuralNetwork.gamesWon.toLocaleString() + " (" + roundToDecimalPlaces((neuralNetwork.gamesWon * 100.0) / neuralNetwork.gamesPlayed, 3) + "%)" +
+		"<br/>tournamentsWon: " + neuralNetwork.tournamentsWon.toLocaleString());
+	modelOutputParagraph.html(modelOutputParagraph.html() +
+		'<br/><br/>const BEST_NN_MODEL = ' + neuralNetwork.export_to_json({'totalEntrants':totalEntrants}) + ';');
 }
 
 function playerTurnIsOver() {
 	currentState = WAITING_FOR_PLAYER;
-	//frameRate(STILL_FPS);
 	// XOR with 1 to alternate between 1 and 0
 	currentPlayerTurn = currentPlayerTurn ^ 1;
 	// check end game: if the player has no pits with seeds,
@@ -679,18 +696,15 @@ function playerTurnIsOver() {
 		}
 		if (gameIsOver) {
 			currentState = GAME_OVER;
-			//frameRate(STILL_FPS);
 			currentPlayerTurn = -1;
 
 			if (!runningSimulation) {
 				console.log("ERROR this should never happen, because we are only simulating games here");
 				currentState = CANCEL_EVERYTHING;
-				frameRate(STILL_FPS);
 				return;
 			}
 		} else {
 			currentState = PIECES_MOVING_TO_BANK;
-			frameRate(ANIMATION_FPS);
 			capturedPits = [];
 			for (const pit of pits) {
 				if (pit.playerIndex != currentPlayerTurn && !pit.isBank && pit.seeds.length > 0) {
@@ -743,7 +757,7 @@ function draw() {
 			}
 		}
 		if (movingSeed !== null) {
-			const doDrawSeed = seedDrawCounter++ > 1000;
+			const doDrawSeed = seedDrawCounter++ > 100;
 			if (doDrawSeed) {
 				seedDrawCounter = 0;
 			}
@@ -782,7 +796,6 @@ function draw() {
 							capturedPits.push(pits[oppositePitIndex]);
 						}
 						currentState = PIECES_MOVING_TO_BANK;
-						frameRate(ANIMATION_FPS);
 					}
 				}
 			}
@@ -802,7 +815,7 @@ function draw() {
 			}
 		}
 		if (movingSeed !== null) {
-			const doDrawSeed = seedDrawCounter++ > 1000;
+			const doDrawSeed = seedDrawCounter++ > 100;
 			if (doDrawSeed) {
 				seedDrawCounter = 0;
 			}
@@ -831,7 +844,6 @@ function selectPitForPlay(pit) {
 	seedsInHand = pit.seeds;
 	pit.seeds = [];
 	currentState = PIECES_MOVING_FROM_HAND;
-	frameRate(ANIMATION_FPS);
 	destinationPitIndexes = [];
 	let pitCursor = pit.index;
 	for (let i = 0; i < seedsInHand.length; i++) {
@@ -881,36 +893,72 @@ function getNNInputs() {
 	return inputs;
 }
 
+// add a power of 2 number of NNs (including the given NN)
+//   based on the given NN
 function populateCurrRoundBasedOnNN(nn) {
+	///////////////////////////////////////////////////
+	// include given NN, unchanged
 	tournamentCurrRound.push(nn);
 	let nnJson = JSON.parse(nn.export_to_json());
-	for (let i = 0; i < 32; i++) {
+	///////////////////////////////////////////////////
+	// change 1% of weights
+	for (let i = 0; i < 18; i++) {
+		let mutation = new NeuralNet(json = nnJson);
+		mutation.mutate(0.01, true); // uniform
+		tournamentCurrRound.push(mutation);
+	}
+	console.log("initialized " + tournamentCurrRound.length + " NNs including and based on " + tournamentFinalistsToKeep + " finalists");
+	for (let i = 0; i < 18; i++) {
+		let mutation = new NeuralNet(json = nnJson);
+		mutation.mutate(0.01, false); // gaussian
+		tournamentCurrRound.push(mutation);
+	}
+	///////////////////////////////////////////////////
+	// change 5% of weights
+	for (let i = 0; i < 15; i++) {
+		let mutation = new NeuralNet(json = nnJson);
+		mutation.mutate(0.05, true); // uniform
+		tournamentCurrRound.push(mutation);
+	}
+	console.log("initialized " + tournamentCurrRound.length + " NNs including and based on " + tournamentFinalistsToKeep + " finalists");
+	for (let i = 0; i < 15; i++) {
+		let mutation = new NeuralNet(json = nnJson);
+		mutation.mutate(0.05, false); // gaussian
+		tournamentCurrRound.push(mutation);
+	}
+	///////////////////////////////////////////////////
+	// change 10% of weights
+	for (let i = 0; i < 15; i++) {
 		let mutation = new NeuralNet(json = nnJson);
 		mutation.mutate(0.1, true); // uniform
 		tournamentCurrRound.push(mutation);
 	}
 	console.log("initialized " + tournamentCurrRound.length + " NNs including and based on " + tournamentFinalistsToKeep + " finalists");
-	for (let i = 0; i < 32; i++) {
+	for (let i = 0; i < 15; i++) {
 		let mutation = new NeuralNet(json = nnJson);
 		mutation.mutate(0.1, false); // gaussian
 		tournamentCurrRound.push(mutation);
 	}
+	///////////////////////////////////////////////////
+	// change 20% of weights
 	console.log("initialized " + tournamentCurrRound.length + " NNs including and based on " + tournamentFinalistsToKeep + " finalists");
-	for (let i = 0; i < 31; i++) {
+	for (let i = 0; i < 15; i++) {
 		let mutation = new NeuralNet(json = nnJson);
 		mutation.mutate(0.2, true); // uniform
 		tournamentCurrRound.push(mutation);
 	}
 	console.log("initialized " + tournamentCurrRound.length + " NNs including and based on " + tournamentFinalistsToKeep + " finalists");
-	for (let i = 0; i < 31; i++) {
+	for (let i = 0; i < 15; i++) {
 		let mutation = new NeuralNet(json = nnJson);
 		mutation.mutate(0.2, false); // gaussian
 		tournamentCurrRound.push(mutation);
 	}
-	console.log("initialized " + tournamentCurrRound.length + " NNs including and based on " + tournamentFinalistsToKeep + " finalists");
+	///////////////////////////////////////////////////
+	// change 50% of weights
 	let mutation = new NeuralNet(json = nnJson);
 	mutation.mutate(0.5, true); // uniform
 	tournamentCurrRound.push(mutation);
+	console.log("initialized " + tournamentCurrRound.length + " NNs including and based on " + tournamentFinalistsToKeep + " finalists");
 }
 
 function populateCurrRoundWithRandomNNs() {
@@ -963,7 +1011,6 @@ function playAITurnOrStartTraining() {
 		} else {
 			console.log("ERROR: two contentestants have won an equal number of games, which should be impossible");
 			currentState = CANCEL_EVERYTHING;
-			frameRate(STILL_FPS);
 			return;
 		}
 
@@ -979,11 +1026,11 @@ function playAITurnOrStartTraining() {
 				console.log("the tournament is complete");
 				tournamentsCompleted += 1;
 				tournamentNextRound[0].tournamentsWon += 1;
+				totalEntrants += tournamentEntrants;
 				printModelToScreen(tournamentNextRound[0]);
 				// optionally stop after some number of tournaments
 				if (tournamentsCompleted >= numberOfTournamentsToRun) {
 					currentState = CANCEL_EVERYTHING;
-					frameRate(STILL_FPS);
 					console.log("completed " + tournamentsCompleted + " tournaments");
 					return;
 				}
@@ -995,6 +1042,7 @@ function playAITurnOrStartTraining() {
 				}
 				populateCurrRoundWithRandomNNs();
 				tournamentRoundStartingSize = tournamentCurrRound.length;
+				tournamentEntrants = tournamentRoundStartingSize;
 				beginNewMatchupFromCurrentRound();
 
 
@@ -1015,7 +1063,6 @@ function playAITurnOrStartTraining() {
 			} else if (tournamentNextRound.length == 0) {
 				console.log("ERROR: tournamentNextRound has 0 entrants, which should be impossible");
 				currentState = CANCEL_EVERYTHING;
-				frameRate(STILL_FPS);
 				return;
 			}
 		}
@@ -1037,7 +1084,7 @@ function playAITurnOrStartTraining() {
 				ML_PLAYER_NN_BY_INDEX[1].gamesWon += 1;
 			// for a tie, re-play the entire game because we need to have an odd number of non-ties
 			} else {
-				console.log("tie! re-playing this game");
+				//console.log("tie! re-playing this game");
 				SIMULATION_CTX.gamesPlayed -= 1.0;
 				ML_PLAYER_NN_BY_INDEX[0].gamesPlayed -= 1;
 				ML_PLAYER_NN_BY_INDEX[1].gamesPlayed -= 1;
@@ -1059,7 +1106,6 @@ function playAITurnOrStartTraining() {
 		restartGame();
 		// simulate the game again
 		if (SIMULATION_CTX.gamesPlayed < gamesToSimulatePerMatchup) {
-			frameRate(ANIMATION_FPS);
 			runningSimulation = true;
 			playAITurn();
 			while (currentState != GAME_OVER) {
