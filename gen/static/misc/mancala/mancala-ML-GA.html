@@ -10,7 +10,8 @@ genetic algorithm for improving a Mancala-playing NN:
 <html>
 	<head>
 		<script src="../p5-v1.9.0.min.js"></script>
-		<script src="neural-network-model-ga-1710871875.js"></script>
+		<script src="neural-network-model-ga-1710943657.js"></script>
+		<script src="neural-network-model-leakyrelu-for-ga-1710889002.js"></script>
 		<script>
 const dispWidth = 1100;
 const dispHeight = dispWidth * .38;
@@ -65,6 +66,11 @@ let tournamentsCompleted = 0;
 let numberOfTournamentsToRun = 999;
 let tournamentFinalistsToKeep = 4; // some power of 2
 
+let speedGamesCounter = 100000;
+let speedTimeMsCounter = Date.now();
+let drawDelayCounter = 1000;
+let seedDrawCounter = 1000;
+
 const INITIAL_SEEDS_IN_PIT = 4;
 const pits = [];
 let capturedPits = [];
@@ -74,6 +80,7 @@ let fpsLastTime = 0;
 const ANIMATION_FPS = 90;
 const STILL_FPS = 1;
 
+let lastSeedInHandPos = null;
 
 // thanks to https://gist.github.com/vaiorabbit/5657561
 // 32 bit FNV-1a hash
@@ -223,28 +230,18 @@ class Neuron {
 		return leakyRelu(sum);
 	}
 
-	mutate(pctToChange, doUniform) {
+	mutate(pctToChange, doUniform, initFactor) {
 		for (let i = 0; i < this.weights.length; i++) {
 			if (fasterRandom(0.0, 1.0) > pctToChange) {
 				continue;
 			}
-			let factor = doUniform ? fasterRandom(0.9, 1.1) : fasterRandomGaussian(0.0, 0.05);
-			// most of the time, don't flip the sign
-			if (fasterRandom(0.0, 1.0) < 0.2) {
-				factor = -factor;
-			}
-			this.weights[i] *= factor;
+			this.weights[i] = doUniform ? (fasterRandom(-1, 1) * initFactor) : (fasterRandomGaussian(0, 1) * initFactor);
 		}
 		// leave 80% of the biases unchanged
 		if (fasterRandom(0.0, 1.0) < 0.8) {
 			return;
 		}
-		let biasFactor = doUniform ? fasterRandom(0.9, 1.1) : fasterRandomGaussian(0.0, 0.05);
-		// since the bias can be negative, occasionally flip its sign
-		if (fasterRandom(0.0, 1.0) < 0.2) {
-			biasFactor = -biasFactor;
-		}
-		this.bias_input *= biasFactor;
+		this.bias_input = doUniform ? fasterRandom(-0.2, 0.2) : fasterRandomGaussian(0, 0.1);
 	}
 }
 
@@ -296,8 +293,9 @@ class NeuronLayer {
 	}
 
 	mutate(pctToChange, doUniform) {
+		const initFactor = Math.sqrt(1/this.neurons.length);
 		for (const neuron of this.neurons) {
-			neuron.mutate(pctToChange, doUniform);
+			neuron.mutate(pctToChange, doUniform, initFactor);
 		}
 	}
 }
@@ -386,18 +384,26 @@ class SeedMovement {
 		this.startPos = startPos;
 		this.endPos = endPos;
 		this.destinationPitIndex = destinationPitIndex;
-		this.fracComplete = runningSimulation ? 1.0 : 0.0;
-		// take about 1/4 second to reach the end position
-		this.fracStep = 4.0 / frameRate();
+		//if (runningSimulation) {
+			this.fracComplete = 1.0;
+			this.fracStep = 1.0;
+		//} else {
+		//	this.fracComplete = 0.0;
+		//	// take about 1/4 second to reach the end position
+		//	this.fracStep = 4.0 / frameRate();
+		//}
 	}
 
-	updateAndDraw() {
-		fill(this.seed.color);
+	updateAndDraw(doDrawing=true) {
 		this.fracComplete += this.fracStep;
 		if (this.fracComplete > 1.0) {
 			this.fracComplete = 1.0;
 		}
-		circle(lerp(this.startPos.x, this.endPos.x, this.fracComplete), lerp(this.startPos.y, this.endPos.y, this.fracComplete), seedSize);
+		if (doDrawing) {
+			fill(this.seed.color);
+			//circle(lerp(this.startPos.x, this.endPos.x, this.fracComplete), lerp(this.startPos.y, this.endPos.y, this.fracComplete), seedSize);
+			circle(this.endPos.x, this.endPos.y, seedSize);
+		}
 		return this.fracComplete == 1.0;
 	}
 }
@@ -467,11 +473,15 @@ class Pit {
 	}
 
 	getNextSeedPos() {
-		return drawSeeds(this.midX, this.midY, this.seeds, this.doSquareArrangement, true);
+		//return drawSeeds(this.midX, this.midY, this.seeds, this.doSquareArrangement, true);
+		//return createVector(this.midX + (fasterRandom(0, 40) - 20), this.midY + (fasterRandom(0, 40) - 20));
+		return createVector(this.midX, this.midY);
 	}
 
 	getLastSeedPos() {
-		return drawSeeds(this.midX, this.midY, this.seeds, this.doSquareArrangement, false);
+		//return drawSeeds(this.midX, this.midY, this.seeds, this.doSquareArrangement, false);
+		//return createVector(this.midX + (fasterRandom(0, 40) - 20), this.midY + (fasterRandom(0, 40) - 20));
+		return createVector(this.midX, this.midY);
 	}
 
 	addSeed(seed) {
@@ -513,6 +523,7 @@ function setup() {
 			pitX -= padding + pitWidth;
 		}
 	}
+	lastSeedInHandPos = createVector(0, 0);
 	fpsParagraph = createElement('p');
 	statusParagraph = createElement('p');
 	modelOutputParagraph = createElement('p');
@@ -524,6 +535,9 @@ function setup() {
 		tournamentCurrRound.push(createRandomizedNN());
 	}
 	populateCurrRoundWithRandomNNs();
+	// delete a randomized model and replace it with the one trained with backprop/gradient descent
+	tournamentCurrRound.pop();
+	tournamentCurrRound.push(new NeuralNet(json = TRAINED_NN_MODEL));
 	tournamentRoundStartingSize = tournamentCurrRound.length;
 	beginNewMatchupFromCurrentRound();
 }
@@ -551,9 +565,9 @@ function drawBoard() {
 
 	for (const pit of pits) {
 		pit.draw();
-		if (currentPlayerTurn < 0 && pit.isBank) {
-			pit.drawSeedCount();
-		}
+		//if (currentPlayerTurn < 0 && pit.isBank) {
+		//	pit.drawSeedCount();
+		//}
 	}
 }
 
@@ -566,6 +580,18 @@ function shouldTurn(doSquareArrangement, i) {
 }
 
 function drawSeeds(atPosX, atPosY, seeds, doSquareArrangement, onlyGetNextPos = false) {
+	if (seeds.length > 0) {
+		fill(seeds[0].color);
+		// no need to actually draw all seeds
+		//seeds.forEach(seed => {
+		//	circle(atPosX + (fasterRandom(0, 40) - 20), atPosY + (fasterRandom(0, 40) - 20), seedSize);
+		//});
+		//circle(atPosX + (fasterRandom(0, 40) - 20), atPosY + (fasterRandom(0, 40) - 20), seedSize);
+		circle(atPosX, atPosY, seedSize);
+	}
+	//return createVector(atPosX + (fasterRandom(0, 40) - 20), atPosY + (fasterRandom(0, 40) - 20));
+	return createVector(atPosX, atPosY);
+	/*
 	let xPos = atPosX;
 	let yPos = atPosY;
 	let stepAngle = 0;
@@ -600,6 +626,7 @@ function drawSeeds(atPosX, atPosY, seeds, doSquareArrangement, onlyGetNextPos = 
 	} else {
 		return createVector(lastX, lastY);
 	}
+	*/
 }
 
 // draw the number of held seeds
@@ -676,6 +703,17 @@ function playerTurnIsOver() {
 	}
 }
 
+function calcGamesPerSecond() {
+	const msNow = Date.now();
+	const msElapsed = msNow - speedTimeMsCounter;
+	const gamesPerSecond = speedGamesCounter / (msElapsed / 1000.0);
+	if (speedGamesCounter > 1000) {
+		speedGamesCounter = 0;
+		speedTimeMsCounter = msNow;
+	}
+	return "" + roundToDecimalPlaces(gamesPerSecond, 2) + " games/sec"
+}
+
 function draw() {
 	if (currentState == CANCEL_EVERYTHING) {
 		frameRate(STILL_FPS);
@@ -687,11 +725,13 @@ function draw() {
 	}
 	// only draw the board on rare occasions... perhaps instead we should
 	//   just simulate 100 or 1000 games for every frame
-	if (fasterRandom(0.0,1.0) < 0.001) {
-		statusParagraph.html("round of " + tournamentRoundStartingSize + " has " + tournamentCurrRound.length + " yet to play");
+	//if (fasterRandom(0.0,1.0) < 0.0001) {
+	if (drawDelayCounter++ > 10000) {
+		drawDelayCounter = 0;
+		statusParagraph.html("round of " + tournamentRoundStartingSize + " has " + tournamentCurrRound.length + " yet to play (" + calcGamesPerSecond() + ")");
 		drawBoard();
+		lastSeedInHandPos = drawHand();
 	}
-	const lastSeedInHandPos = drawHand();
 	if (currentState == PIECES_MOVING_FROM_HAND) {
 		if (movingSeed === null) {
 			if (seedsInHand.length > 0) {
@@ -703,7 +743,11 @@ function draw() {
 			}
 		}
 		if (movingSeed !== null) {
-			const doneMoving = movingSeed.updateAndDraw();
+			const doDrawSeed = seedDrawCounter++ > 1000;
+			if (doDrawSeed) {
+				seedDrawCounter = 0;
+			}
+			const doneMoving = movingSeed.updateAndDraw(doDrawSeed);
 			if (doneMoving) {
 				const destPit = pits[movingSeed.destinationPitIndex];
 				destPit.addSeed(movingSeed.seed);
@@ -758,7 +802,11 @@ function draw() {
 			}
 		}
 		if (movingSeed !== null) {
-			const doneMoving = movingSeed.updateAndDraw();
+			const doDrawSeed = seedDrawCounter++ > 1000;
+			if (doDrawSeed) {
+				seedDrawCounter = 0;
+			}
+			const doneMoving = movingSeed.updateAndDraw(doDrawSeed);
 			if (doneMoving) {
 				const destPit = pits[movingSeed.destinationPitIndex];
 				destPit.addSeed(movingSeed.seed);
@@ -979,6 +1027,7 @@ function playAITurnOrStartTraining() {
 			SIMULATION_CTX.gamesPlayed += 1.0;
 			ML_PLAYER_NN_BY_INDEX[0].gamesPlayed += 1;
 			ML_PLAYER_NN_BY_INDEX[1].gamesPlayed += 1;
+			speedGamesCounter += 1;
 			//console.log("gamesPlayed=" + SIMULATION_CTX.gamesPlayed);
 			if (SIMULATION_CTX.ownBank.seeds.length > SIMULATION_CTX.oppBank.seeds.length) {
 				SIMULATION_CTX.idxZeroNetGamesWon += 1.0;
@@ -990,6 +1039,8 @@ function playAITurnOrStartTraining() {
 			} else {
 				console.log("tie! re-playing this game");
 				SIMULATION_CTX.gamesPlayed -= 1.0;
+				ML_PLAYER_NN_BY_INDEX[0].gamesPlayed -= 1;
+				ML_PLAYER_NN_BY_INDEX[1].gamesPlayed -= 1;
 			}
 			// simulate a bunch of games where the next pit is selected
 			if (SIMULATION_CTX.gamesPlayed >= gamesToSimulatePerMatchup) {
