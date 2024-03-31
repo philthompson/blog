@@ -84,7 +84,8 @@ photos_data = {
 		{'url': '2024-02-18-173456-60-R6PT1358-sm.jpg',                  'desc': 'Oregon, USA' },
 		{'url': '2024-02-18-105324-56-R6PT1255-sm.jpg',                  'desc': 'Oregon, USA' },
 		{'url': '2024-02-18-105333-33-R6PT1264-sm.jpg',                  'desc': 'Oregon, USA' },
-		{'url': '2024-02-18-105333-84-R6PT1268-sm.jpg',                  'desc': 'Oregon, USA' }
+		{'url': '2024-02-18-105333-84-R6PT1268-sm.jpg',                  'desc': 'Oregon, USA' },
+		{'url': '2024-03-15-Moon-Stacked-Blended.jpg',                   'desc': 'shot from Oregon, USA' }
 	]
 }
 
