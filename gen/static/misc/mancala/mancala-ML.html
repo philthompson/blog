@@ -15,7 +15,7 @@ https://stackoverflow.com/a/53323498/259456
 <html>
 	<head>
 		<script src="../p5-v1.9.0.min.js"></script>
-		<script src="neural-network-model-leakyrelu-1710972634.js"></script>
+		<script src="neural-network-model-leakyrelu-1711305064.js"></script>
 		<script>
 const dispWidth = 1100;
 const dispHeight = dispWidth * .38;
@@ -66,18 +66,18 @@ let statusParagraph;
 let gamesToSimulatePerScenario = 100;
 let aiTrainingGamesToRun = 100;
 let shouldUpdateNonTrainedMLPlayerAfterEveryGame = true;
-let maxTrainingSize = 320;
+let maxTrainingSize = 64;
 // only train when the training data is a multiple of this size, and remove this many oldest items at a time
 // if this is smaller, individual input-output pairs are trained upon more times
 // for example, if maxTrainingSize=256, and multipleTrainingSize=64, then
 //   each item in the training data will be trained upon in 4 cycles before
 //   aging out of the training data, whereas if mulitpleTrainingSize=32 then
 //   each item will be trained upon 8 times
-let multipleTrainingSize = 32;
+let multipleTrainingSize = 8;
 const recentInputsToTrainOn = [];
 const recentOutputsToTrainOn = [];
 let adjustWeightsChunkIterations = 1; // wow, training iterations are so slow with 4,608 hidden neurons...
-let adjustWeightsChunks = 200; // return control to main thread very often, so break training into many small chunks
+let adjustWeightsChunks = 500; // return control to main thread very often, so break training into many small chunks
 //let stopTrainingDistanceForSingleMove = 0.09; // we don't want to overfit the network for any single move, so keep this a bit high for now
 //let stopTrainingDistanceForSingleMove = 0.25; // we don't want to overfit the network for any single move, so keep this a bit high for now
 let   stopTrainingDistanceForSingleMove = 0.3; // we don't want to overfit the network for any single move, so keep this a bit high for now
@@ -110,7 +110,10 @@ let randomNudgesForThisTrainingData = 0;
 //let learningRate = 0.00002;  // mostly seems fine, but avg dist slightly increases on some training iterations
 //let learningRate = 0.000012; // mostly seems fine, but avg dist slightly increases on some training iterations
 //let learningRate = 0.000006; // this seems too slow, and i guess avg dist can increase even if not stepping too far during gd
-let   learningRate = 0.000009;
+//let learningRate = 0.000009;
+//let learningRate = 0.000007;
+//let learningRate = 0.0000005; // too slow?
+let   learningRate = 0.000016;
 //let learningRate = 0.00003; // seemed fine, if a bit fast, for linear (not squared) initial "delta" calculation in learn()
 
 const INITIAL_SEEDS_IN_PIT = 4;
@@ -175,7 +178,7 @@ function test_fnv32a_repeat(iters) {
 			console.log("repeat hash DETECTED after [" + (i+1) + "] iterations");
 			return;
 		}
-		newHash = fnv32a_32bitint(origHash);
+		newHash = fnv32a_32bitint(newHash);
 	}
 	console.log("repeat hash not detected after [" + iters + "] iterations");
 }
@@ -1178,6 +1181,8 @@ function playAITurnOrStartTraining() {
 				bestPitIndexes.push(SIMULATION_CTX.selectablePits[i].index);
 			}
 		}
+		const multipleMovesGiveBestWinChance = bestPitIndexes.length > 1;
+
 		// maximum number of total seeds for the best pits by win probability
 		const maxTotalSeeds = bestPitIndexes.reduce((acc, bestPitIdx) => Math.max(acc, SIMULATION_CTX.pitTotalSeeds[bestPitIdx]), 0);
 		if (bestPitIndexes.length > 1) {
@@ -1213,6 +1218,10 @@ function playAITurnOrStartTraining() {
 		}
 		if (allMovesGiveZeroWins) {
 			console.log("NOT adjusting weights since a win is impossible (perhaps train for highest total in bank instead here?)");
+			playAITurn();
+			SIMULATION_CTX.ithSelectablePit = -1;
+		} else if (multipleMovesGiveBestWinChance) {
+			console.log("NOT adjusting weights since the highest win probability is shared by more than one move");
 			playAITurn();
 			SIMULATION_CTX.ithSelectablePit = -1;
 		} else {
@@ -1396,7 +1405,7 @@ function adjustWeightsInChunks() {
 	const postLearnDistAvg            = roundToDecimalPlaces(postLearnDist/recentInputsToTrainOn.length, 8);
 	const postLearnDistAvgRoundedMore = roundToDecimalPlaces(postLearnDist/recentInputsToTrainOn.length, 5);
 	learningTotalIterations += adjustWeightsChunkIterations;
-	if (adjustWeightsChunkCounter % 100 == 0) {
+	if (learningTotalIterations % 1000 == 0) {
 		console.log("after " + learningTotalIterations + " iterations, average postLearnDist [" + postLearnDistAvg + "]");
 	}
 	// after running all adjustment chunks, move to the next input/output pair in the training data
