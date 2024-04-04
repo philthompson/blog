@@ -10,8 +10,8 @@ genetic algorithm for improving a Mancala-playing NN:
 <html>
 	<head>
 		<script src="../p5-v1.9.0.min.js"></script>
-		<script src="neural-network-model-ga-1710972192.js"></script>
-		<script src="neural-network-model-leakyrelu-for-ga-1710889002.js"></script>
+		<script src="neural-network-model-ga-1711321007.js"></script>
+		<script src="neural-network-model-leakyrelu-for-ga-1711122760.js"></script>
 		<script>
 const dispWidth = 1100;
 const dispHeight = dispWidth * .38;
@@ -42,7 +42,8 @@ const SIMULATION_CTX = {
 	'pitWinProbability': null,
 	'matchHasStarted': false,
 	'gamesPlayed': 0.0,
-	'idxZeroNetGamesWon': 0.0
+	'idxZeroNetGamesWon': 0.0,
+	'initialPlayerTurn': 0
 };
 let currentPlayerTurn = 0;
 let currentState = WAITING_FOR_PLAYER;
@@ -56,7 +57,7 @@ const ML_PLAYER_NN_BY_INDEX = {
 let runningSimulation = false;
 let modelOutputParagraph;
 let statusParagraph;
-let gamesToSimulatePerMatchup = 15; // odd number
+let gamesToSimulatePerMatchup = 11; // odd number
 let logMatchupsAndResults = false; // hashing the NNs really slows down generating a new batch of NNs for a new tournament
 
 let tournamentNextRound = [];
@@ -136,7 +137,7 @@ function test_fnv32a_repeat(iters) {
 			console.log("repeat hash DETECTED after [" + (i+1) + "] iterations");
 			return;
 		}
-		newHash = fnv32a_32bitint(origHash);
+		newHash = fnv32a_32bitint(newHash);
 	}
 	console.log("repeat hash not detected after [" + iters + "] iterations");
 }
@@ -320,6 +321,7 @@ class NeuralNet {
 			this.gamesWon = 0;
 			this.tournamentsWon = 0;
 			this.tournamentsEntered = 1;
+			this.ancestorTournamentsEntered = 0;
 		}
 		if (logMatchupsAndResults) {
 			updateHashId();
@@ -341,6 +343,7 @@ class NeuralNet {
 		this.gamesWon = json.gamesWon || 0;
 		this.tournamentsWon = json.tournamentsWon || 0;
 		this.tournamentsEntered = json.tournamentsEntered || 1;
+		this.ancestorTournamentsEntered = json.ancestorTournamentsEntered || 0;
 	}
 
 	export_to_json(additionalStuff = null) {
@@ -673,13 +676,15 @@ function printModelToScreen(neuralNetwork) {
 		"<br/>gamesPlayed: " + neuralNetwork.gamesPlayed.toLocaleString() +
 		"<br/>gamesWon: " + neuralNetwork.gamesWon.toLocaleString() + " (" + roundToDecimalPlaces((neuralNetwork.gamesWon * 100.0) / neuralNetwork.gamesPlayed, 3) + "%)" +
 		"<br/>tournamentsWon: " + neuralNetwork.tournamentsWon.toLocaleString() +
-		"<br/>tournamentsEntered: " + neuralNetwork.tournamentsEntered.toLocaleString());
+		"<br/>tournamentsEntered: " + neuralNetwork.tournamentsEntered.toLocaleString() +
+		"<br/>ancestorTournamentsEntered: " + neuralNetwork.ancestorTournamentsEntered.toLocaleString());
 	const additionalJsonKeys = {
 		'totalEntrants': totalEntrants,
 		'gamesPlayed': neuralNetwork.gamesPlayed,
 		'gamesWon': neuralNetwork.gamesWon,
 		'tournamentsWon': neuralNetwork.tournamentsWon,
-		'tournamentsEntered': neuralNetwork.tournamentsEntered
+		'tournamentsEntered': neuralNetwork.tournamentsEntered,
+		'ancestorTournamentsEntered': neuralNetwork.ancestorTournamentsEntered
 	};
 	modelOutputParagraph.html(modelOutputParagraph.html() +
 		'<br/><br/>const BEST_NN_MODEL = ' + neuralNetwork.export_to_json(additionalJsonKeys) + ';');
@@ -909,11 +914,13 @@ function getNNInputs() {
 // add a power of 2 number of NNs (including the given NN)
 //   based on the given NN
 function populateCurrRoundBasedOnNN(nn) {
+	let nnJson = JSON.parse(nn.export_to_json());
+	nnJson['ancestorTournamentsEntered'] = nn.ancestorTournamentsEntered + nn.tournamentsEntered;
 	///////////////////////////////////////////////////
 	// include given NN, unchanged
 	nn.tournamentsEntered += 1;
+	totalEntrants -= 1; // this isn't a new entrant, do decrement the entrants counter ahead of time
 	tournamentCurrRound.push(nn);
-	let nnJson = JSON.parse(nn.export_to_json());
 	///////////////////////////////////////////////////
 	// change 1% of weights
 	for (let i = 0; i < 18; i++) {
@@ -999,6 +1006,7 @@ function playAITurnOrStartTraining() {
 			SIMULATION_CTX.oppBank = pits.filter((p) => p.playerIndex == 1 && p.isBank)[0];
 			SIMULATION_CTX.gamesPlayed = 0.0;
 			SIMULATION_CTX.idxZeroNetGamesWon = 0.0;
+			SIMULATION_CTX.initialPlayerTurn = 0; // the NNs assigned to player 0 and 1 are random, so we can always do 0 here (then alternate for the rest of the match)
 			runningSimulation = true;
 			currentState = GAME_OVER; // set runningSimulation AND GAME_OVER to kick off the simulations below
 			return;
@@ -1193,8 +1201,8 @@ function restartGame() {
 		}
 	}
 
-	// randomize player turn
-	currentPlayerTurn = round(fasterRandom(0,1));
+	SIMULATION_CTX.initialPlayerTurn ^= 1; // XOR with 1 to alternate between 1 and 0
+	currentPlayerTurn = SIMULATION_CTX.initialPlayerTurn;
 	currentState = WAITING_FOR_PLAYER;
 }
 
