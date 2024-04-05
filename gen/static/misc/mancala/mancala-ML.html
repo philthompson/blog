@@ -15,7 +15,7 @@ https://stackoverflow.com/a/53323498/259456
 <html>
 	<head>
 		<script src="../p5-v1.9.0.min.js"></script>
-		<script src="neural-network-model-leakyrelu-1711305064.js"></script>
+		<script src="neural-network-model-leakyrelu-1712327060.js"></script>
 		<script>
 const dispWidth = 1100;
 const dispHeight = dispWidth * .38;
@@ -66,14 +66,14 @@ let statusParagraph;
 let gamesToSimulatePerScenario = 100;
 let aiTrainingGamesToRun = 100;
 let shouldUpdateNonTrainedMLPlayerAfterEveryGame = true;
-let maxTrainingSize = 64;
 // only train when the training data is a multiple of this size, and remove this many oldest items at a time
 // if this is smaller, individual input-output pairs are trained upon more times
 // for example, if maxTrainingSize=256, and multipleTrainingSize=64, then
 //   each item in the training data will be trained upon in 4 cycles before
 //   aging out of the training data, whereas if mulitpleTrainingSize=32 then
 //   each item will be trained upon 8 times
-let multipleTrainingSize = 8;
+let multipleTrainingSize = 32;
+let maxTrainingSize = multipleTrainingSize * 5;
 const recentInputsToTrainOn = [];
 const recentOutputsToTrainOn = [];
 let adjustWeightsChunkIterations = 1; // wow, training iterations are so slow with 4,608 hidden neurons...
@@ -83,6 +83,9 @@ let adjustWeightsChunks = 500; // return control to main thread very often, so b
 let   stopTrainingDistanceForSingleMove = 0.3; // we don't want to overfit the network for any single move, so keep this a bit high for now
 let adjustWeightsChunkCounter = 0;
 let learningTotalIterations = 0;
+let learningTotalSkips = 0;
+let learningTotalSlowed = 0;
+let learningDistRecord = '';
 let prevAvgDistRounded = 0;
 let randomNudgingFactor = 0.3;
 let shouldDoRandomNudging = false;
@@ -113,8 +116,19 @@ let randomNudgesForThisTrainingData = 0;
 //let learningRate = 0.000009;
 //let learningRate = 0.000007;
 //let learningRate = 0.0000005; // too slow?
-let   learningRate = 0.000016;
-//let learningRate = 0.00003; // seemed fine, if a bit fast, for linear (not squared) initial "delta" calculation in learn()
+//let learningRate = 0.000016;
+let   learningRate = 0.00002;
+let slowerLearningRateFactor = 0.35; // when an individual training input item is close enough to the desired output, multiply learningRate by this
+let skipLearnedInputsRate = 0.75; // for each iteration, skip this % of individual training input items already at desired output error/distance
+let distSkipFactor = 0.7; // when a training item's err/dist is < stopTrainingDistanceForSingleMove * this, potentially skip it
+let distSlowFactor = 1.3; // when a training item's err/dist is < stopTrainingDistanceForSingleMove * this, use slower learning rate
+// for initial slower/skip trial:
+// learningRate = 0.000016;
+// slowerLearningRateFactor = 0.5;
+// skipLearnedInputsRate = 0.5;
+// distSkipFactor = 1.0
+// distSlowFactor = 1.2
+
 
 const INITIAL_SEEDS_IN_PIT = 4;
 const pits = [];
@@ -516,13 +530,13 @@ class NeuralNet {
 	}
 
 	learn(iterations, inputsArray, desiredOutputsArray) {
+		let skippedInputItems = 0;
+		let slowerLearnInputItems = 0;
+		let learningRateFactor = 1.0;
 		for (let i = 0; i < iterations; i++) {
 
 			let shuffledIndexes = createShuffledArray(0, inputsArray.length - 1);
 
-			// since iterations are so slow, only train on half the inputs
-			//   (after shuffling them) but do twice as many iterations
-			//for (let j = 0; j < Math.floor(inputsArray.length/2); j++) {
 			for (let j = 0; j < inputsArray.length; j++) {
 				const input = inputsArray[shuffledIndexes[j]];
 				const desiredOutput = desiredOutputsArray[shuffledIndexes[j]];
@@ -547,6 +561,23 @@ class NeuralNet {
 				//   but can the minus sign be replaced after finding the squared distance?
 				//let delta = layerInput.map((val,idx) => Math.pow(val - desiredOutput[idx], 2));
 				//let delta = layerInput.map((val,idx) => Math.pow(val - desiredOutput[idx], 2) * (val > desiredOutput[idx] ? 1 : -1));
+				// if an item in the inputsArray has an acceptably-close output already,
+				//   skip the item 50% of the time
+				const distSq = delta.reduce((acc,val) => acc + Math.pow(val, 2), 0.0);
+				if (distSq <= stopTrainingDistanceForSingleMove * distSkipFactor) {
+					if (fasterRandom(0.0, 1.0) < skipLearnedInputsRate) {
+						skippedInputItems += 1;
+						continue;
+					} else {
+						slowerLearnInputItems += 1;
+						learningRateFactor = slowerLearningRateFactor;
+					}
+				} else if (distSq <= stopTrainingDistanceForSingleMove * distSlowFactor) {
+					//slowerLearnInputItems += 1;
+					learningRateFactor = slowerLearningRateFactor;
+				} else {
+					learningRateFactor = 1.0;
+				}
 				let temp;
 				let nextLayer;
 				for (let k = this.hiddenLayers.length; k >= 0; k--) {
@@ -560,8 +591,8 @@ class NeuralNet {
 						// one-dimensional arrays are matrix multiplied here to create a two-dimensional array
 						// vertical delta @ horizontal neuron values --> 2D result
 						temp = matrixMultiply(transposeArray([delta]), [layerInputs[k]]);
-						temp.forEach((vals,nIdx) => vals.forEach((val,wIdx) => outLayer.neurons[nIdx].weights[wIdx] -= learningRate * val));
-						delta.forEach((val,nIdx) => outLayer.neurons[nIdx].bias_input -= learningRate * val);
+						temp.forEach((vals,nIdx) => vals.forEach((val,wIdx) => outLayer.neurons[nIdx].weights[wIdx] -= learningRate * learningRateFactor * val));
+						delta.forEach((val,nIdx) => outLayer.neurons[nIdx].bias_input -= learningRate * learningRateFactor * val);
 						nextLayer = outLayer;
 
 					} else {
@@ -579,8 +610,8 @@ class NeuralNet {
 						// one-dimensional arrays are matrix multiplied here to create a two-dimensional array
 						// vertical delta @ horizontal neuron values --> 2D result
 						temp = matrixMultiply(transposeArray([delta]), [layerInputs[k]]);
-						temp.forEach((vals,nIdx) => vals.forEach((val,wIdx) => outLayer.neurons[nIdx].weights[wIdx] -= learningRate * val));
-						delta.forEach((val,nIdx) => outLayer.neurons[nIdx].bias_input -= learningRate * val);
+						temp.forEach((vals,nIdx) => vals.forEach((val,wIdx) => outLayer.neurons[nIdx].weights[wIdx] -= learningRate * learningRateFactor * val));
+						delta.forEach((val,nIdx) => outLayer.neurons[nIdx].bias_input -= learningRate * learningRateFactor * val);
 						nextLayer = outLayer;
 
 					}
@@ -594,6 +625,8 @@ class NeuralNet {
 			}
 			//console.log("completed learn iteration " + (i+1));
 		}
+		//console.log("skipped " + skippedInputItems + " training items in total, and slowed " + slowerLearnInputItems + ", over " + iterations + " iterations");
+		return [skippedInputItems, slowerLearnInputItems];
 	}
 }
 
@@ -1053,7 +1086,7 @@ function printRecentTrainingData() {
 	modelOutputParagraph.html(modelOutputParagraph.html() + '<br/><br/>const PREV_OUTPUTS = ' + JSON.stringify(recentOutputsToTrainOn.slice(-maxTrainingSize)) + ';');
 }
 
-function appendNewTrainingData(inputs, outputs) {
+function deleteTrainingData(inputs) {
 	// convert back to integer number of seeds for less error-prone integer comparison
 	const inputsStr = inputs.map((v) => Math.round(v * (INITIAL_SEEDS_IN_PIT * pitsPerSide * 2))).join('-');
 	const dupeIndexes = [];
@@ -1061,7 +1094,7 @@ function appendNewTrainingData(inputs, outputs) {
 		const prevStr = recentInputsToTrainOn[i].map((v) => Math.round(v * (INITIAL_SEEDS_IN_PIT * pitsPerSide * 2))).join('-');
 		if (prevStr == inputsStr) {
 			dupeIndexes.push(i);
-			console.log("removing duplicate older training data input: " + prevStr + " -> " + recentOutputsToTrainOn[i]);
+			console.log("removing older training data input: " + prevStr + " -> " + recentOutputsToTrainOn[i]);
 		}
 	}
 	// remove all matching previous copies of this input, but
@@ -1073,6 +1106,12 @@ function appendNewTrainingData(inputs, outputs) {
 		recentInputsToTrainOn.splice(idx, 1);
 		recentOutputsToTrainOn.splice(idx, 1);
 	}
+}
+
+function appendNewTrainingData(inputs, outputs) {
+	deleteTrainingData(inputs);
+	// convert back to integer number of seeds for logging
+	const inputsStr = inputs.map((v) => Math.round(v * (INITIAL_SEEDS_IN_PIT * pitsPerSide * 2))).join('-');
 	recentOutputsToTrainOn.push(outputs);
 	// return the new length of the inputs array
 	console.log("appending new training data entry: " + inputsStr + " -> " + outputs);
@@ -1218,10 +1257,12 @@ function playAITurnOrStartTraining() {
 		}
 		if (allMovesGiveZeroWins) {
 			console.log("NOT adjusting weights since a win is impossible (perhaps train for highest total in bank instead here?)");
+			deleteTrainingData(inputs); // also delete any old instances of this same input
 			playAITurn();
 			SIMULATION_CTX.ithSelectablePit = -1;
 		} else if (multipleMovesGiveBestWinChance) {
 			console.log("NOT adjusting weights since the highest win probability is shared by more than one move");
+			deleteTrainingData(inputs); // also delete any old instances of this same input
 			playAITurn();
 			SIMULATION_CTX.ithSelectablePit = -1;
 		} else {
@@ -1258,6 +1299,9 @@ function playAITurnOrStartTraining() {
 			randomNudgesForThisTrainingData = 0;
 			prevAvgDistRounded = Infinity;
 			learningTotalIterations = 0;
+			learningTotalSkips = 0;
+			learningTotalSlowed = 0;
+			learningDistRecord = '';
 			// the next few calls to draw() will call adjustWeightsInChunks()
 			return;
 		}
@@ -1399,14 +1443,17 @@ function getPitIndexForNeuralNetworkOutputIndex(outputIndex) {
 
 function adjustWeightsInChunks() {
 	const ai = ML_PLAYER_NN_BY_INDEX[currentPlayerTurn];
-	ai.learn(adjustWeightsChunkIterations, recentInputsToTrainOn, recentOutputsToTrainOn);
+	const [skipped,slowed] = ai.learn(adjustWeightsChunkIterations, recentInputsToTrainOn, recentOutputsToTrainOn);
+	learningTotalSkips += skipped;
+	learningTotalSlowed += slowed;
 	adjustWeightsChunkCounter += 1;
 	const postLearnDist = ai.get_current_outputs_dist(recentInputsToTrainOn, recentOutputsToTrainOn);
 	const postLearnDistAvg            = roundToDecimalPlaces(postLearnDist/recentInputsToTrainOn.length, 8);
 	const postLearnDistAvgRoundedMore = roundToDecimalPlaces(postLearnDist/recentInputsToTrainOn.length, 5);
 	learningTotalIterations += adjustWeightsChunkIterations;
-	if (learningTotalIterations % 1000 == 0) {
+	if (learningTotalIterations % 1000 == 0 || learningTotalIterations == 1) {
 		console.log("after " + learningTotalIterations + " iterations, average postLearnDist [" + postLearnDistAvg + "]");
+		learningDistRecord += '<br/>iteration ' + learningTotalIterations.toLocaleString() + ': ' + postLearnDistAvg;
 	}
 	// after running all adjustment chunks, move to the next input/output pair in the training data
 	if (adjustWeightsChunkCounter >= adjustWeightsChunks) {
@@ -1438,10 +1485,13 @@ function adjustWeightsInChunks() {
 		}
 	}
 	statusParagraph.html(
-		"aiTrainingGamesToRun=" + aiTrainingGamesToRun + " | " +
-		"recentOutputsToTrainOn=" + recentOutputsToTrainOn.length + " | " +
-		"learningTotalIterations=" + learningTotalIterations.toLocaleString() + " | " +
-		"done learning chunk " + adjustWeightsChunkCounter + " of " + adjustWeightsChunks + " (avg dist: " + postLearnDistAvg + ")");
+		"...GamesToRun=" + aiTrainingGamesToRun + " | " +
+		"...OutputsToTrainOn=" + recentOutputsToTrainOn.length + " | " +
+		"...TotalIterations=" + learningTotalIterations.toLocaleString() + " | " +
+		"skips+" + skipped + "=" + learningTotalSkips.toLocaleString() + " | " +
+		"slowed+" + slowed + "=" + learningTotalSlowed.toLocaleString() + " | " +
+		"done learning chunk " + adjustWeightsChunkCounter + " of " + adjustWeightsChunks + " (avg dist: " + postLearnDistAvg + ")" +
+		learningDistRecord);
 }
 
 // move all weights and biases up or down by 1+nudgeSize,
