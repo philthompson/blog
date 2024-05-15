@@ -40,9 +40,9 @@ photos_data = {
 	2022: [
 		{'url': '2022-04-14_landscape15x_all_wavelet-sm.jpg',          'desc': 'Oregon, USA', 'date': '2022-04-14' },
 		{'url': '2022-05-15-154712-51-R6PT1291-sm.jpg',                'desc': 'Oregon, USA' },
-		{'url': '2022-06-16-Odell-Lake-sm.jpg',                        'desc': 'Odell Lake, Oregon, USA' },
-		{'url': '2022-08-14-060656-37-R6PT7222-v2-biggerthumb-sm.jpg', 'desc': 'Sutton Lake, Oregon, USA' },
-		{'url': '2022-08-14-061926-50-R6PT7228-v2-biggerthumb-sm.jpg', 'desc': 'Heceta Head Lighthouse, Oregon, USA' },
+		{'url': '2022-06-16-Odell-Lake-sm.jpg',                        'desc': 'Odell Lake<br/>Oregon, USA' },
+		{'url': '2022-08-14-060656-37-R6PT7222-v2-biggerthumb-sm.jpg', 'desc': 'Sutton Lake<br/>Oregon, USA' },
+		{'url': '2022-08-14-061926-50-R6PT7228-v2-biggerthumb-sm.jpg', 'desc': 'Heceta Head Lighthouse<br/>Oregon, USA' },
 		{'url': '2022-08-18-194107-01-R6PT9248-sm.jpg',                'desc': 'Oregon, USA' },
 		{'url': '2022-08-18-194135-02-R6PT9259-biggerthumb-sm.jpg',    'desc': 'Oregon, USA' },
 		{'url': '2022-08-18-200142-27-R6PT9322-HDR-biggerthumb-sm.jpg','desc': 'Oregon, USA' },
@@ -66,8 +66,8 @@ photos_data = {
 		{'url': '2023-06-12-094707-06-R6PT0315-sm.jpg',          'desc': 'Oregon, USA' },
 		{'url': '2023-06-12-094711-56-R6PT0319-sm.jpg',          'desc': 'Oregon, USA' },
 		{'url': '2023-07-05-091332-36-R6PT3049-sm.jpg',          'desc': 'Oregon, USA' },
-		{'url': '2023-07-30-193100-10-R6PT6136-sm.jpg',          'desc': 'Salt Creek Falls, Oregon, USA' },
-		{'url': '2023-07-30-200638-83-R6PT6140-sm.jpg',          'desc': 'Salt Creek Falls, Oregon, USA' },
+		{'url': '2023-07-30-193100-10-R6PT6136-sm.jpg',          'desc': 'Salt Creek Falls<br/>Oregon, USA' },
+		{'url': '2023-07-30-200638-83-R6PT6140-sm.jpg',          'desc': 'Salt Creek Falls<br/>Oregon, USA' },
 		{'url': '2023-08-13-075337-00-R6PT9523-sm.jpg',          'desc': 'Oregon, USA' },
 		{'url': '2023-09-02-195351-71-R6PT0901-sm.jpg',          'desc': 'Port Orford, Oregon, USA' },
 		{'url': '2023-09-02-195453-36-R6PT0936-sm.jpg',          'desc': 'Port Orford, Oregon, USA' },
@@ -85,7 +85,10 @@ photos_data = {
 		{'url': '2024-02-18-105324-56-R6PT1255-sm.jpg',                  'desc': 'Oregon, USA' },
 		{'url': '2024-02-18-105333-33-R6PT1264-sm.jpg',                  'desc': 'Oregon, USA' },
 		{'url': '2024-02-18-105333-84-R6PT1268-sm.jpg',                  'desc': 'Oregon, USA' },
-		{'url': '2024-03-15-Moon-Stacked-Blended.jpg',                   'desc': 'shot from Oregon, USA' }
+		{'url': '2024-03-15-Moon-Stacked-Blended.jpg',                   'desc': 'shot from Oregon, USA' },
+		{'url': '2024-04-08-eclipse-stacked-topaz-composite-sm.jpg',     'desc': 'Total Solar Eclipse<br/>shot from New York, USA' },
+		{'url': '2024-04-15-133443-21-R6PT4768-sm.jpg',                  'desc': 'Suksdorf’s Large Camas<br/>Oregon, USA' }
+
 	]
 }
 
