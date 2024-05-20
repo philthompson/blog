@@ -7,9 +7,9 @@ from pathlib import Path
 import sys
 
 # for local dev, to fetch actual server images
-SITE_ROOT_REL='https://philthompson.me'
+#SITE_ROOT_REL='https://philthompson.me'
 # for real just use this
-#SITE_ROOT_REL='..'
+SITE_ROOT_REL='..'
 
 misc_static_dir_path = Path(__file__).parent.joinpath("static").joinpath("misc")
 
@@ -156,6 +156,10 @@ For a more complete list of my projects, see my portfolio listing on this site's
 	}}
 	details img {{
 		border-radius: 1.0rem;
+		/* the site default padding-top for <image> makes the top rounded corners look wrong */
+		/* to fix this, set padding to 0 and use margin-top instead */
+		padding: 0;
+		margin-top: 0.4rem;
 	}}
 	details > summary::-webkit-details-marker {{
 		display: none;
