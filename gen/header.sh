@@ -54,6 +54,11 @@ cat << xxxxxEOFxxxxx
 						</a>
 					</li>
 					<li class="nav-item" style="padding-right: 0;">
+						<a href="${SITE_ROOT_REL}/misc/" class="icon" title="Projects, Apps, and Tools">
+							<img src="${SITE_ROOT_REL}/img/apps-gray.png">
+						</a>
+					</li>
+					<li class="nav-item" style="padding-right: 0;">
 						<a href="https://github.com/philthompson" target="_blank" class="icon" title="My GitHub Profile">
 							<img src="${SITE_ROOT_REL}/img/GitHub-Mark-64px.png">
 						</a>

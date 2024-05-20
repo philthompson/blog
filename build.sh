@@ -699,6 +699,8 @@ fi
 
 while read MANDELBROT_GALLERY_YEAR_DIR
 do
+	#echo "temporary skip of mandelbrot! [${MANDELBROT_GALLERY_YEAR_DIR}]"
+	#continue
 	MANDELBROT_GALLERY_YEAR="$(basename "${MANDELBROT_GALLERY_YEAR_DIR}")"
 	MANDELBROT_MD_PAGE="${MANDELBROT_GALLERY_YEAR_DIR}.md"
 

@@ -68,6 +68,10 @@ PGP
 Portfolio
 ---------
 
+A visual listing of this site's tools and apps is available <a target="_blank" href="${SITE_ROOT_REL}/misc/">here</a>.
+
+* <a target="_blank" href="${SITE_ROOT_REL}/misc/click-counter/">Click Counter</a>, 2024
+ * JavaScript app for counting things in images
 * <a target="_blank" href="${SITE_ROOT_REL}/nfl-elo/">NFL Elo Power Rankings</a>, 2023
  * written in Python
  * parses Wikipedia data, calculates Elo ratings, and outputs the above linked page
@@ -95,7 +99,7 @@ Portfolio
  * the source code is available in its <a target="_blank" href="https://github.com/philthompson/water-jars">GitHub repository</a>
 * <a target="_blank" href="${SITE_ROOT_REL}/very-plotter/">Very Plotter</a>, 2021
  * view the Mandelbrot set, and plots of a few mathematical sequences
- * uses JavaScript worker threads, the number of which can be updated on-the-fly
+ * uses JavaScript worker threads, the number of which can be updated on the fly
  * the source code is available in its <a target="_blank" href="https://github.com/philthompson/visualize-primes">GitHub repository</a>
 * <a target="_blank" href="https://github.com/philthompson/rust-calc-term">rust-calc-term</a>, 2020
  * a terminal-based calculator powered by bigdecimal math, written in Rust
