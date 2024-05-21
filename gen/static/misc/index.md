@@ -29,6 +29,10 @@ For a more complete list of my projects, see my portfolio listing on this site's
 	}
 	details img {
 		border-radius: 1.0rem;
+		/* the site default padding-top for <image> makes the top rounded corners look wrong */
+		/* to fix this, set padding to 0 and use margin-top instead */
+		padding: 0;
+		margin-top: 0.4rem;
 	}
 	details > summary::-webkit-details-marker {
 		display: none;

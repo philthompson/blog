@@ -159,14 +159,16 @@ buildHomepageBirdsGalleryLink() {
 	SHOOT_DATE="$(tail -n 1 "${GALLERY_LATEST_FILE}")"
 cat << xxxxxEOFxxxxx
 	<!-- <a> element is temporary during NFL season, and next <a>'s <div> has margin-top:1.0rem -->
+	<!--
 	<a href="${SITE_ROOT_REL}/nfl-elo/2023.html" style="text-decoration:none">
 		<div class="container" style="margin-bottom: 0rem; text-align: center; background-color:rgba(150,150,150,0.1); padding:1rem; overflow:hidden; border-radius: 0.3rem;">
 			🏈 2023 NFL Elo Power Rankings 🏈
 		</div>
 	</a>
+	-->
 	<a href="${GALLERY_PAGE_REL}" style="text-decoration:none">
 		<!-- temporary during NFL season: margin-top:1.0rem -->
-		<div class="container" style="margin-top:1.0rem; background-color:rgba(150,150,150,0.1); padding:1.0rem; overflow:hidden; border-radius: 0.3rem">
+		<div class="container" style="/* margin-top:1.0rem; */ background-color:rgba(150,150,150,0.1); padding:1.0rem; overflow:hidden; border-radius: 0.3rem">
 			<img class="width-40" style="float:right" src="${SHOOT_FAVORITE}" />
 			Latest Bird Gallery:<br/>${SHOOT_DATE}
 		</div>
