@@ -11,6 +11,7 @@
 <script>
 
 let canvasElement;
+let fileInput;
 let loadedImage = null;
 let imageScale = 1.0;
 let offsetX = 0;
@@ -38,24 +39,25 @@ function windowResized() {
 	resizeCanvas(newWidth, newHeight);
 }
 
+
 // when images are dragged and dropped, load only the first one
-function setFile(files) {
+function handleFiles(files) {
 	if (files.length == 0) {
 		return;
 	}
-	for (let i = 0; i < files.length; i++) {
-		const file = files[i];
-		if (!file.type.startsWith('image/')) {
-			continue;
-		}
-		const reader = new FileReader();
-		reader.addEventListener("load", () => {
-			// load with p5.js
-			loadImage(reader.result, handleLoadedImage);
-		}, false);
-		reader.readAsDataURL(file);
+	setFile(files[0]);
+}
+
+function setFile(file) {
+	if (!file.type.startsWith('image/')) {
 		return;
 	}
+	const reader = new FileReader();
+	reader.addEventListener("load", () => {
+		// load with p5.js
+		loadImage(reader.result, handleLoadedImage);
+	}, false);
+	reader.readAsDataURL(file);
 }
 
 function handleLoadedImage(img) {
@@ -86,7 +88,7 @@ function setup() {
 	canvasElement.addEventListener("drop", function(e) {
 		e.stopPropagation();
 		e.preventDefault();
-		setFile(e.dataTransfer.files);
+		handleFiles(e.dataTransfer.files);
 	}, false);
 	const controls = select('div.controls');
 	countParagraph = createElement('span');
@@ -110,7 +112,7 @@ function setup() {
 	controls.child(opacitySlider);
 	opacitySliderLabel = createElement('span');
 	controls.child(opacitySliderLabel);
-	sizeSlider = createSlider(10, 60, pointDiameter);
+	sizeSlider = createSlider(10, 100, pointDiameter);
 	sizeSlider.size(80);
 	sizeSlider.changed(changeSize);
 	sizeSlider.style('vertical-align', 'middle');
@@ -121,6 +123,11 @@ function setup() {
 	debugParagraph = createElement('span');
 	debugParagraph.style('float', 'right');
 	controls.child(debugParagraph);
+	fileInputParagraph = createElement('p');
+	fileInputParagraph.style('font-size', '0.9rem');
+	controls.child(fileInputParagraph);
+	fileInput = createFileInput(function(f) { loadImage(f.data, handleLoadedImage); });
+	fileInputParagraph.child(fileInput);
 	for (const b of selectAll('button')) {
 		b.style('margin', '0.4rem');
 		b.style('font-size', '1.2rem');
@@ -282,21 +289,25 @@ function draw() {
 }
 
 function drawHelp() {
-	textStyle(NORMAL);
-	textSize(22);
-	fill(255, 255, 255, 198);
-	text(
-		"Count things in images!  Drag and drop an image here to start.\n" +
+	const helpContent =	"Count things in images!\n" +
+		"Drag and drop an image here to start.\n" +
+		"(Or use the file picker button below.)\n" +
 		"\n" +
 		"• drag to pan\n" +
 		"• scroll to zoom\n" +
 		"• click (or spacebar) to add a point\n" +
 		"• shift+click to remove a point\n" +
 		"• use U key to remove the last point\n" +
-		"• right-click and \"Save Image As\" to save the annotated image",
-		width/2, height/2);
-	textStyle(BOLD);
-	textSize(pointDiameter/3);
+		"• right-click and \"Save Image As\" to save the annotated image";
+	push();
+	// dark stroke create outline for text, in case foreground image is dark
+	stroke(0, 0, 0, 198);
+	strokeWeight(3.0);
+	textSize(22);
+	textStyle(NORMAL);
+	fill(255, 255, 255, 198);
+	text(helpContent, width/2, height/2);
+	pop();
 }
 
 function mouseWheel(event) {
