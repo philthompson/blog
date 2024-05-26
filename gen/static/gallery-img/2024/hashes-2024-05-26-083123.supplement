@@ -1,0 +1,10 @@
+shoot:description:I shot the nearly 1st quarter Moon on May 13th.  I'll make a separate blog post with more details, but my goal was to try lucky imaging with some python code I wrote for aligning and stacking frames.  I stacked the best 1%, 2%, and 5% of 1,190 frames and the 5% stack (59 frames) looked the best to me.  For a "drizzle algorithm" effect I upscaled each image by 3x before alignment &mdash; with the goal of revealing more detail captured between individual pixels of each frame.  The processing times were very slow but I'm pretty happy with the results.
+shoot:favorite:2024-05-13-211446-29-R6PT7056-3x-59stack-2sigmas-wavelet-down1x-sm.jpg
+2024-05-13-211446-29-R6PT7056-3x-59stack-2sigmas-wavelet-crop-nogps-sm.jpg:visible:false
+2024-05-13-211446-29-R6PT7056-3x-59stack-2sigmas-wavelet-crop-sm.jpg:description:This is the full 3x drizzle image.
+2024-05-13-211446-29-R6PT7056-3x-59stack-2sigmas-wavelet-down1-5x-nogps-sm.jpg:visible:false
+2024-05-13-211446-29-R6PT7056-3x-59stack-2sigmas-wavelet-down1-5x-sm.jpg:description:This is the 3x drizzle image resized down to 1.5x original size with Photoshop's "bicubic sharper" resampling setting.
+2024-05-13-211446-29-R6PT7056-3x-59stack-2sigmas-wavelet-down1x-nogps-sm.jpg:visible:false
+2024-05-13-211446-29-R6PT7056-3x-59stack-2sigmas-wavelet-down1x-sm.jpg:description:This is the 3x drizzle image resized down to 1x original size with Photoshop's "bicubic sharper" resampling setting.
+2024-05-13-211446-29-R6PT7056-nogps-sm.jpg:visible:false
+2024-05-13-211446-29-R6PT7056-sm.jpg:description:This is the single frame used for registration.
