@@ -1,18 +1,23 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <title>k-digit  &mdash; philthompson.me</title>
-  </head>
-  <body style="padding:2.0rem;">
+
+[//]: # (gen-title: 6174: k-digit - philthompson.me)
+
+[//]: # (gen-keywords: 6174, Kaprekar, Wolfram, Numberphile)
+
+[//]: # (gen-description: JavaScript app for evaluating the Kaprekar Routine for any k-digit number")
+
+[//]: # (gen-meta-end)
+
   <h1><i>k</i>-digit Kaprekar Routine</h1>
   <p>See <a target="_blank" href="https://mathworld.wolfram.com/KaprekarRoutine.html">The Kaprekar Routine at Wolfram MathWorld</a>, and <a href="./index.html">the 4-digit 6174 page</a>.</p>
+  <p>Also see the <a href="./index.html">4-digit version of this page</a>.</p>
   <p>Enter a <i>k</i>-digit number.</p>
   <table border="0">
     <tr><td style="text-align: right;">num digits <i>k</i>:</td><td><input type="number" min="2" max="16" value="4" id="n" /></td></tr>
     <tr><td style="text-align: right;">input:</td><td><input type="number" id="i" /></td></tr>
   </table>
   <div id="p" style="font-family:monospace; margin-top:1.0rem;"></div>
-  <script type="text/javascript">
+
+<script type="text/javascript">
 
 var p = document.getElementById('p');
 var nInput = document.getElementById('n');
@@ -124,6 +129,4 @@ if (i.value.length > 0) {
   start();
 }
 
-  </script>
-  </body>
-</html>
+</script>

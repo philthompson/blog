@@ -29,9 +29,9 @@ sections = {
 			"home": "All Birds I've Photographed at my Oregon Home"
 		},
 		"subsections": [
-			{ 'title': "Birds I've Photographed", 'patt': re.compile('2[0-9]{3}\.md'), 'nonpatt': ["index.md"] },
-			{ 'title': "Favorites", 'patt': re.compile('favorites-2[0-9]{3}\.md'), 'nonpatt': [] },
-			{ 'title': "At my Oregon Home", 'patt': re.compile('home-2[0-9]{3}\.md'), 'nonpatt': ["home.md"] }
+			{ 'title': "Birds I've Photographed", 'patt': re.compile(r'2[0-9]{3}\.md'), 'nonpatt': ["index.md"] },
+			{ 'title': "Favorites", 'patt': re.compile(r'favorites-2[0-9]{3}\.md'), 'nonpatt': [] },
+			{ 'title': "At my Oregon Home", 'patt': re.compile(r'home-2[0-9]{3}\.md'), 'nonpatt': ["home.md"] }
 		]
 	},
 	"All Other Favorites by Year": {

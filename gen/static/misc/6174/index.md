@@ -1,15 +1,20 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <title>6174 &mdash; philthompson.me</title>
-  </head>
-  <body style="padding:2.0rem;">
+
+[//]: # (gen-title: 6174 - philthompson.me)
+
+[//]: # (gen-keywords: 6174, Kaprekar, Wolfram, Numberphile)
+
+[//]: # (gen-description: JavaScript app for evaluating the Kaprekar Routine for any 4-digit number")
+
+[//]: # (gen-meta-end)
+
   <h1>6174 <span style="font-weight: normal; font-size: 1.2rem";>(4-digit Kaprekar Routine)</span></h1>
   <p>See <a target="_blank" href="https://www.youtube.com/watch?v=d8TRcZklX_Q">Numberphile on YouTube</a>, <a target="_blank" href="https://mathworld.wolfram.com/KaprekarRoutine.html">The Kaprekar Routine at Wolfram MathWorld</a>, and <a href="./k-digit.html">the <i>k</i>-digit Kaprekar Routine page</a>.</p>
+  <p>Also see the <a href="./k-digit.html">k-digit version of this page</a>.</p>
   <p>Enter a 4-digit number.</p>
   <input type="number" id="i" /><br/>
   <div id="p" style="font-family:monospace; margin-top:1.0rem;"></div>
-  <script type="text/javascript">
+
+<script type="text/javascript">
 
 var p = document.getElementById('p');
 var i = document.getElementById('i');
@@ -87,6 +92,4 @@ if (i.value.length > 0) {
   start();
 }
 
-  </script>
-  </body>
-</html>
+</script>

@@ -114,6 +114,15 @@ For a more complete list of my projects, see my portfolio listing on this site's
 </details>
 <details class="width-resp-50">
 	<summary>
+		<img class="width-100" src="../s/img/2023/6174-screenshot.jpg"/>
+	</summary>
+	<p><a href="../misc/6174/">6174</a></p>
+	<p>
+Little JavaScript pages for playing with the <a href="../misc/6174/">4-digit</a> and <a href="../misc/6174/k-digit.html">k-digit</a> Kaprekar Routines.</p>
+	<p>First published in 2023.</p>
+</details>
+<details class="width-resp-50">
+	<summary>
 		<img class="width-100" src="../s/img/2023/nfl-elo-hero.jpg"/>
 	</summary>
 	<p><a href="../nfl-elo/">NFL Elo Power Rankings</a></p>

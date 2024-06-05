@@ -27,6 +27,12 @@ misc_items_by_year = {
 	],
 	2023: [
 		{
+			'root_rel_url': 'misc/6174/',
+			'title': '6174',
+			'photo': '6174-screenshot.jpg',
+			'desc': '''
+Little JavaScript pages for playing with the <a href="SITE_ROOT_REL/misc/6174/">4-digit</a> and <a href="SITE_ROOT_REL/misc/6174/k-digit.html">k-digit</a> Kaprekar Routines.'''
+		},{
 			'root_rel_url': 'nfl-elo/',
 			'title': 'NFL Elo Power Rankings',
 			'photo': 'nfl-elo-hero.jpg',
