@@ -10,7 +10,7 @@ mkdir -p "${NFL_ELO_STATIC_DIR}"
 
 if [ -z "${1}" ]
 then
-	echo "usage: ${0} <week-number-to-stop-after>" >&2
+	echo "usage: ${0} <week-number-to-stop-after> [<final-year>]" >&2
 	exit 1
 fi
 
@@ -21,8 +21,13 @@ then
 	exit
 fi
 
-# 3 months ago, which means in the playoffs we'll still get the correct season year
-FINAL_YEAR="`date -j -v-3m +%Y`"
+FINAL_YEAR="${2}"
+
+if [ -z "${FINAL_YEAR}" ]
+then
+	# 3 months ago, which means in the playoffs we'll still get the correct season year
+	FINAL_YEAR="`date -j -v-3m +%Y`"
+fi
 
 # output redirect page that points to current year page
 cat > "${NFL_ELO_STATIC_DIR}/index.html" << xxxxxEOFxxxxx
