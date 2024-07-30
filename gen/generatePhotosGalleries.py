@@ -82,13 +82,17 @@ photos_data = {
 		{'url': '2024-01-29-143254-00-R6PT0436-Enhanced-NR-16x9-sm.jpg', 'desc': 'Oregon, USA' },
 		{'url': '2024-02-18-173517-42-R6PT1363-Photoshop-sm.jpg',        'desc': 'Oregon, USA' },
 		{'url': '2024-02-18-173456-60-R6PT1358-sm.jpg',                  'desc': 'Oregon, USA' },
-		{'url': '2024-02-18-105324-56-R6PT1255-sm.jpg',                  'desc': 'Oregon, USA' },
-		{'url': '2024-02-18-105333-33-R6PT1264-sm.jpg',                  'desc': 'Oregon, USA' },
-		{'url': '2024-02-18-105333-84-R6PT1268-sm.jpg',                  'desc': 'Oregon, USA' },
+		{'url': '2024-02-18-105324-56-R6PT1255-sm.jpg',                  'desc': 'Steller sea lion<br/>Oregon, USA' },
+		{'url': '2024-02-18-105333-33-R6PT1264-sm.jpg',                  'desc': 'Steller sea lion<br/>Oregon, USA' },
+		{'url': '2024-02-18-105333-84-R6PT1268-sm.jpg',                  'desc': 'Steller sea lion<br/>Oregon, USA' },
 		{'url': '2024-03-15-Moon-Stacked-Blended.jpg',                   'desc': 'shot from Oregon, USA' },
 		{'url': '2024-04-08-eclipse-stacked-topaz-composite-sm.jpg',     'desc': 'Total Solar Eclipse<br/>shot from New York, USA' },
-		{'url': '2024-04-15-133443-21-R6PT4768-sm.jpg',                  'desc': 'Suksdorf’s Large Camas<br/>Oregon, USA' }
-
+		{'url': '2024-04-15-133443-21-R6PT4768-sm.jpg',                  'desc': 'Suksdorf’s Large Camas<br/>Oregon, USA' },
+		{'url': '2024-05-28-092701-05-R6PT9324-Photoshop-16x9-sm.jpg',   'desc': 'Lazuli Bunting<br/>Oregon, USA' },
+		{'url': '2024-05-29-094600-34-R6PT9716-sm.jpg',                  'desc': 'Townsend’s Chipmunk<br/>Oregon, USA' },
+		{'url': '2024-05-21-102959-27-R6PT9030-sm.jpg',                  'desc': 'Southern Alligator Lizard<br/>Oregon, USA' },
+		{'url': '2024-07-21-101135-21-R6PT3960-sm.jpg',                  'desc': 'White-winged Scoter<br/>Oregon, USA' },
+		{'url': '2024-07-21-101155-47-R6PT3983-sm.jpg',                  'desc': 'White-winged Scoter<br/>Oregon, USA' },
 	]
 }
 
