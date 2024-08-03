@@ -70,12 +70,14 @@ Portfolio
 
 A visual listing of this site's tools and apps is available <a target="_blank" href="${SITE_ROOT_REL}/misc/">here</a>.
 
+* <a target="_blank" href="${SITE_ROOT_REL}/2024/My-Electronic-Chill-Album-Break-Away.html">"Break | Away" EP</a>, 2024
+ * Electronic/Chill EP available on all major music streaming platforms
 * <a target="_blank" href="${SITE_ROOT_REL}/misc/click-counter/">Click Counter</a>, 2024
  * JavaScript app for counting things in images
-* <a target="_blank" href="${SITE_ROOT_REL}/nfl-elo/">NFL Elo Power Rankings</a>, 2023
+* <a target="_blank" href="${SITE_ROOT_REL}/nfl-elo/">NFL Elo Power Rankings</a>, 2023-2024
  * written in Python
  * parses Wikipedia data, calculates Elo ratings, and outputs the above linked page
- * test harness for adjusting Elo rating model parameters, which backtests the model on several years' worth of NFL games (more than 10 full seasons at the time of writing)
+ * test harness for adjusting Elo rating model parameters, which backtests the model on several years' worth of NFL games (12 full seasons at the time of writing)
 * <a target="_blank" href="${SITE_ROOT_REL}/2023/Partial-String-Match-for-Birds.html">Partial String Match for Birds</a>, 2023
  * tested out algorithms for finding partial string matches of bird species names
  * I found my algorithm to work well enough, and to run fast enough, for use in smartphone apps (this would fix a gripe I have with the otherwise perfect eBird app)
