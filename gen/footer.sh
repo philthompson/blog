@@ -22,6 +22,8 @@ cat << xxxxxEOFxxxxx
 						&#x2027;
 						<a href="${SITE_ROOT_REL}/archive" target="_self">Archive</a>
 						&#x2027;
+						<a href="https://github.com/philthompson" target="_blank">GitHub</a>
+						&#x2027;
 						<a href="${SITE_ROOT_REL}/tip-jar">Tip Jar</a>
 						&#x2027;
 						<a href="${SITE_ROOT_REL}/feed.xml">
