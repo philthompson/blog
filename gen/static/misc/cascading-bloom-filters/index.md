@@ -8,8 +8,18 @@
 [//]: # (gen-meta-end)
 
   <h1>Cascading Bloom Filters</h1>
-  <p>Given some large set of items, a subset of which will be inserted into the cascading bloom filters,
-  find how many levels of cascading are needed to achieve zero false positives.</p>
+  <p>Bloom filters are an efficient way to check set inclusion for large sets, but they
+  can give false positives.  In cases where all testable items belong to a known finite
+  set, a relatively large sparsely populated bloom filter can be built that is known to
+  be free of false positives.  Instead, a much smaller set of cascading bloom filters can
+  be constructed where the known false positives from one bloom filter are used as the
+  finite set of known testable data for another smaller bloom filter.  These successive
+  "layers" of bloom filters become smaller as the known false positives are whittled
+  away to zero by the final bloom filter.</p>
+  <p>This page allows testing bloom filter parameters to see how many layers are needed
+  to eliminate false positives.  The sizes of a single-layer and multi-layer bloom filters
+  can be compared, which shows that cascading bloom filters are often (always?) smaller
+  in total size.</p>
   <p>See:<ul>
     <li><a target="_blank" href="https://blog.mozilla.org/security/2020/01/09/crlite-part-2-end-to-end-design/">Mozilla's post about CRLite, built on cascading bloom filters</a>,</li>
     <li><a target="_blank" href="https://obj.umiacs.umd.edu/papers_for_stories/crlite_oakland17.pdf">the related paper</a>, and</li>
@@ -21,16 +31,36 @@
   <span>items in set to test</span><br/>
   <input type="range" min="1" max="100" value="22" class="slider" id="subset-size-pct">
   <span id="subset-size-display"></span>
-  <span>of items to insert in cascading bloom filter</span><br/>
+  <span>of items to insert into level 1 bloom filter</span><br/>
   <input type="range" min="6" max="32" value="16" class="slider" id="bf1-bits">
   <span id="bf1-bits-display"></span>
-  <span>level 1 bloom filter bits (power of 2)</span><br/>
+  <span>level 1 bloom filter bits</span><br/>
   <input type="range" min="1" max="16" value="5" class="slider" id="hash-funcs">
   <span id="hash-funcs-display"></span>
   <span>bits set per item using separate hash functions</span><br/>
+  <input type="range" min="1" max="3" value="1" class="slider" id="bit-decrement">
+  <span id="bit-decrement-display"></span>
+  <!--<input id="seed-txt" maxlength="64" minlength="1" placeholder="type PRNG seed text here" value="PRNG seed text"/><br/>-->
+  <input id="seed-inc" type="number" min="0" max="999999999" value="1"/>
+  <span>PRNG seed value</span><br/>
+  <br/>
+  <p>Successive chunks of the SHA-256 hash of each item are used as separate "hash functions"
+  that point to the individual bits to flip to 1s in the bloom filters, as described in the
+  Security Now 989 show notes linked above.</p>
+  <p>If any false positives are found for any "level," another smaller bloom filter is
+  created and populated with just that level's set of false positives.  Each level uses
+  1 to 3 fewer bits per hash function, so each successive bloom filter is one half, one quarter,
+  or one eighth the size of the previous level).</p>
   <p>Depending on settings, many false positives may be produced.  This may cause quite a few levels of bloom filters to
   be created, and may require a few seconds to run.</p>
-  <button id="run-button">Run</button><br/>
+  <p>Test data is generated based on the seed text and increment value, allowing for repeat
+  tests.</p>
+  <p>The bottom line question: For a set of test data and subset to insert into the bloom filter,
+  when building a bloom filter to avoid any false positives, is it generally possible to find a
+  set of cascading bloom filters smaller in total size than a single larger bloom filter?</p>
+  <button id="run-button">Run</button>
+  <button id="run-inc-button">Run & Increment Seed</button><br/>
+  <button id="cancel-button" style="display:none">Cancel</button><br/>
   <div id="p" style="margin-top:1.0rem;"></div>
 
 <script type="text/javascript">
@@ -187,20 +217,21 @@ function fnv32a_32bitint(int32b) {
   return hval >>> 0;
 }
 
-let fasterRandomUsage = 2000000;
-let fasterRandomHash = null;
+//let fasterRandomUsage = 2000000;
+var fasterRandomHash = null;
 // since bit shifting clamps number values to 32-bit unsigned
 //   values, the maximum value the hash can have is this
 const MAX_UNSIGNED_HASH = 0b11111111111111111111111111111111;
 function fasterRandom32bit() {
-  if (fasterRandomUsage++ > 1000000) {
-    fasterRandomUsage = 0;
-    fasterRandomHash = fnv32a(Date.now().toString());
-    //console.log("re-seeded FNV-1a PRNG with the current time");
-  }
+  //if (fasterRandomUsage++ > 1000000) {
+  //  fasterRandomUsage = 0;
+  //  fasterRandomHash = fnv32a(Date.now().toString());
+  //  //console.log("re-seeded FNV-1a PRNG with the current time");
+  //}
   fasterRandomHash = fnv32a_32bitint(fasterRandomHash);
   return fasterRandomHash;
 }
+/*
 function fasterRandom(minInclusive, maxExclusive) {
   if (fasterRandomUsage++ > 1000000) {
     fasterRandomUsage = 0;
@@ -211,6 +242,7 @@ function fasterRandom(minInclusive, maxExclusive) {
   const valueAsFrac = fasterRandomHash / MAX_UNSIGNED_HASH;
   return minInclusive + (valueAsFrac * (maxExclusive - minInclusive));
 }
+*/
 
 function insertItemIntoBloomFilter(intItem, hashFuncs, hashBits, hashMask, bloomFilter) {
   let theHash = sha256ToBinaryStr(intItem.toString());
@@ -246,13 +278,20 @@ let bf1bitsSlider = document.getElementById('bf1-bits');
 let bf1bitsSpan = document.getElementById('bf1-bits-display');
 let hashFuncsSlider = document.getElementById('hash-funcs');
 let hashFuncsSpan = document.getElementById('hash-funcs-display');
+let bitDecrementSlider = document.getElementById('bit-decrement');
+let bitDecrementSpan = document.getElementById('bit-decrement-display');
+//let seedTxt = document.getElementById('seed-txt');
+let seedInc = document.getElementById('seed-inc');
 
 let runButton = document.getElementById('run-button');
+let runIncButton = document.getElementById('run-inc-button');
+let cancelButton = document.getElementById('cancel-button');
 
-bf1bitsSlider.oninput = function() { bf1bitsSpan.innerHTML = this.value + "&nbsp;"; };
-supSetSizeSlider.oninput = function() { supSetSizeSpan.innerHTML = Math.pow(2, this.value) + "&nbsp;"; };
+bf1bitsSlider.oninput = function() { bf1bitsSpan.innerHTML = (Math.pow(2, this.value)).toLocaleString() + "&nbsp;"; };
+supSetSizeSlider.oninput = function() { supSetSizeSpan.innerHTML = (Math.pow(2, this.value)).toLocaleString() + "&nbsp;"; };
 subSetSizeSlider.oninput = function() { subSetSizeSpan.innerHTML = this.value + "%&nbsp;"; };
 hashFuncsSlider.oninput = function() { hashFuncsSpan.innerHTML = this.value + "&nbsp;"; };
+bitDecrementSlider.oninput = function() { bitDecrementSpan.innerHTML = 'successive bfs are ' + (100.0/Math.pow(2, this.value)) + '% smaller (hashes ' + this.value + " bit" + (this.value == 1 ? '' : 's') + ' shorter)'; };
 
 /*
 let bf1bitsSliderUpd = function() { bf1bitsSpan.innerHTML = this.value + "&nbsp;"; }; bf1bitsSlider.oninput = bf1bitsSliderUpd;
@@ -262,19 +301,72 @@ let subSetSizeSliderUpd = function() { subSetSizeSpan.innerHTML = this.value + "
 
 let bloomFilter1Hashes = 5; // number of "hash functions" to use
 
+var bfCtx = {};
+var cancelRequested = false;
+var doAutoSeedIncrement = false;
+
+// update the slider display fields after the page has loaded
 window.addEventListener("load", function() {
   const e = new Event("input", { bubbles: true, cancelable: false });
   supSetSizeSlider.dispatchEvent(e);
   subSetSizeSlider.dispatchEvent(e);
   bf1bitsSlider.dispatchEvent(e);
   hashFuncsSlider.dispatchEvent(e);
+  bitDecrementSlider.dispatchEvent(e);
 });
+
+// thanks to https://stackoverflow.com/a/48054293/259456
+//function escapeTextForHtml(contentStr) {
+//  let div = document.createElement('div');
+//  div.innerText = contentStr;
+//  return div.innerHTML;
+//}
+
+function beforeRunning(setAutoSeedIncrement) {
+  doAutoSeedIncrement = setAutoSeedIncrement;
+  //if (seedTxt.value == "") {
+  //  seedTxt.value = "PRNG seed text";
+  //}
+  seedInc.value = parseInt(seedInc.value.toString().replace(/[^0-9]/g, ''))
+  p.innerHTML = '<hr/><br>generating test data with PRNG seed [' + seedInc.value + ']';
+  //p.innerHTML = '<hr/><br>generating test data with increment [' + seedInc.value + '] for seed:';
+  //p.innerHTML += '<br>' + escapeTextForHtml(seedTxt.value);
+  runButton.disabled = true;
+  runIncButton.disabled = true;
+  cancelButton.style.display = "inline-block";
+  supSetSizeSlider.disabled = true;
+  subSetSizeSlider.disabled = true;
+  bf1bitsSlider.disabled = true;
+  hashFuncsSlider.disabled = true;
+  bitDecrementSlider.disabled = true;
+  //seedTxt.disabled = true;
+  seedInc.disabled = true;
+  setTimeout(runFilters, 50);
+}
+
+function afterRunning() {
+  runButton.disabled = false;
+  runIncButton.disabled = false;
+  runIncButton.style.display = "inline-block";
+  cancelButton.style.display = "none";
+  supSetSizeSlider.disabled = false;
+  subSetSizeSlider.disabled = false;
+  bf1bitsSlider.disabled = false;
+  hashFuncsSlider.disabled = false;
+  bitDecrementSlider.disabled = false;
+  //seedTxt.disabled = false;
+  seedInc.disabled = false;
+  if (doAutoSeedIncrement) {
+    seedInc.value++;
+  }
+}
 
 let runFilters = function() {
 
-  let randomSeed = 'hello world';
-
-  let randomSeedHash = fnv32a(randomSeed);
+  // set global random hash based on seed+increment
+  //fasterRandomHash = fnv32a(seedTxt.value + " " + seedInc.value);
+  fasterRandomHash = fnv32a("prng seed:" + seedInc.value);
+  cancelRequested = false;
 
   let supSetSize = Math.pow(2, supSetSizeSlider.value);           // number of items in the superset
   let subSetSize = supSetSize * (subSetSizeSlider.value / 100.0); // number of items in the subset, taken as percentage of superset
@@ -284,11 +376,9 @@ let runFilters = function() {
 
   bloomFilter1Hashes = hashFuncsSlider.value;
 
-  p.innerHTML = '<hr/>';
-
   if (bloomFilter1Hashes * bloomFilter1Size > 256) {
     p.innerHTML += '<br/>[' + bloomFilter1Size + '] bits per hash times [' + bloomFilter1Hashes + '] hashes = [' + (bloomFilter1Hashes * bloomFilter1Size) + '], which exceeds the 256 bits available in SHA-256 output';
-    runButton.innerHTML = "Run";
+    afterRunning();
     return;
   }
 
@@ -312,28 +402,44 @@ let runFilters = function() {
     }
   }
 
-  let bfLevel = 1;
-  let setData = {'knownHits': supSet, 'falsePositives': subSet};
-  let bfBits = bloomFilter1Size;
-  while (setData['falsePositives'].size > 0 && bfBits > 4) {
-    setData = testBloomFilter(bfLevel, setData['knownHits'], setData['falsePositives'], bfBits);
-    bfLevel++;
-    bfBits--;
-  }
+  bfCtx['bfLevel'] = 1;
+  bfCtx['setData'] = {'knownHits': supSet, 'falsePositives': subSet};
+  bfCtx['bfBits'] = bloomFilter1Size;
+  bfCtx['bfLevelsSizeSum'] = 0;
+  proceedToNextLevelOrCancel();
+}
 
-  if (setData['falsePositives'].size > 0) {
-    p.innerHTML += '<br>after [' + bfLevel + "] levels of bloom filters, there were still [" + setData['falsePositives'].size + "] false positives";
+function proceedToNextLevelOrCancel() {
+  if (!cancelRequested &&
+      bfCtx['setData']['falsePositives'].size > 0 &&
+      bfCtx['bfBits'] > 4 /*&& bfCtx['bfLevel'] <= 10*/) {
+    bfCtx['setData'] = testBloomFilter(bfCtx['bfLevel'], bfCtx['setData']['knownHits'], bfCtx['setData']['falsePositives'], bfCtx['bfBits']);
+    bfCtx['bfLevel']++;
+    bfCtx['bfBits'] -= bitDecrementSlider.value;
+    setTimeout(proceedToNextLevelOrCancel, 500);
+  } else {
+    if (bfCtx['setData']['falsePositives'].size > 0) {
+      p.innerHTML += '<br>after [' + (bfCtx['bfLevel']-1) + "] levels of bloom filters, there were still [" + (bfCtx['setData']['falsePositives'].size).toLocaleString() + "] false positives";
+      if (!cancelRequested) {
+        p.innerHTML += '<br>(bloom filter is too small to proceed)';
+      }
+    }
+    if (cancelRequested) {
+      p.innerHTML += '<br>canceled';
+    } else {
+      p.innerHTML += "<br>summed size of all levels' bloom filters: " + (bfCtx['bfLevelsSizeSum']).toLocaleString() + " bits";
+    }
+    afterRunning();
   }
-
-  runButton.innerHTML = "Run";
 }
 
 function testBloomFilter(bfLevel, setToTest, setToInsert, bfHashBits) {
 
   bfBits = Math.pow(2, bfHashBits);
+  bfCtx['bfLevelsSizeSum'] += bfBits;
 
-  p.innerHTML += "<br/>level [" + bfLevel + "]: creating bloom filter with 2^" + bfHashBits + " (" + bfBits + ") bits";
-  p.innerHTML += "<br/>level [" + bfLevel + "]: inserting [" + setToInsert.size + "] of [" + setToTest.size + "] items";
+  p.innerHTML += "<br/>level [" + bfLevel + "]: creating bloom filter with 2^" + bfHashBits + " (" + (bfBits).toLocaleString() + ") bits";
+  p.innerHTML += "<br/>level [" + bfLevel + "]: inserting [" + (setToInsert.size).toLocaleString() + "] of [" + (setToTest.size).toLocaleString() + "] items";
 
   let bfArray = []; // bloom filter
 
@@ -370,7 +476,7 @@ function testBloomFilter(bfLevel, setToTest, setToInsert, bfHashBits) {
     }
   }
 
-  p.innerHTML += "<br/>level [" + bfLevel + "]: [" + falsePositives.size + "] false positives found when testing [" + setToTest.size + "] items in the super set";
+  p.innerHTML += "<br/>level [" + bfLevel + "]: [" + (falsePositives.size).toLocaleString() + "] false positives found when testing [" + (setToTest.size).toLocaleString() + "] items in the super set";
 
   ////////////////////////////////////////////////////////////
   // try some members of theSet to ensure they actually are all found
@@ -391,9 +497,16 @@ function testBloomFilter(bfLevel, setToTest, setToInsert, bfHashBits) {
   return {'knownHits': setToInsert, 'falsePositives': falsePositives};
 }
 
+runIncButton.onclick = function() {
+  beforeRunning(true);
+}
+
 runButton.onclick = function() {
-  runButton.innerHTML = "Running...";
-  setTimeout(runFilters, 50);
+  beforeRunning(false);
+}
+
+cancelButton.onclick = function() {
+  cancelRequested = true;
 }
 
 </script>
