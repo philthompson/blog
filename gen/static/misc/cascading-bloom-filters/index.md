@@ -9,9 +9,10 @@
 
   <h1>Cascading Bloom Filters</h1>
   <p>Bloom filters are an efficient way to check set inclusion for large sets, but they
-  can give false positives.  In cases where all testable items belong to a known finite
-  set, a relatively large sparsely populated bloom filter can be built that is known to
-  be free of false positives.  Instead, a much smaller set of cascading bloom filters can
+  can give false positives.  In cases where all testable items (both including and excluding
+  the inserted subset) belong to a known finite set, it's possible to create a relatively
+  large sparsely populated bloom filter that is known to be free of false positives.
+  Instead, a much smaller set of "cascading" bloom filters can
   be constructed where the known false positives from one bloom filter are used as the
   finite set of known testable data for another smaller bloom filter.  These successive
   "layers" of bloom filters become smaller as the known false positives are whittled
@@ -40,24 +41,19 @@
   <span>bits set per item using separate hash functions</span><br/>
   <input type="range" min="1" max="3" value="1" class="slider" id="bit-decrement">
   <span id="bit-decrement-display"></span>
-  <!--<input id="seed-txt" maxlength="64" minlength="1" placeholder="type PRNG seed text here" value="PRNG seed text"/><br/>-->
-  <input id="seed-inc" type="number" min="0" max="999999999" value="1"/>
+  <input id="seed-inc" type="number" min="0" max="999999999" value="1" pattern="[0-9]+"/>
   <span>PRNG seed value</span><br/>
   <br/>
   <p>Successive chunks of the SHA-256 hash of each item are used as separate "hash functions"
   that point to the individual bits to flip to 1s in the bloom filters, as described in the
   Security Now 989 show notes linked above.</p>
   <p>If any false positives are found for any "level," another smaller bloom filter is
-  created and populated with just that level's set of false positives.  Each level uses
-  1 to 3 fewer bits per hash function, so each successive bloom filter is one half, one quarter,
-  or one eighth the size of the previous level).</p>
-  <p>Depending on settings, many false positives may be produced.  This may cause quite a few levels of bloom filters to
-  be created, and may require a few seconds to run.</p>
-  <p>Test data is generated based on the seed text and increment value, allowing for repeat
-  tests.</p>
-  <p>The bottom line question: For a set of test data and subset to insert into the bloom filter,
-  when building a bloom filter to avoid any false positives, is it generally possible to find a
-  set of cascading bloom filters smaller in total size than a single larger bloom filter?</p>
+  created and populated with that level's set of false positives.  Each level uses 1 to 3
+  fewer bits per hash function so each successive bloom filter is one half, one quarter,
+  or one eighth the size of the previous level.</p>
+  <p>Depending on settings, many false positives may be produced.  This may cause quite a few levels
+  of bloom filters to be created, and may require a few seconds to run.</p>
+  <p>Test data is generated based on the seed value, allowing for repeat tests.</p>
   <button id="run-button">Run</button>
   <button id="run-inc-button">Run & Increment Seed</button><br/>
   <button id="cancel-button" style="display:none">Cancel</button><br/>
@@ -217,32 +213,12 @@ function fnv32a_32bitint(int32b) {
   return hval >>> 0;
 }
 
-//let fasterRandomUsage = 2000000;
+// PRNG hashes the previous hash
 var fasterRandomHash = null;
-// since bit shifting clamps number values to 32-bit unsigned
-//   values, the maximum value the hash can have is this
-const MAX_UNSIGNED_HASH = 0b11111111111111111111111111111111;
 function fasterRandom32bit() {
-  //if (fasterRandomUsage++ > 1000000) {
-  //  fasterRandomUsage = 0;
-  //  fasterRandomHash = fnv32a(Date.now().toString());
-  //  //console.log("re-seeded FNV-1a PRNG with the current time");
-  //}
   fasterRandomHash = fnv32a_32bitint(fasterRandomHash);
   return fasterRandomHash;
 }
-/*
-function fasterRandom(minInclusive, maxExclusive) {
-  if (fasterRandomUsage++ > 1000000) {
-    fasterRandomUsage = 0;
-    fasterRandomHash = fnv32a(Date.now().toString());
-    //console.log("re-seeded FNV-1a PRNG with the current time");
-  }
-  fasterRandomHash = fnv32a_32bitint(fasterRandomHash);
-  const valueAsFrac = fasterRandomHash / MAX_UNSIGNED_HASH;
-  return minInclusive + (valueAsFrac * (maxExclusive - minInclusive));
-}
-*/
 
 function insertItemIntoBloomFilter(intItem, hashFuncs, hashBits, hashMask, bloomFilter) {
   let theHash = sha256ToBinaryStr(intItem.toString());
@@ -282,6 +258,7 @@ let bitDecrementSlider = document.getElementById('bit-decrement');
 let bitDecrementSpan = document.getElementById('bit-decrement-display');
 //let seedTxt = document.getElementById('seed-txt');
 let seedInc = document.getElementById('seed-inc');
+let seedIncLastValid = 1;
 
 let runButton = document.getElementById('run-button');
 let runIncButton = document.getElementById('run-inc-button');
@@ -293,11 +270,6 @@ subSetSizeSlider.oninput = function() { subSetSizeSpan.innerHTML = this.value + 
 hashFuncsSlider.oninput = function() { hashFuncsSpan.innerHTML = this.value + "&nbsp;"; };
 bitDecrementSlider.oninput = function() { bitDecrementSpan.innerHTML = 'successive bfs are ' + (100.0/Math.pow(2, this.value)) + '% smaller (hashes ' + this.value + " bit" + (this.value == 1 ? '' : 's') + ' shorter)'; };
 
-/*
-let bf1bitsSliderUpd = function() { bf1bitsSpan.innerHTML = this.value + "&nbsp;"; }; bf1bitsSlider.oninput = bf1bitsSliderUpd;
-let supSetSizeSliderUpd = function() { supSetSizeSpan.innerHTML = Math.pow(2, this.value) + "&nbsp;"; }; supSetSizeSlider.oninput = supSetSizeSliderUpd;
-let subSetSizeSliderUpd = function() { subSetSizeSpan.innerHTML = this.value + "%&nbsp;"; }; subSetSizeSlider.oninput = subSetSizeSliderUpd;
-*/
 
 let bloomFilter1Hashes = 5; // number of "hash functions" to use
 
@@ -315,22 +287,16 @@ window.addEventListener("load", function() {
   bitDecrementSlider.dispatchEvent(e);
 });
 
-// thanks to https://stackoverflow.com/a/48054293/259456
-//function escapeTextForHtml(contentStr) {
-//  let div = document.createElement('div');
-//  div.innerText = contentStr;
-//  return div.innerHTML;
-//}
-
 function beforeRunning(setAutoSeedIncrement) {
   doAutoSeedIncrement = setAutoSeedIncrement;
-  //if (seedTxt.value == "") {
-  //  seedTxt.value = "PRNG seed text";
-  //}
-  seedInc.value = parseInt(seedInc.value.toString().replace(/[^0-9]/g, ''))
-  p.innerHTML = '<hr/><br>generating test data with PRNG seed [' + seedInc.value + ']';
-  //p.innerHTML = '<hr/><br>generating test data with increment [' + seedInc.value + '] for seed:';
-  //p.innerHTML += '<br>' + escapeTextForHtml(seedTxt.value);
+  // if an integer number was not entered, swap in the last valid one
+  //   (this ensures we can continue to increment the integer if the
+  //    "Run & Increment Seed" button is clicked)
+  if (!seedInc.validity.valid) {
+    seedInc.value = seedIncLastValid;
+  }
+  seedIncLastValid = seedInc.value;
+  p.innerHTML = '<hr/>generating test data with PRNG seed [' + seedInc.value + ']';
   runButton.disabled = true;
   runIncButton.disabled = true;
   cancelButton.style.display = "inline-block";
@@ -345,6 +311,7 @@ function beforeRunning(setAutoSeedIncrement) {
 }
 
 function afterRunning() {
+  p.innerHTML += '<hr/>';
   runButton.disabled = false;
   runIncButton.disabled = false;
   runIncButton.style.display = "inline-block";
@@ -354,7 +321,6 @@ function afterRunning() {
   bf1bitsSlider.disabled = false;
   hashFuncsSlider.disabled = false;
   bitDecrementSlider.disabled = false;
-  //seedTxt.disabled = false;
   seedInc.disabled = false;
   if (doAutoSeedIncrement) {
     seedInc.value++;
@@ -364,7 +330,6 @@ function afterRunning() {
 let runFilters = function() {
 
   // set global random hash based on seed+increment
-  //fasterRandomHash = fnv32a(seedTxt.value + " " + seedInc.value);
   fasterRandomHash = fnv32a("prng seed:" + seedInc.value);
   cancelRequested = false;
 
@@ -491,8 +456,6 @@ function testBloomFilter(bfLevel, setToTest, setToInsert, bfHashBits) {
       p.innerHTML += "<br/>level [" + bfLevel + "]: subSet item [" + testItem + "] was not found, which should be impossible";
     }
   }
-
-  //p.innerHTML += "<br/>level [" + bfLevel + "]: found [" + foundCount + "] of [" + setToInsert.size + "] items in the subset";
 
   return {'knownHits': setToInsert, 'falsePositives': falsePositives};
 }
