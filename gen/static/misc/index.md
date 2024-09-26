@@ -106,6 +106,14 @@ For a more complete list of my projects, see my portfolio listing on this site's
 
 <details class="width-resp-50">
 	<summary>
+		<img class="width-100" src="../s/img/2024/cascading-bloom-filters-screenshot.png"/>
+	</summary>
+	<p><a href="../misc/cascading-bloom-filters/">Cascading Bloom Filters</a></p>
+	<p>A JavaScript app for playing with cascading bloom filters.</p>
+	<p>First published in 2024.</p>
+</details>
+<details class="width-resp-50">
+	<summary>
 		<img class="width-100" src="../s/img/2024/click-counter-screenshot.jpg"/>
 	</summary>
 	<p><a href="../misc/click-counter/">Click Counter</a></p>
