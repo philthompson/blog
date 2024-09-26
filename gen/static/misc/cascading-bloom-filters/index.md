@@ -377,7 +377,7 @@ let runFilters = function() {
 function proceedToNextLevelOrCancel() {
   if (!cancelRequested &&
       bfCtx['setData']['falsePositives'].size > 0 &&
-      bfCtx['bfBits'] > 4 /*&& bfCtx['bfLevel'] <= 10*/) {
+      bfCtx['bfBits'] > 4 && bfCtx['bfLevel'] <= 10) {
     bfCtx['setData'] = testBloomFilter(bfCtx['bfLevel'], bfCtx['setData']['knownHits'], bfCtx['setData']['falsePositives'], bfCtx['bfBits']);
     bfCtx['bfLevel']++;
     bfCtx['bfBits'] -= bitDecrementSlider.value;
@@ -470,6 +470,7 @@ runButton.onclick = function() {
 
 cancelButton.onclick = function() {
   cancelRequested = true;
+  console.log('cancel pressed');
 }
 
 </script>
