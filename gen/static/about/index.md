@@ -70,10 +70,18 @@ Portfolio
 
 A visual listing of this site's tools and apps is available <a target="_blank" href="${SITE_ROOT_REL}/misc/">here</a>.
 
+* <a target="_blank" href="${SITE_ROOT_REL}/misc/cascading-bloom-filters/">Cascading Bloom Filters</a>, 2024
+ * JavaScript app for playing with cascading bloom filter parameters
+* <a target="_blank" href="${SITE_ROOT_REL}/2024/Counting-Birds-in-a-Photo.html">Counting Birds in Photos</a>, 2024
+ * A small Python script using OpenCV to count birds in photos, but is general enough to count any type of "spots"
+ * the source code is available in its <a target="_blank" href="https://github.com/philthompson/python-img-count">GitHub repository</a>
 * <a target="_blank" href="${SITE_ROOT_REL}/2024/My-Electronic-Chill-Album-Break-Away.html">"Break | Away" EP</a>, 2024
  * Electronic/Chill EP available on all major music streaming platforms
 * <a target="_blank" href="${SITE_ROOT_REL}/misc/click-counter/">Click Counter</a>, 2024
  * JavaScript app for counting things in images
+* Image Stacking in Python, 2024
+ * A set of Python scripts to align and stack astrophotography frames using OpenCV
+ * while I've used my code to align and stack frames for several of my astro photos, I'm unsure if I want to publish it on GitHub since it is slow and not user-friendly, and I don't want to devote more time to its ongoing development
 * <a target="_blank" href="${SITE_ROOT_REL}/nfl-elo/">NFL Elo Power Rankings</a>, 2023-2024
  * written in Python
  * parses Wikipedia data, calculates Elo ratings, and outputs the above linked page
