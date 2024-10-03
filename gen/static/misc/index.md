@@ -106,9 +106,17 @@ For a more complete list of my projects, see my portfolio listing on this site's
 
 <details class="width-resp-50">
 	<summary>
+		<img class="width-100" src="../s/img/2024/noise-flow-field-screenshot.png"/>
+	</summary>
+	<h2><a href="../misc/noise-flow-field/">Noise Flow Field</a></h2>
+	<p>An image generator that uses a Perlin noise flow field.</p>
+	<p>First published in 2024.</p>
+</details>
+<details class="width-resp-50">
+	<summary>
 		<img class="width-100" src="../s/img/2024/cascading-bloom-filters-screenshot.png"/>
 	</summary>
-	<p><a href="../misc/cascading-bloom-filters/">Cascading Bloom Filters</a></p>
+	<h2><a href="../misc/cascading-bloom-filters/">Cascading Bloom Filters</a></h2>
 	<p>A JavaScript app for playing with cascading bloom filters.</p>
 	<p>First published in 2024.</p>
 </details>
@@ -116,7 +124,7 @@ For a more complete list of my projects, see my portfolio listing on this site's
 	<summary>
 		<img class="width-100" src="../s/img/2024/click-counter-screenshot.jpg"/>
 	</summary>
-	<p><a href="../misc/click-counter/">Click Counter</a></p>
+	<h2><a href="../misc/click-counter/">Click Counter</a></h2>
 	<p>A simple JavaScript app for counting things in photos.</p>
 	<p>First published in 2024.</p>
 </details>
@@ -124,7 +132,7 @@ For a more complete list of my projects, see my portfolio listing on this site's
 	<summary>
 		<img class="width-100" src="../s/img/2023/6174-screenshot.jpg"/>
 	</summary>
-	<p><a href="../misc/6174/">6174</a></p>
+	<h2><a href="../misc/6174/">6174</a></h2>
 	<p>
 Little JavaScript pages for playing with the <a href="../misc/6174/">4-digit</a> and <a href="../misc/6174/k-digit.html">k-digit</a> Kaprekar Routines.</p>
 	<p>First published in 2023.</p>
@@ -133,7 +141,7 @@ Little JavaScript pages for playing with the <a href="../misc/6174/">4-digit</a>
 	<summary>
 		<img class="width-100" src="../s/img/2023/nfl-elo-hero.jpg"/>
 	</summary>
-	<p><a href="../nfl-elo/">NFL Elo Power Rankings</a></p>
+	<h2><a href="../nfl-elo/">NFL Elo Power Rankings</a></h2>
 	<p>
 NFL power rankings based on Elo ratings.<br/><br/>
 Written in Python, this project parses Wikipedia data, calculates Elo ratings, and outputs the above linked page.
@@ -146,7 +154,7 @@ For more background, see my blog post <a href="../2023/NFL-Elo-Power-Rankings-fo
 	<summary>
 		<img class="width-100" src="../s/img/2023/partial-string-match-for-birds-screenshot.jpg"/>
 	</summary>
-	<p><a href="../misc/partial-string-match-for-birds/search.html">Partial String Match for Birds</a></p>
+	<h2><a href="../misc/partial-string-match-for-birds/search.html">Partial String Match for Birds</a></h2>
 	<p>
 An app to demonstrate partial string match for bird species names.<br/>
 I tested out algorithms for finding partial string matches of bird species names, and
@@ -160,7 +168,7 @@ For more background, see my blog post <a href="../2023/Partial-String-Match-for-
 	<summary>
 		<img class="width-100" src="../s/img/2023/smarter-than-a-chimp-screenshot.jpg"/>
 	</summary>
-	<p><a href="../misc/smarter-than-a-chimp/">"Smarter Than a Chimp" game</a></p>
+	<h2><a href="../misc/smarter-than-a-chimp/">"Smarter Than a Chimp" game</a></h2>
 	<p>
 A JavaScript game similar to one from this video: <a href="https://www.youtube.com/watch?v=zsXP8qeFF6A">https://www.youtube.com/watch?v=zsXP8qeFF6A</a>.<br/><br/>
 The source code is availble in its <a href="https://github.com/philthompson/smarter-than-chimp">GitHub repository</a>.</p>
@@ -170,7 +178,7 @@ The source code is availble in its <a href="https://github.com/philthompson/smar
 	<summary>
 		<img class="width-100" src="../s/img/2021/water-jars-screenshot.jpg"/>
 	</summary>
-	<p><a href="../jars/">Water Jars game</a></p>
+	<h2><a href="../jars/">Water Jars game</a></h2>
 	<p>
 A small JavaScript implementation of the game where, given three containers, water must be evenly divided between the largest pair.
 I also created a <a href="../jars/solver.html">standalone solver page</a> for any set of three containers.<br/><br/>
@@ -181,7 +189,7 @@ The source code is availble in its <a href="https://github.com/philthompson/wate
 	<summary>
 		<img class="width-100" src="../s/img/2021/very-plotter-screenshot.jpg"/>
 	</summary>
-	<p><a href="../very-plotter/">Very Plotter</a></p>
+	<h2><a href="../very-plotter/">Very Plotter</a></h2>
 	<p>
 View the Mandelbrot set, and plots of a few mathematical sequences.
 This app uses JavaScript worker threads, the number of which can be updated on the fly.<br/><br/>
@@ -192,7 +200,7 @@ The source code is availble in its <a href="https://github.com/philthompson/visu
 	<summary>
 		<img class="width-100" src="../s/img/2018/qrcode-screenshot.jpg"/>
 	</summary>
-	<p><a href="../qrcode.html">qrcodejs</a></p>
+	<h2><a href="../qrcode.html">qrcodejs</a></h2>
 	<p>
 A JavaScript page for interactively generating QR codes.<br/><br/>
 The source code is availble in its <a href="https://github.com/philthompson/qrcodejs">GitHub repository</a>.</p>
@@ -202,7 +210,7 @@ The source code is availble in its <a href="https://github.com/philthompson/qrco
 	<summary>
 		<img class="width-100" src="../s/img/2018/screensavejs-screenshot.jpg"/>
 	</summary>
-	<p><a href="../screensavejs/">screensavejs</a></p>
+	<h2><a href="../screensavejs/">screensavejs</a></h2>
 	<p>A JavaScript page that paints a blurry rendition of any image file.</p>
 	<p>First published in 2018.</p>
 </details>
@@ -210,7 +218,7 @@ The source code is availble in its <a href="https://github.com/philthompson/qrco
 	<summary>
 		<img class="width-100" src="../s/img/2015/black-and-white-screenshot.jpg"/>
 	</summary>
-	<p><a href="../misc/black-and-white/">Black & White Box</a></p>
+	<h2><a href="../misc/black-and-white/">Black & White Box</a></h2>
 	<p>
 JavaScript toy that finds a box (many are possible) describing the percentage of
 black and white pixels where <i>the text itself</i> is counted.<br/><br/>

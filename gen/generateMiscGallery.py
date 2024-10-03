@@ -19,6 +19,16 @@ misc_static_index_markdown = misc_static_dir_path.joinpath("index.md")
 misc_items_by_year = {
 	2024: [
 		{
+			'root_rel_url': 'misc/noise-flow-field/',
+			'title': 'Noise Flow Field',
+			'photo': 'noise-flow-field-screenshot.png',
+			'desc': 'An image generator that uses a Perlin noise flow field.'
+		},{
+			'root_rel_url': 'misc/cascading-bloom-filters/',
+			'title': 'Cascading Bloom Filters',
+			'photo': 'cascading-bloom-filters-screenshot.png',
+			'desc': 'A JavaScript app for playing with cascading bloom filters.'
+		},{
 			'root_rel_url': 'misc/click-counter/',
 			'title': 'Click Counter',
 			'photo': 'click-counter-screenshot.jpg',
@@ -267,7 +277,7 @@ def write_item(*, item, year, buffer):
 	<summary>
 		<img class="width-100" src="{photo_url}"/>
 	</summary>
-	<p><a href="{root_rel_url}">{title}</a></p>
+	<h2><a href="{root_rel_url}">{title}</a></h2>
 	{desc}
 	<p>First published in {year}.</p>
 </details>""")

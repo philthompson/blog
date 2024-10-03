@@ -70,6 +70,9 @@ Portfolio
 
 A visual listing of this site's tools and apps is available <a target="_blank" href="${SITE_ROOT_REL}/misc/">here</a>.
 
+* <a target="_blank" href="${SITE_ROOT_REL}/misc/noise-flow-field/">Noise Flow Field</a>, 2024
+ * JavaScript app for generating digital art with Perlin noise flow fields
+ * based on <a target="_blank" href="https://www.youtube.com/watch?v=BjoM9oKOAKY">a Coding Train YouTube video</a>
 * <a target="_blank" href="${SITE_ROOT_REL}/misc/cascading-bloom-filters/">Cascading Bloom Filters</a>, 2024
  * JavaScript app for playing with cascading bloom filter parameters
 * <a target="_blank" href="${SITE_ROOT_REL}/2024/Counting-Birds-in-a-Photo.html">Counting Birds in Photos</a>, 2024
