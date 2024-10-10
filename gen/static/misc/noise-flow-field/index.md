@@ -436,10 +436,10 @@ scales more particles are created so faster speeds may make the browser window u
 <p>This is based on
 <a target="_blank" href="https://www.youtube.com/watch?v=BjoM9oKOAKY">a Coding Train video by Daniel Shiffman</a>.</p>
 <h3>Examples</h3>
-<img class="width-100" style="border: 0.7rem solid white" src="${SITE_ROOT_REL}/s/img/2024/noise-flow-example1.png"/><br/>
-<img class="width-100" style="border: 0.7rem solid white" src="${SITE_ROOT_REL}/s/img/2024/noise-flow-example2.png"/><br/>
-<img class="width-100" style="border: 0.7rem solid white" src="${SITE_ROOT_REL}/s/img/2024/noise-flow-example3.png"/><br/>
-<img class="width-100" style="border: 0.7rem solid white" src="${SITE_ROOT_REL}/s/img/2024/noise-flow-example4.png"/><br/>
-<img class="width-100" style="border: 0.7rem solid white" src="${SITE_ROOT_REL}/s/img/2024/noise-flow-example5.png"/><br/>
-<img class="width-100" style="border: 0.7rem solid white" src="${SITE_ROOT_REL}/s/img/2024/noise-flow-example6.png"/><br/>
+<img class="width-100" style="border: 0.7rem solid white; margin-bottom: 1.0rem; padding: 0;" src="https://philthompson.me/s/img/2024/noise-flow-example1.png"/><br/>
+<img class="width-100" style="border: 0.7rem solid white; margin-bottom: 1.0rem; padding: 0;" src="https://philthompson.me/s/img/2024/noise-flow-example2.png"/><br/>
+<img class="width-100" style="border: 0.7rem solid white; margin-bottom: 1.0rem; padding: 0;" src="https://philthompson.me/s/img/2024/noise-flow-example3.png"/><br/>
+<img class="width-100" style="border: 0.7rem solid white; margin-bottom: 1.0rem; padding: 0;" src="https://philthompson.me/s/img/2024/noise-flow-example4.png"/><br/>
+<img class="width-100" style="border: 0.7rem solid white; margin-bottom: 1.0rem; padding: 0;" src="https://philthompson.me/s/img/2024/noise-flow-example5.png"/><br/>
+<img class="width-100" style="border: 0.7rem solid white; margin-bottom: 1.0rem; padding: 0;" src="https://philthompson.me/s/img/2024/noise-flow-example6.png"/><br/>
 </div>
