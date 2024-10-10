@@ -1,11 +1,15 @@
-<!DOCTYPE html>
-<!--
-written by Phil Thompson on 2024-02-20
--->
-<html>
-	<head>
-		<script src="p5-v1.9.0.min.js"></script>
-		<script>
+
+[//]: # (gen-title: Random Point PI Approximation - philthompson.me)
+
+[//]: # (gen-keywords: pi, random, javascript, coding train, p5.js)
+
+[//]: # (gen-description: JavaScript toy for approximating pi")
+
+[//]: # (gen-meta-end)
+
+<script src="../p5-v1.9.0.min.js"></script>
+<script>
+// written by Phil Thompson on 2024-02-20
 const radius = 400;
 const radiusPlusOne = 401;
 const radiusSquared = radius * radius;
@@ -23,20 +27,29 @@ let dotBright = 0.0;
 function setup() {
 	colorMode(HSB, 100, 100, 100, 1);
 	createCanvas((radius*2)+padding+padding, (radius*2)+padding+padding);
+	select('div.wrap').style('max-width', 'inherit');
 	runButton = createButton('▷');
 	runButton.mousePressed(toggleRun);
 	runButton.style('font-size', '2.0rem');
 	runButton.style('padding', '0.5rem 1.0rem 0.5rem 1.0rem');
+	const controls = select('#controls');
+	const content = select('#content');
+    controls.child(runButton);
 	for (const b of selectAll('button')) {
 		b.style('margin', '0.4rem');
 	}
-	createElement('br');
+	content.child(createElement('br'));
 	approxP = createElement('pre');
 	approxP.style('margin-bottom', '0px');
+	approxP.style('padding-bottom', '0px');
+	content.child(approxP);
 	actualP = createElement('pre', 'actual: 3.141592653589793238462643383279502884197169');
 	actualP.style('margin-top', '0px');
+	actualP.style('padding-top', '0px');
+	content.child(actualP);
 	otherP = createElement('p');
-	createElement('p', 'Approximates pi by placing random points within a circle within a bounding square.  This is based on <a href="https://www.youtube.com/watch?v=5cNnf_7e92Q">this Coding Train YouTube video</a>.');
+	content.child(otherP);
+	content.child(createElement('p', 'Approximates pi by placing random points within a circle within a bounding square.  This is based on <a href="https://www.youtube.com/watch?v=5cNnf_7e92Q">this Coding Train YouTube video</a>.'));
 	background(0,0,20);
 	translate(radius+padding, radius+padding);
 	noFill();
@@ -110,10 +123,8 @@ function toggleRun() {
 		frameRate(0);
 	}
 }
-		</script>
-	</head>
-	<body>
-		<main>
-		</main>
-	</body>
-</html>
+</script>
+<main style="text-align:center;"></main>
+<div id="controls" style="text-align:center; font-size:1.5rem;"></div>
+<div id="content" style="max-width: 52rem;margin-left: auto;margin-right: auto;">
+</div>
