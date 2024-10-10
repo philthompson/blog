@@ -70,9 +70,10 @@ Portfolio
 
 A visual listing of this site's tools and apps is available <a target="_blank" href="${SITE_ROOT_REL}/misc/">here</a>.
 
+* <a target="_blank" href="${SITE_ROOT_REL}/misc/gravity-2d/">2D Gravity Simulation</a>, 2024
+ * a set of JavaScript toy pages for simulating gravity in two dimensions
 * <a target="_blank" href="${SITE_ROOT_REL}/misc/noise-flow-field/">Noise Flow Field</a>, 2024
  * JavaScript app for generating digital art with Perlin noise flow fields
- * based on <a target="_blank" href="https://www.youtube.com/watch?v=BjoM9oKOAKY">a Coding Train YouTube video</a>
 * <a target="_blank" href="${SITE_ROOT_REL}/misc/cascading-bloom-filters/">Cascading Bloom Filters</a>, 2024
  * JavaScript app for playing with cascading bloom filter parameters
 * <a target="_blank" href="${SITE_ROOT_REL}/2024/Counting-Birds-in-a-Photo.html">Counting Birds in Photos</a>, 2024
@@ -85,6 +86,10 @@ A visual listing of this site's tools and apps is available <a target="_blank" h
 * Image Stacking in Python, 2024
  * A set of Python scripts to align and stack astrophotography frames using OpenCV
  * while I've used my code to align and stack frames for several of my astro photos, I'm unsure if I want to publish it on GitHub since it is slow and not user-friendly, and I don't want to devote more time to its ongoing development
+* <a target="_blank" href="${SITE_ROOT_REL}/misc/pi-random/">Pi random</a>, 2024
+ * JavaScript toy that approximates Pi with randomly-placed points
+* <a target="_blank" href="${SITE_ROOT_REL}/misc/tree/">Fractal Trees</a>, 2024
+ * JavaScript toy that generates fractal trees
 * <a target="_blank" href="${SITE_ROOT_REL}/nfl-elo/">NFL Elo Power Rankings</a>, 2023-2024
  * written in Python
  * parses Wikipedia data, calculates Elo ratings, and outputs the above linked page

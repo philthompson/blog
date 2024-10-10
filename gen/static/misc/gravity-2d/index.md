@@ -57,7 +57,7 @@ function setup() {
     for (let i = 0; i < 3; i++) {
         particles.push(new Particle(5000000.0, color(222), 1, createVector(width/2, height/2)));
     }
-    addParticles(500);
+    addParticles(350);
     frameRate(30);
 }
 

@@ -106,6 +106,14 @@ For a more complete list of my projects, see my portfolio listing on this site's
 
 <details class="width-resp-50">
 	<summary>
+		<img class="width-100" src="../s/img/2024/gravity-2d-single-screenshot.png"/>
+	</summary>
+	<h2><a href="../misc/gravity-2d/">2D Gravity Simulations</a></h2>
+	<p>JavaScript toy pages that simulate gravity in two dimensions.</p>
+	<p>First published in 2024.</p>
+</details>
+<details class="width-resp-50">
+	<summary>
 		<img class="width-100" src="../s/img/2024/noise-flow-field-screenshot.png"/>
 	</summary>
 	<h2><a href="../misc/noise-flow-field/">Noise Flow Field</a></h2>
@@ -126,6 +134,14 @@ For a more complete list of my projects, see my portfolio listing on this site's
 	</summary>
 	<h2><a href="../misc/click-counter/">Click Counter</a></h2>
 	<p>A simple JavaScript app for counting things in photos.</p>
+	<p>First published in 2024.</p>
+</details>
+<details class="width-resp-50">
+	<summary>
+		<img class="width-100" src="../s/img/2024/fractal-tree-screenshot.png"/>
+	</summary>
+	<h2><a href="../misc/tree/">Fractal Trees</a></h2>
+	<p>A JavaScript toy for generating fractal trees.</p>
 	<p>First published in 2024.</p>
 </details>
 <details class="width-resp-50">

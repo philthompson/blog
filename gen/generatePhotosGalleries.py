@@ -93,6 +93,7 @@ photos_data = {
 		{'url': '2024-05-21-102959-27-R6PT9030-sm.jpg',                  'desc': 'Southern Alligator Lizard<br/>Oregon, USA' },
 		{'url': '2024-07-21-101135-21-R6PT3960-sm.jpg',                  'desc': 'White-winged Scoter<br/>Oregon, USA' },
 		{'url': '2024-07-21-101155-47-R6PT3983-sm.jpg',                  'desc': 'White-winged Scoter<br/>Oregon, USA' },
+		{'url': '2024-10-03-141205-noise-flow-palette51.jpg',            'desc': 'Perlin noise flow field<br/>Generated with <a href="https://philthompson.me/misc/noise-flow-field/">this JavaScript app</a>.' },
 	]
 }
 

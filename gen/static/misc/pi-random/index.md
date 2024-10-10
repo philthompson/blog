@@ -1,5 +1,5 @@
 
-[//]: # (gen-title: Random Point PI Approximation - philthompson.me)
+[//]: # (gen-title: Random Point Pi Approximation - philthompson.me)
 
 [//]: # (gen-keywords: pi, random, javascript, coding train, p5.js)
 

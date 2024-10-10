@@ -19,6 +19,11 @@ misc_static_index_markdown = misc_static_dir_path.joinpath("index.md")
 misc_items_by_year = {
 	2024: [
 		{
+			'root_rel_url': 'misc/gravity-2d/',
+			'title': '2D Gravity Simulations',
+			'photo': 'gravity-2d-single-screenshot.png',
+			'desc': 'JavaScript toy pages that simulate gravity in two dimensions.'
+		},{
 			'root_rel_url': 'misc/noise-flow-field/',
 			'title': 'Noise Flow Field',
 			'photo': 'noise-flow-field-screenshot.png',
@@ -33,6 +38,11 @@ misc_items_by_year = {
 			'title': 'Click Counter',
 			'photo': 'click-counter-screenshot.jpg',
 			'desc': 'A simple JavaScript app for counting things in photos.'
+		},{
+			'root_rel_url': 'misc/tree/',
+			'title': 'Fractal Trees',
+			'photo': 'fractal-tree-screenshot.png',
+			'desc': 'A JavaScript toy for generating fractal trees.'
 		},
 	],
 	2023: [

@@ -32,6 +32,7 @@ let fpsMultipleSelect;
 let fpsMultiple = 1;
 let ttlSelect;
 let newParticleTtl = 1000;
+let particleCountMultSelect;
 let bgSelect;
 let bgColor;
 
@@ -199,6 +200,14 @@ function setup() {
 	let restartWithNumericSeed = createButton('Restart with Palette');
 	restartWithNumericSeed.mousePressed(restart);
 	controls2.child(restartWithNumericSeed);
+	particleCountMultSelect = createSelect();
+	particleCountMultSelect.option('0.1x Particle Count', 0.1);
+	particleCountMultSelect.option('0.25x Particle Count', 0.25);
+	particleCountMultSelect.option('0.5x Particle Count', 0.5);
+	particleCountMultSelect.option('1x Particle Count', 1.0);
+	particleCountMultSelect.option('2x Particle Count', 2.0);
+	particleCountMultSelect.selected(0.5);
+	controls2.child(particleCountMultSelect);
 	bgSelect = createSelect();
 	bgSelect.option('White Background', 255);
 	bgSelect.option('Black Background', 0);
@@ -238,6 +247,7 @@ function generateParticlesAndPaletteFromSeed(shouldPreviewOnly) {
 	if (!shouldPreviewOnly) {
 		usedPaletteNumber = theSeed;
 	}
+	const particleCountMult = parseFloat(particleCountMultSelect.value());
 	const darkColors = random(1,3);
 	const medColors = random(1,3);
 	const lightColors = random(1,3);
@@ -245,17 +255,17 @@ function generateParticlesAndPaletteFromSeed(shouldPreviewOnly) {
 	for (let i = 0; i < darkColors; i++) {
 		const c = getNewRandomColor(saturation, random(0.1, 0.3));
 		paletteColors.push(c);
-		addParticles(random(200,1000), color(c[0], c[1], c[2], 2), random(1000,5000), shouldPreviewOnly);
+		addParticles(parseInt(random(200,1000) * particleCountMult), color(c[0], c[1], c[2], 2), random(1000,5000), shouldPreviewOnly);
 	}
 	for (let i = 0; i < medColors; i++) {
 		const c = getNewRandomColor(saturation, random(0.4, 0.7));
 		paletteColors.push(c);
-		addParticles(random(200,1000), color(c[0], c[1], c[2], 2), random(1000,5000), shouldPreviewOnly);
+		addParticles(parseInt(random(200,1000) * particleCountMult), color(c[0], c[1], c[2], 2), random(1000,5000), shouldPreviewOnly);
 	}
 	for (let i = 0; i < lightColors; i++) {
 		const c = getNewRandomColor(saturation, random(0.8, 1.0));
 		paletteColors.push(c);
-		addParticles(random(200,1000), color(c[0], c[1], c[2], 2), random(1000,5000), shouldPreviewOnly);
+		addParticles(parseInt(random(200,1000) * particleCountMult), color(c[0], c[1], c[2], 2), random(1000,5000), shouldPreviewOnly);
 	}
 	return paletteColors;
 }
@@ -425,4 +435,11 @@ It also allows other creative opportunities when changed while the image is bein
 scales more particles are created so faster speeds may make the browser window unresponsive.</p>
 <p>This is based on
 <a target="_blank" href="https://www.youtube.com/watch?v=BjoM9oKOAKY">a Coding Train video by Daniel Shiffman</a>.</p>
+<h3>Examples</h3>
+<img class="width-100" style="border: 0.7rem solid white" src="${SITE_ROOT_REL}/s/img/2024/noise-flow-example1.png"/><br/>
+<img class="width-100" style="border: 0.7rem solid white" src="${SITE_ROOT_REL}/s/img/2024/noise-flow-example2.png"/><br/>
+<img class="width-100" style="border: 0.7rem solid white" src="${SITE_ROOT_REL}/s/img/2024/noise-flow-example3.png"/><br/>
+<img class="width-100" style="border: 0.7rem solid white" src="${SITE_ROOT_REL}/s/img/2024/noise-flow-example4.png"/><br/>
+<img class="width-100" style="border: 0.7rem solid white" src="${SITE_ROOT_REL}/s/img/2024/noise-flow-example5.png"/><br/>
+<img class="width-100" style="border: 0.7rem solid white" src="${SITE_ROOT_REL}/s/img/2024/noise-flow-example6.png"/><br/>
 </div>
