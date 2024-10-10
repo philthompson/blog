@@ -40,7 +40,7 @@ cat > "${NFL_ELO_STATIC_DIR}/index.html" << xxxxxEOFxxxxx
 xxxxxEOFxxxxx
 
 echo "running:"
-seq 2021 ${FINAL_YEAR} | while read YEAR
+seq 2020 ${FINAL_YEAR} | while read YEAR
 do
 	STOP_ARG=""
 	if [ "${YEAR}" == "${FINAL_YEAR}" ]
