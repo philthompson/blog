@@ -229,4 +229,5 @@ do not move.  Click to place more "sun" objects, or click one to remove it.</p>
 <img class="width-100" style="border: 0.7rem solid white; margin-bottom: 1.0rem; padding: 0;" src="https://philthompson.me/s/img/2024/gravity-2d-single-example2.png"/><br/>
 <img class="width-100" style="border: 0.7rem solid white; margin-bottom: 1.0rem; padding: 0;" src="https://philthompson.me/s/img/2024/gravity-2d-single-example3.png"/><br/>
 <img class="width-100" style="border: 0.7rem solid white; margin-bottom: 1.0rem; padding: 0;" src="https://philthompson.me/s/img/2024/gravity-2d-single-example4.png"/><br/>
+<img class="width-100" style="border: 0.7rem solid white; margin-bottom: 1.0rem; padding: 0;" src="https://philthompson.me/s/img/2024/gravity-2d-single-example5.png"/><br/>
 </div>
