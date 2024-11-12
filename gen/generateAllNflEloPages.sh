@@ -48,25 +48,37 @@ do
 		STOP_ARG="${STOP_AFTER_WEEK}"
 	fi
 
+
 	# CALL python3 here with a year argument, and that
 	#   python script will output the markdown page for the
 	#   entire year
 	# STOP_ARG is not quoted here, because it's only
 	#   included for the final year
-	echo "python3 \"${NFL_ELO_DIR}/outputYearMarkdown.py\" 2010 \"${YEAR}\" $STOP_ARG"
-	python3 "${NFL_ELO_DIR}/outputYearMarkdown.py" 2010 "${YEAR}" $STOP_ARG > "${NFL_ELO_STATIC_DIR}/${YEAR}.md"
-
+	MODEL_NAME="v2.2024.07"
+	echo "python3 \"${NFL_ELO_DIR}/outputYearMarkdown.py\" \"${MODEL_NAME}\" 2010 \"${YEAR}\" $STOP_ARG"
+	python3 "${NFL_ELO_DIR}/outputYearMarkdown.py" "${MODEL_NAME}" 2010 "${YEAR}" $STOP_ARG > "${NFL_ELO_STATIC_DIR}/${YEAR}.md"
 	if [ $? -ne 0 ]
 	then
+		echo "error detected in regular model run"
+		exit
+	fi
+
+	MODEL_NAME="nomov-v1.2024.11"
+	echo "python3 \"${NFL_ELO_DIR}/outputYearMarkdown.py\" \"${MODEL_NAME}\" 2010 \"${YEAR}\" $STOP_ARG"
+	python3 "${NFL_ELO_DIR}/outputYearMarkdown.py" "${MODEL_NAME}" 2010 "${YEAR}" $STOP_ARG > "${NFL_ELO_STATIC_DIR}/${YEAR}-nomov.md"
+	if [ $? -ne 0 ]
+	then
+		echo "error detected in nomov model run"
 		exit
 	fi
 
 	# generate the 2023-only.html page
-	echo "python3 \"${NFL_ELO_DIR}/outputYearMarkdown.py\" \"${YEAR}\" \"${YEAR}\" $STOP_ARG"
-	python3 "${NFL_ELO_DIR}/outputYearMarkdown.py" "${YEAR}" "${YEAR}" $STOP_ARG > "${NFL_ELO_STATIC_DIR}/${YEAR}-only.md"
-
+	MODEL_NAME="blank-slate-v1.2024.07"
+	echo "python3 \"${NFL_ELO_DIR}/outputYearMarkdown.py\" \"${MODEL_NAME}\" \"${YEAR}\" \"${YEAR}\" $STOP_ARG"
+	python3 "${NFL_ELO_DIR}/outputYearMarkdown.py" "${MODEL_NAME}" "${YEAR}" "${YEAR}" $STOP_ARG > "${NFL_ELO_STATIC_DIR}/${YEAR}-only.md"
 	if [ $? -ne 0 ]
 	then
+		echo "error detected in blank slate model run"
 		exit
 	fi
 done
