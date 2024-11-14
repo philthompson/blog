@@ -135,11 +135,18 @@ the losing team.*
 
 *These ratings are likely to be less accurate for predicting future
 game outcomes than the regular model.  Over the 2012-2023 seasons,
-this model picked 2113 of 3259 game winners correctly (64.84%), while
-the regular model picked 2160 game winners (66.28%).  That is an average
-of 3.9 fewer games correctly picked over those 12 seasons.  See the regular
-2021 ratings [here](./2021.html).*
+this model picked 2,113 of 3,259 game winners correctly (64.84%), while
+the regular model picked 2,160 game winners (66.28%).  That is an average
+of 3.9 fewer games correctly picked over those 12 seasons.*
 
+All available 2021 season pages:
+
+<ul>
+<li><a href="./2021.html">2021 regular mode</a></li>
+<li><a href="/2021-only.html">2021 "Blank Slate" model</a></li>
+<li><a href="/2021-winpos.html">2021 "Never Lose Elo For a Win" model</a></li>
+<li><a href="/2021-nomov.html">2021 "No Margin of Victory" model</a></li>
+</ul>
 <hr/>
 
         

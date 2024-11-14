@@ -72,6 +72,15 @@ do
 		exit
 	fi
 
+	MODEL_NAME="winpos-v1.2024.11"
+	echo "python3 \"${NFL_ELO_DIR}/outputYearMarkdown.py\" \"${MODEL_NAME}\" 2010 \"${YEAR}\" $STOP_ARG"
+	python3 "${NFL_ELO_DIR}/outputYearMarkdown.py" "${MODEL_NAME}" 2010 "${YEAR}" $STOP_ARG > "${NFL_ELO_STATIC_DIR}/${YEAR}-winpos.md"
+	if [ $? -ne 0 ]
+	then
+		echo "error detected in winpos model run"
+		exit
+	fi
+
 	# generate the 2023-only.html page
 	MODEL_NAME="blank-slate-v1.2024.07"
 	echo "python3 \"${NFL_ELO_DIR}/outputYearMarkdown.py\" \"${MODEL_NAME}\" \"${YEAR}\" \"${YEAR}\" $STOP_ARG"
