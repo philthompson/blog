@@ -140,6 +140,7 @@
         @media screen and (min-width: 120rem) {
                 .only-superwide-cell { display: table-cell; }
                 .only-superwide { display: inherit; }
+                .row-toggle-and-table .hide-superwide { display: none; }
                 td { padding: 0.1rem 1.2rem 0.1rem 1.2rem; }
         }
 </style>
@@ -422,8 +423,8 @@ Contents <a name="top"></a>
 ### <a name="after-Playoffs-Super-Bowl"></a><small><a class="top-arw" href="#top">↑</a></small> Power Rankings After Playoffs Super Bowl, 2023 Season
 
 <div class="row-toggle-and-table">
-        <input type="checkbox"/>
-        <a><small>show prev/next</small></a><a><small>hide prev/next</small></a>
+        <input class="hide-superwide" type="checkbox"/>
+        <a class="hide-superwide"><small>show prev/next</small></a><a class="hide-superwide"><small>hide prev/next</small></a>
         <table>
                 <tr><th>Rank</th><th>Team</th><th>Elo Rating</th><th>Record</th><th class="only-superwide-cell">Next</th></tr>
 <tr><td>1</td><td><a href="#Kansas-City-Chiefs-season-stats"><span class="ranking-name-full">Kansas City Chiefs</span><span class="ranking-name-abv">KC</span></a></td><td>1782 <span class="slw">(+30)</span></td><td>15-6</td><td class="only-superwide-cell"><small></small></td></tr>
@@ -470,8 +471,8 @@ Contents <a name="top"></a>
 ### <a name="after-Playoffs-Championship"></a><small><a class="top-arw" href="#top">↑</a></small> Power Rankings After Playoffs Championship, 2023 Season
 
 <div class="row-toggle-and-table">
-        <input type="checkbox"/>
-        <a><small>show prev/next</small></a><a><small>hide prev/next</small></a>
+        <input class="hide-superwide" type="checkbox"/>
+        <a class="hide-superwide"><small>show prev/next</small></a><a class="hide-superwide"><small>hide prev/next</small></a>
         <table>
                 <tr><th>Rank</th><th>Team</th><th>Elo Rating</th><th>Record</th><th class="only-superwide-cell">Next</th></tr>
 <tr><td>1 <span class="slw">(+1)</span></td><td><a href="#Kansas-City-Chiefs-season-stats"><span class="ranking-name-full">Kansas City Chiefs</span><span class="ranking-name-abv">KC</span></a></td><td>1752 <span class="slw">(+36)</span></td><td>14-6</td><td class="only-superwide-cell"><small>at SF (1722): Fav</small></td></tr>
@@ -530,8 +531,8 @@ Contents <a name="top"></a>
 ### <a name="after-Playoffs-Divisional"></a><small><a class="top-arw" href="#top">↑</a></small> Power Rankings After Playoffs Divisional, 2023 Season
 
 <div class="row-toggle-and-table">
-        <input type="checkbox"/>
-        <a><small>show prev/next</small></a><a><small>hide prev/next</small></a>
+        <input class="hide-superwide" type="checkbox"/>
+        <a class="hide-superwide"><small>show prev/next</small></a><a class="hide-superwide"><small>hide prev/next</small></a>
         <table>
                 <tr><th>Rank</th><th>Team</th><th>Elo Rating</th><th>Record</th><th class="only-superwide-cell">Next</th></tr>
 <tr><td>1 <span class="slw">(+1)</span></td><td><a href="#Baltimore-Ravens-season-stats"><span class="ranking-name-full">Baltimore Ravens</span><span class="ranking-name-abv">BAL</span></a></td><td>1717 <span class="slw">(+16)</span></td><td>14-4</td><td class="only-superwide-cell"><small>vs KC (1716): Fav</small></td></tr>
@@ -608,8 +609,8 @@ Contents <a name="top"></a>
 ### <a name="after-Playoffs-Wildcard"></a><small><a class="top-arw" href="#top">↑</a></small> Power Rankings After Playoffs Wildcard, 2023 Season
 
 <div class="row-toggle-and-table">
-        <input type="checkbox"/>
-        <a><small>show prev/next</small></a><a><small>hide prev/next</small></a>
+        <input class="hide-superwide" type="checkbox"/>
+        <a class="hide-superwide"><small>show prev/next</small></a><a class="hide-superwide"><small>hide prev/next</small></a>
         <table>
                 <tr><th>Rank</th><th>Team</th><th>Elo Rating</th><th>Record</th><th class="only-superwide-cell">Next</th></tr>
 <tr><td>1 <span class="slw">(+1)</span></td><td><a href="#Buffalo-Bills-season-stats"><span class="ranking-name-full">Buffalo Bills</span><span class="ranking-name-abv">BUF</span></a></td><td>1712 <span class="slw">(+23)</span></td><td>12-6</td><td class="only-superwide-cell"><small>vs KC (1680): Fav</small></td></tr>
@@ -716,8 +717,8 @@ Contents <a name="top"></a>
 ### <a name="after-Reg-18"></a><small><a class="top-arw" href="#top">↑</a></small> Power Rankings After Week 18, 2023 Season
 
 <div class="row-toggle-and-table">
-        <input type="checkbox"/>
-        <a><small>show prev/next</small></a><a><small>hide prev/next</small></a>
+        <input class="hide-superwide" type="checkbox"/>
+        <a class="hide-superwide"><small>show prev/next</small></a><a class="hide-superwide"><small>hide prev/next</small></a>
         <table>
                 <tr><th>Rank</th><th>Team</th><th>Elo Rating</th><th>Record</th><th class="only-superwide-cell">Next</th></tr>
 <tr><td>1</td><td><a href="#Baltimore-Ravens-season-stats"><span class="ranking-name-full">Baltimore Ravens</span><span class="ranking-name-abv">BAL</span></a></td><td>1701 <span class="slw">(-44)</span></td><td>13-4</td><td class="only-superwide-cell"><small>bye</small></td></tr>
@@ -896,8 +897,8 @@ Contents <a name="top"></a>
 ### <a name="after-Reg-17"></a><small><a class="top-arw" href="#top">↑</a></small> Power Rankings After Week 17, 2023 Season
 
 <div class="row-toggle-and-table">
-        <input type="checkbox"/>
-        <a><small>show prev/next</small></a><a><small>hide prev/next</small></a>
+        <input class="hide-superwide" type="checkbox"/>
+        <a class="hide-superwide"><small>show prev/next</small></a><a class="hide-superwide"><small>hide prev/next</small></a>
         <table>
                 <tr><th>Rank</th><th>Team</th><th>Elo Rating</th><th>Record</th><th class="only-superwide-cell">Next</th></tr>
 <tr><td>1</td><td><a href="#Baltimore-Ravens-season-stats"><span class="ranking-name-full">Baltimore Ravens</span><span class="ranking-name-abv">BAL</span></a></td><td>1745 <span class="slw">(+21)</span></td><td>13-3</td><td class="only-superwide-cell"><small>vs PIT (1555): Fav</small></td></tr>
@@ -1130,8 +1131,8 @@ Contents <a name="top"></a>
 ### <a name="after-Reg-16"></a><small><a class="top-arw" href="#top">↑</a></small> Power Rankings After Week 16, 2023 Season
 
 <div class="row-toggle-and-table">
-        <input type="checkbox"/>
-        <a><small>show prev/next</small></a><a><small>hide prev/next</small></a>
+        <input class="hide-superwide" type="checkbox"/>
+        <a class="hide-superwide"><small>show prev/next</small></a><a class="hide-superwide"><small>hide prev/next</small></a>
         <table>
                 <tr><th>Rank</th><th>Team</th><th>Elo Rating</th><th>Record</th><th class="only-superwide-cell">Next</th></tr>
 <tr><td>1 <span class="slw">(+1)</span></td><td><a href="#Baltimore-Ravens-season-stats"><span class="ranking-name-full">Baltimore Ravens</span><span class="ranking-name-abv">BAL</span></a></td><td>1724 <span class="slw">(+36)</span></td><td>12-3</td><td class="only-superwide-cell"><small>vs MIA (1629): Fav</small></td></tr>
@@ -1364,8 +1365,8 @@ Contents <a name="top"></a>
 ### <a name="after-Reg-15"></a><small><a class="top-arw" href="#top">↑</a></small> Power Rankings After Week 15, 2023 Season
 
 <div class="row-toggle-and-table">
-        <input type="checkbox"/>
-        <a><small>show prev/next</small></a><a><small>hide prev/next</small></a>
+        <input class="hide-superwide" type="checkbox"/>
+        <a class="hide-superwide"><small>show prev/next</small></a><a class="hide-superwide"><small>hide prev/next</small></a>
         <table>
                 <tr><th>Rank</th><th>Team</th><th>Elo Rating</th><th>Record</th><th class="only-superwide-cell">Next</th></tr>
 <tr><td>1</td><td><a href="#San-Francisco-49ers-season-stats"><span class="ranking-name-full">San Francisco 49ers</span><span class="ranking-name-abv">SF</span></a></td><td>1744 <span class="slw">(+17)</span></td><td>11-3</td><td class="only-superwide-cell"><small>vs BAL (1688): Fav</small></td></tr>
@@ -1598,8 +1599,8 @@ Contents <a name="top"></a>
 ### <a name="after-Reg-14"></a><small><a class="top-arw" href="#top">↑</a></small> Power Rankings After Week 14, 2023 Season
 
 <div class="row-toggle-and-table">
-        <input type="checkbox"/>
-        <a><small>show prev/next</small></a><a><small>hide prev/next</small></a>
+        <input class="hide-superwide" type="checkbox"/>
+        <a class="hide-superwide"><small>show prev/next</small></a><a class="hide-superwide"><small>hide prev/next</small></a>
         <table>
                 <tr><th>Rank</th><th>Team</th><th>Elo Rating</th><th>Record</th><th class="only-superwide-cell">Next</th></tr>
 <tr><td>1 <span class="slw">(+1)</span></td><td><a href="#San-Francisco-49ers-season-stats"><span class="ranking-name-full">San Francisco 49ers</span><span class="ranking-name-abv">SF</span></a></td><td>1727 <span class="slw">(+18)</span></td><td>10-3</td><td class="only-superwide-cell"><small>at ARI (1328): Fav</small></td></tr>
@@ -1832,8 +1833,8 @@ Contents <a name="top"></a>
 ### <a name="after-Reg-13"></a><small><a class="top-arw" href="#top">↑</a></small> Power Rankings After Week 13, 2023 Season
 
 <div class="row-toggle-and-table">
-        <input type="checkbox"/>
-        <a><small>show prev/next</small></a><a><small>hide prev/next</small></a>
+        <input class="hide-superwide" type="checkbox"/>
+        <a class="hide-superwide"><small>show prev/next</small></a><a class="hide-superwide"><small>hide prev/next</small></a>
         <table>
                 <tr><th>Rank</th><th>Team</th><th>Elo Rating</th><th>Record</th><th class="only-superwide-cell">Next</th></tr>
 <tr><td>1</td><td><a href="#Philadelphia-Eagles-season-stats"><span class="ranking-name-full">Philadelphia Eagles</span><span class="ranking-name-abv">PHI</span></a></td><td>1748 <span class="slw">(-35)</span></td><td>10-2</td><td class="only-superwide-cell"><small>at DAL (1667): 'Dog</small></td></tr>
@@ -2066,8 +2067,8 @@ Contents <a name="top"></a>
 ### <a name="after-Reg-12"></a><small><a class="top-arw" href="#top">↑</a></small> Power Rankings After Week 12, 2023 Season
 
 <div class="row-toggle-and-table">
-        <input type="checkbox"/>
-        <a><small>show prev/next</small></a><a><small>hide prev/next</small></a>
+        <input class="hide-superwide" type="checkbox"/>
+        <a class="hide-superwide"><small>show prev/next</small></a><a class="hide-superwide"><small>hide prev/next</small></a>
         <table>
                 <tr><th>Rank</th><th>Team</th><th>Elo Rating</th><th>Record</th><th class="only-superwide-cell">Next</th></tr>
 <tr><td>1</td><td><a href="#Philadelphia-Eagles-season-stats"><span class="ranking-name-full">Philadelphia Eagles</span><span class="ranking-name-abv">PHI</span></a></td><td>1783 <span class="slw">(+17)</span></td><td>10-1</td><td class="only-superwide-cell"><small>vs SF (1674): Fav</small></td></tr>
@@ -2300,8 +2301,8 @@ Contents <a name="top"></a>
 ### <a name="after-Reg-11"></a><small><a class="top-arw" href="#top">↑</a></small> Power Rankings After Week 11, 2023 Season
 
 <div class="row-toggle-and-table">
-        <input type="checkbox"/>
-        <a><small>show prev/next</small></a><a><small>hide prev/next</small></a>
+        <input class="hide-superwide" type="checkbox"/>
+        <a class="hide-superwide"><small>show prev/next</small></a><a class="hide-superwide"><small>hide prev/next</small></a>
         <table>
                 <tr><th>Rank</th><th>Team</th><th>Elo Rating</th><th>Record</th><th class="only-superwide-cell">Next</th></tr>
 <tr><td>1</td><td><a href="#Philadelphia-Eagles-season-stats"><span class="ranking-name-full">Philadelphia Eagles</span><span class="ranking-name-abv">PHI</span></a></td><td>1766 <span class="slw">(+30)</span></td><td>9-1</td><td class="only-superwide-cell"><small>vs BUF (1573): Fav</small></td></tr>
@@ -2534,8 +2535,8 @@ Contents <a name="top"></a>
 ### <a name="after-Reg-10"></a><small><a class="top-arw" href="#top">↑</a></small> Power Rankings After Week 10, 2023 Season
 
 <div class="row-toggle-and-table">
-        <input type="checkbox"/>
-        <a><small>show prev/next</small></a><a><small>hide prev/next</small></a>
+        <input class="hide-superwide" type="checkbox"/>
+        <a class="hide-superwide"><small>show prev/next</small></a><a class="hide-superwide"><small>hide prev/next</small></a>
         <table>
                 <tr><th>Rank</th><th>Team</th><th>Elo Rating</th><th>Record</th><th class="only-superwide-cell">Next</th></tr>
 <tr><td>1</td><td><a href="#Philadelphia-Eagles-season-stats"><span class="ranking-name-full">Philadelphia Eagles</span><span class="ranking-name-abv">PHI</span></a></td><td>1736</td><td>8-1</td><td class="only-superwide-cell"><small>at KC (1712): 'Dog</small></td></tr>
@@ -2768,8 +2769,8 @@ Contents <a name="top"></a>
 ### <a name="after-Reg-9"></a><small><a class="top-arw" href="#top">↑</a></small> Power Rankings After Week 9, 2023 Season
 
 <div class="row-toggle-and-table">
-        <input type="checkbox"/>
-        <a><small>show prev/next</small></a><a><small>hide prev/next</small></a>
+        <input class="hide-superwide" type="checkbox"/>
+        <a class="hide-superwide"><small>show prev/next</small></a><a class="hide-superwide"><small>hide prev/next</small></a>
         <table>
                 <tr><th>Rank</th><th>Team</th><th>Elo Rating</th><th>Record</th><th class="only-superwide-cell">Next</th></tr>
 <tr><td>1</td><td><a href="#Philadelphia-Eagles-season-stats"><span class="ranking-name-full">Philadelphia Eagles</span><span class="ranking-name-abv">PHI</span></a></td><td>1736 <span class="slw">(+21)</span></td><td>8-1</td><td class="only-superwide-cell"><small>bye</small></td></tr>
@@ -3002,8 +3003,8 @@ Contents <a name="top"></a>
 ### <a name="after-Reg-8"></a><small><a class="top-arw" href="#top">↑</a></small> Power Rankings After Week 8, 2023 Season
 
 <div class="row-toggle-and-table">
-        <input type="checkbox"/>
-        <a><small>show prev/next</small></a><a><small>hide prev/next</small></a>
+        <input class="hide-superwide" type="checkbox"/>
+        <a class="hide-superwide"><small>show prev/next</small></a><a class="hide-superwide"><small>hide prev/next</small></a>
         <table>
                 <tr><th>Rank</th><th>Team</th><th>Elo Rating</th><th>Record</th><th class="only-superwide-cell">Next</th></tr>
 <tr><td>1 <span class="slw">(+1)</span></td><td><a href="#Philadelphia-Eagles-season-stats"><span class="ranking-name-full">Philadelphia Eagles</span><span class="ranking-name-abv">PHI</span></a></td><td>1715 <span class="slw">(+21)</span></td><td>7-1</td><td class="only-superwide-cell"><small>vs DAL (1618): Fav</small></td></tr>
@@ -3236,8 +3237,8 @@ Contents <a name="top"></a>
 ### <a name="after-Reg-7"></a><small><a class="top-arw" href="#top">↑</a></small> Power Rankings After Week 7, 2023 Season
 
 <div class="row-toggle-and-table">
-        <input type="checkbox"/>
-        <a><small>show prev/next</small></a><a><small>hide prev/next</small></a>
+        <input class="hide-superwide" type="checkbox"/>
+        <a class="hide-superwide"><small>show prev/next</small></a><a class="hide-superwide"><small>hide prev/next</small></a>
         <table>
                 <tr><th>Rank</th><th>Team</th><th>Elo Rating</th><th>Record</th><th class="only-superwide-cell">Next</th></tr>
 <tr><td>1</td><td><a href="#Kansas-City-Chiefs-season-stats"><span class="ranking-name-full">Kansas City Chiefs</span><span class="ranking-name-abv">KC</span></a></td><td>1732 <span class="slw">(+13)</span></td><td>6-1</td><td class="only-superwide-cell"><small>at DEN (1379): Fav</small></td></tr>
@@ -3470,8 +3471,8 @@ Contents <a name="top"></a>
 ### <a name="after-Reg-6"></a><small><a class="top-arw" href="#top">↑</a></small> Power Rankings After Week 6, 2023 Season
 
 <div class="row-toggle-and-table">
-        <input type="checkbox"/>
-        <a><small>show prev/next</small></a><a><small>hide prev/next</small></a>
+        <input class="hide-superwide" type="checkbox"/>
+        <a class="hide-superwide"><small>show prev/next</small></a><a class="hide-superwide"><small>hide prev/next</small></a>
         <table>
                 <tr><th>Rank</th><th>Team</th><th>Elo Rating</th><th>Record</th><th class="only-superwide-cell">Next</th></tr>
 <tr><td>1 <span class="slw">(+2)</span></td><td><a href="#Kansas-City-Chiefs-season-stats"><span class="ranking-name-full">Kansas City Chiefs</span><span class="ranking-name-abv">KC</span></a></td><td>1719 <span class="slw">(+9)</span></td><td>5-1</td><td class="only-superwide-cell"><small>vs LAC (1486): Fav</small></td></tr>
@@ -3704,8 +3705,8 @@ Contents <a name="top"></a>
 ### <a name="after-Reg-5"></a><small><a class="top-arw" href="#top">↑</a></small> Power Rankings After Week 5, 2023 Season
 
 <div class="row-toggle-and-table">
-        <input type="checkbox"/>
-        <a><small>show prev/next</small></a><a><small>hide prev/next</small></a>
+        <input class="hide-superwide" type="checkbox"/>
+        <a class="hide-superwide"><small>show prev/next</small></a><a class="hide-superwide"><small>hide prev/next</small></a>
         <table>
                 <tr><th>Rank</th><th>Team</th><th>Elo Rating</th><th>Record</th><th class="only-superwide-cell">Next</th></tr>
 <tr><td>1</td><td><a href="#Philadelphia-Eagles-season-stats"><span class="ranking-name-full">Philadelphia Eagles</span><span class="ranking-name-abv">PHI</span></a></td><td>1718 <span class="slw">(+24)</span></td><td>5-0</td><td class="only-superwide-cell"><small>at NYJ (1428): Fav</small></td></tr>
@@ -3938,8 +3939,8 @@ Contents <a name="top"></a>
 ### <a name="after-Reg-4"></a><small><a class="top-arw" href="#top">↑</a></small> Power Rankings After Week 4, 2023 Season
 
 <div class="row-toggle-and-table">
-        <input type="checkbox"/>
-        <a><small>show prev/next</small></a><a><small>hide prev/next</small></a>
+        <input class="hide-superwide" type="checkbox"/>
+        <a class="hide-superwide"><small>show prev/next</small></a><a class="hide-superwide"><small>hide prev/next</small></a>
         <table>
                 <tr><th>Rank</th><th>Team</th><th>Elo Rating</th><th>Record</th><th class="only-superwide-cell">Next</th></tr>
 <tr><td>1 <span class="slw">(+1)</span></td><td><a href="#Philadelphia-Eagles-season-stats"><span class="ranking-name-full">Philadelphia Eagles</span><span class="ranking-name-abv">PHI</span></a></td><td>1694 <span class="slw">(+19)</span></td><td>4-0</td><td class="only-superwide-cell"><small>at LAR (1469): Fav</small></td></tr>
@@ -4172,8 +4173,8 @@ Contents <a name="top"></a>
 ### <a name="after-Reg-3"></a><small><a class="top-arw" href="#top">↑</a></small> Power Rankings After Week 3, 2023 Season
 
 <div class="row-toggle-and-table">
-        <input type="checkbox"/>
-        <a><small>show prev/next</small></a><a><small>hide prev/next</small></a>
+        <input class="hide-superwide" type="checkbox"/>
+        <a class="hide-superwide"><small>show prev/next</small></a><a class="hide-superwide"><small>hide prev/next</small></a>
         <table>
                 <tr><th>Rank</th><th>Team</th><th>Elo Rating</th><th>Record</th><th class="only-superwide-cell">Next</th></tr>
 <tr><td>1</td><td><a href="#San-Francisco-49ers-season-stats"><span class="ranking-name-full">San Francisco 49ers</span><span class="ranking-name-abv">SF</span></a></td><td>1681 <span class="slw">(+22)</span></td><td>3-0</td><td class="only-superwide-cell"><small>vs ARI (1419): Fav</small></td></tr>
@@ -4406,8 +4407,8 @@ Contents <a name="top"></a>
 ### <a name="after-Reg-2"></a><small><a class="top-arw" href="#top">↑</a></small> Power Rankings After Week 2, 2023 Season
 
 <div class="row-toggle-and-table">
-        <input type="checkbox"/>
-        <a><small>show prev/next</small></a><a><small>hide prev/next</small></a>
+        <input class="hide-superwide" type="checkbox"/>
+        <a class="hide-superwide"><small>show prev/next</small></a><a class="hide-superwide"><small>hide prev/next</small></a>
         <table>
                 <tr><th>Rank</th><th>Team</th><th>Elo Rating</th><th>Record</th><th class="only-superwide-cell">Next</th></tr>
 <tr><td>1</td><td><a href="#San-Francisco-49ers-season-stats"><span class="ranking-name-full">San Francisco 49ers</span><span class="ranking-name-abv">SF</span></a></td><td>1659 <span class="slw">(+29)</span></td><td>2-0</td><td class="only-superwide-cell"><small>vs NYG (1528): Fav</small></td></tr>
@@ -4640,8 +4641,8 @@ Contents <a name="top"></a>
 ### <a name="after-Reg-1"></a><small><a class="top-arw" href="#top">↑</a></small> Power Rankings After Week 1, 2023 Season
 
 <div class="row-toggle-and-table">
-        <input type="checkbox"/>
-        <a><small>show prev/next</small></a><a><small>hide prev/next</small></a>
+        <input class="hide-superwide" type="checkbox"/>
+        <a class="hide-superwide"><small>show prev/next</small></a><a class="hide-superwide"><small>hide prev/next</small></a>
         <table>
                 <tr><th>Rank</th><th>Team</th><th>Elo Rating</th><th>Record</th><th class="only-superwide-cell">Next</th></tr>
 <tr><td>1 <span class="slw">(+2)</span></td><td><a href="#San-Francisco-49ers-season-stats"><span class="ranking-name-full">San Francisco 49ers</span><span class="ranking-name-abv">SF</span></a></td><td>1630 <span class="slw">(+18)</span></td><td>1-0</td><td class="only-superwide-cell"><small>at LAR (1474): Fav</small></td></tr>
@@ -4874,8 +4875,8 @@ Contents <a name="top"></a>
 ### <a name="before-Reg-1"></a><small><a class="top-arw" href="#top">↑</a></small> Preseason Power Rankings, 2023 season:
 
 <div class="row-toggle-and-table">
-        <input type="checkbox"/>
-        <a><small>show prev/next</small></a><a><small>hide prev/next</small></a>
+        <input class="hide-superwide" type="checkbox"/>
+        <a class="hide-superwide"><small>show prev/next</small></a><a class="hide-superwide"><small>hide prev/next</small></a>
         <table>
                 <tr><th>Rank</th><th>Team</th><th>Elo Rating</th><th>Record</th><th class="only-superwide-cell">Next</th></tr>
 <tr><td>1</td><td><a href="#Kansas-City-Chiefs-season-stats"><span class="ranking-name-full">Kansas City Chiefs</span><span class="ranking-name-abv">KC</span></a></td><td>1653</td><td>0-0</td><td class="only-superwide-cell"><small>vs DET (1504): Fav</small></td></tr>

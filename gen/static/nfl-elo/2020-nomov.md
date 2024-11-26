@@ -140,6 +140,7 @@
         @media screen and (min-width: 120rem) {
                 .only-superwide-cell { display: table-cell; }
                 .only-superwide { display: inherit; }
+                .row-toggle-and-table .hide-superwide { display: none; }
                 td { padding: 0.1rem 1.2rem 0.1rem 1.2rem; }
         }
 </style>
@@ -421,8 +422,8 @@ Contents <a name="top"></a>
 ### <a name="after-Playoffs-Super-Bowl"></a><small><a class="top-arw" href="#top">↑</a></small> Power Rankings After Playoffs Super Bowl, 2020 Season
 
 <div class="row-toggle-and-table">
-        <input type="checkbox"/>
-        <a><small>show prev/next</small></a><a><small>hide prev/next</small></a>
+        <input class="hide-superwide" type="checkbox"/>
+        <a class="hide-superwide"><small>show prev/next</small></a><a class="hide-superwide"><small>hide prev/next</small></a>
         <table>
                 <tr><th>Rank</th><th>Team</th><th>Elo Rating</th><th>Record</th><th class="only-superwide-cell">Next</th></tr>
 <tr><td>1</td><td><a href="#Kansas-City-Chiefs-season-stats"><span class="ranking-name-full">Kansas City Chiefs</span><span class="ranking-name-abv">KC</span></a></td><td>1809 <span class="slw">(-35)</span></td><td>16-3</td><td class="only-superwide-cell"><small></small></td></tr>
@@ -469,8 +470,8 @@ Contents <a name="top"></a>
 ### <a name="after-Playoffs-Championship"></a><small><a class="top-arw" href="#top">↑</a></small> Power Rankings After Playoffs Championship, 2020 Season
 
 <div class="row-toggle-and-table">
-        <input type="checkbox"/>
-        <a><small>show prev/next</small></a><a><small>hide prev/next</small></a>
+        <input class="hide-superwide" type="checkbox"/>
+        <a class="hide-superwide"><small>show prev/next</small></a><a class="hide-superwide"><small>hide prev/next</small></a>
         <table>
                 <tr><th>Rank</th><th>Team</th><th>Elo Rating</th><th>Record</th><th class="only-superwide-cell">Next</th></tr>
 <tr><td>1</td><td><a href="#Kansas-City-Chiefs-season-stats"><span class="ranking-name-full">Kansas City Chiefs</span><span class="ranking-name-abv">KC</span></a></td><td>1844 <span class="slw">(+26)</span></td><td>16-2</td><td class="only-superwide-cell"><small>at TB (1733): Fav</small></td></tr>
@@ -529,8 +530,8 @@ Contents <a name="top"></a>
 ### <a name="after-Playoffs-Divisional"></a><small><a class="top-arw" href="#top">↑</a></small> Power Rankings After Playoffs Divisional, 2020 Season
 
 <div class="row-toggle-and-table">
-        <input type="checkbox"/>
-        <a><small>show prev/next</small></a><a><small>hide prev/next</small></a>
+        <input class="hide-superwide" type="checkbox"/>
+        <a class="hide-superwide"><small>show prev/next</small></a><a class="hide-superwide"><small>hide prev/next</small></a>
         <table>
                 <tr><th>Rank</th><th>Team</th><th>Elo Rating</th><th>Record</th><th class="only-superwide-cell">Next</th></tr>
 <tr><td>1</td><td><a href="#Kansas-City-Chiefs-season-stats"><span class="ranking-name-full">Kansas City Chiefs</span><span class="ranking-name-abv">KC</span></a></td><td>1818 <span class="slw">(+14)</span></td><td>15-2</td><td class="only-superwide-cell"><small>vs BUF (1782): Fav</small></td></tr>
@@ -607,11 +608,14 @@ Contents <a name="top"></a>
 ### <a name="after-Playoffs-Wildcard"></a><small><a class="top-arw" href="#top">↑</a></small> Power Rankings After Playoffs Wildcard, 2020 Season
 
 <div class="row-toggle-and-table">
-        <input type="checkbox"/>
-        <a><small>show prev/next</small></a><a><small>hide prev/next</small></a>
+        <input class="hide-superwide" type="checkbox"/>
+        <a class="hide-superwide"><small>show prev/next</small></a><a class="hide-superwide"><small>hide prev/next</small></a>
         <table>
                 <tr><th>Rank</th><th>Team</th><th>Elo Rating</th><th>Record</th><th class="only-superwide-cell">Next</th></tr>
 <tr><td>1</td><td><a href="#Kansas-City-Chiefs-season-stats"><span class="ranking-name-full">Kansas City Chiefs</span><span class="ranking-name-abv">KC</span></a></td><td>1804</td><td>14-2</td><td class="only-superwide-cell"><small>vs CLE (1633): Fav</small></td></tr>
+<tr class="collapsible">
+        <td colspan="4"><small>prev: (bye)</small></td>
+</tr>
 <tr class="collapsible">
         <td colspan="4"><small>next: vs <span class="ranking-name-full">Cleveland Browns</span><span class="ranking-name-abv">CLE</span> (1633): Favorite</small></td>
 </tr>
@@ -623,6 +627,9 @@ Contents <a name="top"></a>
         <td colspan="4"><small>next: vs <span class="ranking-name-full">Baltimore Ravens</span><span class="ranking-name-abv">BAL</span> (1708): Favorite</small></td>
 </tr>
 <tr><td>3 <span class="slw">(-1)</span></td><td><a href="#Green-Bay-Packers-season-stats"><span class="ranking-name-full">Green Bay Packers</span><span class="ranking-name-abv">GB</span></a></td><td>1739</td><td>13-3</td><td class="only-superwide-cell"><small>vs LAR (1619): Fav</small></td></tr>
+<tr class="collapsible">
+        <td colspan="4"><small>prev: (bye)</small></td>
+</tr>
 <tr class="collapsible">
         <td colspan="4"><small>next: vs <span class="ranking-name-full">Los Angeles Rams</span><span class="ranking-name-abv">LAR</span> (1619): Favorite</small></td>
 </tr>
@@ -709,17 +716,23 @@ Contents <a name="top"></a>
 ### <a name="after-Reg-17"></a><small><a class="top-arw" href="#top">↑</a></small> Power Rankings After Week 17, 2020 Season
 
 <div class="row-toggle-and-table">
-        <input type="checkbox"/>
-        <a><small>show prev/next</small></a><a><small>hide prev/next</small></a>
+        <input class="hide-superwide" type="checkbox"/>
+        <a class="hide-superwide"><small>show prev/next</small></a><a class="hide-superwide"><small>hide prev/next</small></a>
         <table>
                 <tr><th>Rank</th><th>Team</th><th>Elo Rating</th><th>Record</th><th class="only-superwide-cell">Next</th></tr>
-<tr><td>1</td><td><a href="#Kansas-City-Chiefs-season-stats"><span class="ranking-name-full">Kansas City Chiefs</span><span class="ranking-name-abv">KC</span></a></td><td>1804 <span class="slw">(-55)</span></td><td>14-2</td><td class="only-superwide-cell"><small></small></td></tr>
+<tr><td>1</td><td><a href="#Kansas-City-Chiefs-season-stats"><span class="ranking-name-full">Kansas City Chiefs</span><span class="ranking-name-abv">KC</span></a></td><td>1804 <span class="slw">(-55)</span></td><td>14-2</td><td class="only-superwide-cell"><small>bye</small></td></tr>
 <tr class="collapsible">
         <td colspan="4"><small>prev: vs <span class="ranking-name-full">Los Angeles Chargers</span><span class="ranking-name-abv">LAC</span> (1400): <b>L</b> 21-38: <b>1859-55→1804</b></small></td>
 </tr>
-<tr><td>2</td><td><a href="#Green-Bay-Packers-season-stats"><span class="ranking-name-full">Green Bay Packers</span><span class="ranking-name-abv">GB</span></a></td><td>1739 <span class="slw">(+22)</span></td><td>13-3</td><td class="only-superwide-cell"><small></small></td></tr>
+<tr class="collapsible">
+        <td colspan="4"><small>next: (bye)</small></td>
+</tr>
+<tr><td>2</td><td><a href="#Green-Bay-Packers-season-stats"><span class="ranking-name-full">Green Bay Packers</span><span class="ranking-name-abv">GB</span></a></td><td>1739 <span class="slw">(+22)</span></td><td>13-3</td><td class="only-superwide-cell"><small>bye</small></td></tr>
 <tr class="collapsible">
         <td colspan="4"><small>prev: at <span class="ranking-name-full">Chicago Bears</span><span class="ranking-name-abv">CHI</span> (1509): <b>W</b> 35-16: <b>1717+22→1739</b></small></td>
+</tr>
+<tr class="collapsible">
+        <td colspan="4"><small>next: (bye)</small></td>
 </tr>
 <tr><td>3</td><td><a href="#Buffalo-Bills-season-stats"><span class="ranking-name-full">Buffalo Bills</span><span class="ranking-name-abv">BUF</span></a></td><td>1738 <span class="slw">(+21)</span></td><td>13-3</td><td class="only-superwide-cell"><small>vs IND (1637): Fav</small></td></tr>
 <tr class="collapsible">
@@ -883,8 +896,8 @@ Contents <a name="top"></a>
 ### <a name="after-Reg-16"></a><small><a class="top-arw" href="#top">↑</a></small> Power Rankings After Week 16, 2020 Season
 
 <div class="row-toggle-and-table">
-        <input type="checkbox"/>
-        <a><small>show prev/next</small></a><a><small>hide prev/next</small></a>
+        <input class="hide-superwide" type="checkbox"/>
+        <a class="hide-superwide"><small>show prev/next</small></a><a class="hide-superwide"><small>hide prev/next</small></a>
         <table>
                 <tr><th>Rank</th><th>Team</th><th>Elo Rating</th><th>Record</th><th class="only-superwide-cell">Next</th></tr>
 <tr><td>1</td><td><a href="#Kansas-City-Chiefs-season-stats"><span class="ranking-name-full">Kansas City Chiefs</span><span class="ranking-name-abv">KC</span></a></td><td>1859 <span class="slw">(+5)</span></td><td>14-1</td><td class="only-superwide-cell"><small>vs LAC (1400): Fav</small></td></tr>
@@ -1117,8 +1130,8 @@ Contents <a name="top"></a>
 ### <a name="after-Reg-15"></a><small><a class="top-arw" href="#top">↑</a></small> Power Rankings After Week 15, 2020 Season
 
 <div class="row-toggle-and-table">
-        <input type="checkbox"/>
-        <a><small>show prev/next</small></a><a><small>hide prev/next</small></a>
+        <input class="hide-superwide" type="checkbox"/>
+        <a class="hide-superwide"><small>show prev/next</small></a><a class="hide-superwide"><small>hide prev/next</small></a>
         <table>
                 <tr><th>Rank</th><th>Team</th><th>Elo Rating</th><th>Record</th><th class="only-superwide-cell">Next</th></tr>
 <tr><td>1</td><td><a href="#Kansas-City-Chiefs-season-stats"><span class="ranking-name-full">Kansas City Chiefs</span><span class="ranking-name-abv">KC</span></a></td><td>1854 <span class="slw">(+26)</span></td><td>13-1</td><td class="only-superwide-cell"><small>vs ATL (1380): Fav</small></td></tr>
@@ -1351,8 +1364,8 @@ Contents <a name="top"></a>
 ### <a name="after-Reg-14"></a><small><a class="top-arw" href="#top">↑</a></small> Power Rankings After Week 14, 2020 Season
 
 <div class="row-toggle-and-table">
-        <input type="checkbox"/>
-        <a><small>show prev/next</small></a><a><small>hide prev/next</small></a>
+        <input class="hide-superwide" type="checkbox"/>
+        <a class="hide-superwide"><small>show prev/next</small></a><a class="hide-superwide"><small>hide prev/next</small></a>
         <table>
                 <tr><th>Rank</th><th>Team</th><th>Elo Rating</th><th>Record</th><th class="only-superwide-cell">Next</th></tr>
 <tr><td>1</td><td><a href="#Kansas-City-Chiefs-season-stats"><span class="ranking-name-full">Kansas City Chiefs</span><span class="ranking-name-abv">KC</span></a></td><td>1828 <span class="slw">(+21)</span></td><td>12-1</td><td class="only-superwide-cell"><small>at NO (1699): Fav</small></td></tr>
@@ -1585,8 +1598,8 @@ Contents <a name="top"></a>
 ### <a name="after-Reg-13"></a><small><a class="top-arw" href="#top">↑</a></small> Power Rankings After Week 13, 2020 Season
 
 <div class="row-toggle-and-table">
-        <input type="checkbox"/>
-        <a><small>show prev/next</small></a><a><small>hide prev/next</small></a>
+        <input class="hide-superwide" type="checkbox"/>
+        <a class="hide-superwide"><small>show prev/next</small></a><a class="hide-superwide"><small>hide prev/next</small></a>
         <table>
                 <tr><th>Rank</th><th>Team</th><th>Elo Rating</th><th>Record</th><th class="only-superwide-cell">Next</th></tr>
 <tr><td>1</td><td><a href="#Kansas-City-Chiefs-season-stats"><span class="ranking-name-full">Kansas City Chiefs</span><span class="ranking-name-abv">KC</span></a></td><td>1807 <span class="slw">(+10)</span></td><td>11-1</td><td class="only-superwide-cell"><small>at MIA (1569): Fav</small></td></tr>
@@ -1819,8 +1832,8 @@ Contents <a name="top"></a>
 ### <a name="after-Reg-12"></a><small><a class="top-arw" href="#top">↑</a></small> Power Rankings After Week 12, 2020 Season
 
 <div class="row-toggle-and-table">
-        <input type="checkbox"/>
-        <a><small>show prev/next</small></a><a><small>hide prev/next</small></a>
+        <input class="hide-superwide" type="checkbox"/>
+        <a class="hide-superwide"><small>show prev/next</small></a><a class="hide-superwide"><small>hide prev/next</small></a>
         <table>
                 <tr><th>Rank</th><th>Team</th><th>Elo Rating</th><th>Record</th><th class="only-superwide-cell">Next</th></tr>
 <tr><td>1</td><td><a href="#Kansas-City-Chiefs-season-stats"><span class="ranking-name-full">Kansas City Chiefs</span><span class="ranking-name-abv">KC</span></a></td><td>1797 <span class="slw">(+22)</span></td><td>10-1</td><td class="only-superwide-cell"><small>vs DEN (1444): Fav</small></td></tr>
@@ -2053,8 +2066,8 @@ Contents <a name="top"></a>
 ### <a name="after-Reg-11"></a><small><a class="top-arw" href="#top">↑</a></small> Power Rankings After Week 11, 2020 Season
 
 <div class="row-toggle-and-table">
-        <input type="checkbox"/>
-        <a><small>show prev/next</small></a><a><small>hide prev/next</small></a>
+        <input class="hide-superwide" type="checkbox"/>
+        <a class="hide-superwide"><small>show prev/next</small></a><a class="hide-superwide"><small>hide prev/next</small></a>
         <table>
                 <tr><th>Rank</th><th>Team</th><th>Elo Rating</th><th>Record</th><th class="only-superwide-cell">Next</th></tr>
 <tr><td>1</td><td><a href="#Kansas-City-Chiefs-season-stats"><span class="ranking-name-full">Kansas City Chiefs</span><span class="ranking-name-abv">KC</span></a></td><td>1775 <span class="slw">(+21)</span></td><td>9-1</td><td class="only-superwide-cell"><small>at TB (1579): Fav</small></td></tr>
@@ -2287,8 +2300,8 @@ Contents <a name="top"></a>
 ### <a name="after-Reg-10"></a><small><a class="top-arw" href="#top">↑</a></small> Power Rankings After Week 10, 2020 Season
 
 <div class="row-toggle-and-table">
-        <input type="checkbox"/>
-        <a><small>show prev/next</small></a><a><small>hide prev/next</small></a>
+        <input class="hide-superwide" type="checkbox"/>
+        <a class="hide-superwide"><small>show prev/next</small></a><a class="hide-superwide"><small>hide prev/next</small></a>
         <table>
                 <tr><th>Rank</th><th>Team</th><th>Elo Rating</th><th>Record</th><th class="only-superwide-cell">Next</th></tr>
 <tr><td>1</td><td><a href="#Kansas-City-Chiefs-season-stats"><span class="ranking-name-full">Kansas City Chiefs</span><span class="ranking-name-abv">KC</span></a></td><td>1754</td><td>8-1</td><td class="only-superwide-cell"><small>at LV (1568): Fav</small></td></tr>
@@ -2521,8 +2534,8 @@ Contents <a name="top"></a>
 ### <a name="after-Reg-9"></a><small><a class="top-arw" href="#top">↑</a></small> Power Rankings After Week 9, 2020 Season
 
 <div class="row-toggle-and-table">
-        <input type="checkbox"/>
-        <a><small>show prev/next</small></a><a><small>hide prev/next</small></a>
+        <input class="hide-superwide" type="checkbox"/>
+        <a class="hide-superwide"><small>show prev/next</small></a><a class="hide-superwide"><small>hide prev/next</small></a>
         <table>
                 <tr><th>Rank</th><th>Team</th><th>Elo Rating</th><th>Record</th><th class="only-superwide-cell">Next</th></tr>
 <tr><td>1</td><td><a href="#Kansas-City-Chiefs-season-stats"><span class="ranking-name-full">Kansas City Chiefs</span><span class="ranking-name-abv">KC</span></a></td><td>1754 <span class="slw">(+14)</span></td><td>8-1</td><td class="only-superwide-cell"><small>bye</small></td></tr>
@@ -2755,8 +2768,8 @@ Contents <a name="top"></a>
 ### <a name="after-Reg-8"></a><small><a class="top-arw" href="#top">↑</a></small> Power Rankings After Week 8, 2020 Season
 
 <div class="row-toggle-and-table">
-        <input type="checkbox"/>
-        <a><small>show prev/next</small></a><a><small>hide prev/next</small></a>
+        <input class="hide-superwide" type="checkbox"/>
+        <a class="hide-superwide"><small>show prev/next</small></a><a class="hide-superwide"><small>hide prev/next</small></a>
         <table>
                 <tr><th>Rank</th><th>Team</th><th>Elo Rating</th><th>Record</th><th class="only-superwide-cell">Next</th></tr>
 <tr><td>1</td><td><a href="#Kansas-City-Chiefs-season-stats"><span class="ranking-name-full">Kansas City Chiefs</span><span class="ranking-name-abv">KC</span></a></td><td>1740 <span class="slw">(+7)</span></td><td>7-1</td><td class="only-superwide-cell"><small>vs CAR (1411): Fav</small></td></tr>
@@ -2989,8 +3002,8 @@ Contents <a name="top"></a>
 ### <a name="after-Reg-7"></a><small><a class="top-arw" href="#top">↑</a></small> Power Rankings After Week 7, 2020 Season
 
 <div class="row-toggle-and-table">
-        <input type="checkbox"/>
-        <a><small>show prev/next</small></a><a><small>hide prev/next</small></a>
+        <input class="hide-superwide" type="checkbox"/>
+        <a class="hide-superwide"><small>show prev/next</small></a><a class="hide-superwide"><small>hide prev/next</small></a>
         <table>
                 <tr><th>Rank</th><th>Team</th><th>Elo Rating</th><th>Record</th><th class="only-superwide-cell">Next</th></tr>
 <tr><td>1</td><td><a href="#Kansas-City-Chiefs-season-stats"><span class="ranking-name-full">Kansas City Chiefs</span><span class="ranking-name-abv">KC</span></a></td><td>1733 <span class="slw">(+24)</span></td><td>6-1</td><td class="only-superwide-cell"><small>vs NYJ (1275): Fav</small></td></tr>
@@ -3223,8 +3236,8 @@ Contents <a name="top"></a>
 ### <a name="after-Reg-6"></a><small><a class="top-arw" href="#top">↑</a></small> Power Rankings After Week 6, 2020 Season
 
 <div class="row-toggle-and-table">
-        <input type="checkbox"/>
-        <a><small>show prev/next</small></a><a><small>hide prev/next</small></a>
+        <input class="hide-superwide" type="checkbox"/>
+        <a class="hide-superwide"><small>show prev/next</small></a><a class="hide-superwide"><small>hide prev/next</small></a>
         <table>
                 <tr><th>Rank</th><th>Team</th><th>Elo Rating</th><th>Record</th><th class="only-superwide-cell">Next</th></tr>
 <tr><td>1 <span class="slw">(+1)</span></td><td><a href="#Kansas-City-Chiefs-season-stats"><span class="ranking-name-full">Kansas City Chiefs</span><span class="ranking-name-abv">KC</span></a></td><td>1709 <span class="slw">(+31)</span></td><td>5-1</td><td class="only-superwide-cell"><small>at DEN (1486): Fav</small></td></tr>
@@ -3457,8 +3470,8 @@ Contents <a name="top"></a>
 ### <a name="after-Reg-5"></a><small><a class="top-arw" href="#top">↑</a></small> Power Rankings After Week 5, 2020 Season
 
 <div class="row-toggle-and-table">
-        <input type="checkbox"/>
-        <a><small>show prev/next</small></a><a><small>hide prev/next</small></a>
+        <input class="hide-superwide" type="checkbox"/>
+        <a class="hide-superwide"><small>show prev/next</small></a><a class="hide-superwide"><small>hide prev/next</small></a>
         <table>
                 <tr><th>Rank</th><th>Team</th><th>Elo Rating</th><th>Record</th><th class="only-superwide-cell">Next</th></tr>
 <tr><td>1 <span class="slw">(+1)</span></td><td><a href="#Seattle-Seahawks-season-stats"><span class="ranking-name-full">Seattle Seahawks</span><span class="ranking-name-abv">SEA</span></a></td><td>1701 <span class="slw">(+22)</span></td><td>5-0</td><td class="only-superwide-cell"><small>bye</small></td></tr>
@@ -3691,8 +3704,8 @@ Contents <a name="top"></a>
 ### <a name="after-Reg-4"></a><small><a class="top-arw" href="#top">↑</a></small> Power Rankings After Week 4, 2020 Season
 
 <div class="row-toggle-and-table">
-        <input type="checkbox"/>
-        <a><small>show prev/next</small></a><a><small>hide prev/next</small></a>
+        <input class="hide-superwide" type="checkbox"/>
+        <a class="hide-superwide"><small>show prev/next</small></a><a class="hide-superwide"><small>hide prev/next</small></a>
         <table>
                 <tr><th>Rank</th><th>Team</th><th>Elo Rating</th><th>Record</th><th class="only-superwide-cell">Next</th></tr>
 <tr><td>1</td><td><a href="#Kansas-City-Chiefs-season-stats"><span class="ranking-name-full">Kansas City Chiefs</span><span class="ranking-name-abv">KC</span></a></td><td>1735 <span class="slw">(+21)</span></td><td>4-0</td><td class="only-superwide-cell"><small>vs LV (1462): Fav</small></td></tr>
@@ -3925,8 +3938,8 @@ Contents <a name="top"></a>
 ### <a name="after-Reg-3"></a><small><a class="top-arw" href="#top">↑</a></small> Power Rankings After Week 3, 2020 Season
 
 <div class="row-toggle-and-table">
-        <input type="checkbox"/>
-        <a><small>show prev/next</small></a><a><small>hide prev/next</small></a>
+        <input class="hide-superwide" type="checkbox"/>
+        <a class="hide-superwide"><small>show prev/next</small></a><a class="hide-superwide"><small>hide prev/next</small></a>
         <table>
                 <tr><th>Rank</th><th>Team</th><th>Elo Rating</th><th>Record</th><th class="only-superwide-cell">Next</th></tr>
 <tr><td>1</td><td><a href="#Kansas-City-Chiefs-season-stats"><span class="ranking-name-full">Kansas City Chiefs</span><span class="ranking-name-abv">KC</span></a></td><td>1714 <span class="slw">(+43)</span></td><td>3-0</td><td class="only-superwide-cell"><small>vs NE (1568): Fav</small></td></tr>
@@ -4159,8 +4172,8 @@ Contents <a name="top"></a>
 ### <a name="after-Reg-2"></a><small><a class="top-arw" href="#top">↑</a></small> Power Rankings After Week 2, 2020 Season
 
 <div class="row-toggle-and-table">
-        <input type="checkbox"/>
-        <a><small>show prev/next</small></a><a><small>hide prev/next</small></a>
+        <input class="hide-superwide" type="checkbox"/>
+        <a class="hide-superwide"><small>show prev/next</small></a><a class="hide-superwide"><small>hide prev/next</small></a>
         <table>
                 <tr><th>Rank</th><th>Team</th><th>Elo Rating</th><th>Record</th><th class="only-superwide-cell">Next</th></tr>
 <tr><td>1</td><td><a href="#Kansas-City-Chiefs-season-stats"><span class="ranking-name-full">Kansas City Chiefs</span><span class="ranking-name-abv">KC</span></a></td><td>1671 <span class="slw">(+24)</span></td><td>2-0</td><td class="only-superwide-cell"><small>at BAL (1659): 'Dog</small></td></tr>
@@ -4393,8 +4406,8 @@ Contents <a name="top"></a>
 ### <a name="after-Reg-1"></a><small><a class="top-arw" href="#top">↑</a></small> Power Rankings After Week 1, 2020 Season
 
 <div class="row-toggle-and-table">
-        <input type="checkbox"/>
-        <a><small>show prev/next</small></a><a><small>hide prev/next</small></a>
+        <input class="hide-superwide" type="checkbox"/>
+        <a class="hide-superwide"><small>show prev/next</small></a><a class="hide-superwide"><small>hide prev/next</small></a>
         <table>
                 <tr><th>Rank</th><th>Team</th><th>Elo Rating</th><th>Record</th><th class="only-superwide-cell">Next</th></tr>
 <tr><td>1</td><td><a href="#Kansas-City-Chiefs-season-stats"><span class="ranking-name-full">Kansas City Chiefs</span><span class="ranking-name-abv">KC</span></a></td><td>1647 <span class="slw">(+14)</span></td><td>1-0</td><td class="only-superwide-cell"><small>at LAC (1459): Fav</small></td></tr>
@@ -4627,8 +4640,8 @@ Contents <a name="top"></a>
 ### <a name="before-Reg-1"></a><small><a class="top-arw" href="#top">↑</a></small> Preseason Power Rankings, 2020 season:
 
 <div class="row-toggle-and-table">
-        <input type="checkbox"/>
-        <a><small>show prev/next</small></a><a><small>hide prev/next</small></a>
+        <input class="hide-superwide" type="checkbox"/>
+        <a class="hide-superwide"><small>show prev/next</small></a><a class="hide-superwide"><small>hide prev/next</small></a>
         <table>
                 <tr><th>Rank</th><th>Team</th><th>Elo Rating</th><th>Record</th><th class="only-superwide-cell">Next</th></tr>
 <tr><td>1</td><td><a href="#Kansas-City-Chiefs-season-stats"><span class="ranking-name-full">Kansas City Chiefs</span><span class="ranking-name-abv">KC</span></a></td><td>1633</td><td>0-0</td><td class="only-superwide-cell"><small>vs HOU (1557): Fav</small></td></tr>

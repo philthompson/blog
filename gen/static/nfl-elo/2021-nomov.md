@@ -140,6 +140,7 @@
         @media screen and (min-width: 120rem) {
                 .only-superwide-cell { display: table-cell; }
                 .only-superwide { display: inherit; }
+                .row-toggle-and-table .hide-superwide { display: none; }
                 td { padding: 0.1rem 1.2rem 0.1rem 1.2rem; }
         }
 </style>
@@ -422,8 +423,8 @@ Contents <a name="top"></a>
 ### <a name="after-Playoffs-Super-Bowl"></a><small><a class="top-arw" href="#top">↑</a></small> Power Rankings After Playoffs Super Bowl, 2021 Season
 
 <div class="row-toggle-and-table">
-        <input type="checkbox"/>
-        <a><small>show prev/next</small></a><a><small>hide prev/next</small></a>
+        <input class="hide-superwide" type="checkbox"/>
+        <a class="hide-superwide"><small>show prev/next</small></a><a class="hide-superwide"><small>hide prev/next</small></a>
         <table>
                 <tr><th>Rank</th><th>Team</th><th>Elo Rating</th><th>Record</th><th class="only-superwide-cell">Next</th></tr>
 <tr><td>1</td><td><a href="#Los-Angeles-Rams-season-stats"><span class="ranking-name-full">Los Angeles Rams</span><span class="ranking-name-abv">LAR</span></a></td><td>1764 <span class="slw">(+21)</span></td><td>16-5</td><td class="only-superwide-cell"><small></small></td></tr>
@@ -470,8 +471,8 @@ Contents <a name="top"></a>
 ### <a name="after-Playoffs-Championship"></a><small><a class="top-arw" href="#top">↑</a></small> Power Rankings After Playoffs Championship, 2021 Season
 
 <div class="row-toggle-and-table">
-        <input type="checkbox"/>
-        <a><small>show prev/next</small></a><a><small>hide prev/next</small></a>
+        <input class="hide-superwide" type="checkbox"/>
+        <a class="hide-superwide"><small>show prev/next</small></a><a class="hide-superwide"><small>hide prev/next</small></a>
         <table>
                 <tr><th>Rank</th><th>Team</th><th>Elo Rating</th><th>Record</th><th class="only-superwide-cell">Next</th></tr>
 <tr><td>1 <span class="slw">(+1)</span></td><td><a href="#Los-Angeles-Rams-season-stats"><span class="ranking-name-full">Los Angeles Rams</span><span class="ranking-name-abv">LAR</span></a></td><td>1743 <span class="slw">(+24)</span></td><td>15-5</td><td class="only-superwide-cell"><small>vs CIN (1643): Fav</small></td></tr>
@@ -530,8 +531,8 @@ Contents <a name="top"></a>
 ### <a name="after-Playoffs-Divisional"></a><small><a class="top-arw" href="#top">↑</a></small> Power Rankings After Playoffs Divisional, 2021 Season
 
 <div class="row-toggle-and-table">
-        <input type="checkbox"/>
-        <a><small>show prev/next</small></a><a><small>hide prev/next</small></a>
+        <input class="hide-superwide" type="checkbox"/>
+        <a class="hide-superwide"><small>show prev/next</small></a><a class="hide-superwide"><small>hide prev/next</small></a>
         <table>
                 <tr><th>Rank</th><th>Team</th><th>Elo Rating</th><th>Record</th><th class="only-superwide-cell">Next</th></tr>
 <tr><td>1 <span class="slw">(+1)</span></td><td><a href="#Kansas-City-Chiefs-season-stats"><span class="ranking-name-full">Kansas City Chiefs</span><span class="ranking-name-abv">KC</span></a></td><td>1753 <span class="slw">(+25)</span></td><td>14-5</td><td class="only-superwide-cell"><small>vs CIN (1598): Fav</small></td></tr>
@@ -608,8 +609,8 @@ Contents <a name="top"></a>
 ### <a name="after-Playoffs-Wildcard"></a><small><a class="top-arw" href="#top">↑</a></small> Power Rankings After Playoffs Wildcard, 2021 Season
 
 <div class="row-toggle-and-table">
-        <input type="checkbox"/>
-        <a><small>show prev/next</small></a><a><small>hide prev/next</small></a>
+        <input class="hide-superwide" type="checkbox"/>
+        <a class="hide-superwide"><small>show prev/next</small></a><a class="hide-superwide"><small>hide prev/next</small></a>
         <table>
                 <tr><th>Rank</th><th>Team</th><th>Elo Rating</th><th>Record</th><th class="only-superwide-cell">Next</th></tr>
 <tr><td>1</td><td><a href="#Green-Bay-Packers-season-stats"><span class="ranking-name-full">Green Bay Packers</span><span class="ranking-name-abv">GB</span></a></td><td>1736</td><td>13-4</td><td class="only-superwide-cell"><small>vs SF (1609): Fav</small></td></tr>
@@ -716,13 +717,16 @@ Contents <a name="top"></a>
 ### <a name="after-Reg-18"></a><small><a class="top-arw" href="#top">↑</a></small> Power Rankings After Week 18, 2021 Season
 
 <div class="row-toggle-and-table">
-        <input type="checkbox"/>
-        <a><small>show prev/next</small></a><a><small>hide prev/next</small></a>
+        <input class="hide-superwide" type="checkbox"/>
+        <a class="hide-superwide"><small>show prev/next</small></a><a class="hide-superwide"><small>hide prev/next</small></a>
         <table>
                 <tr><th>Rank</th><th>Team</th><th>Elo Rating</th><th>Record</th><th class="only-superwide-cell">Next</th></tr>
-<tr><td>1</td><td><a href="#Green-Bay-Packers-season-stats"><span class="ranking-name-full">Green Bay Packers</span><span class="ranking-name-abv">GB</span></a></td><td>1736 <span class="slw">(-50)</span></td><td>13-4</td><td class="only-superwide-cell"><small></small></td></tr>
+<tr><td>1</td><td><a href="#Green-Bay-Packers-season-stats"><span class="ranking-name-full">Green Bay Packers</span><span class="ranking-name-abv">GB</span></a></td><td>1736 <span class="slw">(-50)</span></td><td>13-4</td><td class="only-superwide-cell"><small>bye</small></td></tr>
 <tr class="collapsible">
         <td colspan="4"><small>prev: at <span class="ranking-name-full">Detroit Lions</span><span class="ranking-name-abv">DET</span> (1247): <b>L</b> 30-37: <b>1786-50→1736</b></small></td>
+</tr>
+<tr class="collapsible">
+        <td colspan="4"><small>next: (bye)</small></td>
 </tr>
 <tr><td>2 <span class="slw">(+2)</span></td><td><a href="#Kansas-City-Chiefs-season-stats"><span class="ranking-name-full">Kansas City Chiefs</span><span class="ranking-name-abv">KC</span></a></td><td>1709 <span class="slw">(+18)</span></td><td>12-5</td><td class="only-superwide-cell"><small>vs PIT (1587): Fav</small></td></tr>
 <tr class="collapsible">
@@ -738,9 +742,12 @@ Contents <a name="top"></a>
 <tr class="collapsible">
         <td colspan="4"><small>next: vs <span class="ranking-name-full">Philadelphia Eagles</span><span class="ranking-name-abv">PHI</span> (1487): Favorite</small></td>
 </tr>
-<tr><td>4 <span class="slw">(+1)</span></td><td><a href="#Tennessee-Titans-season-stats"><span class="ranking-name-full">Tennessee Titans</span><span class="ranking-name-abv">TEN</span></a></td><td>1676 <span class="slw">(+15)</span></td><td>12-5</td><td class="only-superwide-cell"><small></small></td></tr>
+<tr><td>4 <span class="slw">(+1)</span></td><td><a href="#Tennessee-Titans-season-stats"><span class="ranking-name-full">Tennessee Titans</span><span class="ranking-name-abv">TEN</span></a></td><td>1676 <span class="slw">(+15)</span></td><td>12-5</td><td class="only-superwide-cell"><small>bye</small></td></tr>
 <tr class="collapsible">
         <td colspan="4"><small>prev: at <span class="ranking-name-full">Houston Texans</span><span class="ranking-name-abv">HOU</span> (1291): <b>W</b> 28-25: <b>1661+15→1676</b></small></td>
+</tr>
+<tr class="collapsible">
+        <td colspan="4"><small>next: (bye)</small></td>
 </tr>
 <tr><td>5 <span class="slw">(-3)</span></td><td><a href="#Los-Angeles-Rams-season-stats"><span class="ranking-name-full">Los Angeles Rams</span><span class="ranking-name-abv">LAR</span></a></td><td>1661 <span class="slw">(-44)</span></td><td>12-5</td><td class="only-superwide-cell"><small>vs ARI (1551): Fav</small></td></tr>
 <tr class="collapsible">
@@ -890,8 +897,8 @@ Contents <a name="top"></a>
 ### <a name="after-Reg-17"></a><small><a class="top-arw" href="#top">↑</a></small> Power Rankings After Week 17, 2021 Season
 
 <div class="row-toggle-and-table">
-        <input type="checkbox"/>
-        <a><small>show prev/next</small></a><a><small>hide prev/next</small></a>
+        <input class="hide-superwide" type="checkbox"/>
+        <a class="hide-superwide"><small>show prev/next</small></a><a class="hide-superwide"><small>hide prev/next</small></a>
         <table>
                 <tr><th>Rank</th><th>Team</th><th>Elo Rating</th><th>Record</th><th class="only-superwide-cell">Next</th></tr>
 <tr><td>1</td><td><a href="#Green-Bay-Packers-season-stats"><span class="ranking-name-full">Green Bay Packers</span><span class="ranking-name-abv">GB</span></a></td><td>1786 <span class="slw">(+12)</span></td><td>13-3</td><td class="only-superwide-cell"><small>at DET (1247): Fav</small></td></tr>
@@ -1124,8 +1131,8 @@ Contents <a name="top"></a>
 ### <a name="after-Reg-16"></a><small><a class="top-arw" href="#top">↑</a></small> Power Rankings After Week 16, 2021 Season
 
 <div class="row-toggle-and-table">
-        <input type="checkbox"/>
-        <a><small>show prev/next</small></a><a><small>hide prev/next</small></a>
+        <input class="hide-superwide" type="checkbox"/>
+        <a class="hide-superwide"><small>show prev/next</small></a><a class="hide-superwide"><small>hide prev/next</small></a>
         <table>
                 <tr><th>Rank</th><th>Team</th><th>Elo Rating</th><th>Record</th><th class="only-superwide-cell">Next</th></tr>
 <tr><td>1</td><td><a href="#Green-Bay-Packers-season-stats"><span class="ranking-name-full">Green Bay Packers</span><span class="ranking-name-abv">GB</span></a></td><td>1774 <span class="slw">(+13)</span></td><td>12-3</td><td class="only-superwide-cell"><small>vs MIN (1498): Fav</small></td></tr>
@@ -1358,8 +1365,8 @@ Contents <a name="top"></a>
 ### <a name="after-Reg-15"></a><small><a class="top-arw" href="#top">↑</a></small> Power Rankings After Week 15, 2021 Season
 
 <div class="row-toggle-and-table">
-        <input type="checkbox"/>
-        <a><small>show prev/next</small></a><a><small>hide prev/next</small></a>
+        <input class="hide-superwide" type="checkbox"/>
+        <a class="hide-superwide"><small>show prev/next</small></a><a class="hide-superwide"><small>hide prev/next</small></a>
         <table>
                 <tr><th>Rank</th><th>Team</th><th>Elo Rating</th><th>Record</th><th class="only-superwide-cell">Next</th></tr>
 <tr><td>1</td><td><a href="#Green-Bay-Packers-season-stats"><span class="ranking-name-full">Green Bay Packers</span><span class="ranking-name-abv">GB</span></a></td><td>1761 <span class="slw">(+27)</span></td><td>11-3</td><td class="only-superwide-cell"><small>vs CLE (1526): Fav</small></td></tr>
@@ -1592,8 +1599,8 @@ Contents <a name="top"></a>
 ### <a name="after-Reg-14"></a><small><a class="top-arw" href="#top">↑</a></small> Power Rankings After Week 14, 2021 Season
 
 <div class="row-toggle-and-table">
-        <input type="checkbox"/>
-        <a><small>show prev/next</small></a><a><small>hide prev/next</small></a>
+        <input class="hide-superwide" type="checkbox"/>
+        <a class="hide-superwide"><small>show prev/next</small></a><a class="hide-superwide"><small>hide prev/next</small></a>
         <table>
                 <tr><th>Rank</th><th>Team</th><th>Elo Rating</th><th>Record</th><th class="only-superwide-cell">Next</th></tr>
 <tr><td>1</td><td><a href="#Green-Bay-Packers-season-stats"><span class="ranking-name-full">Green Bay Packers</span><span class="ranking-name-abv">GB</span></a></td><td>1734 <span class="slw">(+10)</span></td><td>10-3</td><td class="only-superwide-cell"><small>at BAL (1619): Fav</small></td></tr>
@@ -1826,8 +1833,8 @@ Contents <a name="top"></a>
 ### <a name="after-Reg-13"></a><small><a class="top-arw" href="#top">↑</a></small> Power Rankings After Week 13, 2021 Season
 
 <div class="row-toggle-and-table">
-        <input type="checkbox"/>
-        <a><small>show prev/next</small></a><a><small>hide prev/next</small></a>
+        <input class="hide-superwide" type="checkbox"/>
+        <a class="hide-superwide"><small>show prev/next</small></a><a class="hide-superwide"><small>hide prev/next</small></a>
         <table>
                 <tr><th>Rank</th><th>Team</th><th>Elo Rating</th><th>Record</th><th class="only-superwide-cell">Next</th></tr>
 <tr><td>1</td><td><a href="#Green-Bay-Packers-season-stats"><span class="ranking-name-full">Green Bay Packers</span><span class="ranking-name-abv">GB</span></a></td><td>1724</td><td>9-3</td><td class="only-superwide-cell"><small>vs CHI (1416): Fav</small></td></tr>
@@ -2060,8 +2067,8 @@ Contents <a name="top"></a>
 ### <a name="after-Reg-12"></a><small><a class="top-arw" href="#top">↑</a></small> Power Rankings After Week 12, 2021 Season
 
 <div class="row-toggle-and-table">
-        <input type="checkbox"/>
-        <a><small>show prev/next</small></a><a><small>hide prev/next</small></a>
+        <input class="hide-superwide" type="checkbox"/>
+        <a class="hide-superwide"><small>show prev/next</small></a><a class="hide-superwide"><small>hide prev/next</small></a>
         <table>
                 <tr><th>Rank</th><th>Team</th><th>Elo Rating</th><th>Record</th><th class="only-superwide-cell">Next</th></tr>
 <tr><td>1</td><td><a href="#Green-Bay-Packers-season-stats"><span class="ranking-name-full">Green Bay Packers</span><span class="ranking-name-abv">GB</span></a></td><td>1724 <span class="slw">(+22)</span></td><td>9-3</td><td class="only-superwide-cell"><small>bye</small></td></tr>
@@ -2294,8 +2301,8 @@ Contents <a name="top"></a>
 ### <a name="after-Reg-11"></a><small><a class="top-arw" href="#top">↑</a></small> Power Rankings After Week 11, 2021 Season
 
 <div class="row-toggle-and-table">
-        <input type="checkbox"/>
-        <a><small>show prev/next</small></a><a><small>hide prev/next</small></a>
+        <input class="hide-superwide" type="checkbox"/>
+        <a class="hide-superwide"><small>show prev/next</small></a><a class="hide-superwide"><small>hide prev/next</small></a>
         <table>
                 <tr><th>Rank</th><th>Team</th><th>Elo Rating</th><th>Record</th><th class="only-superwide-cell">Next</th></tr>
 <tr><td>1</td><td><a href="#Green-Bay-Packers-season-stats"><span class="ranking-name-full">Green Bay Packers</span><span class="ranking-name-abv">GB</span></a></td><td>1702 <span class="slw">(-33)</span></td><td>8-3</td><td class="only-superwide-cell"><small>vs LAR (1610): Fav</small></td></tr>
@@ -2528,8 +2535,8 @@ Contents <a name="top"></a>
 ### <a name="after-Reg-10"></a><small><a class="top-arw" href="#top">↑</a></small> Power Rankings After Week 10, 2021 Season
 
 <div class="row-toggle-and-table">
-        <input type="checkbox"/>
-        <a><small>show prev/next</small></a><a><small>hide prev/next</small></a>
+        <input class="hide-superwide" type="checkbox"/>
+        <a class="hide-superwide"><small>show prev/next</small></a><a class="hide-superwide"><small>hide prev/next</small></a>
         <table>
                 <tr><th>Rank</th><th>Team</th><th>Elo Rating</th><th>Record</th><th class="only-superwide-cell">Next</th></tr>
 <tr><td>1</td><td><a href="#Green-Bay-Packers-season-stats"><span class="ranking-name-full">Green Bay Packers</span><span class="ranking-name-abv">GB</span></a></td><td>1735 <span class="slw">(+16)</span></td><td>8-2</td><td class="only-superwide-cell"><small>at MIN (1498): Fav</small></td></tr>
@@ -2762,8 +2769,8 @@ Contents <a name="top"></a>
 ### <a name="after-Reg-9"></a><small><a class="top-arw" href="#top">↑</a></small> Power Rankings After Week 9, 2021 Season
 
 <div class="row-toggle-and-table">
-        <input type="checkbox"/>
-        <a><small>show prev/next</small></a><a><small>hide prev/next</small></a>
+        <input class="hide-superwide" type="checkbox"/>
+        <a class="hide-superwide"><small>show prev/next</small></a><a class="hide-superwide"><small>hide prev/next</small></a>
         <table>
                 <tr><th>Rank</th><th>Team</th><th>Elo Rating</th><th>Record</th><th class="only-superwide-cell">Next</th></tr>
 <tr><td>1</td><td><a href="#Green-Bay-Packers-season-stats"><span class="ranking-name-full">Green Bay Packers</span><span class="ranking-name-abv">GB</span></a></td><td>1719 <span class="slw">(-37)</span></td><td>7-2</td><td class="only-superwide-cell"><small>vs SEA (1463): Fav</small></td></tr>
@@ -2996,8 +3003,8 @@ Contents <a name="top"></a>
 ### <a name="after-Reg-8"></a><small><a class="top-arw" href="#top">↑</a></small> Power Rankings After Week 8, 2021 Season
 
 <div class="row-toggle-and-table">
-        <input type="checkbox"/>
-        <a><small>show prev/next</small></a><a><small>hide prev/next</small></a>
+        <input class="hide-superwide" type="checkbox"/>
+        <a class="hide-superwide"><small>show prev/next</small></a><a class="hide-superwide"><small>hide prev/next</small></a>
         <table>
                 <tr><th>Rank</th><th>Team</th><th>Elo Rating</th><th>Record</th><th class="only-superwide-cell">Next</th></tr>
 <tr><td>1</td><td><a href="#Green-Bay-Packers-season-stats"><span class="ranking-name-full">Green Bay Packers</span><span class="ranking-name-abv">GB</span></a></td><td>1756 <span class="slw">(+31)</span></td><td>7-1</td><td class="only-superwide-cell"><small>at KC (1568): Fav</small></td></tr>
@@ -3230,8 +3237,8 @@ Contents <a name="top"></a>
 ### <a name="after-Reg-7"></a><small><a class="top-arw" href="#top">↑</a></small> Power Rankings After Week 7, 2021 Season
 
 <div class="row-toggle-and-table">
-        <input type="checkbox"/>
-        <a><small>show prev/next</small></a><a><small>hide prev/next</small></a>
+        <input class="hide-superwide" type="checkbox"/>
+        <a class="hide-superwide"><small>show prev/next</small></a><a class="hide-superwide"><small>hide prev/next</small></a>
         <table>
                 <tr><th>Rank</th><th>Team</th><th>Elo Rating</th><th>Record</th><th class="only-superwide-cell">Next</th></tr>
 <tr><td>1</td><td><a href="#Green-Bay-Packers-season-stats"><span class="ranking-name-full">Green Bay Packers</span><span class="ranking-name-abv">GB</span></a></td><td>1725 <span class="slw">(+12)</span></td><td>6-1</td><td class="only-superwide-cell"><small>at ARI (1673): 'Dog</small></td></tr>
@@ -3464,8 +3471,8 @@ Contents <a name="top"></a>
 ### <a name="after-Reg-6"></a><small><a class="top-arw" href="#top">↑</a></small> Power Rankings After Week 6, 2021 Season
 
 <div class="row-toggle-and-table">
-        <input type="checkbox"/>
-        <a><small>show prev/next</small></a><a><small>hide prev/next</small></a>
+        <input class="hide-superwide" type="checkbox"/>
+        <a class="hide-superwide"><small>show prev/next</small></a><a class="hide-superwide"><small>hide prev/next</small></a>
         <table>
                 <tr><th>Rank</th><th>Team</th><th>Elo Rating</th><th>Record</th><th class="only-superwide-cell">Next</th></tr>
 <tr><td>1 <span class="slw">(+2)</span></td><td><a href="#Green-Bay-Packers-season-stats"><span class="ranking-name-full">Green Bay Packers</span><span class="ranking-name-abv">GB</span></a></td><td>1713 <span class="slw">(+29)</span></td><td>5-1</td><td class="only-superwide-cell"><small>vs WAS (1411): Fav</small></td></tr>
@@ -3698,8 +3705,8 @@ Contents <a name="top"></a>
 ### <a name="after-Reg-5"></a><small><a class="top-arw" href="#top">↑</a></small> Power Rankings After Week 5, 2021 Season
 
 <div class="row-toggle-and-table">
-        <input type="checkbox"/>
-        <a><small>show prev/next</small></a><a><small>hide prev/next</small></a>
+        <input class="hide-superwide" type="checkbox"/>
+        <a class="hide-superwide"><small>show prev/next</small></a><a class="hide-superwide"><small>hide prev/next</small></a>
         <table>
                 <tr><th>Rank</th><th>Team</th><th>Elo Rating</th><th>Record</th><th class="only-superwide-cell">Next</th></tr>
 <tr><td>1</td><td><a href="#Buffalo-Bills-season-stats"><span class="ranking-name-full">Buffalo Bills</span><span class="ranking-name-abv">BUF</span></a></td><td>1702 <span class="slw">(+33)</span></td><td>4-1</td><td class="only-superwide-cell"><small>at TEN (1571): Fav</small></td></tr>
@@ -3932,8 +3939,8 @@ Contents <a name="top"></a>
 ### <a name="after-Reg-4"></a><small><a class="top-arw" href="#top">↑</a></small> Power Rankings After Week 4, 2021 Season
 
 <div class="row-toggle-and-table">
-        <input type="checkbox"/>
-        <a><small>show prev/next</small></a><a><small>hide prev/next</small></a>
+        <input class="hide-superwide" type="checkbox"/>
+        <a class="hide-superwide"><small>show prev/next</small></a><a class="hide-superwide"><small>hide prev/next</small></a>
         <table>
                 <tr><th>Rank</th><th>Team</th><th>Elo Rating</th><th>Record</th><th class="only-superwide-cell">Next</th></tr>
 <tr><td>1</td><td><a href="#Buffalo-Bills-season-stats"><span class="ranking-name-full">Buffalo Bills</span><span class="ranking-name-abv">BUF</span></a></td><td>1669 <span class="slw">(+14)</span></td><td>3-1</td><td class="only-superwide-cell"><small>at KC (1578): Fav</small></td></tr>
@@ -4166,8 +4173,8 @@ Contents <a name="top"></a>
 ### <a name="after-Reg-3"></a><small><a class="top-arw" href="#top">↑</a></small> Power Rankings After Week 3, 2021 Season
 
 <div class="row-toggle-and-table">
-        <input type="checkbox"/>
-        <a><small>show prev/next</small></a><a><small>hide prev/next</small></a>
+        <input class="hide-superwide" type="checkbox"/>
+        <a class="hide-superwide"><small>show prev/next</small></a><a class="hide-superwide"><small>hide prev/next</small></a>
         <table>
                 <tr><th>Rank</th><th>Team</th><th>Elo Rating</th><th>Record</th><th class="only-superwide-cell">Next</th></tr>
 <tr><td>1 <span class="slw">(+1)</span></td><td><a href="#Buffalo-Bills-season-stats"><span class="ranking-name-full">Buffalo Bills</span><span class="ranking-name-abv">BUF</span></a></td><td>1655 <span class="slw">(+19)</span></td><td>2-1</td><td class="only-superwide-cell"><small>vs HOU (1381): Fav</small></td></tr>
@@ -4400,8 +4407,8 @@ Contents <a name="top"></a>
 ### <a name="after-Reg-2"></a><small><a class="top-arw" href="#top">↑</a></small> Power Rankings After Week 2, 2021 Season
 
 <div class="row-toggle-and-table">
-        <input type="checkbox"/>
-        <a><small>show prev/next</small></a><a><small>hide prev/next</small></a>
+        <input class="hide-superwide" type="checkbox"/>
+        <a class="hide-superwide"><small>show prev/next</small></a><a class="hide-superwide"><small>hide prev/next</small></a>
         <table>
                 <tr><th>Rank</th><th>Team</th><th>Elo Rating</th><th>Record</th><th class="only-superwide-cell">Next</th></tr>
 <tr><td>1 <span class="slw">(+1)</span></td><td><a href="#Tampa-Bay-Buccaneers-season-stats"><span class="ranking-name-full">Tampa Bay Buccaneers</span><span class="ranking-name-abv">TB</span></a></td><td>1646 <span class="slw">(+11)</span></td><td>2-0</td><td class="only-superwide-cell"><small>at LAR (1605): Slight 'dog</small></td></tr>
@@ -4634,8 +4641,8 @@ Contents <a name="top"></a>
 ### <a name="after-Reg-1"></a><small><a class="top-arw" href="#top">↑</a></small> Power Rankings After Week 1, 2021 Season
 
 <div class="row-toggle-and-table">
-        <input type="checkbox"/>
-        <a><small>show prev/next</small></a><a><small>hide prev/next</small></a>
+        <input class="hide-superwide" type="checkbox"/>
+        <a class="hide-superwide"><small>show prev/next</small></a><a class="hide-superwide"><small>hide prev/next</small></a>
         <table>
                 <tr><th>Rank</th><th>Team</th><th>Elo Rating</th><th>Record</th><th class="only-superwide-cell">Next</th></tr>
 <tr><td>1</td><td><a href="#Kansas-City-Chiefs-season-stats"><span class="ranking-name-full">Kansas City Chiefs</span><span class="ranking-name-abv">KC</span></a></td><td>1658 <span class="slw">(+12)</span></td><td>1-0</td><td class="only-superwide-cell"><small>at BAL (1562): Fav</small></td></tr>
@@ -4868,8 +4875,8 @@ Contents <a name="top"></a>
 ### <a name="before-Reg-1"></a><small><a class="top-arw" href="#top">↑</a></small> Preseason Power Rankings, 2021 season:
 
 <div class="row-toggle-and-table">
-        <input type="checkbox"/>
-        <a><small>show prev/next</small></a><a><small>hide prev/next</small></a>
+        <input class="hide-superwide" type="checkbox"/>
+        <a class="hide-superwide"><small>show prev/next</small></a><a class="hide-superwide"><small>hide prev/next</small></a>
         <table>
                 <tr><th>Rank</th><th>Team</th><th>Elo Rating</th><th>Record</th><th class="only-superwide-cell">Next</th></tr>
 <tr><td>1</td><td><a href="#Kansas-City-Chiefs-season-stats"><span class="ranking-name-full">Kansas City Chiefs</span><span class="ranking-name-abv">KC</span></a></td><td>1646</td><td>0-0</td><td class="only-superwide-cell"><small>vs CLE (1556): Fav</small></td></tr>
@@ -5998,7 +6005,7 @@ Contents <a name="top"></a>
 <li><a href="#after-Reg-18">Week 18</a>, 429-Elo upset: <a href="#Indianapolis-Colts-season-stats">Indianapolis Colts</a> (1592) 99-point favorites at <a href="#Jacksonville-Jaguars-season-stats">Jacksonville Jaguars</a> (1163): Jaguars win 26-11</li>
 <li><a href="#after-Reg-9">Week 9</a>, 415-Elo upset: <a href="#Buffalo-Bills-season-stats">Buffalo Bills</a> (1673) 99-point favorites at <a href="#Jacksonville-Jaguars-season-stats">Jacksonville Jaguars</a> (1258): Jaguars win 9-6</li>
 <li><a href="#after-Reg-15">Week 15</a>, 391-Elo upset: <a href="#Arizona-Cardinals-season-stats">Arizona Cardinals</a> (1632) 99-point favorites at <a href="#Detroit-Lions-season-stats">Detroit Lions</a> (1241): Lions win 30-12</li>
-<li><a href="#after-Reg-10">Week 10</a>, 328-Elo upset: <a href="#Pittsburgh-Steelers-season-stats">Pittsburgh Steelers</a> (1574) 99-point favorites vs <a href="#Detroit-Lions-season-stats">Detroit Lions</a> (1246): Steelers win 16-16</li>
+<li><a href="#after-Reg-10">Week 10</a>, 328-Elo upset: <a href="#Pittsburgh-Steelers-season-stats">Pittsburgh Steelers</a> (1574) 99-point favorites vs <a href="#Detroit-Lions-season-stats">Detroit Lions</a> (1246): Lions win 16-16</li>
 <li><a href="#after-Reg-10">Week 10</a>, 312-Elo upset: <a href="#Baltimore-Ravens-season-stats">Baltimore Ravens</a> (1674) 99-point favorites at <a href="#Miami-Dolphins-season-stats">Miami Dolphins</a> (1362): Dolphins win 22-10</li>
 </ol>
 </li>
@@ -6007,7 +6014,7 @@ Contents <a name="top"></a>
 <li><a href="#after-Reg-18">Week 18</a>, 106-point differential: <a href="#Green-Bay-Packers-season-stats">Green Bay Packers</a> (1786) 99-point favorites vs <a href="#Detroit-Lions-season-stats">Detroit Lions</a> (1247): Lions win 37-30</li>
 <li><a href="#after-Reg-4">Week 4</a>, 105-point differential: <a href="#New-Orleans-Saints-season-stats">New Orleans Saints</a> (1593) 99-point favorites vs <a href="#New-York-Giants-season-stats">New York Giants</a> (1344): Giants win 27-21</li>
 <li><a href="#after-Reg-11">Week 11</a>, 108-point differential: <a href="#Tennessee-Titans-season-stats">Tennessee Titans</a> (1719) 99-point favorites vs <a href="#Houston-Texans-season-stats">Houston Texans</a> (1262): Texans win 22-13</li>
-<li><a href="#after-Reg-18">Week 18</a>, 114-point differential: <a href="#Indianapolis-Colts-season-stats">Indianapolis Colts</a> (1592) 99-point favorites at <a href="#Jacksonville-Jaguars-season-stats">Jacksonville Jaguars</a> (1163): Jaguars win 26-11</li>
+<li><a href="#after-Reg-18">Week 18</a>, 114-point differential: <a href="#Indianapolis-Colts-season-stats">Indianapolis Colts</a> (1592) 99-point favorites vs <a href="#Jacksonville-Jaguars-season-stats">Jacksonville Jaguars</a> (1163): Jaguars win 26-11</li>
 <li><a href="#after-Reg-7">Week 7</a>, 123-point differential: <a href="#Baltimore-Ravens-season-stats">Baltimore Ravens</a> (1709) 99-point favorites vs <a href="#Cincinnati-Bengals-season-stats">Cincinnati Bengals</a> (1479): Bengals win 41-17</li>
 <li><a href="#after-Reg-10">Week 10</a>, 123-point differential: <a href="#Arizona-Cardinals-season-stats">Arizona Cardinals</a> (1664) 99-point favorites vs <a href="#Carolina-Panthers-season-stats">Carolina Panthers</a> (1392): Panthers win 34-10</li>
 <li><a href="#after-Reg-3">Week 3</a>, 105-point differential: <a href="#Kansas-City-Chiefs-season-stats">Kansas City Chiefs</a> (1610) 99-point favorites vs <a href="#Los-Angeles-Chargers-season-stats">Los Angeles Chargers</a> (1449): Chargers win 30-24</li>

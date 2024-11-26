@@ -140,6 +140,7 @@
         @media screen and (min-width: 120rem) {
                 .only-superwide-cell { display: table-cell; }
                 .only-superwide { display: inherit; }
+                .row-toggle-and-table .hide-superwide { display: none; }
                 td { padding: 0.1rem 1.2rem 0.1rem 1.2rem; }
         }
 </style>
@@ -422,8 +423,8 @@ Contents <a name="top"></a>
 ### <a name="after-Playoffs-Super-Bowl"></a><small><a class="top-arw" href="#top">↑</a></small> Power Rankings After Playoffs Super Bowl, 2022 Season
 
 <div class="row-toggle-and-table">
-        <input type="checkbox"/>
-        <a><small>show prev/next</small></a><a><small>hide prev/next</small></a>
+        <input class="hide-superwide" type="checkbox"/>
+        <a class="hide-superwide"><small>show prev/next</small></a><a class="hide-superwide"><small>hide prev/next</small></a>
         <table>
                 <tr><th>Rank</th><th>Team</th><th>Elo Rating</th><th>Record</th><th class="only-superwide-cell">Next</th></tr>
 <tr><td>1</td><td><a href="#Kansas-City-Chiefs-season-stats"><span class="ranking-name-full">Kansas City Chiefs</span><span class="ranking-name-abv">KC</span></a></td><td>1824 <span class="slw">(+28)</span></td><td>17-3</td><td class="only-superwide-cell"><small></small></td></tr>
@@ -470,8 +471,8 @@ Contents <a name="top"></a>
 ### <a name="after-Playoffs-Championship"></a><small><a class="top-arw" href="#top">↑</a></small> Power Rankings After Playoffs Championship, 2022 Season
 
 <div class="row-toggle-and-table">
-        <input type="checkbox"/>
-        <a><small>show prev/next</small></a><a><small>hide prev/next</small></a>
+        <input class="hide-superwide" type="checkbox"/>
+        <a class="hide-superwide"><small>show prev/next</small></a><a class="hide-superwide"><small>hide prev/next</small></a>
         <table>
                 <tr><th>Rank</th><th>Team</th><th>Elo Rating</th><th>Record</th><th class="only-superwide-cell">Next</th></tr>
 <tr><td>1 <span class="slw">(+1)</span></td><td><a href="#Kansas-City-Chiefs-season-stats"><span class="ranking-name-full">Kansas City Chiefs</span><span class="ranking-name-abv">KC</span></a></td><td>1796 <span class="slw">(+28)</span></td><td>16-3</td><td class="only-superwide-cell"><small>at PHI (1739): Fav</small></td></tr>
@@ -530,8 +531,8 @@ Contents <a name="top"></a>
 ### <a name="after-Playoffs-Divisional"></a><small><a class="top-arw" href="#top">↑</a></small> Power Rankings After Playoffs Divisional, 2022 Season
 
 <div class="row-toggle-and-table">
-        <input type="checkbox"/>
-        <a><small>show prev/next</small></a><a><small>hide prev/next</small></a>
+        <input class="hide-superwide" type="checkbox"/>
+        <a class="hide-superwide"><small>show prev/next</small></a><a class="hide-superwide"><small>hide prev/next</small></a>
         <table>
                 <tr><th>Rank</th><th>Team</th><th>Elo Rating</th><th>Record</th><th class="only-superwide-cell">Next</th></tr>
 <tr><td>1 <span class="slw">(+2)</span></td><td><a href="#Cincinnati-Bengals-season-stats"><span class="ranking-name-full">Cincinnati Bengals</span><span class="ranking-name-abv">CIN</span></a></td><td>1786 <span class="slw">(+36)</span></td><td>14-4</td><td class="only-superwide-cell"><small>at KC (1768): 'Dog</small></td></tr>
@@ -608,8 +609,8 @@ Contents <a name="top"></a>
 ### <a name="after-Playoffs-Wildcard"></a><small><a class="top-arw" href="#top">↑</a></small> Power Rankings After Playoffs Wildcard, 2022 Season
 
 <div class="row-toggle-and-table">
-        <input type="checkbox"/>
-        <a><small>show prev/next</small></a><a><small>hide prev/next</small></a>
+        <input class="hide-superwide" type="checkbox"/>
+        <a class="hide-superwide"><small>show prev/next</small></a><a class="hide-superwide"><small>hide prev/next</small></a>
         <table>
                 <tr><th>Rank</th><th>Team</th><th>Elo Rating</th><th>Record</th><th class="only-superwide-cell">Next</th></tr>
 <tr><td>1 <span class="slw">(+1)</span></td><td><a href="#Buffalo-Bills-season-stats"><span class="ranking-name-full">Buffalo Bills</span><span class="ranking-name-abv">BUF</span></a></td><td>1767 <span class="slw">(+13)</span></td><td>14-3</td><td class="only-superwide-cell"><small>vs CIN (1750): Fav</small></td></tr>
@@ -716,13 +717,16 @@ Contents <a name="top"></a>
 ### <a name="after-Reg-18"></a><small><a class="top-arw" href="#top">↑</a></small> Power Rankings After Week 18, 2022 Season
 
 <div class="row-toggle-and-table">
-        <input type="checkbox"/>
-        <a><small>show prev/next</small></a><a><small>hide prev/next</small></a>
+        <input class="hide-superwide" type="checkbox"/>
+        <a class="hide-superwide"><small>show prev/next</small></a><a class="hide-superwide"><small>hide prev/next</small></a>
         <table>
                 <tr><th>Rank</th><th>Team</th><th>Elo Rating</th><th>Record</th><th class="only-superwide-cell">Next</th></tr>
-<tr><td>1 <span class="slw">(+1)</span></td><td><a href="#Kansas-City-Chiefs-season-stats"><span class="ranking-name-full">Kansas City Chiefs</span><span class="ranking-name-abv">KC</span></a></td><td>1756 <span class="slw">(+18)</span></td><td>14-3</td><td class="only-superwide-cell"><small></small></td></tr>
+<tr><td>1 <span class="slw">(+1)</span></td><td><a href="#Kansas-City-Chiefs-season-stats"><span class="ranking-name-full">Kansas City Chiefs</span><span class="ranking-name-abv">KC</span></a></td><td>1756 <span class="slw">(+18)</span></td><td>14-3</td><td class="only-superwide-cell"><small>bye</small></td></tr>
 <tr class="collapsible">
         <td colspan="4"><small>prev: at <span class="ranking-name-full">Las Vegas Raiders</span><span class="ranking-name-abv">LV</span> (1430): <b>W</b> 31-13: <b>1738+18→1756</b></small></td>
+</tr>
+<tr class="collapsible">
+        <td colspan="4"><small>next: (bye)</small></td>
 </tr>
 <tr><td>2 <span class="slw">(-1)</span></td><td><a href="#Buffalo-Bills-season-stats"><span class="ranking-name-full">Buffalo Bills</span><span class="ranking-name-abv">BUF</span></a></td><td>1754 <span class="slw">(+12)</span></td><td>13-3</td><td class="only-superwide-cell"><small>vs MIA (1495): Fav</small></td></tr>
 <tr class="collapsible">
@@ -745,9 +749,12 @@ Contents <a name="top"></a>
 <tr class="collapsible">
         <td colspan="4"><small>next: vs <span class="ranking-name-full">Seattle Seahawks</span><span class="ranking-name-abv">SEA</span> (1496): Favorite</small></td>
 </tr>
-<tr><td>5 <span class="slw">(+1)</span></td><td><a href="#Philadelphia-Eagles-season-stats"><span class="ranking-name-full">Philadelphia Eagles</span><span class="ranking-name-abv">PHI</span></a></td><td>1692 <span class="slw">(+17)</span></td><td>14-3</td><td class="only-superwide-cell"><small></small></td></tr>
+<tr><td>5 <span class="slw">(+1)</span></td><td><a href="#Philadelphia-Eagles-season-stats"><span class="ranking-name-full">Philadelphia Eagles</span><span class="ranking-name-abv">PHI</span></a></td><td>1692 <span class="slw">(+17)</span></td><td>14-3</td><td class="only-superwide-cell"><small>bye</small></td></tr>
 <tr class="collapsible">
         <td colspan="4"><small>prev: vs <span class="ranking-name-full">New York Giants</span><span class="ranking-name-abv">NYG</span> (1513): <b>W</b> 22-16: <b>1675+17→1692</b></small></td>
+</tr>
+<tr class="collapsible">
+        <td colspan="4"><small>next: (bye)</small></td>
 </tr>
 <tr><td>6 <span class="slw">(+1)</span></td><td><a href="#Minnesota-Vikings-season-stats"><span class="ranking-name-full">Minnesota Vikings</span><span class="ranking-name-abv">MIN</span></a></td><td>1668 <span class="slw">(+14)</span></td><td>13-4</td><td class="only-superwide-cell"><small>vs NYG (1496): Fav</small></td></tr>
 <tr class="collapsible">
@@ -890,8 +897,8 @@ Contents <a name="top"></a>
 ### <a name="after-Reg-17"></a><small><a class="top-arw" href="#top">↑</a></small> Power Rankings After Week 17, 2022 Season
 
 <div class="row-toggle-and-table">
-        <input type="checkbox"/>
-        <a><small>show prev/next</small></a><a><small>hide prev/next</small></a>
+        <input class="hide-superwide" type="checkbox"/>
+        <a class="hide-superwide"><small>show prev/next</small></a><a class="hide-superwide"><small>hide prev/next</small></a>
         <table>
                 <tr><th>Rank</th><th>Team</th><th>Elo Rating</th><th>Record</th><th class="only-superwide-cell">Next</th></tr>
 <tr><td>1</td><td><a href="#Buffalo-Bills-season-stats"><span class="ranking-name-full">Buffalo Bills</span><span class="ranking-name-abv">BUF</span></a></td><td>1742</td><td>12-3</td><td class="only-superwide-cell"><small>vs NE (1529): Fav</small></td></tr>
@@ -1124,8 +1131,8 @@ Contents <a name="top"></a>
 ### <a name="after-Reg-16"></a><small><a class="top-arw" href="#top">↑</a></small> Power Rankings After Week 16, 2022 Season
 
 <div class="row-toggle-and-table">
-        <input type="checkbox"/>
-        <a><small>show prev/next</small></a><a><small>hide prev/next</small></a>
+        <input class="hide-superwide" type="checkbox"/>
+        <a class="hide-superwide"><small>show prev/next</small></a><a class="hide-superwide"><small>hide prev/next</small></a>
         <table>
                 <tr><th>Rank</th><th>Team</th><th>Elo Rating</th><th>Record</th><th class="only-superwide-cell">Next</th></tr>
 <tr><td>1 <span class="slw">(+1)</span></td><td><a href="#Buffalo-Bills-season-stats"><span class="ranking-name-full">Buffalo Bills</span><span class="ranking-name-abv">BUF</span></a></td><td>1742 <span class="slw">(+13)</span></td><td>12-3</td><td class="only-superwide-cell"><small>bye</small></td></tr>
@@ -1358,8 +1365,8 @@ Contents <a name="top"></a>
 ### <a name="after-Reg-15"></a><small><a class="top-arw" href="#top">↑</a></small> Power Rankings After Week 15, 2022 Season
 
 <div class="row-toggle-and-table">
-        <input type="checkbox"/>
-        <a><small>show prev/next</small></a><a><small>hide prev/next</small></a>
+        <input class="hide-superwide" type="checkbox"/>
+        <a class="hide-superwide"><small>show prev/next</small></a><a class="hide-superwide"><small>hide prev/next</small></a>
         <table>
                 <tr><th>Rank</th><th>Team</th><th>Elo Rating</th><th>Record</th><th class="only-superwide-cell">Next</th></tr>
 <tr><td>1</td><td><a href="#Philadelphia-Eagles-season-stats"><span class="ranking-name-full">Philadelphia Eagles</span><span class="ranking-name-abv">PHI</span></a></td><td>1754 <span class="slw">(+15)</span></td><td>13-1</td><td class="only-superwide-cell"><small>at DAL (1650): Fav</small></td></tr>
@@ -1592,8 +1599,8 @@ Contents <a name="top"></a>
 ### <a name="after-Reg-14"></a><small><a class="top-arw" href="#top">↑</a></small> Power Rankings After Week 14, 2022 Season
 
 <div class="row-toggle-and-table">
-        <input type="checkbox"/>
-        <a><small>show prev/next</small></a><a><small>hide prev/next</small></a>
+        <input class="hide-superwide" type="checkbox"/>
+        <a class="hide-superwide"><small>show prev/next</small></a><a class="hide-superwide"><small>hide prev/next</small></a>
         <table>
                 <tr><th>Rank</th><th>Team</th><th>Elo Rating</th><th>Record</th><th class="only-superwide-cell">Next</th></tr>
 <tr><td>1</td><td><a href="#Philadelphia-Eagles-season-stats"><span class="ranking-name-full">Philadelphia Eagles</span><span class="ranking-name-abv">PHI</span></a></td><td>1739 <span class="slw">(+22)</span></td><td>12-1</td><td class="only-superwide-cell"><small>at CHI (1288): Fav</small></td></tr>
@@ -1826,8 +1833,8 @@ Contents <a name="top"></a>
 ### <a name="after-Reg-13"></a><small><a class="top-arw" href="#top">↑</a></small> Power Rankings After Week 13, 2022 Season
 
 <div class="row-toggle-and-table">
-        <input type="checkbox"/>
-        <a><small>show prev/next</small></a><a><small>hide prev/next</small></a>
+        <input class="hide-superwide" type="checkbox"/>
+        <a class="hide-superwide"><small>show prev/next</small></a><a class="hide-superwide"><small>hide prev/next</small></a>
         <table>
                 <tr><th>Rank</th><th>Team</th><th>Elo Rating</th><th>Record</th><th class="only-superwide-cell">Next</th></tr>
 <tr><td>1 <span class="slw">(+1)</span></td><td><a href="#Philadelphia-Eagles-season-stats"><span class="ranking-name-full">Philadelphia Eagles</span><span class="ranking-name-abv">PHI</span></a></td><td>1717 <span class="slw">(+22)</span></td><td>11-1</td><td class="only-superwide-cell"><small>at NYG (1496): Fav</small></td></tr>
@@ -2060,8 +2067,8 @@ Contents <a name="top"></a>
 ### <a name="after-Reg-12"></a><small><a class="top-arw" href="#top">↑</a></small> Power Rankings After Week 12, 2022 Season
 
 <div class="row-toggle-and-table">
-        <input type="checkbox"/>
-        <a><small>show prev/next</small></a><a><small>hide prev/next</small></a>
+        <input class="hide-superwide" type="checkbox"/>
+        <a class="hide-superwide"><small>show prev/next</small></a><a class="hide-superwide"><small>hide prev/next</small></a>
         <table>
                 <tr><th>Rank</th><th>Team</th><th>Elo Rating</th><th>Record</th><th class="only-superwide-cell">Next</th></tr>
 <tr><td>1</td><td><a href="#Kansas-City-Chiefs-season-stats"><span class="ranking-name-full">Kansas City Chiefs</span><span class="ranking-name-abv">KC</span></a></td><td>1718 <span class="slw">(+15)</span></td><td>9-2</td><td class="only-superwide-cell"><small>at CIN (1629): Fav</small></td></tr>
@@ -2294,8 +2301,8 @@ Contents <a name="top"></a>
 ### <a name="after-Reg-11"></a><small><a class="top-arw" href="#top">↑</a></small> Power Rankings After Week 11, 2022 Season
 
 <div class="row-toggle-and-table">
-        <input type="checkbox"/>
-        <a><small>show prev/next</small></a><a><small>hide prev/next</small></a>
+        <input class="hide-superwide" type="checkbox"/>
+        <a class="hide-superwide"><small>show prev/next</small></a><a class="hide-superwide"><small>hide prev/next</small></a>
         <table>
                 <tr><th>Rank</th><th>Team</th><th>Elo Rating</th><th>Record</th><th class="only-superwide-cell">Next</th></tr>
 <tr><td>1 <span class="slw">(+1)</span></td><td><a href="#Kansas-City-Chiefs-season-stats"><span class="ranking-name-full">Kansas City Chiefs</span><span class="ranking-name-abv">KC</span></a></td><td>1703 <span class="slw">(+23)</span></td><td>8-2</td><td class="only-superwide-cell"><small>vs LAR (1453): Fav</small></td></tr>
@@ -2528,8 +2535,8 @@ Contents <a name="top"></a>
 ### <a name="after-Reg-10"></a><small><a class="top-arw" href="#top">↑</a></small> Power Rankings After Week 10, 2022 Season
 
 <div class="row-toggle-and-table">
-        <input type="checkbox"/>
-        <a><small>show prev/next</small></a><a><small>hide prev/next</small></a>
+        <input class="hide-superwide" type="checkbox"/>
+        <a class="hide-superwide"><small>show prev/next</small></a><a class="hide-superwide"><small>hide prev/next</small></a>
         <table>
                 <tr><th>Rank</th><th>Team</th><th>Elo Rating</th><th>Record</th><th class="only-superwide-cell">Next</th></tr>
 <tr><td>1 <span class="slw">(+3)</span></td><td><a href="#Minnesota-Vikings-season-stats"><span class="ranking-name-full">Minnesota Vikings</span><span class="ranking-name-abv">MIN</span></a></td><td>1687 <span class="slw">(+32)</span></td><td>8-1</td><td class="only-superwide-cell"><small>vs DAL (1619): Fav</small></td></tr>
@@ -2762,8 +2769,8 @@ Contents <a name="top"></a>
 ### <a name="after-Reg-9"></a><small><a class="top-arw" href="#top">↑</a></small> Power Rankings After Week 9, 2022 Season
 
 <div class="row-toggle-and-table">
-        <input type="checkbox"/>
-        <a><small>show prev/next</small></a><a><small>hide prev/next</small></a>
+        <input class="hide-superwide" type="checkbox"/>
+        <a class="hide-superwide"><small>show prev/next</small></a><a class="hide-superwide"><small>hide prev/next</small></a>
         <table>
                 <tr><th>Rank</th><th>Team</th><th>Elo Rating</th><th>Record</th><th class="only-superwide-cell">Next</th></tr>
 <tr><td>1 <span class="slw">(+1)</span></td><td><a href="#Philadelphia-Eagles-season-stats"><span class="ranking-name-full">Philadelphia Eagles</span><span class="ranking-name-abv">PHI</span></a></td><td>1696 <span class="slw">(+17)</span></td><td>8-0</td><td class="only-superwide-cell"><small>vs WAS (1448): Fav</small></td></tr>
@@ -2996,8 +3003,8 @@ Contents <a name="top"></a>
 ### <a name="after-Reg-8"></a><small><a class="top-arw" href="#top">↑</a></small> Power Rankings After Week 8, 2022 Season
 
 <div class="row-toggle-and-table">
-        <input type="checkbox"/>
-        <a><small>show prev/next</small></a><a><small>hide prev/next</small></a>
+        <input class="hide-superwide" type="checkbox"/>
+        <a class="hide-superwide"><small>show prev/next</small></a><a class="hide-superwide"><small>hide prev/next</small></a>
         <table>
                 <tr><th>Rank</th><th>Team</th><th>Elo Rating</th><th>Record</th><th class="only-superwide-cell">Next</th></tr>
 <tr><td>1</td><td><a href="#Buffalo-Bills-season-stats"><span class="ranking-name-full">Buffalo Bills</span><span class="ranking-name-abv">BUF</span></a></td><td>1695 <span class="slw">(+17)</span></td><td>6-1</td><td class="only-superwide-cell"><small>at NYJ (1523): Fav</small></td></tr>
@@ -3230,8 +3237,8 @@ Contents <a name="top"></a>
 ### <a name="after-Reg-7"></a><small><a class="top-arw" href="#top">↑</a></small> Power Rankings After Week 7, 2022 Season
 
 <div class="row-toggle-and-table">
-        <input type="checkbox"/>
-        <a><small>show prev/next</small></a><a><small>hide prev/next</small></a>
+        <input class="hide-superwide" type="checkbox"/>
+        <a class="hide-superwide"><small>show prev/next</small></a><a class="hide-superwide"><small>hide prev/next</small></a>
         <table>
                 <tr><th>Rank</th><th>Team</th><th>Elo Rating</th><th>Record</th><th class="only-superwide-cell">Next</th></tr>
 <tr><td>1</td><td><a href="#Buffalo-Bills-season-stats"><span class="ranking-name-full">Buffalo Bills</span><span class="ranking-name-abv">BUF</span></a></td><td>1678</td><td>5-1</td><td class="only-superwide-cell"><small>vs GB (1530): Fav</small></td></tr>
@@ -3464,8 +3471,8 @@ Contents <a name="top"></a>
 ### <a name="after-Reg-6"></a><small><a class="top-arw" href="#top">↑</a></small> Power Rankings After Week 6, 2022 Season
 
 <div class="row-toggle-and-table">
-        <input type="checkbox"/>
-        <a><small>show prev/next</small></a><a><small>hide prev/next</small></a>
+        <input class="hide-superwide" type="checkbox"/>
+        <a class="hide-superwide"><small>show prev/next</small></a><a class="hide-superwide"><small>hide prev/next</small></a>
         <table>
                 <tr><th>Rank</th><th>Team</th><th>Elo Rating</th><th>Record</th><th class="only-superwide-cell">Next</th></tr>
 <tr><td>1 <span class="slw">(+2)</span></td><td><a href="#Buffalo-Bills-season-stats"><span class="ranking-name-full">Buffalo Bills</span><span class="ranking-name-abv">BUF</span></a></td><td>1678 <span class="slw">(+37)</span></td><td>5-1</td><td class="only-superwide-cell"><small>bye</small></td></tr>
@@ -3698,8 +3705,8 @@ Contents <a name="top"></a>
 ### <a name="after-Reg-5"></a><small><a class="top-arw" href="#top">↑</a></small> Power Rankings After Week 5, 2022 Season
 
 <div class="row-toggle-and-table">
-        <input type="checkbox"/>
-        <a><small>show prev/next</small></a><a><small>hide prev/next</small></a>
+        <input class="hide-superwide" type="checkbox"/>
+        <a class="hide-superwide"><small>show prev/next</small></a><a class="hide-superwide"><small>hide prev/next</small></a>
         <table>
                 <tr><th>Rank</th><th>Team</th><th>Elo Rating</th><th>Record</th><th class="only-superwide-cell">Next</th></tr>
 <tr><td>1 <span class="slw">(+3)</span></td><td><a href="#Dallas-Cowboys-season-stats"><span class="ranking-name-full">Dallas Cowboys</span><span class="ranking-name-abv">DAL</span></a></td><td>1653 <span class="slw">(+38)</span></td><td>4-1</td><td class="only-superwide-cell"><small>at PHI (1636): 'Dog</small></td></tr>
@@ -3932,8 +3939,8 @@ Contents <a name="top"></a>
 ### <a name="after-Reg-4"></a><small><a class="top-arw" href="#top">↑</a></small> Power Rankings After Week 4, 2022 Season
 
 <div class="row-toggle-and-table">
-        <input type="checkbox"/>
-        <a><small>show prev/next</small></a><a><small>hide prev/next</small></a>
+        <input class="hide-superwide" type="checkbox"/>
+        <a class="hide-superwide"><small>show prev/next</small></a><a class="hide-superwide"><small>hide prev/next</small></a>
         <table>
                 <tr><th>Rank</th><th>Team</th><th>Elo Rating</th><th>Record</th><th class="only-superwide-cell">Next</th></tr>
 <tr><td>1 <span class="slw">(+1)</span></td><td><a href="#Green-Bay-Packers-season-stats"><span class="ranking-name-full">Green Bay Packers</span><span class="ranking-name-abv">GB</span></a></td><td>1663 <span class="slw">(+20)</span></td><td>3-1</td><td class="only-superwide-cell"><small>at NYG (1468): Fav</small></td></tr>
@@ -4166,8 +4173,8 @@ Contents <a name="top"></a>
 ### <a name="after-Reg-3"></a><small><a class="top-arw" href="#top">↑</a></small> Power Rankings After Week 3, 2022 Season
 
 <div class="row-toggle-and-table">
-        <input type="checkbox"/>
-        <a><small>show prev/next</small></a><a><small>hide prev/next</small></a>
+        <input class="hide-superwide" type="checkbox"/>
+        <a class="hide-superwide"><small>show prev/next</small></a><a class="hide-superwide"><small>hide prev/next</small></a>
         <table>
                 <tr><th>Rank</th><th>Team</th><th>Elo Rating</th><th>Record</th><th class="only-superwide-cell">Next</th></tr>
 <tr><td>1 <span class="slw">(+3)</span></td><td><a href="#Los-Angeles-Rams-season-stats"><span class="ranking-name-full">Los Angeles Rams</span><span class="ranking-name-abv">LAR</span></a></td><td>1652 <span class="slw">(+37)</span></td><td>2-1</td><td class="only-superwide-cell"><small>at SF (1522): Fav</small></td></tr>
@@ -4400,8 +4407,8 @@ Contents <a name="top"></a>
 ### <a name="after-Reg-2"></a><small><a class="top-arw" href="#top">↑</a></small> Power Rankings After Week 2, 2022 Season
 
 <div class="row-toggle-and-table">
-        <input type="checkbox"/>
-        <a><small>show prev/next</small></a><a><small>hide prev/next</small></a>
+        <input class="hide-superwide" type="checkbox"/>
+        <a class="hide-superwide"><small>show prev/next</small></a><a class="hide-superwide"><small>hide prev/next</small></a>
         <table>
                 <tr><th>Rank</th><th>Team</th><th>Elo Rating</th><th>Record</th><th class="only-superwide-cell">Next</th></tr>
 <tr><td>1 <span class="slw">(+1)</span></td><td><a href="#Tampa-Bay-Buccaneers-season-stats"><span class="ranking-name-full">Tampa Bay Buccaneers</span><span class="ranking-name-abv">TB</span></a></td><td>1647 <span class="slw">(+39)</span></td><td>2-0</td><td class="only-superwide-cell"><small>vs GB (1593): Fav</small></td></tr>
@@ -4634,8 +4641,8 @@ Contents <a name="top"></a>
 ### <a name="after-Reg-1"></a><small><a class="top-arw" href="#top">↑</a></small> Power Rankings After Week 1, 2022 Season
 
 <div class="row-toggle-and-table">
-        <input type="checkbox"/>
-        <a><small>show prev/next</small></a><a><small>hide prev/next</small></a>
+        <input class="hide-superwide" type="checkbox"/>
+        <a class="hide-superwide"><small>show prev/next</small></a><a class="hide-superwide"><small>hide prev/next</small></a>
         <table>
                 <tr><th>Rank</th><th>Team</th><th>Elo Rating</th><th>Record</th><th class="only-superwide-cell">Next</th></tr>
 <tr><td>1 <span class="slw">(+1)</span></td><td><a href="#Kansas-City-Chiefs-season-stats"><span class="ranking-name-full">Kansas City Chiefs</span><span class="ranking-name-abv">KC</span></a></td><td>1616 <span class="slw">(+18)</span></td><td>1-0</td><td class="only-superwide-cell"><small>vs LAC (1516): Fav</small></td></tr>
@@ -4868,8 +4875,8 @@ Contents <a name="top"></a>
 ### <a name="before-Reg-1"></a><small><a class="top-arw" href="#top">↑</a></small> Preseason Power Rankings, 2022 season:
 
 <div class="row-toggle-and-table">
-        <input type="checkbox"/>
-        <a><small>show prev/next</small></a><a><small>hide prev/next</small></a>
+        <input class="hide-superwide" type="checkbox"/>
+        <a class="hide-superwide"><small>show prev/next</small></a><a class="hide-superwide"><small>hide prev/next</small></a>
         <table>
                 <tr><th>Rank</th><th>Team</th><th>Elo Rating</th><th>Record</th><th class="only-superwide-cell">Next</th></tr>
 <tr><td>1</td><td><a href="#Los-Angeles-Rams-season-stats"><span class="ranking-name-full">Los Angeles Rams</span><span class="ranking-name-abv">LAR</span></a></td><td>1625</td><td>0-0</td><td class="only-superwide-cell"><small>vs BUF (1574): Fav</small></td></tr>
