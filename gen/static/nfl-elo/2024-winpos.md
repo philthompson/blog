@@ -387,6 +387,7 @@ accuracy for the current or future seasons.
 Contents <a name="top"></a>
 
 
+* [Power Rankings After Week 13](#after-Reg-13)
 * [Power Rankings After Week 12](#after-Reg-12)
 * [Power Rankings After Week 11](#after-Reg-11)
 * [Power Rankings After Week 10](#after-Reg-10)
@@ -412,6 +413,240 @@ Contents <a name="top"></a>
 
 <hr/>
 
+### <a name="after-Reg-13"></a><small><a class="top-arw" href="#top">↑</a></small> Power Rankings After Week 13, 2024 Season
+
+<div class="row-toggle-and-table">
+        <input class="hide-superwide" type="checkbox"/>
+        <a class="hide-superwide"><small>show prev/next</small></a><a class="hide-superwide"><small>hide prev/next</small></a>
+        <table>
+                <tr><th>Rank</th><th>Team</th><th>Elo Rating</th><th>Record</th><th class="only-superwide-cell">Next</th></tr>
+<tr><td>1 <span class="slw">(+1)</span></td><td><a href="#Buffalo-Bills-season-stats"><span class="ranking-name-full">Buffalo Bills</span><span class="ranking-name-abv">BUF</span></a></td><td>1729 <span class="slw">(+23)</span></td><td>10-2</td><td class="only-superwide-cell"><small>at LAR (1473): Win by 6</small></td></tr>
+<tr class="collapsible">
+        <td colspan="4"><small>prev: vs <span class="ranking-name-full">San Francisco 49ers</span><span class="ranking-name-abv">SF</span> (1541): <b>W</b> 35-10: <b>1706+23→1729</b></small></td>
+</tr>
+<tr class="collapsible">
+        <td colspan="4"><small>next: at <span class="ranking-name-full">Los Angeles Rams</span><span class="ranking-name-abv">LAR</span> (1473): Win by 6 points</small></td>
+</tr>
+<tr><td>2 <span class="slw">(-1)</span></td><td><a href="#Detroit-Lions-season-stats"><span class="ranking-name-full">Detroit Lions</span><span class="ranking-name-abv">DET</span></a></td><td>1718</td><td>11-1</td><td class="only-superwide-cell"><small>vs GB (1621): Win by 6</small></td></tr>
+<tr class="collapsible">
+        <td colspan="4"><small>prev: vs <span class="ranking-name-full">Chicago Bears</span><span class="ranking-name-abv">CHI</span> (1421): <b>W</b> 23-20: <b>1718+0→1718</b></small></td>
+</tr>
+<tr class="collapsible">
+        <td colspan="4"><small>next: vs <span class="ranking-name-full">Green Bay Packers</span><span class="ranking-name-abv">GB</span> (1621): Win by 6 points</small></td>
+</tr>
+<tr><td>3</td><td><a href="#Baltimore-Ravens-season-stats"><span class="ranking-name-full">Baltimore Ravens</span><span class="ranking-name-abv">BAL</span></a></td><td>1694 <span class="slw">(-10)</span></td><td>8-5</td><td class="only-superwide-cell"><small>bye</small></td></tr>
+<tr class="collapsible">
+        <td colspan="4"><small>prev: vs <span class="ranking-name-full">Philadelphia Eagles</span><span class="ranking-name-abv">PHI</span> (1645): <b>L</b> 19-24: <b>1704-10→1694</b></small></td>
+</tr>
+<tr class="collapsible">
+        <td colspan="4"><small>next: (bye)</small></td>
+</tr>
+<tr><td>4</td><td><a href="#Kansas-City-Chiefs-season-stats"><span class="ranking-name-full">Kansas City Chiefs</span><span class="ranking-name-abv">KC</span></a></td><td>1674</td><td>11-1</td><td class="only-superwide-cell"><small>vs LAC (1566): Win by 7</small></td></tr>
+<tr class="collapsible">
+        <td colspan="4"><small>prev: vs <span class="ranking-name-full">Las Vegas Raiders</span><span class="ranking-name-abv">LV</span> (1329): <b>W</b> 19-17: <b>1674+0→1674</b></small></td>
+</tr>
+<tr class="collapsible">
+        <td colspan="4"><small>next: vs <span class="ranking-name-full">Los Angeles Chargers</span><span class="ranking-name-abv">LAC</span> (1566): Win by 7 points</small></td>
+</tr>
+<tr><td>5</td><td><a href="#Philadelphia-Eagles-season-stats"><span class="ranking-name-full">Philadelphia Eagles</span><span class="ranking-name-abv">PHI</span></a></td><td>1655 <span class="slw">(+10)</span></td><td>10-2</td><td class="only-superwide-cell"><small>vs CAR (1310): Win by 10</small></td></tr>
+<tr class="collapsible">
+        <td colspan="4"><small>prev: at <span class="ranking-name-full">Baltimore Ravens</span><span class="ranking-name-abv">BAL</span> (1704): <b>W</b> 24-19: <b>1645+10→1655</b></small></td>
+</tr>
+<tr class="collapsible">
+        <td colspan="4"><small>next: vs <span class="ranking-name-full">Carolina Panthers</span><span class="ranking-name-abv">CAR</span> (1310): Win by 10 points</small></td>
+</tr>
+<tr><td>6</td><td><a href="#Green-Bay-Packers-season-stats"><span class="ranking-name-full">Green Bay Packers</span><span class="ranking-name-abv">GB</span></a></td><td>1621 <span class="slw">(+21)</span></td><td>9-3</td><td class="only-superwide-cell"><small>at DET (1718): Lose by 6</small></td></tr>
+<tr class="collapsible">
+        <td colspan="4"><small>prev: vs <span class="ranking-name-full">Miami Dolphins</span><span class="ranking-name-abv">MIA</span> (1500): <b>W</b> 30-17: <b>1600+21→1621</b></small></td>
+</tr>
+<tr class="collapsible">
+        <td colspan="4"><small>next: at <span class="ranking-name-full">Detroit Lions</span><span class="ranking-name-abv">DET</span> (1718): Lose by 6 points</small></td>
+</tr>
+<tr><td>7</td><td><a href="#Denver-Broncos-season-stats"><span class="ranking-name-full">Denver Broncos</span><span class="ranking-name-abv">DEN</span></a></td><td>1597 <span class="slw">(+6)</span></td><td>8-5</td><td class="only-superwide-cell"><small>bye</small></td></tr>
+<tr class="collapsible">
+        <td colspan="4"><small>prev: vs <span class="ranking-name-full">Cleveland Browns</span><span class="ranking-name-abv">CLE</span> (1383): <b>W</b> 41-32: <b>1591+6→1597</b></small></td>
+</tr>
+<tr class="collapsible">
+        <td colspan="4"><small>next: (bye)</small></td>
+</tr>
+<tr><td>8</td><td><a href="#Pittsburgh-Steelers-season-stats"><span class="ranking-name-full">Pittsburgh Steelers</span><span class="ranking-name-abv">PIT</span></a></td><td>1594 <span class="slw">(+10)</span></td><td>9-3</td><td class="only-superwide-cell"><small>vs CLE (1376): Win by 8</small></td></tr>
+<tr class="collapsible">
+        <td colspan="4"><small>prev: at <span class="ranking-name-full">Cincinnati Bengals</span><span class="ranking-name-abv">CIN</span> (1524): <b>W</b> 44-38: <b>1584+10→1594</b></small></td>
+</tr>
+<tr class="collapsible">
+        <td colspan="4"><small>next: vs <span class="ranking-name-full">Cleveland Browns</span><span class="ranking-name-abv">CLE</span> (1376): Win by 8 points</small></td>
+</tr>
+<tr><td>9</td><td><a href="#Los-Angeles-Chargers-season-stats"><span class="ranking-name-full">Los Angeles Chargers</span><span class="ranking-name-abv">LAC</span></a></td><td>1566</td><td>8-4</td><td class="only-superwide-cell"><small>at KC (1674): Lose by 7</small></td></tr>
+<tr class="collapsible">
+        <td colspan="4"><small>prev: at <span class="ranking-name-full">Atlanta Falcons</span><span class="ranking-name-abv">ATL</span> (1434): <b>W</b> 17-13: <b>1566+0→1566</b></small></td>
+</tr>
+<tr class="collapsible">
+        <td colspan="4"><small>next: at <span class="ranking-name-full">Kansas City Chiefs</span><span class="ranking-name-abv">KC</span> (1674): Lose by 7 points</small></td>
+</tr>
+<tr><td>10</td><td><a href="#Tampa-Bay-Buccaneers-season-stats"><span class="ranking-name-full">Tampa Bay Buccaneers</span><span class="ranking-name-abv">TB</span></a></td><td>1553</td><td>6-6</td><td class="only-superwide-cell"><small>vs LV (1329): Win by 8</small></td></tr>
+<tr class="collapsible">
+        <td colspan="4"><small>prev: at <span class="ranking-name-full">Carolina Panthers</span><span class="ranking-name-abv">CAR</span> (1310): <b>W</b> 26-23(OT): <b>1553+0→1553</b></small></td>
+</tr>
+<tr class="collapsible">
+        <td colspan="4"><small>next: vs <span class="ranking-name-full">Las Vegas Raiders</span><span class="ranking-name-abv">LV</span> (1329): Win by 8 points</small></td>
+</tr>
+<tr><td>11</td><td><a href="#Minnesota-Vikings-season-stats"><span class="ranking-name-full">Minnesota Vikings</span><span class="ranking-name-abv">MIN</span></a></td><td>1552</td><td>10-2</td><td class="only-superwide-cell"><small>vs ATL (1433): Win by 7</small></td></tr>
+<tr class="collapsible">
+        <td colspan="4"><small>prev: vs <span class="ranking-name-full">Arizona Cardinals</span><span class="ranking-name-abv">ARI</span> (1484): <b>W</b> 23-22: <b>1552+0→1552</b></small></td>
+</tr>
+<tr class="collapsible">
+        <td colspan="4"><small>next: vs <span class="ranking-name-full">Atlanta Falcons</span><span class="ranking-name-abv">ATL</span> (1433): Win by 7 points</small></td>
+</tr>
+<tr><td>12</td><td><a href="#San-Francisco-49ers-season-stats"><span class="ranking-name-full">San Francisco 49ers</span><span class="ranking-name-abv">SF</span></a></td><td>1518 <span class="slw">(-23)</span></td><td>5-7</td><td class="only-superwide-cell"><small>vs CHI (1421): Win by 6</small></td></tr>
+<tr class="collapsible">
+        <td colspan="4"><small>prev: at <span class="ranking-name-full">Buffalo Bills</span><span class="ranking-name-abv">BUF</span> (1706): <b>L</b> 10-35: <b>1541-23→1518</b></small></td>
+</tr>
+<tr class="collapsible">
+        <td colspan="4"><small>next: vs <span class="ranking-name-full">Chicago Bears</span><span class="ranking-name-abv">CHI</span> (1421): Win by 6 points</small></td>
+</tr>
+<tr><td>13</td><td><a href="#Cincinnati-Bengals-season-stats"><span class="ranking-name-full">Cincinnati Bengals</span><span class="ranking-name-abv">CIN</span></a></td><td>1514 <span class="slw">(-10)</span></td><td>4-8</td><td class="only-superwide-cell"><small>at DAL (1446): Slight 'dog</small></td></tr>
+<tr class="collapsible">
+        <td colspan="4"><small>prev: vs <span class="ranking-name-full">Pittsburgh Steelers</span><span class="ranking-name-abv">PIT</span> (1584): <b>L</b> 38-44: <b>1524-10→1514</b></small></td>
+</tr>
+<tr class="collapsible">
+        <td colspan="4"><small>next: at <span class="ranking-name-full">Dallas Cowboys</span><span class="ranking-name-abv">DAL</span> (1446): Slight underdog</small></td>
+</tr>
+<tr><td>14</td><td><a href="#Houston-Texans-season-stats"><span class="ranking-name-full">Houston Texans</span><span class="ranking-name-abv">HOU</span></a></td><td>1508 <span class="slw">(+4)</span></td><td>8-5</td><td class="only-superwide-cell"><small>bye</small></td></tr>
+<tr class="collapsible">
+        <td colspan="4"><small>prev: at <span class="ranking-name-full">Jacksonville Jaguars</span><span class="ranking-name-abv">JAX</span> (1440): <b>W</b> 23-20: <b>1504+4→1508</b></small></td>
+</tr>
+<tr class="collapsible">
+        <td colspan="4"><small>next: (bye)</small></td>
+</tr>
+<tr><td>15</td><td><a href="#Seattle-Seahawks-season-stats"><span class="ranking-name-full">Seattle Seahawks</span><span class="ranking-name-abv">SEA</span></a></td><td>1506 <span class="slw">(+3)</span></td><td>7-5</td><td class="only-superwide-cell"><small>at ARI (1484): Lose by 5</small></td></tr>
+<tr class="collapsible">
+        <td colspan="4"><small>prev: at <span class="ranking-name-full">New York Jets</span><span class="ranking-name-abv">NYJ</span> (1420): <b>W</b> 26-21: <b>1503+3→1506</b></small></td>
+</tr>
+<tr class="collapsible">
+        <td colspan="4"><small>next: at <span class="ranking-name-full">Arizona Cardinals</span><span class="ranking-name-abv">ARI</span> (1484): Lose by 5 points</small></td>
+</tr>
+<tr><td>16 <span class="slw">(+2)</span></td><td><a href="#Washington-Commanders-season-stats"><span class="ranking-name-full">Washington Commanders</span><span class="ranking-name-abv">WAS</span></a></td><td>1489 <span class="slw">(+30)</span></td><td>8-5</td><td class="only-superwide-cell"><small>bye</small></td></tr>
+<tr class="collapsible">
+        <td colspan="4"><small>prev: vs <span class="ranking-name-full">Tennessee Titans</span><span class="ranking-name-abv">TEN</span> (1393): <b>W</b> 42-19: <b>1459+30→1489</b></small></td>
+</tr>
+<tr class="collapsible">
+        <td colspan="4"><small>next: (bye)</small></td>
+</tr>
+<tr><td>17</td><td><a href="#Arizona-Cardinals-season-stats"><span class="ranking-name-full">Arizona Cardinals</span><span class="ranking-name-abv">ARI</span></a></td><td>1484</td><td>6-6</td><td class="only-superwide-cell"><small>vs SEA (1506): Win by 5</small></td></tr>
+<tr class="collapsible">
+        <td colspan="4"><small>prev: at <span class="ranking-name-full">Minnesota Vikings</span><span class="ranking-name-abv">MIN</span> (1552): <b>L</b> 22-23: <b>1484+0→1484</b></small></td>
+</tr>
+<tr class="collapsible">
+        <td colspan="4"><small>next: vs <span class="ranking-name-full">Seattle Seahawks</span><span class="ranking-name-abv">SEA</span> (1506): Win by 5 points</small></td>
+</tr>
+<tr><td>18 <span class="slw">(-2)</span></td><td><a href="#Miami-Dolphins-season-stats"><span class="ranking-name-full">Miami Dolphins</span><span class="ranking-name-abv">MIA</span></a></td><td>1478 <span class="slw">(-22)</span></td><td>5-7</td><td class="only-superwide-cell"><small>vs NYJ (1418): Win by 6</small></td></tr>
+<tr class="collapsible">
+        <td colspan="4"><small>prev: at <span class="ranking-name-full">Green Bay Packers</span><span class="ranking-name-abv">GB</span> (1600): <b>L</b> 17-30: <b>1500-22→1478</b></small></td>
+</tr>
+<tr class="collapsible">
+        <td colspan="4"><small>next: vs <span class="ranking-name-full">New York Jets</span><span class="ranking-name-abv">NYJ</span> (1418): Win by 6 points</small></td>
+</tr>
+<tr><td>19</td><td><a href="#Los-Angeles-Rams-season-stats"><span class="ranking-name-full">Los Angeles Rams</span><span class="ranking-name-abv">LAR</span></a></td><td>1473 <span class="slw">(+20)</span></td><td>6-6</td><td class="only-superwide-cell"><small>vs BUF (1729): Lose by 6</small></td></tr>
+<tr class="collapsible">
+        <td colspan="4"><small>prev: at <span class="ranking-name-full">New Orleans Saints</span><span class="ranking-name-abv">NO</span> (1441): <b>W</b> 21-14: <b>1453+20→1473</b></small></td>
+</tr>
+<tr class="collapsible">
+        <td colspan="4"><small>next: vs <span class="ranking-name-full">Buffalo Bills</span><span class="ranking-name-abv">BUF</span> (1729): Lose by 6 points</small></td>
+</tr>
+<tr><td>20</td><td><a href="#Dallas-Cowboys-season-stats"><span class="ranking-name-full">Dallas Cowboys</span><span class="ranking-name-abv">DAL</span></a></td><td>1446 <span class="slw">(+4)</span></td><td>5-7</td><td class="only-superwide-cell"><small>vs CIN (1514): Slight fav</small></td></tr>
+<tr class="collapsible">
+        <td colspan="4"><small>prev: vs <span class="ranking-name-full">New York Giants</span><span class="ranking-name-abv">NYG</span> (1351): <b>W</b> 27-20: <b>1442+4→1446</b></small></td>
+</tr>
+<tr class="collapsible">
+        <td colspan="4"><small>next: vs <span class="ranking-name-full">Cincinnati Bengals</span><span class="ranking-name-abv">CIN</span> (1514): Slight favorite</small></td>
+</tr>
+<tr><td>21 <span class="slw">(+1)</span></td><td><a href="#Jacksonville-Jaguars-season-stats"><span class="ranking-name-full">Jacksonville Jaguars</span><span class="ranking-name-abv">JAX</span></a></td><td>1436 <span class="slw">(-4)</span></td><td>2-10</td><td class="only-superwide-cell"><small>at TEN (1363): Tossup</small></td></tr>
+<tr class="collapsible">
+        <td colspan="4"><small>prev: vs <span class="ranking-name-full">Houston Texans</span><span class="ranking-name-abv">HOU</span> (1504): <b>L</b> 20-23: <b>1440-4→1436</b></small></td>
+</tr>
+<tr class="collapsible">
+        <td colspan="4"><small>next: at <span class="ranking-name-full">Tennessee Titans</span><span class="ranking-name-abv">TEN</span> (1363): Tossup</small></td>
+</tr>
+<tr><td>22 <span class="slw">(+1)</span></td><td><a href="#Atlanta-Falcons-season-stats"><span class="ranking-name-full">Atlanta Falcons</span><span class="ranking-name-abv">ATL</span></a></td><td>1433 <span class="slw">(-1)</span></td><td>6-6</td><td class="only-superwide-cell"><small>at MIN (1552): Lose by 7</small></td></tr>
+<tr class="collapsible">
+        <td colspan="4"><small>prev: vs <span class="ranking-name-full">Los Angeles Chargers</span><span class="ranking-name-abv">LAC</span> (1566): <b>L</b> 13-17: <b>1434-1→1433</b></small></td>
+</tr>
+<tr class="collapsible">
+        <td colspan="4"><small>next: at <span class="ranking-name-full">Minnesota Vikings</span><span class="ranking-name-abv">MIN</span> (1552): Lose by 7 points</small></td>
+</tr>
+<tr><td>23 <span class="slw">(+1)</span></td><td><a href="#Indianapolis-Colts-season-stats"><span class="ranking-name-full">Indianapolis Colts</span><span class="ranking-name-abv">IND</span></a></td><td>1425 <span class="slw">(+3)</span></td><td>6-7</td><td class="only-superwide-cell"><small>bye</small></td></tr>
+<tr class="collapsible">
+        <td colspan="4"><small>prev: at <span class="ranking-name-full">New England Patriots</span><span class="ranking-name-abv">NE</span> (1353): <b>W</b> 25-24: <b>1422+3→1425</b></small></td>
+</tr>
+<tr class="collapsible">
+        <td colspan="4"><small>next: (bye)</small></td>
+</tr>
+<tr><td>24 <span class="slw">(+1)</span></td><td><a href="#Chicago-Bears-season-stats"><span class="ranking-name-full">Chicago Bears</span><span class="ranking-name-abv">CHI</span></a></td><td>1421</td><td>4-8</td><td class="only-superwide-cell"><small>at SF (1518): Lose by 6</small></td></tr>
+<tr class="collapsible">
+        <td colspan="4"><small>prev: at <span class="ranking-name-full">Detroit Lions</span><span class="ranking-name-abv">DET</span> (1718): <b>L</b> 20-23: <b>1421+0→1421</b></small></td>
+</tr>
+<tr class="collapsible">
+        <td colspan="4"><small>next: at <span class="ranking-name-full">San Francisco 49ers</span><span class="ranking-name-abv">SF</span> (1518): Lose by 6 points</small></td>
+</tr>
+<tr><td>25 <span class="slw">(-4)</span></td><td><a href="#New-Orleans-Saints-season-stats"><span class="ranking-name-full">New Orleans Saints</span><span class="ranking-name-abv">NO</span></a></td><td>1420 <span class="slw">(-21)</span></td><td>4-8</td><td class="only-superwide-cell"><small>at NYG (1347): Slight 'dog</small></td></tr>
+<tr class="collapsible">
+        <td colspan="4"><small>prev: vs <span class="ranking-name-full">Los Angeles Rams</span><span class="ranking-name-abv">LAR</span> (1453): <b>L</b> 14-21: <b>1441-21→1420</b></small></td>
+</tr>
+<tr class="collapsible">
+        <td colspan="4"><small>next: at <span class="ranking-name-full">New York Giants</span><span class="ranking-name-abv">NYG</span> (1347): Slight underdog</small></td>
+</tr>
+<tr><td>26</td><td><a href="#New-York-Jets-season-stats"><span class="ranking-name-full">New York Jets</span><span class="ranking-name-abv">NYJ</span></a></td><td>1418 <span class="slw">(-2)</span></td><td>3-9</td><td class="only-superwide-cell"><small>at MIA (1478): Lose by 6</small></td></tr>
+<tr class="collapsible">
+        <td colspan="4"><small>prev: vs <span class="ranking-name-full">Seattle Seahawks</span><span class="ranking-name-abv">SEA</span> (1503): <b>L</b> 21-26: <b>1420-2→1418</b></small></td>
+</tr>
+<tr class="collapsible">
+        <td colspan="4"><small>next: at <span class="ranking-name-full">Miami Dolphins</span><span class="ranking-name-abv">MIA</span> (1478): Lose by 6 points</small></td>
+</tr>
+<tr><td>27 <span class="slw">(+1)</span></td><td><a href="#Cleveland-Browns-season-stats"><span class="ranking-name-full">Cleveland Browns</span><span class="ranking-name-abv">CLE</span></a></td><td>1376 <span class="slw">(-7)</span></td><td>3-9</td><td class="only-superwide-cell"><small>at PIT (1594): Lose by 8</small></td></tr>
+<tr class="collapsible">
+        <td colspan="4"><small>prev: at <span class="ranking-name-full">Denver Broncos</span><span class="ranking-name-abv">DEN</span> (1591): <b>L</b> 32-41: <b>1383-7→1376</b></small></td>
+</tr>
+<tr class="collapsible">
+        <td colspan="4"><small>next: at <span class="ranking-name-full">Pittsburgh Steelers</span><span class="ranking-name-abv">PIT</span> (1594): Lose by 8 points</small></td>
+</tr>
+<tr><td>28 <span class="slw">(-1)</span></td><td><a href="#Tennessee-Titans-season-stats"><span class="ranking-name-full">Tennessee Titans</span><span class="ranking-name-abv">TEN</span></a></td><td>1363 <span class="slw">(-30)</span></td><td>3-9</td><td class="only-superwide-cell"><small>vs JAX (1436): Tossup</small></td></tr>
+<tr class="collapsible">
+        <td colspan="4"><small>prev: at <span class="ranking-name-full">Washington Commanders</span><span class="ranking-name-abv">WAS</span> (1459): <b>L</b> 19-42: <b>1393-30→1363</b></small></td>
+</tr>
+<tr class="collapsible">
+        <td colspan="4"><small>next: vs <span class="ranking-name-full">Jacksonville Jaguars</span><span class="ranking-name-abv">JAX</span> (1436): Tossup</small></td>
+</tr>
+<tr><td>29</td><td><a href="#New-England-Patriots-season-stats"><span class="ranking-name-full">New England Patriots</span><span class="ranking-name-abv">NE</span></a></td><td>1350 <span class="slw">(-3)</span></td><td>3-10</td><td class="only-superwide-cell"><small>bye</small></td></tr>
+<tr class="collapsible">
+        <td colspan="4"><small>prev: vs <span class="ranking-name-full">Indianapolis Colts</span><span class="ranking-name-abv">IND</span> (1422): <b>L</b> 24-25: <b>1353-3→1350</b></small></td>
+</tr>
+<tr class="collapsible">
+        <td colspan="4"><small>next: (bye)</small></td>
+</tr>
+<tr><td>30</td><td><a href="#New-York-Giants-season-stats"><span class="ranking-name-full">New York Giants</span><span class="ranking-name-abv">NYG</span></a></td><td>1347 <span class="slw">(-4)</span></td><td>2-10</td><td class="only-superwide-cell"><small>vs NO (1420): Slight fav</small></td></tr>
+<tr class="collapsible">
+        <td colspan="4"><small>prev: at <span class="ranking-name-full">Dallas Cowboys</span><span class="ranking-name-abv">DAL</span> (1442): <b>L</b> 20-27: <b>1351-4→1347</b></small></td>
+</tr>
+<tr class="collapsible">
+        <td colspan="4"><small>next: vs <span class="ranking-name-full">New Orleans Saints</span><span class="ranking-name-abv">NO</span> (1420): Slight favorite</small></td>
+</tr>
+<tr><td>31</td><td><a href="#Las-Vegas-Raiders-season-stats"><span class="ranking-name-full">Las Vegas Raiders</span><span class="ranking-name-abv">LV</span></a></td><td>1329</td><td>2-10</td><td class="only-superwide-cell"><small>at TB (1553): Lose by 8</small></td></tr>
+<tr class="collapsible">
+        <td colspan="4"><small>prev: at <span class="ranking-name-full">Kansas City Chiefs</span><span class="ranking-name-abv">KC</span> (1674): <b>L</b> 17-19: <b>1329+0→1329</b></small></td>
+</tr>
+<tr class="collapsible">
+        <td colspan="4"><small>next: at <span class="ranking-name-full">Tampa Bay Buccaneers</span><span class="ranking-name-abv">TB</span> (1553): Lose by 8 points</small></td>
+</tr>
+<tr><td>32</td><td><a href="#Carolina-Panthers-season-stats"><span class="ranking-name-full">Carolina Panthers</span><span class="ranking-name-abv">CAR</span></a></td><td>1310</td><td>3-9</td><td class="only-superwide-cell"><small>at PHI (1655): Lose by 10</small></td></tr>
+<tr class="collapsible">
+        <td colspan="4"><small>prev: vs <span class="ranking-name-full">Tampa Bay Buccaneers</span><span class="ranking-name-abv">TB</span> (1553): <b>L</b> 23-26(OT): <b>1310+0→1310</b></small></td>
+</tr>
+<tr class="collapsible">
+        <td colspan="4"><small>next: at <span class="ranking-name-full">Philadelphia Eagles</span><span class="ranking-name-abv">PHI</span> (1655): Lose by 10 points</small></td>
+</tr>
+</table>
+        <h3 class="only-superwide" style="opacity:50%">https://philthompson.me/nfl-elo/</h3>
+</div>
 ### <a name="after-Reg-12"></a><small><a class="top-arw" href="#top">↑</a></small> Power Rankings After Week 12, 2024 Season
 
 <div class="row-toggle-and-table">
@@ -3465,13 +3700,13 @@ Contents <a name="top"></a>
 <table>
         <tr>
                 <td colspan="9" style="border:0;"><small>
-                        reg. season: avg. opp. rating: 1519 (+93 net)
+                        reg. season: avg. opp. rating: 1522 (+91 net)
                         &nbsp;|&nbsp;
                         avg. beat rating: 1515
                         &nbsp;|&nbsp;
-                        avg. lost to rating: 1524
+                        avg. lost to rating: 1529
                         &nbsp;|&nbsp;
-                        avg. remaining rating: 1452
+                        avg. remaining rating: 1432
                 </small></td>
         </tr>
         <tr><th>Wk</th><th>Rk</th><th>Outcome</th><th>Wk</th><th>Rk</th><th>Outcome</th><th>Wk</th><th>Rk</th><th>Outcome</th></tr>
@@ -3479,7 +3714,7 @@ Contents <a name="top"></a>
 <tr><td><a href="#after-Reg-2">2</a></td><td>25</td><td class="bdr">vs <a href="#Los-Angeles-Rams-season-stats">LAR</a>(1520) W 41-10: +54→1450</td><td><a href="#after-Reg-10">10</a></td><td><u>14</u></td><td class="bdr">vs <a href="#New-York-Jets-season-stats">NYJ</a>(1466) W 31-6: +40→<u>1512</u></td><td><a href="#after-Reg-18">18</a></td><td></td><td>vs <a href="#San-Francisco-49ers-season-stats">SF</a></td></tr>
 <tr><td><a href="#after-Reg-3">3</a></td><td>27</td><td class="bdr">vs <a href="#Detroit-Lions-season-stats">DET</a>(1553) L 13-20: -10→1440</td><td><a href="#after-Reg-11">11</a></td><td>15</td><td class="bdr">(bye)</td><td><span style="opacity:0.4"><a href="#after-Playoffs-Wildcard">W</a></span></td><td><span style="opacity:0.4"></span></td><td></td></tr>
 <tr><td><a href="#after-Reg-4">4</a></td><td><u>30</u></td><td class="bdr">vs <a href="#Washington-Commanders-season-stats">WAS</a>(1375) L 14-42: -59→<u>1381</u></td><td><a href="#after-Reg-12">12</a></td><td>17</td><td class="bdr">at <a href="#Seattle-Seahawks-season-stats">SEA</a>(1476) L 6-16: -28→1484</td><td><span style="opacity:0.4"><a href="#after-Playoffs-Divisional">D</a></span></td><td><span style="opacity:0.4"></span></td><td></td></tr>
-<tr><td><a href="#after-Reg-5">5</a></td><td>29</td><td class="bdr">at <a href="#San-Francisco-49ers-season-stats">SF</a>(1641) W 24-23: +36→1417</td><td><a href="#after-Reg-13">13</a></td><td></td><td class="bdr">at <a href="#Minnesota-Vikings-season-stats">MIN</a></td><td><span style="opacity:0.4"><a href="#after-Playoffs-Championship">C</a></span></td><td><span style="opacity:0.4"></span></td><td></td></tr>
+<tr><td><a href="#after-Reg-5">5</a></td><td>29</td><td class="bdr">at <a href="#San-Francisco-49ers-season-stats">SF</a>(1641) W 24-23: +36→1417</td><td><a href="#after-Reg-13">13</a></td><td>17</td><td class="bdr">at <a href="#Minnesota-Vikings-season-stats">MIN</a>(1552) L 22-23: +0→1484</td><td><span style="opacity:0.4"><a href="#after-Playoffs-Championship">C</a></span></td><td><span style="opacity:0.4"></span></td><td></td></tr>
 <tr><td><a href="#after-Reg-6">6</a></td><td>29</td><td class="bdr">at <a href="#Green-Bay-Packers-season-stats">GB</a>(1571) L 13-34: -19→1398</td><td><a href="#after-Reg-14">14</a></td><td></td><td class="bdr">vs <a href="#Seattle-Seahawks-season-stats">SEA</a></td><td><span style="opacity:0.4"><a href="#after-Playoffs-Super-Bowl">S</a></span></td><td><span style="opacity:0.4"></span></td><td></td></tr>
 <tr><td><a href="#after-Reg-7">7</a></td><td>28</td><td class="bdr">vs <a href="#Los-Angeles-Chargers-season-stats">LAC</a>(1510) W 17-15: +11→1409</td><td><a href="#after-Reg-15">15</a></td><td></td><td class="bdr">vs <a href="#New-England-Patriots-season-stats">NE</a></td><td><span style="opacity:0.4"></span></td><td><span style="opacity:0.4"></span></td><td></td></tr>
 <tr><td><a href="#after-Reg-8">8</a></td><td>25</td><td class="bdr">at <a href="#Miami-Dolphins-season-stats">MIA</a>(1410) W 28-27: +9→1418</td><td><a href="#after-Reg-16">16</a></td><td></td><td class="bdr">at <a href="#Carolina-Panthers-season-stats">CAR</a></td><td><span style="opacity:0.4"></span></td><td><span style="opacity:0.4"></span></td><td></td></tr>
@@ -3492,13 +3727,13 @@ Contents <a name="top"></a>
 <table>
         <tr>
                 <td colspan="9" style="border:0;"><small>
-                        reg. season: avg. opp. rating: 1497 (+45 net)
+                        reg. season: avg. opp. rating: 1502 (+52 net)
                         &nbsp;|&nbsp;
                         avg. beat rating: 1492
                         &nbsp;|&nbsp;
-                        avg. lost to rating: 1502
+                        avg. lost to rating: 1513
                         &nbsp;|&nbsp;
-                        avg. remaining rating: 1428
+                        avg. remaining rating: 1405
                 </small></td>
         </tr>
         <tr><th>Wk</th><th>Rk</th><th>Outcome</th><th>Wk</th><th>Rk</th><th>Outcome</th><th>Wk</th><th>Rk</th><th>Outcome</th></tr>
@@ -3506,7 +3741,7 @@ Contents <a name="top"></a>
 <tr><td><a href="#after-Reg-2">2</a></td><td>26</td><td class="bdr">at <a href="#Philadelphia-Eagles-season-stats">PHI</a>(1501) W 22-21: +19→1440</td><td><a href="#after-Reg-10">10</a></td><td>18</td><td class="bdr">at <a href="#New-Orleans-Saints-season-stats">NO</a>(1395) L 17-20: -7→1463</td><td><a href="#after-Reg-18">18</a></td><td></td><td>vs <a href="#Carolina-Panthers-season-stats">CAR</a></td></tr>
 <tr><td><a href="#after-Reg-3">3</a></td><td>26</td><td class="bdr">vs <a href="#Kansas-City-Chiefs-season-stats">KC</a>(1640) L 17-22: +0→1440</td><td><a href="#after-Reg-11">11</a></td><td>23</td><td class="bdr">at <a href="#Denver-Broncos-season-stats">DEN</a>(1546) L 6-38: -29→1434</td><td><span style="opacity:0.4"><a href="#after-Playoffs-Wildcard">W</a></span></td><td><span style="opacity:0.4"></span></td><td></td></tr>
 <tr><td><a href="#after-Reg-4">4</a></td><td>23</td><td class="bdr">vs <a href="#New-Orleans-Saints-season-stats">NO</a>(1568) W 26-24: +12→1452</td><td><a href="#after-Reg-12">12</a></td><td>23</td><td class="bdr">(bye)</td><td><span style="opacity:0.4"><a href="#after-Playoffs-Divisional">D</a></span></td><td><span style="opacity:0.4"></span></td><td></td></tr>
-<tr><td><a href="#after-Reg-5">5</a></td><td>21</td><td class="bdr">vs <a href="#Tampa-Bay-Buccaneers-season-stats">TB</a>(1518) W 36-30: +13→1465</td><td><a href="#after-Reg-13">13</a></td><td></td><td class="bdr">vs <a href="#Los-Angeles-Chargers-season-stats">LAC</a></td><td><span style="opacity:0.4"><a href="#after-Playoffs-Championship">C</a></span></td><td><span style="opacity:0.4"></span></td><td></td></tr>
+<tr><td><a href="#after-Reg-5">5</a></td><td>21</td><td class="bdr">vs <a href="#Tampa-Bay-Buccaneers-season-stats">TB</a>(1518) W 36-30: +13→1465</td><td><a href="#after-Reg-13">13</a></td><td>22</td><td class="bdr">vs <a href="#Los-Angeles-Chargers-season-stats">LAC</a>(1566) L 13-17: -1→1433</td><td><span style="opacity:0.4"><a href="#after-Playoffs-Championship">C</a></span></td><td><span style="opacity:0.4"></span></td><td></td></tr>
 <tr><td><a href="#after-Reg-6">6</a></td><td><u>16</u></td><td class="bdr">at <a href="#Carolina-Panthers-season-stats">CAR</a>(1326) W 38-20: +29→<u>1494</u></td><td><a href="#after-Reg-14">14</a></td><td></td><td class="bdr">at <a href="#Minnesota-Vikings-season-stats">MIN</a></td><td><span style="opacity:0.4"><a href="#after-Playoffs-Super-Bowl">S</a></span></td><td><span style="opacity:0.4"></span></td><td></td></tr>
 <tr><td><a href="#after-Reg-7">7</a></td><td>24</td><td class="bdr">vs <a href="#Seattle-Seahawks-season-stats">SEA</a>(1439) L 14-34: -54→1440</td><td><a href="#after-Reg-15">15</a></td><td></td><td class="bdr">at <a href="#Las-Vegas-Raiders-season-stats">LV</a></td><td><span style="opacity:0.4"></span></td><td><span style="opacity:0.4"></span></td><td></td></tr>
 <tr><td><a href="#after-Reg-8">8</a></td><td>20</td><td class="bdr">at <a href="#Tampa-Bay-Buccaneers-season-stats">TB</a>(1537) W 31-26: +19→1459</td><td><a href="#after-Reg-16">16</a></td><td></td><td class="bdr">vs <a href="#New-York-Giants-season-stats">NYG</a></td><td><span style="opacity:0.4"></span></td><td><span style="opacity:0.4"></span></td><td></td></tr>
@@ -3519,13 +3754,13 @@ Contents <a name="top"></a>
 <table>
         <tr>
                 <td colspan="9" style="border:0;"><small>
-                        reg. season: avg. opp. rating: 1552 (-126 net)
+                        reg. season: avg. opp. rating: 1559 (-121 net)
                         &nbsp;|&nbsp;
                         avg. beat rating: 1561
                         &nbsp;|&nbsp;
-                        avg. lost to rating: 1534
+                        avg. lost to rating: 1557
                         &nbsp;|&nbsp;
-                        avg. remaining rating: 1494
+                        avg. remaining rating: 1456
                 </small></td>
         </tr>
         <tr><th>Wk</th><th>Rk</th><th>Outcome</th><th>Wk</th><th>Rk</th><th>Outcome</th><th>Wk</th><th>Rk</th><th>Outcome</th></tr>
@@ -3533,7 +3768,7 @@ Contents <a name="top"></a>
 <tr><td><a href="#after-Reg-2">2</a></td><td><u>4</u></td><td class="bdr">vs <a href="#Las-Vegas-Raiders-season-stats">LV</a>(1494) L 23-26: -29→<u>1639</u></td><td><a href="#after-Reg-10">10</a></td><td>1</td><td class="bdr">vs <a href="#Cincinnati-Bengals-season-stats">CIN</a>(1533) W 35-34: +0→1702</td><td><a href="#after-Reg-18">18</a></td><td></td><td>vs <a href="#Cleveland-Browns-season-stats">CLE</a></td></tr>
 <tr><td><a href="#after-Reg-3">3</a></td><td>3</td><td class="bdr">at <a href="#Dallas-Cowboys-season-stats">DAL</a>(1541) W 28-25: +0→1639</td><td><a href="#after-Reg-11">11</a></td><td>2</td><td class="bdr">at <a href="#Pittsburgh-Steelers-season-stats">PIT</a>(1588) L 16-18: -10→1692</td><td><span style="opacity:0.4"><a href="#after-Playoffs-Wildcard">W</a></span></td><td><span style="opacity:0.4"></span></td><td></td></tr>
 <tr><td><a href="#after-Reg-4">4</a></td><td><u>1</u></td><td class="bdr">vs <a href="#Buffalo-Bills-season-stats">BUF</a>(1697) W 35-10: +45→1684</td><td><a href="#after-Reg-12">12</a></td><td>3</td><td class="bdr">at <a href="#Los-Angeles-Chargers-season-stats">LAC</a>(1578) W 30-23: +12→<u>1704</u></td><td><span style="opacity:0.4"><a href="#after-Playoffs-Divisional">D</a></span></td><td><span style="opacity:0.4"></span></td><td></td></tr>
-<tr><td><a href="#after-Reg-5">5</a></td><td>1</td><td class="bdr">at <a href="#Cincinnati-Bengals-season-stats">CIN</a>(1537) W 41-38: +0→1684</td><td><a href="#after-Reg-13">13</a></td><td></td><td class="bdr">vs <a href="#Philadelphia-Eagles-season-stats">PHI</a></td><td><span style="opacity:0.4"><a href="#after-Playoffs-Championship">C</a></span></td><td><span style="opacity:0.4"></span></td><td></td></tr>
+<tr><td><a href="#after-Reg-5">5</a></td><td>1</td><td class="bdr">at <a href="#Cincinnati-Bengals-season-stats">CIN</a>(1537) W 41-38: +0→1684</td><td><a href="#after-Reg-13">13</a></td><td>3</td><td class="bdr">vs <a href="#Philadelphia-Eagles-season-stats">PHI</a>(1645) L 19-24: -10→1694</td><td><span style="opacity:0.4"><a href="#after-Playoffs-Championship">C</a></span></td><td><span style="opacity:0.4"></span></td><td></td></tr>
 <tr><td><a href="#after-Reg-6">6</a></td><td>1</td><td class="bdr">vs <a href="#Washington-Commanders-season-stats">WAS</a>(1475) W 30-23: +0→1684</td><td><a href="#after-Reg-14">14</a></td><td></td><td class="bdr">(bye)</td><td><span style="opacity:0.4"><a href="#after-Playoffs-Super-Bowl">S</a></span></td><td><span style="opacity:0.4"></span></td><td></td></tr>
 <tr><td><a href="#after-Reg-7">7</a></td><td>1</td><td class="bdr">at <a href="#Tampa-Bay-Buccaneers-season-stats">TB</a>(1557) W 41-31: +20→1704</td><td><a href="#after-Reg-15">15</a></td><td></td><td class="bdr">at <a href="#New-York-Giants-season-stats">NYG</a></td><td><span style="opacity:0.4"></span></td><td><span style="opacity:0.4"></span></td><td></td></tr>
 <tr><td><a href="#after-Reg-8">8</a></td><td>2</td><td class="bdr">at <a href="#Cleveland-Browns-season-stats">CLE</a>(1416) L 24-29: -27→1677</td><td><a href="#after-Reg-16">16</a></td><td></td><td class="bdr">vs <a href="#Pittsburgh-Steelers-season-stats">PIT</a></td><td><span style="opacity:0.4"></span></td><td><span style="opacity:0.4"></span></td><td></td></tr>
@@ -3546,21 +3781,21 @@ Contents <a name="top"></a>
 <table>
         <tr>
                 <td colspan="9" style="border:0;"><small>
-                        reg. season: avg. opp. rating: 1497 (-164 net)
+                        reg. season: avg. opp. rating: 1500 (-164 net)
                         &nbsp;|&nbsp;
-                        avg. beat rating: 1487
+                        avg. beat rating: 1492
                         &nbsp;|&nbsp;
                         avg. lost to rating: 1541
                         &nbsp;|&nbsp;
-                        avg. remaining rating: 1473
+                        avg. remaining rating: 1462
                 </small></td>
         </tr>
         <tr><th>Wk</th><th>Rk</th><th>Outcome</th><th>Wk</th><th>Rk</th><th>Outcome</th><th>Wk</th><th>Rk</th><th>Outcome</th></tr>
 <tr><td><a href="#after-Reg-1">1</a></td><td>3</td><td class="bdr">vs <a href="#Arizona-Cardinals-season-stats">ARI</a>(1396) W 34-28: +0→1644</td><td><a href="#after-Reg-9">9</a></td><td>3</td><td class="bdr">vs <a href="#Miami-Dolphins-season-stats">MIA</a>(1402) W 30-27: +0→1676</td><td><a href="#after-Reg-17">17</a></td><td></td><td>vs <a href="#New-York-Jets-season-stats">NYJ</a></td></tr>
 <tr><td><a href="#after-Reg-2">2</a></td><td><u>1</u></td><td class="bdr">at <a href="#Miami-Dolphins-season-stats">MIA</a>(1547) W 31-10: +38→1682</td><td><a href="#after-Reg-10">10</a></td><td>3</td><td class="bdr">at <a href="#Indianapolis-Colts-season-stats">IND</a>(1451) W 30-20: +9→1685</td><td><a href="#after-Reg-18">18</a></td><td></td><td>at <a href="#New-England-Patriots-season-stats">NE</a></td></tr>
-<tr><td><a href="#after-Reg-3">3</a></td><td>1</td><td class="bdr">vs <a href="#Jacksonville-Jaguars-season-stats">JAX</a>(1482) W 47-10: +15→1697</td><td><a href="#after-Reg-11">11</a></td><td><u>1</u></td><td class="bdr">vs <a href="#Kansas-City-Chiefs-season-stats">KC</a>(1695) W 30-21: +21→<u>1706</u></td><td><span style="opacity:0.4"><a href="#after-Playoffs-Wildcard">W</a></span></td><td><span style="opacity:0.4"></span></td><td></td></tr>
+<tr><td><a href="#after-Reg-3">3</a></td><td>1</td><td class="bdr">vs <a href="#Jacksonville-Jaguars-season-stats">JAX</a>(1482) W 47-10: +15→1697</td><td><a href="#after-Reg-11">11</a></td><td><u>1</u></td><td class="bdr">vs <a href="#Kansas-City-Chiefs-season-stats">KC</a>(1695) W 30-21: +21→1706</td><td><span style="opacity:0.4"><a href="#after-Playoffs-Wildcard">W</a></span></td><td><span style="opacity:0.4"></span></td><td></td></tr>
 <tr><td><a href="#after-Reg-4">4</a></td><td>2</td><td class="bdr">at <a href="#Baltimore-Ravens-season-stats">BAL</a>(1639) L 10-35: -45→1652</td><td><a href="#after-Reg-12">12</a></td><td>2</td><td class="bdr">(bye)</td><td><span style="opacity:0.4"><a href="#after-Playoffs-Divisional">D</a></span></td><td><span style="opacity:0.4"></span></td><td></td></tr>
-<tr><td><a href="#after-Reg-5">5</a></td><td>3</td><td class="bdr">at <a href="#Houston-Texans-season-stats">HOU</a>(1444) L 20-23: -21→<u>1631</u></td><td><a href="#after-Reg-13">13</a></td><td></td><td class="bdr">vs <a href="#San-Francisco-49ers-season-stats">SF</a></td><td><span style="opacity:0.4"><a href="#after-Playoffs-Championship">C</a></span></td><td><span style="opacity:0.4"></span></td><td></td></tr>
+<tr><td><a href="#after-Reg-5">5</a></td><td>3</td><td class="bdr">at <a href="#Houston-Texans-season-stats">HOU</a>(1444) L 20-23: -21→<u>1631</u></td><td><a href="#after-Reg-13">13</a></td><td><u>1</u></td><td class="bdr">vs <a href="#San-Francisco-49ers-season-stats">SF</a>(1541) W 35-10: +23→<u>1729</u></td><td><span style="opacity:0.4"><a href="#after-Playoffs-Championship">C</a></span></td><td><span style="opacity:0.4"></span></td><td></td></tr>
 <tr><td><a href="#after-Reg-6">6</a></td><td><u>4</u></td><td class="bdr">at <a href="#New-York-Jets-season-stats">NYJ</a>(1486) W 23-20: +0→1631</td><td><a href="#after-Reg-14">14</a></td><td></td><td class="bdr">at <a href="#Los-Angeles-Rams-season-stats">LAR</a></td><td><span style="opacity:0.4"><a href="#after-Playoffs-Super-Bowl">S</a></span></td><td><span style="opacity:0.4"></span></td><td></td></tr>
 <tr><td><a href="#after-Reg-7">7</a></td><td>3</td><td class="bdr">vs <a href="#Tennessee-Titans-season-stats">TEN</a>(1429) W 34-10: +16→1647</td><td><a href="#after-Reg-15">15</a></td><td></td><td class="bdr">at <a href="#Detroit-Lions-season-stats">DET</a></td><td><span style="opacity:0.4"></span></td><td><span style="opacity:0.4"></span></td><td></td></tr>
 <tr><td><a href="#after-Reg-8">8</a></td><td>3</td><td class="bdr">at <a href="#Seattle-Seahawks-season-stats">SEA</a>(1493) W 31-10: +29→1676</td><td><a href="#after-Reg-16">16</a></td><td></td><td class="bdr">vs <a href="#New-England-Patriots-season-stats">NE</a></td><td><span style="opacity:0.4"></span></td><td><span style="opacity:0.4"></span></td><td></td></tr>
@@ -3573,13 +3808,13 @@ Contents <a name="top"></a>
 <table>
         <tr>
                 <td colspan="9" style="border:0;"><small>
-                        reg. season: avg. opp. rating: 1503 (+189 net)
+                        reg. season: avg. opp. rating: 1507 (+194 net)
                         &nbsp;|&nbsp;
                         avg. beat rating: 1445
                         &nbsp;|&nbsp;
-                        avg. lost to rating: 1525
+                        avg. lost to rating: 1528
                         &nbsp;|&nbsp;
-                        avg. remaining rating: 1519
+                        avg. remaining rating: 1514
                 </small></td>
         </tr>
         <tr><th>Wk</th><th>Rk</th><th>Outcome</th><th>Wk</th><th>Rk</th><th>Outcome</th><th>Wk</th><th>Rk</th><th>Outcome</th></tr>
@@ -3587,7 +3822,7 @@ Contents <a name="top"></a>
 <tr><td><a href="#after-Reg-2">2</a></td><td>32</td><td class="bdr">vs <a href="#Los-Angeles-Chargers-season-stats">LAC</a>(1474) L 3-26: -33→1296</td><td><a href="#after-Reg-10">10</a></td><td>32</td><td class="bdr">at <a href="#New-York-Giants-season-stats">NYG</a>(1404) W 20-17: +17→1310</td><td><a href="#after-Reg-18">18</a></td><td></td><td>at <a href="#Atlanta-Falcons-season-stats">ATL</a></td></tr>
 <tr><td><a href="#after-Reg-3">3</a></td><td>32</td><td class="bdr">at <a href="#Las-Vegas-Raiders-season-stats">LV</a>(1523) W 36-22: +69→<u>1365</u></td><td><a href="#after-Reg-11">11</a></td><td>32</td><td class="bdr">(bye)</td><td><span style="opacity:0.4"><a href="#after-Playoffs-Wildcard">W</a></span></td><td><span style="opacity:0.4"></span></td><td></td></tr>
 <tr><td><a href="#after-Reg-4">4</a></td><td>32</td><td class="bdr">vs <a href="#Cincinnati-Bengals-season-stats">CIN</a>(1519) L 24-34: -17→1348</td><td><a href="#after-Reg-12">12</a></td><td>32</td><td class="bdr">vs <a href="#Kansas-City-Chiefs-season-stats">KC</a>(1674) L 27-30: +0→1310</td><td><span style="opacity:0.4"><a href="#after-Playoffs-Divisional">D</a></span></td><td><span style="opacity:0.4"></span></td><td></td></tr>
-<tr><td><a href="#after-Reg-5">5</a></td><td>32</td><td class="bdr">at <a href="#Chicago-Bears-season-stats">CHI</a>(1489) L 10-36: -22→1326</td><td><a href="#after-Reg-13">13</a></td><td></td><td class="bdr">vs <a href="#Tampa-Bay-Buccaneers-season-stats">TB</a></td><td><span style="opacity:0.4"><a href="#after-Playoffs-Championship">C</a></span></td><td><span style="opacity:0.4"></span></td><td></td></tr>
+<tr><td><a href="#after-Reg-5">5</a></td><td>32</td><td class="bdr">at <a href="#Chicago-Bears-season-stats">CHI</a>(1489) L 10-36: -22→1326</td><td><a href="#after-Reg-13">13</a></td><td>32</td><td class="bdr">vs <a href="#Tampa-Bay-Buccaneers-season-stats">TB</a>(1553) L 23-26: +0→1310</td><td><span style="opacity:0.4"><a href="#after-Playoffs-Championship">C</a></span></td><td><span style="opacity:0.4"></span></td><td></td></tr>
 <tr><td><a href="#after-Reg-6">6</a></td><td>32</td><td class="bdr">vs <a href="#Atlanta-Falcons-season-stats">ATL</a>(1465) L 20-38: -29→1297</td><td><a href="#after-Reg-14">14</a></td><td></td><td class="bdr">at <a href="#Philadelphia-Eagles-season-stats">PHI</a></td><td><span style="opacity:0.4"><a href="#after-Playoffs-Super-Bowl">S</a></span></td><td><span style="opacity:0.4"></span></td><td></td></tr>
 <tr><td><a href="#after-Reg-7">7</a></td><td>32</td><td class="bdr">at <a href="#Washington-Commanders-season-stats">WAS</a>(1475) L 7-40: -18→<u>1279</u></td><td><a href="#after-Reg-15">15</a></td><td></td><td class="bdr">vs <a href="#Dallas-Cowboys-season-stats">DAL</a></td><td><span style="opacity:0.4"></span></td><td><span style="opacity:0.4"></span></td><td></td></tr>
 <tr><td><a href="#after-Reg-8">8</a></td><td>32</td><td class="bdr">at <a href="#Denver-Broncos-season-stats">DEN</a>(1571) L 14-28: +0→1279</td><td><a href="#after-Reg-16">16</a></td><td></td><td class="bdr">vs <a href="#Arizona-Cardinals-season-stats">ARI</a></td><td><span style="opacity:0.4"></span></td><td><span style="opacity:0.4"></span></td><td></td></tr>
@@ -3600,13 +3835,13 @@ Contents <a name="top"></a>
 <table>
         <tr>
                 <td colspan="9" style="border:0;"><small>
-                        reg. season: avg. opp. rating: 1453 (-37 net)
+                        reg. season: avg. opp. rating: 1475 (-9 net)
                         &nbsp;|&nbsp;
                         avg. beat rating: 1432
                         &nbsp;|&nbsp;
-                        avg. lost to rating: 1465
+                        avg. lost to rating: 1496
                         &nbsp;|&nbsp;
-                        avg. remaining rating: 1605
+                        avg. remaining rating: 1583
                 </small></td>
         </tr>
         <tr><th>Wk</th><th>Rk</th><th>Outcome</th><th>Wk</th><th>Rk</th><th>Outcome</th><th>Wk</th><th>Rk</th><th>Outcome</th></tr>
@@ -3614,7 +3849,7 @@ Contents <a name="top"></a>
 <tr><td><a href="#after-Reg-2">2</a></td><td>16</td><td class="bdr">at <a href="#Houston-Texans-season-stats">HOU</a>(1471) L 13-19: -7→1488</td><td><a href="#after-Reg-10">10</a></td><td><u>25</u></td><td class="bdr">vs <a href="#New-England-Patriots-season-stats">NE</a>(1319) L 3-19: -68→<u>1421</u></td><td><a href="#after-Reg-18">18</a></td><td></td><td>at <a href="#Green-Bay-Packers-season-stats">GB</a></td></tr>
 <tr><td><a href="#after-Reg-3">3</a></td><td>16</td><td class="bdr">at <a href="#Indianapolis-Colts-season-stats">IND</a>(1437) L 16-21: -3→1485</td><td><a href="#after-Reg-11">11</a></td><td>24</td><td class="bdr">vs <a href="#Green-Bay-Packers-season-stats">GB</a>(1562) L 19-20: +0→1421</td><td><span style="opacity:0.4"><a href="#after-Playoffs-Wildcard">W</a></span></td><td><span style="opacity:0.4"></span></td><td></td></tr>
 <tr><td><a href="#after-Reg-4">4</a></td><td>15</td><td class="bdr">vs <a href="#Los-Angeles-Rams-season-stats">LAR</a>(1484) W 24-18: +4→1489</td><td><a href="#after-Reg-12">12</a></td><td><u>25</u></td><td class="bdr">vs <a href="#Minnesota-Vikings-season-stats">MIN</a>(1552) L 27-30: +0→1421</td><td><span style="opacity:0.4"><a href="#after-Playoffs-Divisional">D</a></span></td><td><span style="opacity:0.4"></span></td><td></td></tr>
-<tr><td><a href="#after-Reg-5">5</a></td><td>13</td><td class="bdr">vs <a href="#Carolina-Panthers-season-stats">CAR</a>(1348) W 36-10: +22→1511</td><td><a href="#after-Reg-13">13</a></td><td></td><td class="bdr">at <a href="#Detroit-Lions-season-stats">DET</a></td><td><span style="opacity:0.4"><a href="#after-Playoffs-Championship">C</a></span></td><td><span style="opacity:0.4"></span></td><td></td></tr>
+<tr><td><a href="#after-Reg-5">5</a></td><td>13</td><td class="bdr">vs <a href="#Carolina-Panthers-season-stats">CAR</a>(1348) W 36-10: +22→1511</td><td><a href="#after-Reg-13">13</a></td><td>24</td><td class="bdr">at <a href="#Detroit-Lions-season-stats">DET</a>(1718) L 20-23: +0→1421</td><td><span style="opacity:0.4"><a href="#after-Playoffs-Championship">C</a></span></td><td><span style="opacity:0.4"></span></td><td></td></tr>
 <tr><td><a href="#after-Reg-6">6</a></td><td>11</td><td class="bdr">at <a href="#Jacksonville-Jaguars-season-stats">JAX</a>(1467) W 35-16: +37→<u>1548</u></td><td><a href="#after-Reg-14">14</a></td><td></td><td class="bdr">at <a href="#San-Francisco-49ers-season-stats">SF</a></td><td><span style="opacity:0.4"><a href="#after-Playoffs-Super-Bowl">S</a></span></td><td><span style="opacity:0.4"></span></td><td></td></tr>
 <tr><td><a href="#after-Reg-7">7</a></td><td>11</td><td class="bdr">(bye)</td><td><a href="#after-Reg-15">15</a></td><td></td><td class="bdr">at <a href="#Minnesota-Vikings-season-stats">MIN</a></td><td><span style="opacity:0.4"></span></td><td><span style="opacity:0.4"></span></td><td></td></tr>
 <tr><td><a href="#after-Reg-8">8</a></td><td><u>10</u></td><td class="bdr">at <a href="#Washington-Commanders-season-stats">WAS</a>(1493) L 15-18: -6→1542</td><td><a href="#after-Reg-16">16</a></td><td></td><td class="bdr">vs <a href="#Detroit-Lions-season-stats">DET</a></td><td><span style="opacity:0.4"></span></td><td><span style="opacity:0.4"></span></td><td></td></tr>
@@ -3627,13 +3862,13 @@ Contents <a name="top"></a>
 <table>
         <tr>
                 <td colspan="9" style="border:0;"><small>
-                        reg. season: avg. opp. rating: 1502 (-39 net)
+                        reg. season: avg. opp. rating: 1509 (-31 net)
                         &nbsp;|&nbsp;
                         avg. beat rating: 1415
                         &nbsp;|&nbsp;
-                        avg. lost to rating: 1552
+                        avg. lost to rating: 1556
                         &nbsp;|&nbsp;
-                        avg. remaining rating: 1496
+                        avg. remaining rating: 1475
                 </small></td>
         </tr>
         <tr><th>Wk</th><th>Rk</th><th>Outcome</th><th>Wk</th><th>Rk</th><th>Outcome</th><th>Wk</th><th>Rk</th><th>Outcome</th></tr>
@@ -3641,7 +3876,7 @@ Contents <a name="top"></a>
 <tr><td><a href="#after-Reg-2">2</a></td><td>8</td><td class="bdr">at <a href="#Kansas-City-Chiefs-season-stats">KC</a>(1640) L 25-26: +0→1549</td><td><a href="#after-Reg-10">10</a></td><td>11</td><td class="bdr">at <a href="#Baltimore-Ravens-season-stats">BAL</a>(1702) L 34-35: +0→1533</td><td><a href="#after-Reg-18">18</a></td><td></td><td>at <a href="#Pittsburgh-Steelers-season-stats">PIT</a></td></tr>
 <tr><td><a href="#after-Reg-3">3</a></td><td>13</td><td class="bdr">vs <a href="#Washington-Commanders-season-stats">WAS</a>(1344) L 33-38: -30→1519</td><td><a href="#after-Reg-11">11</a></td><td>12</td><td class="bdr">at <a href="#Los-Angeles-Chargers-season-stats">LAC</a>(1569) L 27-34: -9→1524</td><td><span style="opacity:0.4"><a href="#after-Playoffs-Wildcard">W</a></span></td><td><span style="opacity:0.4"></span></td><td></td></tr>
 <tr><td><a href="#after-Reg-4">4</a></td><td>10</td><td class="bdr">at <a href="#Carolina-Panthers-season-stats">CAR</a>(1365) W 34-24: +18→1537</td><td><a href="#after-Reg-12">12</a></td><td>13</td><td class="bdr">(bye)</td><td><span style="opacity:0.4"><a href="#after-Playoffs-Divisional">D</a></span></td><td><span style="opacity:0.4"></span></td><td></td></tr>
-<tr><td><a href="#after-Reg-5">5</a></td><td>10</td><td class="bdr">vs <a href="#Baltimore-Ravens-season-stats">BAL</a>(1684) L 38-41: +0→1537</td><td><a href="#after-Reg-13">13</a></td><td></td><td class="bdr">vs <a href="#Pittsburgh-Steelers-season-stats">PIT</a></td><td><span style="opacity:0.4"><a href="#after-Playoffs-Championship">C</a></span></td><td><span style="opacity:0.4"></span></td><td></td></tr>
+<tr><td><a href="#after-Reg-5">5</a></td><td>10</td><td class="bdr">vs <a href="#Baltimore-Ravens-season-stats">BAL</a>(1684) L 38-41: +0→1537</td><td><a href="#after-Reg-13">13</a></td><td>13</td><td class="bdr">vs <a href="#Pittsburgh-Steelers-season-stats">PIT</a>(1584) L 38-44: -10→1514</td><td><span style="opacity:0.4"><a href="#after-Playoffs-Championship">C</a></span></td><td><span style="opacity:0.4"></span></td><td></td></tr>
 <tr><td><a href="#after-Reg-6">6</a></td><td><u>7</u></td><td class="bdr">at <a href="#New-York-Giants-season-stats">NYG</a>(1480) W 17-7: +28→1565</td><td><a href="#after-Reg-14">14</a></td><td></td><td class="bdr">at <a href="#Dallas-Cowboys-season-stats">DAL</a></td><td><span style="opacity:0.4"><a href="#after-Playoffs-Super-Bowl">S</a></span></td><td><span style="opacity:0.4"></span></td><td></td></tr>
 <tr><td><a href="#after-Reg-7">7</a></td><td>9</td><td class="bdr">at <a href="#Cleveland-Browns-season-stats">CLE</a>(1421) W 21-14: +4→<u>1569</u></td><td><a href="#after-Reg-15">15</a></td><td></td><td class="bdr">at <a href="#Tennessee-Titans-season-stats">TEN</a></td><td><span style="opacity:0.4"></span></td><td><span style="opacity:0.4"></span></td><td></td></tr>
 <tr><td><a href="#after-Reg-8">8</a></td><td><u>15</u></td><td class="bdr">vs <a href="#Philadelphia-Eagles-season-stats">PHI</a>(1513) L 17-37: -56→<u>1513</u></td><td><a href="#after-Reg-16">16</a></td><td></td><td class="bdr">vs <a href="#Cleveland-Browns-season-stats">CLE</a></td><td><span style="opacity:0.4"></span></td><td><span style="opacity:0.4"></span></td><td></td></tr>
@@ -3654,13 +3889,13 @@ Contents <a name="top"></a>
 <table>
         <tr>
                 <td colspan="9" style="border:0;"><small>
-                        reg. season: avg. opp. rating: 1514 (+74 net)
+                        reg. season: avg. opp. rating: 1521 (+85 net)
                         &nbsp;|&nbsp;
                         avg. beat rating: 1598
                         &nbsp;|&nbsp;
-                        avg. lost to rating: 1483
+                        avg. lost to rating: 1495
                         &nbsp;|&nbsp;
-                        avg. remaining rating: 1596
+                        avg. remaining rating: 1591
                 </small></td>
         </tr>
         <tr><th>Wk</th><th>Rk</th><th>Outcome</th><th>Wk</th><th>Rk</th><th>Outcome</th><th>Wk</th><th>Rk</th><th>Outcome</th></tr>
@@ -3668,7 +3903,7 @@ Contents <a name="top"></a>
 <tr><td><a href="#after-Reg-2">2</a></td><td><u>17</u></td><td class="bdr">at <a href="#Jacksonville-Jaguars-season-stats">JAX</a>(1492) W 18-13: +9→<u>1486</u></td><td><a href="#after-Reg-10">10</a></td><td>26</td><td class="bdr">(bye)</td><td><a href="#after-Reg-18">18</a></td><td></td><td>at <a href="#Baltimore-Ravens-season-stats">BAL</a></td></tr>
 <tr><td><a href="#after-Reg-3">3</a></td><td>22</td><td class="bdr">vs <a href="#New-York-Giants-season-stats">NYG</a>(1419) L 15-21: -24→1462</td><td><a href="#after-Reg-11">11</a></td><td><u>30</u></td><td class="bdr">at <a href="#New-Orleans-Saints-season-stats">NO</a>(1402) L 14-35: -39→<u>1369</u></td><td><span style="opacity:0.4"><a href="#after-Playoffs-Wildcard">W</a></span></td><td><span style="opacity:0.4"></span></td><td></td></tr>
 <tr><td><a href="#after-Reg-4">4</a></td><td>21</td><td class="bdr">at <a href="#Las-Vegas-Raiders-season-stats">LV</a>(1454) L 16-20: +0→1462</td><td><a href="#after-Reg-12">12</a></td><td>28</td><td class="bdr">vs <a href="#Pittsburgh-Steelers-season-stats">PIT</a>(1598) W 24-19: +14→1383</td><td><span style="opacity:0.4"><a href="#after-Playoffs-Divisional">D</a></span></td><td><span style="opacity:0.4"></span></td><td></td></tr>
-<tr><td><a href="#after-Reg-5">5</a></td><td>28</td><td class="bdr">at <a href="#Washington-Commanders-season-stats">WAS</a>(1433) L 13-34: -41→1421</td><td><a href="#after-Reg-13">13</a></td><td></td><td class="bdr">at <a href="#Denver-Broncos-season-stats">DEN</a></td><td><span style="opacity:0.4"><a href="#after-Playoffs-Championship">C</a></span></td><td><span style="opacity:0.4"></span></td><td></td></tr>
+<tr><td><a href="#after-Reg-5">5</a></td><td>28</td><td class="bdr">at <a href="#Washington-Commanders-season-stats">WAS</a>(1433) L 13-34: -41→1421</td><td><a href="#after-Reg-13">13</a></td><td>27</td><td class="bdr">at <a href="#Denver-Broncos-season-stats">DEN</a>(1591) L 32-41: -7→1376</td><td><span style="opacity:0.4"><a href="#after-Playoffs-Championship">C</a></span></td><td><span style="opacity:0.4"></span></td><td></td></tr>
 <tr><td><a href="#after-Reg-6">6</a></td><td>27</td><td class="bdr">at <a href="#Philadelphia-Eagles-season-stats">PHI</a>(1465) L 16-20: +0→1421</td><td><a href="#after-Reg-14">14</a></td><td></td><td class="bdr">at <a href="#Pittsburgh-Steelers-season-stats">PIT</a></td><td><span style="opacity:0.4"><a href="#after-Playoffs-Super-Bowl">S</a></span></td><td><span style="opacity:0.4"></span></td><td></td></tr>
 <tr><td><a href="#after-Reg-7">7</a></td><td>25</td><td class="bdr">vs <a href="#Cincinnati-Bengals-season-stats">CIN</a>(1565) L 14-21: -5→1416</td><td><a href="#after-Reg-15">15</a></td><td></td><td class="bdr">vs <a href="#Kansas-City-Chiefs-season-stats">KC</a></td><td><span style="opacity:0.4"></span></td><td><span style="opacity:0.4"></span></td><td></td></tr>
 <tr><td><a href="#after-Reg-8">8</a></td><td>23</td><td class="bdr">vs <a href="#Baltimore-Ravens-season-stats">BAL</a>(1704) W 29-24: +27→1443</td><td><a href="#after-Reg-16">16</a></td><td></td><td class="bdr">at <a href="#Cincinnati-Bengals-season-stats">CIN</a></td><td><span style="opacity:0.4"></span></td><td><span style="opacity:0.4"></span></td><td></td></tr>
@@ -3681,13 +3916,13 @@ Contents <a name="top"></a>
 <table>
         <tr>
                 <td colspan="9" style="border:0;"><small>
-                        reg. season: avg. opp. rating: 1528 (+8 net)
+                        reg. season: avg. opp. rating: 1513 (-1 net)
                         &nbsp;|&nbsp;
-                        avg. beat rating: 1486
+                        avg. beat rating: 1459
                         &nbsp;|&nbsp;
                         avg. lost to rating: 1552
                         &nbsp;|&nbsp;
-                        avg. remaining rating: 1474
+                        avg. remaining rating: 1504
                 </small></td>
         </tr>
         <tr><th>Wk</th><th>Rk</th><th>Outcome</th><th>Wk</th><th>Rk</th><th>Outcome</th><th>Wk</th><th>Rk</th><th>Outcome</th></tr>
@@ -3695,7 +3930,7 @@ Contents <a name="top"></a>
 <tr><td><a href="#after-Reg-2">2</a></td><td>9</td><td class="bdr">vs <a href="#New-Orleans-Saints-season-stats">NO</a>(1531) L 19-44: -58→1541</td><td><a href="#after-Reg-10">10</a></td><td>21</td><td class="bdr">vs <a href="#Philadelphia-Eagles-season-stats">PHI</a>(1569) L 6-34: -39→1453</td><td><a href="#after-Reg-18">18</a></td><td></td><td>vs <a href="#Washington-Commanders-season-stats">WAS</a></td></tr>
 <tr><td><a href="#after-Reg-3">3</a></td><td>9</td><td class="bdr">vs <a href="#Baltimore-Ravens-season-stats">BAL</a>(1639) L 25-28: +0→1541</td><td><a href="#after-Reg-11">11</a></td><td><u>26</u></td><td class="bdr">vs <a href="#Houston-Texans-season-stats">HOU</a>(1476) L 10-34: -46→<u>1407</u></td><td><span style="opacity:0.4"><a href="#after-Playoffs-Wildcard">W</a></span></td><td><span style="opacity:0.4"></span></td><td></td></tr>
 <tr><td><a href="#after-Reg-4">4</a></td><td>9</td><td class="bdr">at <a href="#New-York-Giants-season-stats">NYG</a>(1443) W 20-15: +0→1541</td><td><a href="#after-Reg-12">12</a></td><td>20</td><td class="bdr">at <a href="#Washington-Commanders-season-stats">WAS</a>(1494) W 34-26: +35→1442</td><td><span style="opacity:0.4"><a href="#after-Playoffs-Divisional">D</a></span></td><td><span style="opacity:0.4"></span></td><td></td></tr>
-<tr><td><a href="#after-Reg-5">5</a></td><td>9</td><td class="bdr">at <a href="#Pittsburgh-Steelers-season-stats">PIT</a>(1529) W 20-17: +5→1546</td><td><a href="#after-Reg-13">13</a></td><td></td><td class="bdr">vs <a href="#New-York-Giants-season-stats">NYG</a></td><td><span style="opacity:0.4"><a href="#after-Playoffs-Championship">C</a></span></td><td><span style="opacity:0.4"></span></td><td></td></tr>
+<tr><td><a href="#after-Reg-5">5</a></td><td>9</td><td class="bdr">at <a href="#Pittsburgh-Steelers-season-stats">PIT</a>(1529) W 20-17: +5→1546</td><td><a href="#after-Reg-13">13</a></td><td>20</td><td class="bdr">vs <a href="#New-York-Giants-season-stats">NYG</a>(1351) W 27-20: +4→1446</td><td><span style="opacity:0.4"><a href="#after-Playoffs-Championship">C</a></span></td><td><span style="opacity:0.4"></span></td><td></td></tr>
 <tr><td><a href="#after-Reg-6">6</a></td><td>14</td><td class="bdr">vs <a href="#Detroit-Lions-season-stats">DET</a>(1589) L 9-47: -43→1503</td><td><a href="#after-Reg-14">14</a></td><td></td><td class="bdr">vs <a href="#Cincinnati-Bengals-season-stats">CIN</a></td><td><span style="opacity:0.4"><a href="#after-Playoffs-Super-Bowl">S</a></span></td><td><span style="opacity:0.4"></span></td><td></td></tr>
 <tr><td><a href="#after-Reg-7">7</a></td><td>14</td><td class="bdr">(bye)</td><td><a href="#after-Reg-15">15</a></td><td></td><td class="bdr">at <a href="#Carolina-Panthers-season-stats">CAR</a></td><td><span style="opacity:0.4"></span></td><td><span style="opacity:0.4"></span></td><td></td></tr>
 <tr><td><a href="#after-Reg-8">8</a></td><td>16</td><td class="bdr">at <a href="#San-Francisco-49ers-season-stats">SF</a>(1598) L 24-30: +0→1503</td><td><a href="#after-Reg-16">16</a></td><td></td><td class="bdr">vs <a href="#Tampa-Bay-Buccaneers-season-stats">TB</a></td><td><span style="opacity:0.4"></span></td><td><span style="opacity:0.4"></span></td><td></td></tr>
@@ -3708,21 +3943,21 @@ Contents <a name="top"></a>
 <table>
         <tr>
                 <td colspan="9" style="border:0;"><small>
-                        reg. season: avg. opp. rating: 1490 (-45 net)
+                        reg. season: avg. opp. rating: 1481 (-57 net)
                         &nbsp;|&nbsp;
-                        avg. beat rating: 1436
+                        avg. beat rating: 1429
                         &nbsp;|&nbsp;
                         avg. lost to rating: 1565
                         &nbsp;|&nbsp;
-                        avg. remaining rating: 1514
+                        avg. remaining rating: 1545
                 </small></td>
         </tr>
         <tr><th>Wk</th><th>Rk</th><th>Outcome</th><th>Wk</th><th>Rk</th><th>Outcome</th><th>Wk</th><th>Rk</th><th>Outcome</th></tr>
 <tr><td><a href="#after-Reg-1">1</a></td><td>16</td><td class="bdr">at <a href="#Seattle-Seahawks-season-stats">SEA</a>(1483) L 20-26: -0→1494</td><td><a href="#after-Reg-9">9</a></td><td>10</td><td class="bdr">at <a href="#Baltimore-Ravens-season-stats">BAL</a>(1677) L 10-41: -25→1546</td><td><a href="#after-Reg-17">17</a></td><td></td><td>at <a href="#Cincinnati-Bengals-season-stats">CIN</a></td></tr>
 <tr><td><a href="#after-Reg-2">2</a></td><td><u>22</u></td><td class="bdr">vs <a href="#Pittsburgh-Steelers-season-stats">PIT</a>(1491) L 6-13: -23→<u>1471</u></td><td><a href="#after-Reg-10">10</a></td><td>10</td><td class="bdr">at <a href="#Kansas-City-Chiefs-season-stats">KC</a>(1695) L 14-16: +0→1546</td><td><a href="#after-Reg-18">18</a></td><td></td><td>vs <a href="#Kansas-City-Chiefs-season-stats">KC</a></td></tr>
 <tr><td><a href="#after-Reg-3">3</a></td><td>11</td><td class="bdr">at <a href="#Tampa-Bay-Buccaneers-season-stats">TB</a>(1535) W 26-7: +56→1527</td><td><a href="#after-Reg-11">11</a></td><td>9</td><td class="bdr">vs <a href="#Atlanta-Falcons-season-stats">ATL</a>(1463) W 38-6: +29→1575</td><td><span style="opacity:0.4"><a href="#after-Playoffs-Wildcard">W</a></span></td><td><span style="opacity:0.4"></span></td><td></td></tr>
-<tr><td><a href="#after-Reg-4">4</a></td><td>11</td><td class="bdr">at <a href="#New-York-Jets-season-stats">NYJ</a>(1491) W 10-9: +5→1532</td><td><a href="#after-Reg-12">12</a></td><td><u>7</u></td><td class="bdr">at <a href="#Las-Vegas-Raiders-season-stats">LV</a>(1344) W 29-19: +16→<u>1591</u></td><td><span style="opacity:0.4"><a href="#after-Playoffs-Divisional">D</a></span></td><td><span style="opacity:0.4"></span></td><td></td></tr>
-<tr><td><a href="#after-Reg-5">5</a></td><td>8</td><td class="bdr">vs <a href="#Las-Vegas-Raiders-season-stats">LV</a>(1454) W 34-18: +26→1558</td><td><a href="#after-Reg-13">13</a></td><td></td><td class="bdr">vs <a href="#Cleveland-Browns-season-stats">CLE</a></td><td><span style="opacity:0.4"><a href="#after-Playoffs-Championship">C</a></span></td><td><span style="opacity:0.4"></span></td><td></td></tr>
+<tr><td><a href="#after-Reg-4">4</a></td><td>11</td><td class="bdr">at <a href="#New-York-Jets-season-stats">NYJ</a>(1491) W 10-9: +5→1532</td><td><a href="#after-Reg-12">12</a></td><td><u>7</u></td><td class="bdr">at <a href="#Las-Vegas-Raiders-season-stats">LV</a>(1344) W 29-19: +16→1591</td><td><span style="opacity:0.4"><a href="#after-Playoffs-Divisional">D</a></span></td><td><span style="opacity:0.4"></span></td><td></td></tr>
+<tr><td><a href="#after-Reg-5">5</a></td><td>8</td><td class="bdr">vs <a href="#Las-Vegas-Raiders-season-stats">LV</a>(1454) W 34-18: +26→1558</td><td><a href="#after-Reg-13">13</a></td><td>7</td><td class="bdr">vs <a href="#Cleveland-Browns-season-stats">CLE</a>(1383) W 41-32: +6→<u>1597</u></td><td><span style="opacity:0.4"><a href="#after-Playoffs-Championship">C</a></span></td><td><span style="opacity:0.4"></span></td><td></td></tr>
 <tr><td><a href="#after-Reg-6">6</a></td><td>12</td><td class="bdr">vs <a href="#Los-Angeles-Chargers-season-stats">LAC</a>(1479) L 16-23: -31→1527</td><td><a href="#after-Reg-14">14</a></td><td></td><td class="bdr">(bye)</td><td><span style="opacity:0.4"><a href="#after-Playoffs-Super-Bowl">S</a></span></td><td><span style="opacity:0.4"></span></td><td></td></tr>
 <tr><td><a href="#after-Reg-7">7</a></td><td>8</td><td class="bdr">at <a href="#New-Orleans-Saints-season-stats">NO</a>(1484) W 33-10: +44→1571</td><td><a href="#after-Reg-15">15</a></td><td></td><td class="bdr">vs <a href="#Indianapolis-Colts-season-stats">IND</a></td><td><span style="opacity:0.4"></span></td><td><span style="opacity:0.4"></span></td><td></td></tr>
 <tr><td><a href="#after-Reg-8">8</a></td><td>8</td><td class="bdr">vs <a href="#Carolina-Panthers-season-stats">CAR</a>(1279) W 28-14: +0→1571</td><td><a href="#after-Reg-16">16</a></td><td></td><td class="bdr">at <a href="#Los-Angeles-Chargers-season-stats">LAC</a></td><td><span style="opacity:0.4"></span></td><td><span style="opacity:0.4"></span></td><td></td></tr>
@@ -3735,13 +3970,13 @@ Contents <a name="top"></a>
 <table>
         <tr>
                 <td colspan="9" style="border:0;"><small>
-                        reg. season: avg. opp. rating: 1501 (-116 net)
+                        reg. season: avg. opp. rating: 1494 (-131 net)
                         &nbsp;|&nbsp;
-                        avg. beat rating: 1499
+                        avg. beat rating: 1492
                         &nbsp;|&nbsp;
                         avg. lost to rating: 1523
                         &nbsp;|&nbsp;
-                        avg. remaining rating: 1540
+                        avg. remaining rating: 1568
                 </small></td>
         </tr>
         <tr><th>Wk</th><th>Rk</th><th>Outcome</th><th>Wk</th><th>Rk</th><th>Outcome</th><th>Wk</th><th>Rk</th><th>Outcome</th></tr>
@@ -3749,7 +3984,7 @@ Contents <a name="top"></a>
 <tr><td><a href="#after-Reg-2">2</a></td><td><u>7</u></td><td class="bdr">vs <a href="#Tampa-Bay-Buccaneers-season-stats">TB</a>(1523) L 16-20: -12→<u>1553</u></td><td><a href="#after-Reg-10">10</a></td><td>4</td><td class="bdr">at <a href="#Houston-Texans-season-stats">HOU</a>(1476) W 26-23: +0→1674</td><td><a href="#after-Reg-18">18</a></td><td></td><td>vs <a href="#Minnesota-Vikings-season-stats">MIN</a></td></tr>
 <tr><td><a href="#after-Reg-3">3</a></td><td>7</td><td class="bdr">at <a href="#Arizona-Cardinals-season-stats">ARI</a>(1450) W 20-13: +9→1562</td><td><a href="#after-Reg-11">11</a></td><td>3</td><td class="bdr">vs <a href="#Jacksonville-Jaguars-season-stats">JAX</a>(1458) W 52-6: +18→1692</td><td><span style="opacity:0.4"><a href="#after-Playoffs-Wildcard">W</a></span></td><td><span style="opacity:0.4"></span></td><td></td></tr>
 <tr><td><a href="#after-Reg-4">4</a></td><td>5</td><td class="bdr">vs <a href="#Seattle-Seahawks-season-stats">SEA</a>(1526) W 42-29: +27→1589</td><td><a href="#after-Reg-12">12</a></td><td><u>1</u></td><td class="bdr">at <a href="#Indianapolis-Colts-season-stats">IND</a>(1448) W 24-6: +26→<u>1718</u></td><td><span style="opacity:0.4"><a href="#after-Playoffs-Divisional">D</a></span></td><td><span style="opacity:0.4"></span></td><td></td></tr>
-<tr><td><a href="#after-Reg-5">5</a></td><td>5</td><td class="bdr">(bye)</td><td><a href="#after-Reg-13">13</a></td><td></td><td class="bdr">vs <a href="#Chicago-Bears-season-stats">CHI</a></td><td><span style="opacity:0.4"><a href="#after-Playoffs-Championship">C</a></span></td><td><span style="opacity:0.4"></span></td><td></td></tr>
+<tr><td><a href="#after-Reg-5">5</a></td><td>5</td><td class="bdr">(bye)</td><td><a href="#after-Reg-13">13</a></td><td>2</td><td class="bdr">vs <a href="#Chicago-Bears-season-stats">CHI</a>(1421) W 23-20: +0→1718</td><td><span style="opacity:0.4"><a href="#after-Playoffs-Championship">C</a></span></td><td><span style="opacity:0.4"></span></td><td></td></tr>
 <tr><td><a href="#after-Reg-6">6</a></td><td>3</td><td class="bdr">at <a href="#Dallas-Cowboys-season-stats">DAL</a>(1546) W 47-9: +43→1632</td><td><a href="#after-Reg-14">14</a></td><td></td><td class="bdr">vs <a href="#Green-Bay-Packers-season-stats">GB</a></td><td><span style="opacity:0.4"><a href="#after-Playoffs-Super-Bowl">S</a></span></td><td><span style="opacity:0.4"></span></td><td></td></tr>
 <tr><td><a href="#after-Reg-7">7</a></td><td>4</td><td class="bdr">at <a href="#Minnesota-Vikings-season-stats">MIN</a>(1561) W 31-29: +0→1632</td><td><a href="#after-Reg-15">15</a></td><td></td><td class="bdr">vs <a href="#Buffalo-Bills-season-stats">BUF</a></td><td><span style="opacity:0.4"></span></td><td><span style="opacity:0.4"></span></td><td></td></tr>
 <tr><td><a href="#after-Reg-8">8</a></td><td>4</td><td class="bdr">vs <a href="#Tennessee-Titans-season-stats">TEN</a>(1414) W 52-14: +14→1646</td><td><a href="#after-Reg-16">16</a></td><td></td><td class="bdr">at <a href="#Chicago-Bears-season-stats">CHI</a></td><td><span style="opacity:0.4"></span></td><td><span style="opacity:0.4"></span></td><td></td></tr>
@@ -3762,21 +3997,21 @@ Contents <a name="top"></a>
 <table>
         <tr>
                 <td colspan="9" style="border:0;"><small>
-                        reg. season: avg. opp. rating: 1490 (-82 net)
+                        reg. season: avg. opp. rating: 1491 (-83 net)
                         &nbsp;|&nbsp;
-                        avg. beat rating: 1462
+                        avg. beat rating: 1466
                         &nbsp;|&nbsp;
                         avg. lost to rating: 1565
                         &nbsp;|&nbsp;
-                        avg. remaining rating: 1522
+                        avg. remaining rating: 1523
                 </small></td>
         </tr>
         <tr><th>Wk</th><th>Rk</th><th>Outcome</th><th>Wk</th><th>Rk</th><th>Outcome</th><th>Wk</th><th>Rk</th><th>Outcome</th></tr>
 <tr><td><a href="#after-Reg-1">1</a></td><td>7</td><td class="bdr">at <a href="#Philadelphia-Eagles-season-stats">PHI</a>(1500) L 29-34: -1→<u>1555</u></td><td><a href="#after-Reg-9">9</a></td><td>9</td><td class="bdr">vs <a href="#Detroit-Lions-season-stats">DET</a>(1646) L 14-24: -28→1562</td><td><a href="#after-Reg-17">17</a></td><td></td><td>at <a href="#Minnesota-Vikings-season-stats">MIN</a></td></tr>
 <tr><td><a href="#after-Reg-2">2</a></td><td>6</td><td class="bdr">vs <a href="#Indianapolis-Colts-season-stats">IND</a>(1437) W 16-10: +0→1555</td><td><a href="#after-Reg-10">10</a></td><td>9</td><td class="bdr">(bye)</td><td><a href="#after-Reg-18">18</a></td><td></td><td>vs <a href="#Chicago-Bears-season-stats">CHI</a></td></tr>
 <tr><td><a href="#after-Reg-3">3</a></td><td><u>5</u></td><td class="bdr">at <a href="#Tennessee-Titans-season-stats">TEN</a>(1406) W 30-14: +29→1584</td><td><a href="#after-Reg-11">11</a></td><td><u>10</u></td><td class="bdr">at <a href="#Chicago-Bears-season-stats">CHI</a>(1421) W 20-19: +0→1562</td><td><span style="opacity:0.4"><a href="#after-Playoffs-Wildcard">W</a></span></td><td><span style="opacity:0.4"></span></td><td></td></tr>
-<tr><td><a href="#after-Reg-4">4</a></td><td>6</td><td class="bdr">vs <a href="#Minnesota-Vikings-season-stats">MIN</a>(1548) L 29-31: -13→1571</td><td><a href="#after-Reg-12">12</a></td><td>6</td><td class="bdr">vs <a href="#San-Francisco-49ers-season-stats">SF</a>(1578) W 38-10: +38→<u>1600</u></td><td><span style="opacity:0.4"><a href="#after-Playoffs-Divisional">D</a></span></td><td><span style="opacity:0.4"></span></td><td></td></tr>
-<tr><td><a href="#after-Reg-5">5</a></td><td>6</td><td class="bdr">at <a href="#Los-Angeles-Rams-season-stats">LAR</a>(1479) W 24-19: +0→1571</td><td><a href="#after-Reg-13">13</a></td><td></td><td class="bdr">vs <a href="#Miami-Dolphins-season-stats">MIA</a></td><td><span style="opacity:0.4"><a href="#after-Playoffs-Championship">C</a></span></td><td><span style="opacity:0.4"></span></td><td></td></tr>
+<tr><td><a href="#after-Reg-4">4</a></td><td>6</td><td class="bdr">vs <a href="#Minnesota-Vikings-season-stats">MIN</a>(1548) L 29-31: -13→1571</td><td><a href="#after-Reg-12">12</a></td><td>6</td><td class="bdr">vs <a href="#San-Francisco-49ers-season-stats">SF</a>(1578) W 38-10: +38→1600</td><td><span style="opacity:0.4"><a href="#after-Playoffs-Divisional">D</a></span></td><td><span style="opacity:0.4"></span></td><td></td></tr>
+<tr><td><a href="#after-Reg-5">5</a></td><td>6</td><td class="bdr">at <a href="#Los-Angeles-Rams-season-stats">LAR</a>(1479) W 24-19: +0→1571</td><td><a href="#after-Reg-13">13</a></td><td>6</td><td class="bdr">vs <a href="#Miami-Dolphins-season-stats">MIA</a>(1500) W 30-17: +21→<u>1621</u></td><td><span style="opacity:0.4"><a href="#after-Playoffs-Championship">C</a></span></td><td><span style="opacity:0.4"></span></td><td></td></tr>
 <tr><td><a href="#after-Reg-6">6</a></td><td>6</td><td class="bdr">vs <a href="#Arizona-Cardinals-season-stats">ARI</a>(1417) W 34-13: +19→1590</td><td><a href="#after-Reg-14">14</a></td><td></td><td class="bdr">at <a href="#Detroit-Lions-season-stats">DET</a></td><td><span style="opacity:0.4"><a href="#after-Playoffs-Super-Bowl">S</a></span></td><td><span style="opacity:0.4"></span></td><td></td></tr>
 <tr><td><a href="#after-Reg-7">7</a></td><td>6</td><td class="bdr">vs <a href="#Houston-Texans-season-stats">HOU</a>(1501) W 24-22: +0→1590</td><td><a href="#after-Reg-15">15</a></td><td></td><td class="bdr">at <a href="#Seattle-Seahawks-season-stats">SEA</a></td><td><span style="opacity:0.4"></span></td><td><span style="opacity:0.4"></span></td><td></td></tr>
 <tr><td><a href="#after-Reg-8">8</a></td><td>6</td><td class="bdr">at <a href="#Jacksonville-Jaguars-season-stats">JAX</a>(1458) W 30-27: +0→1590</td><td><a href="#after-Reg-16">16</a></td><td></td><td class="bdr">vs <a href="#New-Orleans-Saints-season-stats">NO</a></td><td><span style="opacity:0.4"></span></td><td><span style="opacity:0.4"></span></td><td></td></tr>
@@ -3789,13 +4024,13 @@ Contents <a name="top"></a>
 <table>
         <tr>
                 <td colspan="9" style="border:0;"><small>
-                        reg. season: avg. opp. rating: 1493 (+14 net)
+                        reg. season: avg. opp. rating: 1489 (+8 net)
                         &nbsp;|&nbsp;
-                        avg. beat rating: 1475
+                        avg. beat rating: 1471
                         &nbsp;|&nbsp;
                         avg. lost to rating: 1519
                         &nbsp;|&nbsp;
-                        avg. remaining rating: 1542
+                        avg. remaining rating: 1552
                 </small></td>
         </tr>
         <tr><th>Wk</th><th>Rk</th><th>Outcome</th><th>Wk</th><th>Rk</th><th>Outcome</th><th>Wk</th><th>Rk</th><th>Outcome</th></tr>
@@ -3803,8 +4038,8 @@ Contents <a name="top"></a>
 <tr><td><a href="#after-Reg-2">2</a></td><td>21</td><td class="bdr">vs <a href="#Chicago-Bears-season-stats">CHI</a>(1495) W 19-13: +8→1479</td><td><a href="#after-Reg-10">10</a></td><td>17</td><td class="bdr">vs <a href="#Detroit-Lions-season-stats">DET</a>(1674) L 23-26: +0→1476</td><td><a href="#after-Reg-18">18</a></td><td></td><td>at <a href="#Tennessee-Titans-season-stats">TEN</a></td></tr>
 <tr><td><a href="#after-Reg-3">3</a></td><td>24</td><td class="bdr">at <a href="#Minnesota-Vikings-season-stats">MIN</a>(1513) L 7-34: -35→<u>1444</u></td><td><a href="#after-Reg-11">11</a></td><td><u>13</u></td><td class="bdr">at <a href="#Dallas-Cowboys-season-stats">DAL</a>(1453) W 34-10: +46→<u>1522</u></td><td><span style="opacity:0.4"><a href="#after-Playoffs-Wildcard">W</a></span></td><td><span style="opacity:0.4"></span></td><td></td></tr>
 <tr><td><a href="#after-Reg-4">4</a></td><td><u>25</u></td><td class="bdr">vs <a href="#Jacksonville-Jaguars-season-stats">JAX</a>(1467) W 24-20: +0→1444</td><td><a href="#after-Reg-12">12</a></td><td>14</td><td class="bdr">vs <a href="#Tennessee-Titans-season-stats">TEN</a>(1376) L 27-32: -18→1504</td><td><span style="opacity:0.4"><a href="#after-Playoffs-Divisional">D</a></span></td><td><span style="opacity:0.4"></span></td><td></td></tr>
-<tr><td><a href="#after-Reg-5">5</a></td><td>22</td><td class="bdr">vs <a href="#Buffalo-Bills-season-stats">BUF</a>(1652) W 23-20: +21→1465</td><td><a href="#after-Reg-13">13</a></td><td></td><td class="bdr">at <a href="#Jacksonville-Jaguars-season-stats">JAX</a></td><td><span style="opacity:0.4"><a href="#after-Playoffs-Championship">C</a></span></td><td><span style="opacity:0.4"></span></td><td></td></tr>
-<tr><td><a href="#after-Reg-6">6</a></td><td>15</td><td class="bdr">at <a href="#New-England-Patriots-season-stats">NE</a>(1367) W 41-21: +36→1501</td><td><a href="#after-Reg-14">14</a></td><td></td><td class="bdr"></td><td><span style="opacity:0.4"><a href="#after-Playoffs-Super-Bowl">S</a></span></td><td><span style="opacity:0.4"></span></td><td></td></tr>
+<tr><td><a href="#after-Reg-5">5</a></td><td>22</td><td class="bdr">vs <a href="#Buffalo-Bills-season-stats">BUF</a>(1652) W 23-20: +21→1465</td><td><a href="#after-Reg-13">13</a></td><td>14</td><td class="bdr">at <a href="#Jacksonville-Jaguars-season-stats">JAX</a>(1440) W 23-20: +4→1508</td><td><span style="opacity:0.4"><a href="#after-Playoffs-Championship">C</a></span></td><td><span style="opacity:0.4"></span></td><td></td></tr>
+<tr><td><a href="#after-Reg-6">6</a></td><td>15</td><td class="bdr">at <a href="#New-England-Patriots-season-stats">NE</a>(1367) W 41-21: +36→1501</td><td><a href="#after-Reg-14">14</a></td><td></td><td class="bdr">(bye)</td><td><span style="opacity:0.4"><a href="#after-Playoffs-Super-Bowl">S</a></span></td><td><span style="opacity:0.4"></span></td><td></td></tr>
 <tr><td><a href="#after-Reg-7">7</a></td><td>15</td><td class="bdr">at <a href="#Green-Bay-Packers-season-stats">GB</a>(1590) L 22-24: +0→1501</td><td><a href="#after-Reg-15">15</a></td><td></td><td class="bdr">vs <a href="#Miami-Dolphins-season-stats">MIA</a></td><td><span style="opacity:0.4"></span></td><td><span style="opacity:0.4"></span></td><td></td></tr>
 <tr><td><a href="#after-Reg-8">8</a></td><td>17</td><td class="bdr">vs <a href="#Indianapolis-Colts-season-stats">IND</a>(1456) W 23-20: +0→1501</td><td><a href="#after-Reg-16">16</a></td><td></td><td class="bdr">at <a href="#Kansas-City-Chiefs-season-stats">KC</a></td><td><span style="opacity:0.4"></span></td><td><span style="opacity:0.4"></span></td><td></td></tr>
 </table>
@@ -3816,13 +4051,13 @@ Contents <a name="top"></a>
 <table>
         <tr>
                 <td colspan="9" style="border:0;"><small>
-                        reg. season: avg. opp. rating: 1516 (+69 net)
+                        reg. season: avg. opp. rating: 1503 (+59 net)
                         &nbsp;|&nbsp;
-                        avg. beat rating: 1460
+                        avg. beat rating: 1442
                         &nbsp;|&nbsp;
                         avg. lost to rating: 1555
                         &nbsp;|&nbsp;
-                        avg. remaining rating: 1426
+                        avg. remaining rating: 1436
                 </small></td>
         </tr>
         <tr><th>Wk</th><th>Rk</th><th>Outcome</th><th>Wk</th><th>Rk</th><th>Outcome</th><th>Wk</th><th>Rk</th><th>Outcome</th></tr>
@@ -3830,7 +4065,7 @@ Contents <a name="top"></a>
 <tr><td><a href="#after-Reg-2">2</a></td><td>27</td><td class="bdr">at <a href="#Green-Bay-Packers-season-stats">GB</a>(1555) L 10-16: +0→1437</td><td><a href="#after-Reg-10">10</a></td><td>23</td><td class="bdr">vs <a href="#Buffalo-Bills-season-stats">BUF</a>(1676) L 20-30: -9→1442</td><td><a href="#after-Reg-18">18</a></td><td></td><td>vs <a href="#Jacksonville-Jaguars-season-stats">JAX</a></td></tr>
 <tr><td><a href="#after-Reg-3">3</a></td><td><u>28</u></td><td class="bdr">vs <a href="#Chicago-Bears-season-stats">CHI</a>(1488) W 21-16: +2→1439</td><td><a href="#after-Reg-11">11</a></td><td><u>20</u></td><td class="bdr">at <a href="#New-York-Jets-season-stats">NYJ</a>(1427) W 28-27: +6→1448</td><td><span style="opacity:0.4"><a href="#after-Playoffs-Wildcard">W</a></span></td><td><span style="opacity:0.4"></span></td><td></td></tr>
 <tr><td><a href="#after-Reg-4">4</a></td><td>24</td><td class="bdr">vs <a href="#Pittsburgh-Steelers-season-stats">PIT</a>(1537) W 27-24: +9→1448</td><td><a href="#after-Reg-12">12</a></td><td>24</td><td class="bdr">vs <a href="#Detroit-Lions-season-stats">DET</a>(1692) L 6-24: -26→<u>1422</u></td><td><span style="opacity:0.4"><a href="#after-Playoffs-Divisional">D</a></span></td><td><span style="opacity:0.4"></span></td><td></td></tr>
-<tr><td><a href="#after-Reg-5">5</a></td><td>25</td><td class="bdr">at <a href="#Jacksonville-Jaguars-season-stats">JAX</a>(1467) L 34-37: +0→1448</td><td><a href="#after-Reg-13">13</a></td><td></td><td class="bdr">at <a href="#New-England-Patriots-season-stats">NE</a></td><td><span style="opacity:0.4"><a href="#after-Playoffs-Championship">C</a></span></td><td><span style="opacity:0.4"></span></td><td></td></tr>
+<tr><td><a href="#after-Reg-5">5</a></td><td>25</td><td class="bdr">at <a href="#Jacksonville-Jaguars-season-stats">JAX</a>(1467) L 34-37: +0→1448</td><td><a href="#after-Reg-13">13</a></td><td>23</td><td class="bdr">at <a href="#New-England-Patriots-season-stats">NE</a>(1353) W 25-24: +3→1425</td><td><span style="opacity:0.4"><a href="#after-Playoffs-Championship">C</a></span></td><td><span style="opacity:0.4"></span></td><td></td></tr>
 <tr><td><a href="#after-Reg-6">6</a></td><td>22</td><td class="bdr">at <a href="#Tennessee-Titans-season-stats">TEN</a>(1437) W 20-17: +8→1456</td><td><a href="#after-Reg-14">14</a></td><td></td><td class="bdr">(bye)</td><td><span style="opacity:0.4"><a href="#after-Playoffs-Super-Bowl">S</a></span></td><td><span style="opacity:0.4"></span></td><td></td></tr>
 <tr><td><a href="#after-Reg-7">7</a></td><td>22</td><td class="bdr">vs <a href="#Miami-Dolphins-season-stats">MIA</a>(1411) W 16-10: +0→<u>1456</u></td><td><a href="#after-Reg-15">15</a></td><td></td><td class="bdr">at <a href="#Denver-Broncos-season-stats">DEN</a></td><td><span style="opacity:0.4"></span></td><td><span style="opacity:0.4"></span></td><td></td></tr>
 <tr><td><a href="#after-Reg-8">8</a></td><td>22</td><td class="bdr">at <a href="#Houston-Texans-season-stats">HOU</a>(1501) L 20-23: +0→1456</td><td><a href="#after-Reg-16">16</a></td><td></td><td class="bdr">vs <a href="#Tennessee-Titans-season-stats">TEN</a></td><td><span style="opacity:0.4"></span></td><td><span style="opacity:0.4"></span></td><td></td></tr>
@@ -3843,13 +4078,13 @@ Contents <a name="top"></a>
 <table>
         <tr>
                 <td colspan="9" style="border:0;"><small>
-                        reg. season: avg. opp. rating: 1528 (+61 net)
+                        reg. season: avg. opp. rating: 1526 (+62 net)
                         &nbsp;|&nbsp;
                         avg. beat rating: 1389
                         &nbsp;|&nbsp;
-                        avg. lost to rating: 1558
+                        avg. lost to rating: 1553
                         &nbsp;|&nbsp;
-                        avg. remaining rating: 1410
+                        avg. remaining rating: 1380
                 </small></td>
         </tr>
         <tr><th>Wk</th><th>Rk</th><th>Outcome</th><th>Wk</th><th>Rk</th><th>Outcome</th><th>Wk</th><th>Rk</th><th>Outcome</th></tr>
@@ -3857,7 +4092,7 @@ Contents <a name="top"></a>
 <tr><td><a href="#after-Reg-2">2</a></td><td>19</td><td class="bdr">vs <a href="#Cleveland-Browns-season-stats">CLE</a>(1477) L 13-18: -10→1482</td><td><a href="#after-Reg-10">10</a></td><td>19</td><td class="bdr">vs <a href="#Minnesota-Vikings-season-stats">MIN</a>(1531) L 7-12: +0→1458</td><td><a href="#after-Reg-18">18</a></td><td></td><td>at <a href="#Indianapolis-Colts-season-stats">IND</a></td></tr>
 <tr><td><a href="#after-Reg-3">3</a></td><td>21</td><td class="bdr">at <a href="#Buffalo-Bills-season-stats">BUF</a>(1682) L 10-47: -15→1467</td><td><a href="#after-Reg-11">11</a></td><td>22</td><td class="bdr">at <a href="#Detroit-Lions-season-stats">DET</a>(1674) L 6-52: -18→1440</td><td><span style="opacity:0.4"><a href="#after-Playoffs-Wildcard">W</a></span></td><td><span style="opacity:0.4"></span></td><td></td></tr>
 <tr><td><a href="#after-Reg-4">4</a></td><td>19</td><td class="bdr">at <a href="#Houston-Texans-season-stats">HOU</a>(1444) L 20-24: +0→1467</td><td><a href="#after-Reg-12">12</a></td><td>22</td><td class="bdr">(bye)</td><td><span style="opacity:0.4"><a href="#after-Playoffs-Divisional">D</a></span></td><td><span style="opacity:0.4"></span></td><td></td></tr>
-<tr><td><a href="#after-Reg-5">5</a></td><td>20</td><td class="bdr">vs <a href="#Indianapolis-Colts-season-stats">IND</a>(1448) W 37-34: +0→1467</td><td><a href="#after-Reg-13">13</a></td><td></td><td class="bdr">vs <a href="#Houston-Texans-season-stats">HOU</a></td><td><span style="opacity:0.4"><a href="#after-Playoffs-Championship">C</a></span></td><td><span style="opacity:0.4"></span></td><td></td></tr>
+<tr><td><a href="#after-Reg-5">5</a></td><td>20</td><td class="bdr">vs <a href="#Indianapolis-Colts-season-stats">IND</a>(1448) W 37-34: +0→1467</td><td><a href="#after-Reg-13">13</a></td><td>21</td><td class="bdr">vs <a href="#Houston-Texans-season-stats">HOU</a>(1504) L 20-23: -4→1436</td><td><span style="opacity:0.4"><a href="#after-Playoffs-Championship">C</a></span></td><td><span style="opacity:0.4"></span></td><td></td></tr>
 <tr><td><a href="#after-Reg-6">6</a></td><td><u>25</u></td><td class="bdr">at <a href="#Chicago-Bears-season-stats">CHI</a>(1511) L 16-35: -37→<u>1430</u></td><td><a href="#after-Reg-14">14</a></td><td></td><td class="bdr">at <a href="#Tennessee-Titans-season-stats">TEN</a></td><td><span style="opacity:0.4"><a href="#after-Playoffs-Super-Bowl">S</a></span></td><td><span style="opacity:0.4"></span></td><td></td></tr>
 <tr><td><a href="#after-Reg-7">7</a></td><td>20</td><td class="bdr">at <a href="#New-England-Patriots-season-stats">NE</a>(1331) W 32-16: +28→1458</td><td><a href="#after-Reg-15">15</a></td><td></td><td class="bdr">vs <a href="#New-York-Jets-season-stats">NYJ</a></td><td><span style="opacity:0.4"></span></td><td><span style="opacity:0.4"></span></td><td></td></tr>
 <tr><td><a href="#after-Reg-8">8</a></td><td>21</td><td class="bdr">vs <a href="#Green-Bay-Packers-season-stats">GB</a>(1590) L 27-30: +0→1458</td><td><a href="#after-Reg-16">16</a></td><td></td><td class="bdr">at <a href="#Las-Vegas-Raiders-season-stats">LV</a></td><td><span style="opacity:0.4"></span></td><td><span style="opacity:0.4"></span></td><td></td></tr>
@@ -3870,13 +4105,13 @@ Contents <a name="top"></a>
 <table>
         <tr>
                 <td colspan="9" style="border:0;"><small>
-                        reg. season: avg. opp. rating: 1525 (-141 net)
+                        reg. season: avg. opp. rating: 1509 (-158 net)
                         &nbsp;|&nbsp;
-                        avg. beat rating: 1509
+                        avg. beat rating: 1493
                         &nbsp;|&nbsp;
                         avg. lost to rating: 1685
                         &nbsp;|&nbsp;
-                        avg. remaining rating: 1493
+                        avg. remaining rating: 1528
                 </small></td>
         </tr>
         <tr><th>Wk</th><th>Rk</th><th>Outcome</th><th>Wk</th><th>Rk</th><th>Outcome</th><th>Wk</th><th>Rk</th><th>Outcome</th></tr>
@@ -3884,7 +4119,7 @@ Contents <a name="top"></a>
 <tr><td><a href="#after-Reg-2">2</a></td><td>3</td><td class="bdr">vs <a href="#Cincinnati-Bengals-season-stats">CIN</a>(1549) W 26-25: +0→1640</td><td><a href="#after-Reg-10">10</a></td><td>2</td><td class="bdr">vs <a href="#Denver-Broncos-season-stats">DEN</a>(1546) W 16-14: +0→1695</td><td><a href="#after-Reg-18">18</a></td><td></td><td>at <a href="#Denver-Broncos-season-stats">DEN</a></td></tr>
 <tr><td><a href="#after-Reg-3">3</a></td><td>2</td><td class="bdr">at <a href="#Atlanta-Falcons-season-stats">ATL</a>(1440) W 22-17: +0→1640</td><td><a href="#after-Reg-11">11</a></td><td><u>4</u></td><td class="bdr">at <a href="#Buffalo-Bills-season-stats">BUF</a>(1685) L 21-30: -21→1674</td><td><span style="opacity:0.4"><a href="#after-Playoffs-Wildcard">W</a></span></td><td><span style="opacity:0.4"></span></td><td></td></tr>
 <tr><td><a href="#after-Reg-4">4</a></td><td>3</td><td class="bdr">at <a href="#Los-Angeles-Chargers-season-stats">LAC</a>(1482) W 17-10: +4→1644</td><td><a href="#after-Reg-12">12</a></td><td>4</td><td class="bdr">at <a href="#Carolina-Panthers-season-stats">CAR</a>(1310) W 30-27: +0→1674</td><td><span style="opacity:0.4"><a href="#after-Playoffs-Divisional">D</a></span></td><td><span style="opacity:0.4"></span></td><td></td></tr>
-<tr><td><a href="#after-Reg-5">5</a></td><td>2</td><td class="bdr">vs <a href="#New-Orleans-Saints-season-stats">NO</a>(1556) W 26-13: +20→1664</td><td><a href="#after-Reg-13">13</a></td><td></td><td class="bdr">vs <a href="#Las-Vegas-Raiders-season-stats">LV</a></td><td><span style="opacity:0.4"><a href="#after-Playoffs-Championship">C</a></span></td><td><span style="opacity:0.4"></span></td><td></td></tr>
+<tr><td><a href="#after-Reg-5">5</a></td><td>2</td><td class="bdr">vs <a href="#New-Orleans-Saints-season-stats">NO</a>(1556) W 26-13: +20→1664</td><td><a href="#after-Reg-13">13</a></td><td>4</td><td class="bdr">vs <a href="#Las-Vegas-Raiders-season-stats">LV</a>(1329) W 19-17: +0→1674</td><td><span style="opacity:0.4"><a href="#after-Playoffs-Championship">C</a></span></td><td><span style="opacity:0.4"></span></td><td></td></tr>
 <tr><td><a href="#after-Reg-6">6</a></td><td>2</td><td class="bdr">(bye)</td><td><a href="#after-Reg-14">14</a></td><td></td><td class="bdr">vs <a href="#Los-Angeles-Chargers-season-stats">LAC</a></td><td><span style="opacity:0.4"><a href="#after-Playoffs-Super-Bowl">S</a></span></td><td><span style="opacity:0.4"></span></td><td></td></tr>
 <tr><td><a href="#after-Reg-7">7</a></td><td>2</td><td class="bdr">at <a href="#San-Francisco-49ers-season-stats">SF</a>(1628) W 28-18: +31→<u>1695</u></td><td><a href="#after-Reg-15">15</a></td><td></td><td class="bdr">at <a href="#Cleveland-Browns-season-stats">CLE</a></td><td><span style="opacity:0.4"></span></td><td><span style="opacity:0.4"></span></td><td></td></tr>
 <tr><td><a href="#after-Reg-8">8</a></td><td><u>1</u></td><td class="bdr">at <a href="#Las-Vegas-Raiders-season-stats">LV</a>(1393) W 27-20: +0→1695</td><td><a href="#after-Reg-16">16</a></td><td></td><td class="bdr">vs <a href="#Houston-Texans-season-stats">HOU</a></td><td><span style="opacity:0.4"></span></td><td><span style="opacity:0.4"></span></td><td></td></tr>
@@ -3897,13 +4132,13 @@ Contents <a name="top"></a>
 <table>
         <tr>
                 <td colspan="9" style="border:0;"><small>
-                        reg. season: avg. opp. rating: 1515 (+83 net)
+                        reg. season: avg. opp. rating: 1528 (+105 net)
                         &nbsp;|&nbsp;
                         avg. beat rating: 1565
                         &nbsp;|&nbsp;
-                        avg. lost to rating: 1503
+                        avg. lost to rating: 1521
                         &nbsp;|&nbsp;
-                        avg. remaining rating: 1518
+                        avg. remaining rating: 1482
                 </small></td>
         </tr>
         <tr><th>Wk</th><th>Rk</th><th>Outcome</th><th>Wk</th><th>Rk</th><th>Outcome</th><th>Wk</th><th>Rk</th><th>Outcome</th></tr>
@@ -3911,7 +4146,7 @@ Contents <a name="top"></a>
 <tr><td><a href="#after-Reg-2">2</a></td><td><u>11</u></td><td class="bdr">at <a href="#Baltimore-Ravens-season-stats">BAL</a>(1668) W 26-23: +29→<u>1523</u></td><td><a href="#after-Reg-10">10</a></td><td><u>31</u></td><td class="bdr">(bye)</td><td><a href="#after-Reg-18">18</a></td><td></td><td>vs <a href="#Los-Angeles-Chargers-season-stats">LAC</a></td></tr>
 <tr><td><a href="#after-Reg-3">3</a></td><td>23</td><td class="bdr">vs <a href="#Carolina-Panthers-season-stats">CAR</a>(1296) L 22-36: -69→1454</td><td><a href="#after-Reg-11">11</a></td><td>31</td><td class="bdr">at <a href="#Miami-Dolphins-season-stats">MIA</a>(1445) L 19-34: -28→1344</td><td><span style="opacity:0.4"><a href="#after-Playoffs-Wildcard">W</a></span></td><td><span style="opacity:0.4"></span></td><td></td></tr>
 <tr><td><a href="#after-Reg-4">4</a></td><td>22</td><td class="bdr">vs <a href="#Cleveland-Browns-season-stats">CLE</a>(1462) W 20-16: +0→1454</td><td><a href="#after-Reg-12">12</a></td><td>31</td><td class="bdr">vs <a href="#Denver-Broncos-season-stats">DEN</a>(1575) L 19-29: -15→<u>1329</u></td><td><span style="opacity:0.4"><a href="#after-Playoffs-Divisional">D</a></span></td><td><span style="opacity:0.4"></span></td><td></td></tr>
-<tr><td><a href="#after-Reg-5">5</a></td><td>27</td><td class="bdr">at <a href="#Denver-Broncos-season-stats">DEN</a>(1532) L 18-34: -25→1429</td><td><a href="#after-Reg-13">13</a></td><td></td><td class="bdr">at <a href="#Kansas-City-Chiefs-season-stats">KC</a></td><td><span style="opacity:0.4"><a href="#after-Playoffs-Championship">C</a></span></td><td><span style="opacity:0.4"></span></td><td></td></tr>
+<tr><td><a href="#after-Reg-5">5</a></td><td>27</td><td class="bdr">at <a href="#Denver-Broncos-season-stats">DEN</a>(1532) L 18-34: -25→1429</td><td><a href="#after-Reg-13">13</a></td><td>31</td><td class="bdr">at <a href="#Kansas-City-Chiefs-season-stats">KC</a>(1674) L 17-19: +0→1329</td><td><span style="opacity:0.4"><a href="#after-Playoffs-Championship">C</a></span></td><td><span style="opacity:0.4"></span></td><td></td></tr>
 <tr><td><a href="#after-Reg-6">6</a></td><td>30</td><td class="bdr">vs <a href="#Pittsburgh-Steelers-season-stats">PIT</a>(1524) L 13-32: -36→1393</td><td><a href="#after-Reg-14">14</a></td><td></td><td class="bdr">at <a href="#Tampa-Bay-Buccaneers-season-stats">TB</a></td><td><span style="opacity:0.4"><a href="#after-Playoffs-Super-Bowl">S</a></span></td><td><span style="opacity:0.4"></span></td><td></td></tr>
 <tr><td><a href="#after-Reg-7">7</a></td><td>30</td><td class="bdr">at <a href="#Los-Angeles-Rams-season-stats">LAR</a>(1479) L 15-20: +0→1393</td><td><a href="#after-Reg-15">15</a></td><td></td><td class="bdr">vs <a href="#Atlanta-Falcons-season-stats">ATL</a></td><td><span style="opacity:0.4"></span></td><td><span style="opacity:0.4"></span></td><td></td></tr>
 <tr><td><a href="#after-Reg-8">8</a></td><td>30</td><td class="bdr">vs <a href="#Kansas-City-Chiefs-season-stats">KC</a>(1695) L 20-27: +0→1393</td><td><a href="#after-Reg-16">16</a></td><td></td><td class="bdr">vs <a href="#Jacksonville-Jaguars-season-stats">JAX</a></td><td><span style="opacity:0.4"></span></td><td><span style="opacity:0.4"></span></td><td></td></tr>
@@ -3924,13 +4159,13 @@ Contents <a name="top"></a>
 <table>
         <tr>
                 <td colspan="9" style="border:0;"><small>
-                        reg. season: avg. opp. rating: 1495 (-20 net)
+                        reg. season: avg. opp. rating: 1490 (-29 net)
                         &nbsp;|&nbsp;
-                        avg. beat rating: 1457
+                        avg. beat rating: 1454
                         &nbsp;|&nbsp;
                         avg. lost to rating: 1561
                         &nbsp;|&nbsp;
-                        avg. remaining rating: 1489
+                        avg. remaining rating: 1501
                 </small></td>
         </tr>
         <tr><th>Wk</th><th>Rk</th><th>Outcome</th><th>Wk</th><th>Rk</th><th>Outcome</th><th>Wk</th><th>Rk</th><th>Outcome</th></tr>
@@ -3938,7 +4173,7 @@ Contents <a name="top"></a>
 <tr><td><a href="#after-Reg-2">2</a></td><td>15</td><td class="bdr">at <a href="#Carolina-Panthers-season-stats">CAR</a>(1329) W 26-3: +32→1506</td><td><a href="#after-Reg-10">10</a></td><td>8</td><td class="bdr">vs <a href="#Tennessee-Titans-season-stats">TEN</a>(1400) W 27-17: +4→1569</td><td><a href="#after-Reg-18">18</a></td><td></td><td>at <a href="#Las-Vegas-Raiders-season-stats">LV</a></td></tr>
 <tr><td><a href="#after-Reg-3">3</a></td><td>18</td><td class="bdr">at <a href="#Pittsburgh-Steelers-season-stats">PIT</a>(1514) L 10-20: -24→1482</td><td><a href="#after-Reg-11">11</a></td><td>8</td><td class="bdr">vs <a href="#Cincinnati-Bengals-season-stats">CIN</a>(1533) W 34-27: +9→<u>1578</u></td><td><span style="opacity:0.4"><a href="#after-Playoffs-Wildcard">W</a></span></td><td><span style="opacity:0.4"></span></td><td></td></tr>
 <tr><td><a href="#after-Reg-4">4</a></td><td>18</td><td class="bdr">vs <a href="#Kansas-City-Chiefs-season-stats">KC</a>(1640) L 10-17: -3→1479</td><td><a href="#after-Reg-12">12</a></td><td>9</td><td class="bdr">vs <a href="#Baltimore-Ravens-season-stats">BAL</a>(1692) L 23-30: -12→1566</td><td><span style="opacity:0.4"><a href="#after-Playoffs-Divisional">D</a></span></td><td><span style="opacity:0.4"></span></td><td></td></tr>
-<tr><td><a href="#after-Reg-5">5</a></td><td>18</td><td class="bdr">(bye)</td><td><a href="#after-Reg-13">13</a></td><td></td><td class="bdr">at <a href="#Atlanta-Falcons-season-stats">ATL</a></td><td><span style="opacity:0.4"><a href="#after-Playoffs-Championship">C</a></span></td><td><span style="opacity:0.4"></span></td><td></td></tr>
+<tr><td><a href="#after-Reg-5">5</a></td><td>18</td><td class="bdr">(bye)</td><td><a href="#after-Reg-13">13</a></td><td>9</td><td class="bdr">at <a href="#Atlanta-Falcons-season-stats">ATL</a>(1434) W 17-13: +0→1566</td><td><span style="opacity:0.4"><a href="#after-Playoffs-Championship">C</a></span></td><td><span style="opacity:0.4"></span></td><td></td></tr>
 <tr><td><a href="#after-Reg-6">6</a></td><td>13</td><td class="bdr">at <a href="#Denver-Broncos-season-stats">DEN</a>(1558) W 23-16: +31→1510</td><td><a href="#after-Reg-14">14</a></td><td></td><td class="bdr">at <a href="#Kansas-City-Chiefs-season-stats">KC</a></td><td><span style="opacity:0.4"><a href="#after-Playoffs-Super-Bowl">S</a></span></td><td><span style="opacity:0.4"></span></td><td></td></tr>
 <tr><td><a href="#after-Reg-7">7</a></td><td>16</td><td class="bdr">at <a href="#Arizona-Cardinals-season-stats">ARI</a>(1398) L 15-17: -12→1498</td><td><a href="#after-Reg-15">15</a></td><td></td><td class="bdr">vs <a href="#Tampa-Bay-Buccaneers-season-stats">TB</a></td><td><span style="opacity:0.4"></span></td><td><span style="opacity:0.4"></span></td><td></td></tr>
 <tr><td><a href="#after-Reg-8">8</a></td><td>11</td><td class="bdr">vs <a href="#New-Orleans-Saints-season-stats">NO</a>(1440) W 26-8: +32→1530</td><td><a href="#after-Reg-16">16</a></td><td></td><td class="bdr">vs <a href="#Denver-Broncos-season-stats">DEN</a></td><td><span style="opacity:0.4"></span></td><td><span style="opacity:0.4"></span></td><td></td></tr>
@@ -3951,13 +4186,13 @@ Contents <a name="top"></a>
 <table>
         <tr>
                 <td colspan="9" style="border:0;"><small>
-                        reg. season: avg. opp. rating: 1499 (+5 net)
+                        reg. season: avg. opp. rating: 1494 (+4 net)
                         &nbsp;|&nbsp;
-                        avg. beat rating: 1490
+                        avg. beat rating: 1482
                         &nbsp;|&nbsp;
                         avg. lost to rating: 1505
                         &nbsp;|&nbsp;
-                        avg. remaining rating: 1516
+                        avg. remaining rating: 1531
                 </small></td>
         </tr>
         <tr><th>Wk</th><th>Rk</th><th>Outcome</th><th>Wk</th><th>Rk</th><th>Outcome</th><th>Wk</th><th>Rk</th><th>Outcome</th></tr>
@@ -3965,7 +4200,7 @@ Contents <a name="top"></a>
 <tr><td><a href="#after-Reg-2">2</a></td><td><u>23</u></td><td class="bdr">at <a href="#Arizona-Cardinals-season-stats">ARI</a>(1396) L 10-41: -54→1466</td><td><a href="#after-Reg-10">10</a></td><td>16</td><td class="bdr">vs <a href="#Miami-Dolphins-season-stats">MIA</a>(1402) L 15-23: -44→1478</td><td><a href="#after-Reg-18">18</a></td><td></td><td>vs <a href="#Seattle-Seahawks-season-stats">SEA</a></td></tr>
 <tr><td><a href="#after-Reg-3">3</a></td><td>17</td><td class="bdr">vs <a href="#San-Francisco-49ers-season-stats">SF</a>(1649) W 27-24: +18→1484</td><td><a href="#after-Reg-11">11</a></td><td>17</td><td class="bdr">at <a href="#New-England-Patriots-season-stats">NE</a>(1386) W 28-22: +6→1484</td><td><span style="opacity:0.4"><a href="#after-Playoffs-Wildcard">W</a></span></td><td><span style="opacity:0.4"></span></td><td></td></tr>
 <tr><td><a href="#after-Reg-4">4</a></td><td>17</td><td class="bdr">at <a href="#Chicago-Bears-season-stats">CHI</a>(1485) L 18-24: -5→1479</td><td><a href="#after-Reg-12">12</a></td><td>19</td><td class="bdr">vs <a href="#Philadelphia-Eagles-season-stats">PHI</a>(1613) L 20-37: -31→<u>1453</u></td><td><span style="opacity:0.4"><a href="#after-Playoffs-Divisional">D</a></span></td><td><span style="opacity:0.4"></span></td><td></td></tr>
-<tr><td><a href="#after-Reg-5">5</a></td><td>17</td><td class="bdr">vs <a href="#Green-Bay-Packers-season-stats">GB</a>(1571) L 19-24: +0→1479</td><td><a href="#after-Reg-13">13</a></td><td></td><td class="bdr">at <a href="#New-Orleans-Saints-season-stats">NO</a></td><td><span style="opacity:0.4"><a href="#after-Playoffs-Championship">C</a></span></td><td><span style="opacity:0.4"></span></td><td></td></tr>
+<tr><td><a href="#after-Reg-5">5</a></td><td>17</td><td class="bdr">vs <a href="#Green-Bay-Packers-season-stats">GB</a>(1571) L 19-24: +0→1479</td><td><a href="#after-Reg-13">13</a></td><td>19</td><td class="bdr">at <a href="#New-Orleans-Saints-season-stats">NO</a>(1441) W 21-14: +20→1473</td><td><span style="opacity:0.4"><a href="#after-Playoffs-Championship">C</a></span></td><td><span style="opacity:0.4"></span></td><td></td></tr>
 <tr><td><a href="#after-Reg-6">6</a></td><td>19</td><td class="bdr">(bye)</td><td><a href="#after-Reg-14">14</a></td><td></td><td class="bdr">vs <a href="#Buffalo-Bills-season-stats">BUF</a></td><td><span style="opacity:0.4"><a href="#after-Playoffs-Super-Bowl">S</a></span></td><td><span style="opacity:0.4"></span></td><td></td></tr>
 <tr><td><a href="#after-Reg-7">7</a></td><td>19</td><td class="bdr">vs <a href="#Las-Vegas-Raiders-season-stats">LV</a>(1393) W 20-15: +0→1479</td><td><a href="#after-Reg-15">15</a></td><td></td><td class="bdr">at <a href="#San-Francisco-49ers-season-stats">SF</a></td><td><span style="opacity:0.4"></span></td><td><span style="opacity:0.4"></span></td><td></td></tr>
 <tr><td><a href="#after-Reg-8">8</a></td><td>14</td><td class="bdr">vs <a href="#Minnesota-Vikings-season-stats">MIN</a>(1561) W 30-20: +36→1515</td><td><a href="#after-Reg-16">16</a></td><td></td><td class="bdr">at <a href="#New-York-Jets-season-stats">NYJ</a></td><td><span style="opacity:0.4"></span></td><td><span style="opacity:0.4"></span></td><td></td></tr>
@@ -3978,13 +4213,13 @@ Contents <a name="top"></a>
 <table>
         <tr>
                 <td colspan="9" style="border:0;"><small>
-                        reg. season: avg. opp. rating: 1471 (+15 net)
+                        reg. season: avg. opp. rating: 1482 (+22 net)
                         &nbsp;|&nbsp;
                         avg. beat rating: 1427
                         &nbsp;|&nbsp;
-                        avg. lost to rating: 1508
+                        avg. lost to rating: 1521
                         &nbsp;|&nbsp;
-                        avg. remaining rating: 1478
+                        avg. remaining rating: 1448
                 </small></td>
         </tr>
         <tr><th>Wk</th><th>Rk</th><th>Outcome</th><th>Wk</th><th>Rk</th><th>Outcome</th><th>Wk</th><th>Rk</th><th>Outcome</th></tr>
@@ -3992,7 +4227,7 @@ Contents <a name="top"></a>
 <tr><td><a href="#after-Reg-2">2</a></td><td>14</td><td class="bdr">vs <a href="#Buffalo-Bills-season-stats">BUF</a>(1644) L 10-31: -37→1510</td><td><a href="#after-Reg-10">10</a></td><td>22</td><td class="bdr">at <a href="#Los-Angeles-Rams-season-stats">LAR</a>(1522) W 23-15: +43→1445</td><td><a href="#after-Reg-18">18</a></td><td></td><td>at <a href="#New-York-Jets-season-stats">NYJ</a></td></tr>
 <tr><td><a href="#after-Reg-3">3</a></td><td>20</td><td class="bdr">at <a href="#Seattle-Seahawks-season-stats">SEA</a>(1483) L 3-24: -43→1467</td><td><a href="#after-Reg-11">11</a></td><td>19</td><td class="bdr">vs <a href="#Las-Vegas-Raiders-season-stats">LV</a>(1372) W 34-19: +28→1473</td><td><span style="opacity:0.4"><a href="#after-Playoffs-Wildcard">W</a></span></td><td><span style="opacity:0.4"></span></td><td></td></tr>
 <tr><td><a href="#after-Reg-4">4</a></td><td>29</td><td class="bdr">vs <a href="#Tennessee-Titans-season-stats">TEN</a>(1378) L 12-31: -59→1408</td><td><a href="#after-Reg-12">12</a></td><td>16</td><td class="bdr">vs <a href="#New-England-Patriots-season-stats">NE</a>(1380) W 34-15: +27→1500</td><td><span style="opacity:0.4"><a href="#after-Playoffs-Divisional">D</a></span></td><td><span style="opacity:0.4"></span></td><td></td></tr>
-<tr><td><a href="#after-Reg-5">5</a></td><td><u>30</u></td><td class="bdr">at <a href="#New-England-Patriots-season-stats">NE</a>(1370) W 15-10: +3→1411</td><td><a href="#after-Reg-13">13</a></td><td></td><td class="bdr">at <a href="#Green-Bay-Packers-season-stats">GB</a></td><td><span style="opacity:0.4"><a href="#after-Playoffs-Championship">C</a></span></td><td><span style="opacity:0.4"></span></td><td></td></tr>
+<tr><td><a href="#after-Reg-5">5</a></td><td><u>30</u></td><td class="bdr">at <a href="#New-England-Patriots-season-stats">NE</a>(1370) W 15-10: +3→1411</td><td><a href="#after-Reg-13">13</a></td><td>18</td><td class="bdr">at <a href="#Green-Bay-Packers-season-stats">GB</a>(1600) L 17-30: -22→1478</td><td><span style="opacity:0.4"><a href="#after-Playoffs-Championship">C</a></span></td><td><span style="opacity:0.4"></span></td><td></td></tr>
 <tr><td><a href="#after-Reg-6">6</a></td><td>28</td><td class="bdr">(bye)</td><td><a href="#after-Reg-14">14</a></td><td></td><td class="bdr">vs <a href="#New-York-Jets-season-stats">NYJ</a></td><td><span style="opacity:0.4"><a href="#after-Playoffs-Super-Bowl">S</a></span></td><td><span style="opacity:0.4"></span></td><td></td></tr>
 <tr><td><a href="#after-Reg-7">7</a></td><td>27</td><td class="bdr">at <a href="#Indianapolis-Colts-season-stats">IND</a>(1456) L 10-16: -1→1410</td><td><a href="#after-Reg-15">15</a></td><td></td><td class="bdr">at <a href="#Houston-Texans-season-stats">HOU</a></td><td><span style="opacity:0.4"></span></td><td><span style="opacity:0.4"></span></td><td></td></tr>
 <tr><td><a href="#after-Reg-8">8</a></td><td>28</td><td class="bdr">vs <a href="#Arizona-Cardinals-season-stats">ARI</a>(1409) L 27-28: -8→<u>1402</u></td><td><a href="#after-Reg-16">16</a></td><td></td><td class="bdr">vs <a href="#San-Francisco-49ers-season-stats">SF</a></td><td><span style="opacity:0.4"></span></td><td><span style="opacity:0.4"></span></td><td></td></tr>
@@ -4005,13 +4240,13 @@ Contents <a name="top"></a>
 <table>
         <tr>
                 <td colspan="9" style="border:0;"><small>
-                        reg. season: avg. opp. rating: 1500 (-33 net)
+                        reg. season: avg. opp. rating: 1498 (-36 net)
                         &nbsp;|&nbsp;
                         avg. beat rating: 1487
                         &nbsp;|&nbsp;
                         avg. lost to rating: 1556
                         &nbsp;|&nbsp;
-                        avg. remaining rating: 1527
+                        avg. remaining rating: 1540
                 </small></td>
         </tr>
         <tr><th>Wk</th><th>Rk</th><th>Outcome</th><th>Wk</th><th>Rk</th><th>Outcome</th><th>Wk</th><th>Rk</th><th>Outcome</th></tr>
@@ -4019,7 +4254,7 @@ Contents <a name="top"></a>
 <tr><td><a href="#after-Reg-2">2</a></td><td>13</td><td class="bdr">vs <a href="#San-Francisco-49ers-season-stats">SF</a>(1674) W 23-17: +25→1513</td><td><a href="#after-Reg-10">10</a></td><td>12</td><td class="bdr">at <a href="#Jacksonville-Jaguars-season-stats">JAX</a>(1458) W 12-7: +0→1531</td><td><a href="#after-Reg-18">18</a></td><td></td><td>at <a href="#Detroit-Lions-season-stats">DET</a></td></tr>
 <tr><td><a href="#after-Reg-3">3</a></td><td>8</td><td class="bdr">vs <a href="#Houston-Texans-season-stats">HOU</a>(1479) W 34-7: +35→1548</td><td><a href="#after-Reg-11">11</a></td><td>11</td><td class="bdr">at <a href="#Tennessee-Titans-season-stats">TEN</a>(1396) W 23-13: +21→1552</td><td><span style="opacity:0.4"><a href="#after-Playoffs-Wildcard">W</a></span></td><td><span style="opacity:0.4"></span></td><td></td></tr>
 <tr><td><a href="#after-Reg-4">4</a></td><td><u>7</u></td><td class="bdr">at <a href="#Green-Bay-Packers-season-stats">GB</a>(1584) W 31-29: +12→1560</td><td><a href="#after-Reg-12">12</a></td><td>11</td><td class="bdr">at <a href="#Chicago-Bears-season-stats">CHI</a>(1421) W 30-27: +0→1552</td><td><span style="opacity:0.4"><a href="#after-Playoffs-Divisional">D</a></span></td><td><span style="opacity:0.4"></span></td><td></td></tr>
-<tr><td><a href="#after-Reg-5">5</a></td><td>7</td><td class="bdr">at <a href="#New-York-Jets-season-stats">NYJ</a>(1486) W 23-17: +1→<u>1561</u></td><td><a href="#after-Reg-13">13</a></td><td></td><td class="bdr">vs <a href="#Arizona-Cardinals-season-stats">ARI</a></td><td><span style="opacity:0.4"><a href="#after-Playoffs-Championship">C</a></span></td><td><span style="opacity:0.4"></span></td><td></td></tr>
+<tr><td><a href="#after-Reg-5">5</a></td><td>7</td><td class="bdr">at <a href="#New-York-Jets-season-stats">NYJ</a>(1486) W 23-17: +1→<u>1561</u></td><td><a href="#after-Reg-13">13</a></td><td>11</td><td class="bdr">vs <a href="#Arizona-Cardinals-season-stats">ARI</a>(1484) W 23-22: +0→1552</td><td><span style="opacity:0.4"><a href="#after-Playoffs-Championship">C</a></span></td><td><span style="opacity:0.4"></span></td><td></td></tr>
 <tr><td><a href="#after-Reg-6">6</a></td><td>8</td><td class="bdr">(bye)</td><td><a href="#after-Reg-14">14</a></td><td></td><td class="bdr">vs <a href="#Atlanta-Falcons-season-stats">ATL</a></td><td><span style="opacity:0.4"><a href="#after-Playoffs-Super-Bowl">S</a></span></td><td><span style="opacity:0.4"></span></td><td></td></tr>
 <tr><td><a href="#after-Reg-7">7</a></td><td>10</td><td class="bdr">vs <a href="#Detroit-Lions-season-stats">DET</a>(1632) L 29-31: -0→1561</td><td><a href="#after-Reg-15">15</a></td><td></td><td class="bdr">vs <a href="#Chicago-Bears-season-stats">CHI</a></td><td><span style="opacity:0.4"></span></td><td><span style="opacity:0.4"></span></td><td></td></tr>
 <tr><td><a href="#after-Reg-8">8</a></td><td>12</td><td class="bdr">at <a href="#Los-Angeles-Rams-season-stats">LAR</a>(1479) L 20-30: -36→1525</td><td><a href="#after-Reg-16">16</a></td><td></td><td class="bdr">at <a href="#Seattle-Seahawks-season-stats">SEA</a></td><td><span style="opacity:0.4"></span></td><td><span style="opacity:0.4"></span></td><td></td></tr>
@@ -4032,13 +4267,13 @@ Contents <a name="top"></a>
 <table>
         <tr>
                 <td colspan="9" style="border:0;"><small>
-                        reg. season: avg. opp. rating: 1477 (+111 net)
+                        reg. season: avg. opp. rating: 1473 (+108 net)
                         &nbsp;|&nbsp;
                         avg. beat rating: 1499
                         &nbsp;|&nbsp;
-                        avg. lost to rating: 1470
+                        avg. lost to rating: 1465
                         &nbsp;|&nbsp;
-                        avg. remaining rating: 1577
+                        avg. remaining rating: 1627
                 </small></td>
         </tr>
         <tr><th>Wk</th><th>Rk</th><th>Outcome</th><th>Wk</th><th>Rk</th><th>Outcome</th><th>Wk</th><th>Rk</th><th>Outcome</th></tr>
@@ -4046,7 +4281,7 @@ Contents <a name="top"></a>
 <tr><td><a href="#after-Reg-2">2</a></td><td>29</td><td class="bdr">vs <a href="#Seattle-Seahawks-season-stats">SEA</a>(1483) L 20-23: +0→1412</td><td><a href="#after-Reg-10">10</a></td><td>30</td><td class="bdr">at <a href="#Chicago-Bears-season-stats">CHI</a>(1489) W 19-3: +67→1386</td><td><a href="#after-Reg-18">18</a></td><td></td><td>vs <a href="#Buffalo-Bills-season-stats">BUF</a></td></tr>
 <tr><td><a href="#after-Reg-3">3</a></td><td>29</td><td class="bdr">at <a href="#New-York-Jets-season-stats">NYJ</a>(1459) L 3-24: -32→1380</td><td><a href="#after-Reg-11">11</a></td><td><u>28</u></td><td class="bdr">vs <a href="#Los-Angeles-Rams-season-stats">LAR</a>(1478) L 22-28: -6→1380</td><td><span style="opacity:0.4"><a href="#after-Playoffs-Wildcard">W</a></span></td><td><span style="opacity:0.4"></span></td><td></td></tr>
 <tr><td><a href="#after-Reg-4">4</a></td><td><u>31</u></td><td class="bdr">at <a href="#San-Francisco-49ers-season-stats">SF</a>(1631) L 13-30: -10→1370</td><td><a href="#after-Reg-12">12</a></td><td>29</td><td class="bdr">at <a href="#Miami-Dolphins-season-stats">MIA</a>(1473) L 15-34: -27→1353</td><td><span style="opacity:0.4"><a href="#after-Playoffs-Divisional">D</a></span></td><td><span style="opacity:0.4"></span></td><td></td></tr>
-<tr><td><a href="#after-Reg-5">5</a></td><td>31</td><td class="bdr">vs <a href="#Miami-Dolphins-season-stats">MIA</a>(1408) L 10-15: -3→1367</td><td><a href="#after-Reg-13">13</a></td><td></td><td class="bdr">vs <a href="#Indianapolis-Colts-season-stats">IND</a></td><td><span style="opacity:0.4"><a href="#after-Playoffs-Championship">C</a></span></td><td><span style="opacity:0.4"></span></td><td></td></tr>
+<tr><td><a href="#after-Reg-5">5</a></td><td>31</td><td class="bdr">vs <a href="#Miami-Dolphins-season-stats">MIA</a>(1408) L 10-15: -3→1367</td><td><a href="#after-Reg-13">13</a></td><td>29</td><td class="bdr">vs <a href="#Indianapolis-Colts-season-stats">IND</a>(1422) L 24-25: -3→1350</td><td><span style="opacity:0.4"><a href="#after-Playoffs-Championship">C</a></span></td><td><span style="opacity:0.4"></span></td><td></td></tr>
 <tr><td><a href="#after-Reg-6">6</a></td><td>31</td><td class="bdr">vs <a href="#Houston-Texans-season-stats">HOU</a>(1465) L 21-41: -36→1331</td><td><a href="#after-Reg-14">14</a></td><td></td><td class="bdr">(bye)</td><td><span style="opacity:0.4"><a href="#after-Playoffs-Super-Bowl">S</a></span></td><td><span style="opacity:0.4"></span></td><td></td></tr>
 <tr><td><a href="#after-Reg-7">7</a></td><td>31</td><td class="bdr">at <a href="#Jacksonville-Jaguars-season-stats">JAX</a>(1430) L 16-32: -28→<u>1303</u></td><td><a href="#after-Reg-15">15</a></td><td></td><td class="bdr">at <a href="#Arizona-Cardinals-season-stats">ARI</a></td><td><span style="opacity:0.4"></span></td><td><span style="opacity:0.4"></span></td><td></td></tr>
 <tr><td><a href="#after-Reg-8">8</a></td><td>31</td><td class="bdr">vs <a href="#New-York-Jets-season-stats">NYJ</a>(1458) W 25-22: +16→1319</td><td><a href="#after-Reg-16">16</a></td><td></td><td class="bdr">at <a href="#Buffalo-Bills-season-stats">BUF</a></td><td><span style="opacity:0.4"></span></td><td><span style="opacity:0.4"></span></td><td></td></tr>
@@ -4059,13 +4294,13 @@ Contents <a name="top"></a>
 <table>
         <tr>
                 <td colspan="9" style="border:0;"><small>
-                        reg. season: avg. opp. rating: 1471 (-23 net)
+                        reg. season: avg. opp. rating: 1470 (-20 net)
                         &nbsp;|&nbsp;
                         avg. beat rating: 1452
                         &nbsp;|&nbsp;
-                        avg. lost to rating: 1482
+                        avg. lost to rating: 1479
                         &nbsp;|&nbsp;
-                        avg. remaining rating: 1458
+                        avg. remaining rating: 1468
                 </small></td>
         </tr>
         <tr><th>Wk</th><th>Rk</th><th>Outcome</th><th>Wk</th><th>Rk</th><th>Outcome</th><th>Wk</th><th>Rk</th><th>Outcome</th></tr>
@@ -4073,7 +4308,7 @@ Contents <a name="top"></a>
 <tr><td><a href="#after-Reg-2">2</a></td><td><u>5</u></td><td class="bdr">at <a href="#Dallas-Cowboys-season-stats">DAL</a>(1599) W 44-19: +58→<u>1589</u></td><td><a href="#after-Reg-10">10</a></td><td>27</td><td class="bdr">vs <a href="#Atlanta-Falcons-season-stats">ATL</a>(1470) W 20-17: +7→1402</td><td><a href="#after-Reg-18">18</a></td><td></td><td>at <a href="#Tampa-Bay-Buccaneers-season-stats">TB</a></td></tr>
 <tr><td><a href="#after-Reg-3">3</a></td><td>6</td><td class="bdr">vs <a href="#Philadelphia-Eagles-season-stats">PHI</a>(1482) L 12-15: -21→1568</td><td><a href="#after-Reg-11">11</a></td><td>21</td><td class="bdr">vs <a href="#Cleveland-Browns-season-stats">CLE</a>(1408) W 35-14: +39→1441</td><td><span style="opacity:0.4"><a href="#after-Playoffs-Wildcard">W</a></span></td><td><span style="opacity:0.4"></span></td><td></td></tr>
 <tr><td><a href="#after-Reg-4">4</a></td><td>8</td><td class="bdr">at <a href="#Atlanta-Falcons-season-stats">ATL</a>(1440) L 24-26: -12→1556</td><td><a href="#after-Reg-12">12</a></td><td>21</td><td class="bdr">(bye)</td><td><span style="opacity:0.4"><a href="#after-Playoffs-Divisional">D</a></span></td><td><span style="opacity:0.4"></span></td><td></td></tr>
-<tr><td><a href="#after-Reg-5">5</a></td><td>11</td><td class="bdr">at <a href="#Kansas-City-Chiefs-season-stats">KC</a>(1644) L 13-26: -21→1535</td><td><a href="#after-Reg-13">13</a></td><td></td><td class="bdr">vs <a href="#Los-Angeles-Rams-season-stats">LAR</a></td><td><span style="opacity:0.4"><a href="#after-Playoffs-Championship">C</a></span></td><td><span style="opacity:0.4"></span></td><td></td></tr>
+<tr><td><a href="#after-Reg-5">5</a></td><td>11</td><td class="bdr">at <a href="#Kansas-City-Chiefs-season-stats">KC</a>(1644) L 13-26: -21→1535</td><td><a href="#after-Reg-13">13</a></td><td>25</td><td class="bdr">vs <a href="#Los-Angeles-Rams-season-stats">LAR</a>(1453) L 14-21: -21→1420</td><td><span style="opacity:0.4"><a href="#after-Playoffs-Championship">C</a></span></td><td><span style="opacity:0.4"></span></td><td></td></tr>
 <tr><td><a href="#after-Reg-6">6</a></td><td>18</td><td class="bdr">vs <a href="#Tampa-Bay-Buccaneers-season-stats">TB</a>(1506) L 27-51: -51→1484</td><td><a href="#after-Reg-14">14</a></td><td></td><td class="bdr">at <a href="#New-York-Giants-season-stats">NYG</a></td><td><span style="opacity:0.4"><a href="#after-Playoffs-Super-Bowl">S</a></span></td><td><span style="opacity:0.4"></span></td><td></td></tr>
 <tr><td><a href="#after-Reg-7">7</a></td><td>23</td><td class="bdr">vs <a href="#Denver-Broncos-season-stats">DEN</a>(1527) L 10-33: -44→1440</td><td><a href="#after-Reg-15">15</a></td><td></td><td class="bdr">vs <a href="#Washington-Commanders-season-stats">WAS</a></td><td><span style="opacity:0.4"></span></td><td><span style="opacity:0.4"></span></td><td></td></tr>
 <tr><td><a href="#after-Reg-8">8</a></td><td>26</td><td class="bdr">at <a href="#Los-Angeles-Chargers-season-stats">LAC</a>(1498) L 8-26: -31→1409</td><td><a href="#after-Reg-16">16</a></td><td></td><td class="bdr">at <a href="#Green-Bay-Packers-season-stats">GB</a></td><td><span style="opacity:0.4"></span></td><td><span style="opacity:0.4"></span></td><td></td></tr>
@@ -4086,21 +4321,21 @@ Contents <a name="top"></a>
 <table>
         <tr>
                 <td colspan="9" style="border:0;"><small>
-                        reg. season: avg. opp. rating: 1477 (+51 net)
+                        reg. season: avg. opp. rating: 1474 (+54 net)
                         &nbsp;|&nbsp;
                         avg. beat rating: 1493
                         &nbsp;|&nbsp;
-                        avg. lost to rating: 1474
+                        avg. lost to rating: 1470
                         &nbsp;|&nbsp;
-                        avg. remaining rating: 1515
+                        avg. remaining rating: 1525
                 </small></td>
         </tr>
         <tr><th>Wk</th><th>Rk</th><th>Outcome</th><th>Wk</th><th>Rk</th><th>Outcome</th><th>Wk</th><th>Rk</th><th>Outcome</th></tr>
 <tr><td><a href="#after-Reg-1">1</a></td><td>27</td><td class="bdr">vs <a href="#Minnesota-Vikings-season-stats">MIN</a>(1485) L 6-28: -3→1427</td><td><a href="#after-Reg-9">9</a></td><td>26</td><td class="bdr">vs <a href="#Washington-Commanders-season-stats">WAS</a>(1499) L 22-27: +0→1404</td><td><a href="#after-Reg-17">17</a></td><td></td><td>vs <a href="#Indianapolis-Colts-season-stats">IND</a></td></tr>
 <tr><td><a href="#after-Reg-2">2</a></td><td>28</td><td class="bdr">at <a href="#Washington-Commanders-season-stats">WAS</a>(1337) L 18-21: -8→1419</td><td><a href="#after-Reg-10">10</a></td><td>29</td><td class="bdr">at <a href="#Carolina-Panthers-season-stats">CAR</a>(1293) L 17-20: -17→1387</td><td><a href="#after-Reg-18">18</a></td><td></td><td>at <a href="#Philadelphia-Eagles-season-stats">PHI</a></td></tr>
 <tr><td><a href="#after-Reg-3">3</a></td><td>25</td><td class="bdr">at <a href="#Cleveland-Browns-season-stats">CLE</a>(1486) W 21-15: +24→1443</td><td><a href="#after-Reg-11">11</a></td><td>27</td><td class="bdr">(bye)</td><td><span style="opacity:0.4"><a href="#after-Playoffs-Wildcard">W</a></span></td><td><span style="opacity:0.4"></span></td><td></td></tr>
-<tr><td><a href="#after-Reg-4">4</a></td><td>26</td><td class="bdr">vs <a href="#Dallas-Cowboys-season-stats">DAL</a>(1541) L 15-20: +0→1443</td><td><a href="#after-Reg-12">12</a></td><td><u>30</u></td><td class="bdr">vs <a href="#Tampa-Bay-Buccaneers-season-stats">TB</a>(1518) L 7-30: -36→<u>1351</u></td><td><span style="opacity:0.4"><a href="#after-Playoffs-Divisional">D</a></span></td><td><span style="opacity:0.4"></span></td><td></td></tr>
-<tr><td><a href="#after-Reg-5">5</a></td><td><u>16</u></td><td class="bdr">at <a href="#Seattle-Seahawks-season-stats">SEA</a>(1499) W 29-20: +37→<u>1480</u></td><td><a href="#after-Reg-13">13</a></td><td></td><td class="bdr">at <a href="#Dallas-Cowboys-season-stats">DAL</a></td><td><span style="opacity:0.4"><a href="#after-Playoffs-Championship">C</a></span></td><td><span style="opacity:0.4"></span></td><td></td></tr>
+<tr><td><a href="#after-Reg-4">4</a></td><td>26</td><td class="bdr">vs <a href="#Dallas-Cowboys-season-stats">DAL</a>(1541) L 15-20: +0→1443</td><td><a href="#after-Reg-12">12</a></td><td><u>30</u></td><td class="bdr">vs <a href="#Tampa-Bay-Buccaneers-season-stats">TB</a>(1518) L 7-30: -36→1351</td><td><span style="opacity:0.4"><a href="#after-Playoffs-Divisional">D</a></span></td><td><span style="opacity:0.4"></span></td><td></td></tr>
+<tr><td><a href="#after-Reg-5">5</a></td><td><u>16</u></td><td class="bdr">at <a href="#Seattle-Seahawks-season-stats">SEA</a>(1499) W 29-20: +37→<u>1480</u></td><td><a href="#after-Reg-13">13</a></td><td>30</td><td class="bdr">at <a href="#Dallas-Cowboys-season-stats">DAL</a>(1442) L 20-27: -4→<u>1347</u></td><td><span style="opacity:0.4"><a href="#after-Playoffs-Championship">C</a></span></td><td><span style="opacity:0.4"></span></td><td></td></tr>
 <tr><td><a href="#after-Reg-6">6</a></td><td>23</td><td class="bdr">vs <a href="#Cincinnati-Bengals-season-stats">CIN</a>(1537) L 7-17: -28→1452</td><td><a href="#after-Reg-14">14</a></td><td></td><td class="bdr">vs <a href="#New-Orleans-Saints-season-stats">NO</a></td><td><span style="opacity:0.4"><a href="#after-Playoffs-Super-Bowl">S</a></span></td><td><span style="opacity:0.4"></span></td><td></td></tr>
 <tr><td><a href="#after-Reg-7">7</a></td><td>29</td><td class="bdr">vs <a href="#Philadelphia-Eagles-season-stats">PHI</a>(1465) L 3-28: -48→1404</td><td><a href="#after-Reg-15">15</a></td><td></td><td class="bdr">vs <a href="#Baltimore-Ravens-season-stats">BAL</a></td><td><span style="opacity:0.4"></span></td><td><span style="opacity:0.4"></span></td><td></td></tr>
 <tr><td><a href="#after-Reg-8">8</a></td><td>27</td><td class="bdr">at <a href="#Pittsburgh-Steelers-season-stats">PIT</a>(1588) L 18-26: +0→1404</td><td><a href="#after-Reg-16">16</a></td><td></td><td class="bdr">at <a href="#Atlanta-Falcons-season-stats">ATL</a></td><td><span style="opacity:0.4"></span></td><td><span style="opacity:0.4"></span></td><td></td></tr>
@@ -4113,21 +4348,21 @@ Contents <a name="top"></a>
 <table>
         <tr>
                 <td colspan="9" style="border:0;"><small>
-                        reg. season: avg. opp. rating: 1501 (+40 net)
+                        reg. season: avg. opp. rating: 1501 (+43 net)
                         &nbsp;|&nbsp;
                         avg. beat rating: 1447
                         &nbsp;|&nbsp;
-                        avg. lost to rating: 1521
+                        avg. lost to rating: 1519
                         &nbsp;|&nbsp;
-                        avg. remaining rating: 1517
+                        avg. remaining rating: 1519
                 </small></td>
         </tr>
         <tr><th>Wk</th><th>Rk</th><th>Outcome</th><th>Wk</th><th>Rk</th><th>Outcome</th><th>Wk</th><th>Rk</th><th>Outcome</th></tr>
 <tr><td><a href="#after-Reg-1">1</a></td><td>24</td><td class="bdr">at <a href="#San-Francisco-49ers-season-stats">SF</a>(1673) L 19-32: -0→1438</td><td><a href="#after-Reg-9">9</a></td><td>21</td><td class="bdr">vs <a href="#Houston-Texans-season-stats">HOU</a>(1501) W 21-13: +24→1466</td><td><a href="#after-Reg-17">17</a></td><td></td><td>at <a href="#Buffalo-Bills-season-stats">BUF</a></td></tr>
 <tr><td><a href="#after-Reg-2">2</a></td><td>24</td><td class="bdr">at <a href="#Tennessee-Titans-season-stats">TEN</a>(1428) W 24-17: +21→1459</td><td><a href="#after-Reg-10">10</a></td><td>24</td><td class="bdr">at <a href="#Arizona-Cardinals-season-stats">ARI</a>(1472) L 6-31: -39→1427</td><td><a href="#after-Reg-18">18</a></td><td></td><td>vs <a href="#Miami-Dolphins-season-stats">MIA</a></td></tr>
-<tr><td><a href="#after-Reg-3">3</a></td><td><u>15</u></td><td class="bdr">vs <a href="#New-England-Patriots-season-stats">NE</a>(1412) W 24-3: +32→<u>1491</u></td><td><a href="#after-Reg-11">11</a></td><td>25</td><td class="bdr">vs <a href="#Indianapolis-Colts-season-stats">IND</a>(1442) L 27-28: -7→<u>1420</u></td><td><span style="opacity:0.4"><a href="#after-Playoffs-Wildcard">W</a></span></td><td><span style="opacity:0.4"></span></td><td></td></tr>
+<tr><td><a href="#after-Reg-3">3</a></td><td><u>15</u></td><td class="bdr">vs <a href="#New-England-Patriots-season-stats">NE</a>(1412) W 24-3: +32→<u>1491</u></td><td><a href="#after-Reg-11">11</a></td><td>25</td><td class="bdr">vs <a href="#Indianapolis-Colts-season-stats">IND</a>(1442) L 27-28: -7→1420</td><td><span style="opacity:0.4"><a href="#after-Playoffs-Wildcard">W</a></span></td><td><span style="opacity:0.4"></span></td><td></td></tr>
 <tr><td><a href="#after-Reg-4">4</a></td><td>16</td><td class="bdr">vs <a href="#Denver-Broncos-season-stats">DEN</a>(1527) L 9-10: -5→1486</td><td><a href="#after-Reg-12">12</a></td><td><u>26</u></td><td class="bdr">(bye)</td><td><span style="opacity:0.4"><a href="#after-Playoffs-Divisional">D</a></span></td><td><span style="opacity:0.4"></span></td><td></td></tr>
-<tr><td><a href="#after-Reg-5">5</a></td><td><u>15</u></td><td class="bdr">at <a href="#Minnesota-Vikings-season-stats">MIN</a>(1560) L 17-23: -0→1486</td><td><a href="#after-Reg-13">13</a></td><td></td><td class="bdr">vs <a href="#Seattle-Seahawks-season-stats">SEA</a></td><td><span style="opacity:0.4"><a href="#after-Playoffs-Championship">C</a></span></td><td><span style="opacity:0.4"></span></td><td></td></tr>
+<tr><td><a href="#after-Reg-5">5</a></td><td><u>15</u></td><td class="bdr">at <a href="#Minnesota-Vikings-season-stats">MIN</a>(1560) L 17-23: -0→1486</td><td><a href="#after-Reg-13">13</a></td><td>26</td><td class="bdr">vs <a href="#Seattle-Seahawks-season-stats">SEA</a>(1503) L 21-26: -2→<u>1418</u></td><td><span style="opacity:0.4"><a href="#after-Playoffs-Championship">C</a></span></td><td><span style="opacity:0.4"></span></td><td></td></tr>
 <tr><td><a href="#after-Reg-6">6</a></td><td>17</td><td class="bdr">vs <a href="#Buffalo-Bills-season-stats">BUF</a>(1631) L 20-23: +0→1486</td><td><a href="#after-Reg-14">14</a></td><td></td><td class="bdr">at <a href="#Miami-Dolphins-season-stats">MIA</a></td><td><span style="opacity:0.4"><a href="#after-Playoffs-Super-Bowl">S</a></span></td><td><span style="opacity:0.4"></span></td><td></td></tr>
 <tr><td><a href="#after-Reg-7">7</a></td><td>21</td><td class="bdr">at <a href="#Pittsburgh-Steelers-season-stats">PIT</a>(1560) L 15-37: -28→1458</td><td><a href="#after-Reg-15">15</a></td><td></td><td class="bdr">at <a href="#Jacksonville-Jaguars-season-stats">JAX</a></td><td><span style="opacity:0.4"></span></td><td><span style="opacity:0.4"></span></td><td></td></tr>
 <tr><td><a href="#after-Reg-8">8</a></td><td>24</td><td class="bdr">at <a href="#New-England-Patriots-season-stats">NE</a>(1303) L 22-25: -16→1442</td><td><a href="#after-Reg-16">16</a></td><td></td><td class="bdr">vs <a href="#Los-Angeles-Rams-season-stats">LAR</a></td><td><span style="opacity:0.4"></span></td><td><span style="opacity:0.4"></span></td><td></td></tr>
@@ -4140,21 +4375,21 @@ Contents <a name="top"></a>
 <table>
         <tr>
                 <td colspan="9" style="border:0;"><small>
-                        reg. season: avg. opp. rating: 1493 (-33 net)
+                        reg. season: avg. opp. rating: 1510 (-26 net)
                         &nbsp;|&nbsp;
-                        avg. beat rating: 1502
+                        avg. beat rating: 1522
                         &nbsp;|&nbsp;
                         avg. lost to rating: 1450
                         &nbsp;|&nbsp;
-                        avg. remaining rating: 1475
+                        avg. remaining rating: 1437
                 </small></td>
         </tr>
         <tr><th>Wk</th><th>Rk</th><th>Outcome</th><th>Wk</th><th>Rk</th><th>Outcome</th><th>Wk</th><th>Rk</th><th>Outcome</th></tr>
 <tr><td><a href="#after-Reg-1">1</a></td><td>13</td><td class="bdr">at <a href="#Green-Bay-Packers-season-stats">GB</a>(1556) W 34-29: +1→1501</td><td><a href="#after-Reg-9">9</a></td><td>7</td><td class="bdr">vs <a href="#Jacksonville-Jaguars-season-stats">JAX</a>(1458) W 28-23: +0→1569</td><td><a href="#after-Reg-17">17</a></td><td></td><td>vs <a href="#Dallas-Cowboys-season-stats">DAL</a></td></tr>
 <tr><td><a href="#after-Reg-2">2</a></td><td>20</td><td class="bdr">vs <a href="#Atlanta-Falcons-season-stats">ATL</a>(1421) L 21-22: -19→1482</td><td><a href="#after-Reg-10">10</a></td><td><u>5</u></td><td class="bdr">at <a href="#Dallas-Cowboys-season-stats">DAL</a>(1492) W 34-6: +39→1608</td><td><a href="#after-Reg-18">18</a></td><td></td><td>vs <a href="#New-York-Giants-season-stats">NYG</a></td></tr>
 <tr><td><a href="#after-Reg-3">3</a></td><td>14</td><td class="bdr">at <a href="#New-Orleans-Saints-season-stats">NO</a>(1589) W 15-12: +22→1504</td><td><a href="#after-Reg-11">11</a></td><td>5</td><td class="bdr">vs <a href="#Washington-Commanders-season-stats">WAS</a>(1499) W 26-18: +5→1613</td><td><span style="opacity:0.4"><a href="#after-Playoffs-Wildcard">W</a></span></td><td><span style="opacity:0.4"></span></td><td></td></tr>
-<tr><td><a href="#after-Reg-4">4</a></td><td>20</td><td class="bdr">at <a href="#Tampa-Bay-Buccaneers-season-stats">TB</a>(1479) L 16-33: -39→<u>1465</u></td><td><a href="#after-Reg-12">12</a></td><td>5</td><td class="bdr">at <a href="#Los-Angeles-Rams-season-stats">LAR</a>(1484) W 37-20: +32→<u>1645</u></td><td><span style="opacity:0.4"><a href="#after-Playoffs-Divisional">D</a></span></td><td><span style="opacity:0.4"></span></td><td></td></tr>
-<tr><td><a href="#after-Reg-5">5</a></td><td><u>23</u></td><td class="bdr">(bye)</td><td><a href="#after-Reg-13">13</a></td><td></td><td class="bdr">at <a href="#Baltimore-Ravens-season-stats">BAL</a></td><td><span style="opacity:0.4"><a href="#after-Playoffs-Championship">C</a></span></td><td><span style="opacity:0.4"></span></td><td></td></tr>
+<tr><td><a href="#after-Reg-4">4</a></td><td>20</td><td class="bdr">at <a href="#Tampa-Bay-Buccaneers-season-stats">TB</a>(1479) L 16-33: -39→<u>1465</u></td><td><a href="#after-Reg-12">12</a></td><td>5</td><td class="bdr">at <a href="#Los-Angeles-Rams-season-stats">LAR</a>(1484) W 37-20: +32→1645</td><td><span style="opacity:0.4"><a href="#after-Playoffs-Divisional">D</a></span></td><td><span style="opacity:0.4"></span></td><td></td></tr>
+<tr><td><a href="#after-Reg-5">5</a></td><td><u>23</u></td><td class="bdr">(bye)</td><td><a href="#after-Reg-13">13</a></td><td>5</td><td class="bdr">at <a href="#Baltimore-Ravens-season-stats">BAL</a>(1704) W 24-19: +10→<u>1655</u></td><td><span style="opacity:0.4"><a href="#after-Playoffs-Championship">C</a></span></td><td><span style="opacity:0.4"></span></td><td></td></tr>
 <tr><td><a href="#after-Reg-6">6</a></td><td>21</td><td class="bdr">vs <a href="#Cleveland-Browns-season-stats">CLE</a>(1421) W 20-16: +0→<u>1465</u></td><td><a href="#after-Reg-14">14</a></td><td></td><td class="bdr">vs <a href="#Carolina-Panthers-season-stats">CAR</a></td><td><span style="opacity:0.4"><a href="#after-Playoffs-Super-Bowl">S</a></span></td><td><span style="opacity:0.4"></span></td><td></td></tr>
 <tr><td><a href="#after-Reg-7">7</a></td><td>13</td><td class="bdr">at <a href="#New-York-Giants-season-stats">NYG</a>(1452) W 28-3: +48→1513</td><td><a href="#after-Reg-15">15</a></td><td></td><td class="bdr">vs <a href="#Pittsburgh-Steelers-season-stats">PIT</a></td><td><span style="opacity:0.4"></span></td><td><span style="opacity:0.4"></span></td><td></td></tr>
 <tr><td><a href="#after-Reg-8">8</a></td><td>9</td><td class="bdr">at <a href="#Cincinnati-Bengals-season-stats">CIN</a>(1569) W 37-17: +56→1569</td><td><a href="#after-Reg-16">16</a></td><td></td><td class="bdr">at <a href="#Washington-Commanders-season-stats">WAS</a></td><td><span style="opacity:0.4"></span></td><td><span style="opacity:0.4"></span></td><td></td></tr>
@@ -4167,13 +4402,13 @@ Contents <a name="top"></a>
 <table>
         <tr>
                 <td colspan="9" style="border:0;"><small>
-                        reg. season: avg. opp. rating: 1481 (-65 net)
+                        reg. season: avg. opp. rating: 1485 (-65 net)
                         &nbsp;|&nbsp;
-                        avg. beat rating: 1493
+                        avg. beat rating: 1496
                         &nbsp;|&nbsp;
                         avg. lost to rating: 1450
                         &nbsp;|&nbsp;
-                        avg. remaining rating: 1576
+                        avg. remaining rating: 1583
                 </small></td>
         </tr>
         <tr><th>Wk</th><th>Rk</th><th>Outcome</th><th>Wk</th><th>Rk</th><th>Outcome</th><th>Wk</th><th>Rk</th><th>Outcome</th></tr>
@@ -4181,7 +4416,7 @@ Contents <a name="top"></a>
 <tr><td><a href="#after-Reg-2">2</a></td><td>12</td><td class="bdr">at <a href="#Denver-Broncos-season-stats">DEN</a>(1494) W 13-6: +23→1514</td><td><a href="#after-Reg-10">10</a></td><td>7</td><td class="bdr">at <a href="#Washington-Commanders-season-stats">WAS</a>(1499) W 28-27: +0→1588</td><td><a href="#after-Reg-18">18</a></td><td></td><td>vs <a href="#Cincinnati-Bengals-season-stats">CIN</a></td></tr>
 <tr><td><a href="#after-Reg-3">3</a></td><td>10</td><td class="bdr">vs <a href="#Los-Angeles-Chargers-season-stats">LAC</a>(1506) W 20-10: +23→1537</td><td><a href="#after-Reg-11">11</a></td><td><u>6</u></td><td class="bdr">vs <a href="#Baltimore-Ravens-season-stats">BAL</a>(1702) W 18-16: +10→<u>1598</u></td><td><span style="opacity:0.4"><a href="#after-Playoffs-Wildcard">W</a></span></td><td><span style="opacity:0.4"></span></td><td></td></tr>
 <tr><td><a href="#after-Reg-4">4</a></td><td>12</td><td class="bdr">at <a href="#Indianapolis-Colts-season-stats">IND</a>(1439) L 24-27: -8→1529</td><td><a href="#after-Reg-12">12</a></td><td>8</td><td class="bdr">at <a href="#Cleveland-Browns-season-stats">CLE</a>(1369) L 19-24: -14→1584</td><td><span style="opacity:0.4"><a href="#after-Playoffs-Divisional">D</a></span></td><td><span style="opacity:0.4"></span></td><td></td></tr>
-<tr><td><a href="#after-Reg-5">5</a></td><td>12</td><td class="bdr">vs <a href="#Dallas-Cowboys-season-stats">DAL</a>(1541) L 17-20: -5→1524</td><td><a href="#after-Reg-13">13</a></td><td></td><td class="bdr">at <a href="#Cincinnati-Bengals-season-stats">CIN</a></td><td><span style="opacity:0.4"><a href="#after-Playoffs-Championship">C</a></span></td><td><span style="opacity:0.4"></span></td><td></td></tr>
+<tr><td><a href="#after-Reg-5">5</a></td><td>12</td><td class="bdr">vs <a href="#Dallas-Cowboys-season-stats">DAL</a>(1541) L 17-20: -5→1524</td><td><a href="#after-Reg-13">13</a></td><td>8</td><td class="bdr">at <a href="#Cincinnati-Bengals-season-stats">CIN</a>(1524) W 44-38: +10→1594</td><td><span style="opacity:0.4"><a href="#after-Playoffs-Championship">C</a></span></td><td><span style="opacity:0.4"></span></td><td></td></tr>
 <tr><td><a href="#after-Reg-6">6</a></td><td>9</td><td class="bdr">at <a href="#Las-Vegas-Raiders-season-stats">LV</a>(1429) W 32-13: +36→1560</td><td><a href="#after-Reg-14">14</a></td><td></td><td class="bdr">vs <a href="#Cleveland-Browns-season-stats">CLE</a></td><td><span style="opacity:0.4"><a href="#after-Playoffs-Super-Bowl">S</a></span></td><td><span style="opacity:0.4"></span></td><td></td></tr>
 <tr><td><a href="#after-Reg-7">7</a></td><td>7</td><td class="bdr">vs <a href="#New-York-Jets-season-stats">NYJ</a>(1486) W 37-15: +28→1588</td><td><a href="#after-Reg-15">15</a></td><td></td><td class="bdr">at <a href="#Philadelphia-Eagles-season-stats">PHI</a></td><td><span style="opacity:0.4"></span></td><td><span style="opacity:0.4"></span></td><td></td></tr>
 <tr><td><a href="#after-Reg-8">8</a></td><td>7</td><td class="bdr">vs <a href="#New-York-Giants-season-stats">NYG</a>(1404) W 26-18: +0→1588</td><td><a href="#after-Reg-16">16</a></td><td></td><td class="bdr">at <a href="#Baltimore-Ravens-season-stats">BAL</a></td><td><span style="opacity:0.4"></span></td><td><span style="opacity:0.4"></span></td><td></td></tr>
@@ -4194,21 +4429,21 @@ Contents <a name="top"></a>
 <table>
         <tr>
                 <td colspan="9" style="border:0;"><small>
-                        reg. season: avg. opp. rating: 1484 (-141 net)
+                        reg. season: avg. opp. rating: 1502 (-116 net)
                         &nbsp;|&nbsp;
                         avg. beat rating: 1460
                         &nbsp;|&nbsp;
-                        avg. lost to rating: 1503
+                        avg. lost to rating: 1532
                         &nbsp;|&nbsp;
-                        avg. remaining rating: 1547
+                        avg. remaining rating: 1515
                 </small></td>
         </tr>
         <tr><th>Wk</th><th>Rk</th><th>Outcome</th><th>Wk</th><th>Rk</th><th>Outcome</th><th>Wk</th><th>Rk</th><th>Outcome</th></tr>
 <tr><td><a href="#after-Reg-1">1</a></td><td><u>1</u></td><td class="bdr">vs <a href="#New-York-Jets-season-stats">NYJ</a>(1438) W 32-19: +1→<u>1674</u></td><td><a href="#after-Reg-9">9</a></td><td>5</td><td class="bdr">(bye)</td><td><a href="#after-Reg-17">17</a></td><td></td><td>vs <a href="#Detroit-Lions-season-stats">DET</a></td></tr>
 <tr><td><a href="#after-Reg-2">2</a></td><td>2</td><td class="bdr">at <a href="#Minnesota-Vikings-season-stats">MIN</a>(1488) L 17-23: -25→1649</td><td><a href="#after-Reg-10">10</a></td><td>6</td><td class="bdr">at <a href="#Tampa-Bay-Buccaneers-season-stats">TB</a>(1518) W 23-20: +0→1598</td><td><a href="#after-Reg-18">18</a></td><td></td><td>at <a href="#Arizona-Cardinals-season-stats">ARI</a></td></tr>
 <tr><td><a href="#after-Reg-3">3</a></td><td>4</td><td class="bdr">at <a href="#Los-Angeles-Rams-season-stats">LAR</a>(1466) L 24-27: -18→1631</td><td><a href="#after-Reg-11">11</a></td><td>7</td><td class="bdr">vs <a href="#Seattle-Seahawks-season-stats">SEA</a>(1457) L 17-20: -20→1578</td><td><span style="opacity:0.4"><a href="#after-Playoffs-Wildcard">W</a></span></td><td><span style="opacity:0.4"></span></td><td></td></tr>
-<tr><td><a href="#after-Reg-4">4</a></td><td>4</td><td class="bdr">vs <a href="#New-England-Patriots-season-stats">NE</a>(1380) W 30-13: +10→1641</td><td><a href="#after-Reg-12">12</a></td><td><u>12</u></td><td class="bdr">at <a href="#Green-Bay-Packers-season-stats">GB</a>(1562) L 10-38: -37→<u>1541</u></td><td><span style="opacity:0.4"><a href="#after-Playoffs-Divisional">D</a></span></td><td><span style="opacity:0.4"></span></td><td></td></tr>
-<tr><td><a href="#after-Reg-5">5</a></td><td>4</td><td class="bdr">vs <a href="#Arizona-Cardinals-season-stats">ARI</a>(1381) L 23-24: -36→1605</td><td><a href="#after-Reg-13">13</a></td><td></td><td class="bdr">at <a href="#Buffalo-Bills-season-stats">BUF</a></td><td><span style="opacity:0.4"><a href="#after-Playoffs-Championship">C</a></span></td><td><span style="opacity:0.4"></span></td><td></td></tr>
+<tr><td><a href="#after-Reg-4">4</a></td><td>4</td><td class="bdr">vs <a href="#New-England-Patriots-season-stats">NE</a>(1380) W 30-13: +10→1641</td><td><a href="#after-Reg-12">12</a></td><td><u>12</u></td><td class="bdr">at <a href="#Green-Bay-Packers-season-stats">GB</a>(1562) L 10-38: -37→1541</td><td><span style="opacity:0.4"><a href="#after-Playoffs-Divisional">D</a></span></td><td><span style="opacity:0.4"></span></td><td></td></tr>
+<tr><td><a href="#after-Reg-5">5</a></td><td>4</td><td class="bdr">vs <a href="#Arizona-Cardinals-season-stats">ARI</a>(1381) L 23-24: -36→1605</td><td><a href="#after-Reg-13">13</a></td><td>12</td><td class="bdr">at <a href="#Buffalo-Bills-season-stats">BUF</a>(1706) L 10-35: -23→<u>1518</u></td><td><span style="opacity:0.4"><a href="#after-Playoffs-Championship">C</a></span></td><td><span style="opacity:0.4"></span></td><td></td></tr>
 <tr><td><a href="#after-Reg-6">6</a></td><td>5</td><td class="bdr">at <a href="#Seattle-Seahawks-season-stats">SEA</a>(1462) W 36-24: +23→1628</td><td><a href="#after-Reg-14">14</a></td><td></td><td class="bdr">vs <a href="#Chicago-Bears-season-stats">CHI</a></td><td><span style="opacity:0.4"><a href="#after-Playoffs-Super-Bowl">S</a></span></td><td><span style="opacity:0.4"></span></td><td></td></tr>
 <tr><td><a href="#after-Reg-7">7</a></td><td>5</td><td class="bdr">vs <a href="#Kansas-City-Chiefs-season-stats">KC</a>(1664) L 18-28: -30→1598</td><td><a href="#after-Reg-15">15</a></td><td></td><td class="bdr">vs <a href="#Los-Angeles-Rams-season-stats">LAR</a></td><td><span style="opacity:0.4"></span></td><td><span style="opacity:0.4"></span></td><td></td></tr>
 <tr><td><a href="#after-Reg-8">8</a></td><td>5</td><td class="bdr">vs <a href="#Dallas-Cowboys-season-stats">DAL</a>(1503) W 30-24: +0→1598</td><td><a href="#after-Reg-16">16</a></td><td></td><td class="bdr">at <a href="#Miami-Dolphins-season-stats">MIA</a></td><td><span style="opacity:0.4"></span></td><td><span style="opacity:0.4"></span></td><td></td></tr>
@@ -4221,13 +4456,13 @@ Contents <a name="top"></a>
 <table>
         <tr>
                 <td colspan="9" style="border:0;"><small>
-                        reg. season: avg. opp. rating: 1526 (+48 net)
+                        reg. season: avg. opp. rating: 1518 (+37 net)
                         &nbsp;|&nbsp;
-                        avg. beat rating: 1503
+                        avg. beat rating: 1491
                         &nbsp;|&nbsp;
                         avg. lost to rating: 1554
                         &nbsp;|&nbsp;
-                        avg. remaining rating: 1488
+                        avg. remaining rating: 1510
                 </small></td>
         </tr>
         <tr><th>Wk</th><th>Rk</th><th>Outcome</th><th>Wk</th><th>Rk</th><th>Outcome</th><th>Wk</th><th>Rk</th><th>Outcome</th></tr>
@@ -4235,7 +4470,7 @@ Contents <a name="top"></a>
 <tr><td><a href="#after-Reg-2">2</a></td><td>18</td><td class="bdr">at <a href="#New-England-Patriots-season-stats">NE</a>(1412) W 23-20: +0→1483</td><td><a href="#after-Reg-10">10</a></td><td>20</td><td class="bdr">(bye)</td><td><a href="#after-Reg-18">18</a></td><td></td><td>at <a href="#Los-Angeles-Rams-season-stats">LAR</a></td></tr>
 <tr><td><a href="#after-Reg-3">3</a></td><td><u>12</u></td><td class="bdr">vs <a href="#Miami-Dolphins-season-stats">MIA</a>(1510) W 24-3: +43→<u>1526</u></td><td><a href="#after-Reg-11">11</a></td><td>18</td><td class="bdr">at <a href="#San-Francisco-49ers-season-stats">SF</a>(1598) W 20-17: +19→1476</td><td><span style="opacity:0.4"><a href="#after-Playoffs-Wildcard">W</a></span></td><td><span style="opacity:0.4"></span></td><td></td></tr>
 <tr><td><a href="#after-Reg-4">4</a></td><td>14</td><td class="bdr">at <a href="#Detroit-Lions-season-stats">DET</a>(1562) L 29-42: -27→1499</td><td><a href="#after-Reg-12">12</a></td><td>15</td><td class="bdr">vs <a href="#Arizona-Cardinals-season-stats">ARI</a>(1512) W 16-6: +27→1503</td><td><span style="opacity:0.4"><a href="#after-Playoffs-Divisional">D</a></span></td><td><span style="opacity:0.4"></span></td><td></td></tr>
-<tr><td><a href="#after-Reg-5">5</a></td><td><u>24</u></td><td class="bdr">vs <a href="#New-York-Giants-season-stats">NYG</a>(1443) L 20-29: -37→1462</td><td><a href="#after-Reg-13">13</a></td><td></td><td class="bdr">at <a href="#New-York-Jets-season-stats">NYJ</a></td><td><span style="opacity:0.4"><a href="#after-Playoffs-Championship">C</a></span></td><td><span style="opacity:0.4"></span></td><td></td></tr>
+<tr><td><a href="#after-Reg-5">5</a></td><td><u>24</u></td><td class="bdr">vs <a href="#New-York-Giants-season-stats">NYG</a>(1443) L 20-29: -37→1462</td><td><a href="#after-Reg-13">13</a></td><td>15</td><td class="bdr">at <a href="#New-York-Jets-season-stats">NYJ</a>(1420) W 26-21: +3→1506</td><td><span style="opacity:0.4"><a href="#after-Playoffs-Championship">C</a></span></td><td><span style="opacity:0.4"></span></td><td></td></tr>
 <tr><td><a href="#after-Reg-6">6</a></td><td>24</td><td class="bdr">vs <a href="#San-Francisco-49ers-season-stats">SF</a>(1605) L 24-36: -23→<u>1439</u></td><td><a href="#after-Reg-14">14</a></td><td></td><td class="bdr">at <a href="#Arizona-Cardinals-season-stats">ARI</a></td><td><span style="opacity:0.4"><a href="#after-Playoffs-Super-Bowl">S</a></span></td><td><span style="opacity:0.4"></span></td><td></td></tr>
 <tr><td><a href="#after-Reg-7">7</a></td><td>17</td><td class="bdr">at <a href="#Atlanta-Falcons-season-stats">ATL</a>(1494) W 34-14: +54→1493</td><td><a href="#after-Reg-15">15</a></td><td></td><td class="bdr">vs <a href="#Green-Bay-Packers-season-stats">GB</a></td><td><span style="opacity:0.4"></span></td><td><span style="opacity:0.4"></span></td><td></td></tr>
 <tr><td><a href="#after-Reg-8">8</a></td><td>19</td><td class="bdr">vs <a href="#Buffalo-Bills-season-stats">BUF</a>(1647) L 10-31: -29→1464</td><td><a href="#after-Reg-16">16</a></td><td></td><td class="bdr">vs <a href="#Minnesota-Vikings-season-stats">MIN</a></td><td><span style="opacity:0.4"></span></td><td><span style="opacity:0.4"></span></td><td></td></tr>
@@ -4248,13 +4483,13 @@ Contents <a name="top"></a>
 <table>
         <tr>
                 <td colspan="9" style="border:0;"><small>
-                        reg. season: avg. opp. rating: 1515 (-6 net)
+                        reg. season: avg. opp. rating: 1498 (-25 net)
                         &nbsp;|&nbsp;
-                        avg. beat rating: 1466
+                        avg. beat rating: 1440
                         &nbsp;|&nbsp;
                         avg. lost to rating: 1557
                         &nbsp;|&nbsp;
-                        avg. remaining rating: 1400
+                        avg. remaining rating: 1414
                 </small></td>
         </tr>
         <tr><th>Wk</th><th>Rk</th><th>Outcome</th><th>Wk</th><th>Rk</th><th>Outcome</th><th>Wk</th><th>Rk</th><th>Outcome</th></tr>
@@ -4262,7 +4497,7 @@ Contents <a name="top"></a>
 <tr><td><a href="#after-Reg-2">2</a></td><td><u>10</u></td><td class="bdr">at <a href="#Detroit-Lions-season-stats">DET</a>(1565) W 20-16: +12→1535</td><td><a href="#after-Reg-10">10</a></td><td>13</td><td class="bdr">vs <a href="#San-Francisco-49ers-season-stats">SF</a>(1598) L 20-23: +0→1518</td><td><a href="#after-Reg-18">18</a></td><td></td><td>vs <a href="#New-Orleans-Saints-season-stats">NO</a></td></tr>
 <tr><td><a href="#after-Reg-3">3</a></td><td><u>19</u></td><td class="bdr">vs <a href="#Denver-Broncos-season-stats">DEN</a>(1471) L 7-26: -56→<u>1479</u></td><td><a href="#after-Reg-11">11</a></td><td>14</td><td class="bdr">(bye)</td><td><span style="opacity:0.4"><a href="#after-Playoffs-Wildcard">W</a></span></td><td><span style="opacity:0.4"></span></td><td></td></tr>
 <tr><td><a href="#after-Reg-4">4</a></td><td>13</td><td class="bdr">vs <a href="#Philadelphia-Eagles-season-stats">PHI</a>(1504) W 33-16: +39→1518</td><td><a href="#after-Reg-12">12</a></td><td><u>10</u></td><td class="bdr">at <a href="#New-York-Giants-season-stats">NYG</a>(1387) W 30-7: +35→1553</td><td><span style="opacity:0.4"><a href="#after-Playoffs-Divisional">D</a></span></td><td><span style="opacity:0.4"></span></td><td></td></tr>
-<tr><td><a href="#after-Reg-5">5</a></td><td>14</td><td class="bdr">at <a href="#Atlanta-Falcons-season-stats">ATL</a>(1452) L 30-36: -12→1506</td><td><a href="#after-Reg-13">13</a></td><td></td><td class="bdr">at <a href="#Carolina-Panthers-season-stats">CAR</a></td><td><span style="opacity:0.4"><a href="#after-Playoffs-Championship">C</a></span></td><td><span style="opacity:0.4"></span></td><td></td></tr>
+<tr><td><a href="#after-Reg-5">5</a></td><td>14</td><td class="bdr">at <a href="#Atlanta-Falcons-season-stats">ATL</a>(1452) L 30-36: -12→1506</td><td><a href="#after-Reg-13">13</a></td><td>10</td><td class="bdr">at <a href="#Carolina-Panthers-season-stats">CAR</a>(1310) W 26-23: +0→1553</td><td><span style="opacity:0.4"><a href="#after-Playoffs-Championship">C</a></span></td><td><span style="opacity:0.4"></span></td><td></td></tr>
 <tr><td><a href="#after-Reg-6">6</a></td><td><u>10</u></td><td class="bdr">at <a href="#New-Orleans-Saints-season-stats">NO</a>(1535) W 51-27: +51→<u>1557</u></td><td><a href="#after-Reg-14">14</a></td><td></td><td class="bdr">vs <a href="#Las-Vegas-Raiders-season-stats">LV</a></td><td><span style="opacity:0.4"><a href="#after-Playoffs-Super-Bowl">S</a></span></td><td><span style="opacity:0.4"></span></td><td></td></tr>
 <tr><td><a href="#after-Reg-7">7</a></td><td>12</td><td class="bdr">vs <a href="#Baltimore-Ravens-season-stats">BAL</a>(1684) L 31-41: -20→1537</td><td><a href="#after-Reg-15">15</a></td><td></td><td class="bdr">at <a href="#Los-Angeles-Chargers-season-stats">LAC</a></td><td><span style="opacity:0.4"></span></td><td><span style="opacity:0.4"></span></td><td></td></tr>
 <tr><td><a href="#after-Reg-8">8</a></td><td>13</td><td class="bdr">vs <a href="#Atlanta-Falcons-season-stats">ATL</a>(1440) L 26-31: -19→1518</td><td><a href="#after-Reg-16">16</a></td><td></td><td class="bdr">at <a href="#Dallas-Cowboys-season-stats">DAL</a></td><td><span style="opacity:0.4"></span></td><td><span style="opacity:0.4"></span></td><td></td></tr>
@@ -4275,21 +4510,21 @@ Contents <a name="top"></a>
 <table>
         <tr>
                 <td colspan="9" style="border:0;"><small>
-                        reg. season: avg. opp. rating: 1509 (+101 net)
+                        reg. season: avg. opp. rating: 1505 (+98 net)
                         &nbsp;|&nbsp;
                         avg. beat rating: 1436
                         &nbsp;|&nbsp;
-                        avg. lost to rating: 1537
+                        avg. lost to rating: 1528
                         &nbsp;|&nbsp;
-                        avg. remaining rating: 1465
+                        avg. remaining rating: 1464
                 </small></td>
         </tr>
         <tr><th>Wk</th><th>Rk</th><th>Outcome</th><th>Wk</th><th>Rk</th><th>Outcome</th><th>Wk</th><th>Rk</th><th>Outcome</th></tr>
 <tr><td><a href="#after-Reg-1">1</a></td><td><u>26</u></td><td class="bdr">at <a href="#Chicago-Bears-season-stats">CHI</a>(1495) L 17-24: -0→1428</td><td><a href="#after-Reg-9">9</a></td><td>28</td><td class="bdr">vs <a href="#New-England-Patriots-season-stats">NE</a>(1319) W 20-17: +0→1400</td><td><a href="#after-Reg-17">17</a></td><td></td><td>at <a href="#Jacksonville-Jaguars-season-stats">JAX</a></td></tr>
 <tr><td><a href="#after-Reg-2">2</a></td><td><u>30</u></td><td class="bdr">vs <a href="#New-York-Jets-season-stats">NYJ</a>(1438) L 17-24: -22→1406</td><td><a href="#after-Reg-10">10</a></td><td>28</td><td class="bdr">at <a href="#Los-Angeles-Chargers-season-stats">LAC</a>(1565) L 17-27: -4→1396</td><td><a href="#after-Reg-18">18</a></td><td></td><td>vs <a href="#Houston-Texans-season-stats">HOU</a></td></tr>
-<tr><td><a href="#after-Reg-3">3</a></td><td>30</td><td class="bdr">vs <a href="#Green-Bay-Packers-season-stats">GB</a>(1555) L 14-30: -28→1378</td><td><a href="#after-Reg-11">11</a></td><td>29</td><td class="bdr">vs <a href="#Minnesota-Vikings-season-stats">MIN</a>(1531) L 13-23: -20→<u>1376</u></td><td><span style="opacity:0.4"><a href="#after-Playoffs-Wildcard">W</a></span></td><td><span style="opacity:0.4"></span></td><td></td></tr>
+<tr><td><a href="#after-Reg-3">3</a></td><td>30</td><td class="bdr">vs <a href="#Green-Bay-Packers-season-stats">GB</a>(1555) L 14-30: -28→1378</td><td><a href="#after-Reg-11">11</a></td><td>29</td><td class="bdr">vs <a href="#Minnesota-Vikings-season-stats">MIN</a>(1531) L 13-23: -20→1376</td><td><span style="opacity:0.4"><a href="#after-Playoffs-Wildcard">W</a></span></td><td><span style="opacity:0.4"></span></td><td></td></tr>
 <tr><td><a href="#after-Reg-4">4</a></td><td>27</td><td class="bdr">at <a href="#Miami-Dolphins-season-stats">MIA</a>(1467) W 31-12: +59→<u>1437</u></td><td><a href="#after-Reg-12">12</a></td><td>27</td><td class="bdr">at <a href="#Houston-Texans-season-stats">HOU</a>(1522) W 32-27: +17→1393</td><td><span style="opacity:0.4"><a href="#after-Playoffs-Divisional">D</a></span></td><td><span style="opacity:0.4"></span></td><td></td></tr>
-<tr><td><a href="#after-Reg-5">5</a></td><td><u>26</u></td><td class="bdr">(bye)</td><td><a href="#after-Reg-13">13</a></td><td></td><td class="bdr">at <a href="#Washington-Commanders-season-stats">WAS</a></td><td><span style="opacity:0.4"><a href="#after-Playoffs-Championship">C</a></span></td><td><span style="opacity:0.4"></span></td><td></td></tr>
+<tr><td><a href="#after-Reg-5">5</a></td><td><u>26</u></td><td class="bdr">(bye)</td><td><a href="#after-Reg-13">13</a></td><td>28</td><td class="bdr">at <a href="#Washington-Commanders-season-stats">WAS</a>(1459) L 19-42: -30→<u>1363</u></td><td><span style="opacity:0.4"><a href="#after-Playoffs-Championship">C</a></span></td><td><span style="opacity:0.4"></span></td><td></td></tr>
 <tr><td><a href="#after-Reg-6">6</a></td><td>26</td><td class="bdr">vs <a href="#Indianapolis-Colts-season-stats">IND</a>(1448) L 17-20: -8→1429</td><td><a href="#after-Reg-14">14</a></td><td></td><td class="bdr">vs <a href="#Jacksonville-Jaguars-season-stats">JAX</a></td><td><span style="opacity:0.4"><a href="#after-Playoffs-Super-Bowl">S</a></span></td><td><span style="opacity:0.4"></span></td><td></td></tr>
 <tr><td><a href="#after-Reg-7">7</a></td><td>26</td><td class="bdr">at <a href="#Buffalo-Bills-season-stats">BUF</a>(1631) L 10-34: -15→1414</td><td><a href="#after-Reg-15">15</a></td><td></td><td class="bdr">vs <a href="#Cincinnati-Bengals-season-stats">CIN</a></td><td><span style="opacity:0.4"></span></td><td><span style="opacity:0.4"></span></td><td></td></tr>
 <tr><td><a href="#after-Reg-8">8</a></td><td>29</td><td class="bdr">at <a href="#Detroit-Lions-season-stats">DET</a>(1632) L 14-52: -14→1400</td><td><a href="#after-Reg-16">16</a></td><td></td><td class="bdr">at <a href="#Indianapolis-Colts-season-stats">IND</a></td><td><span style="opacity:0.4"></span></td><td><span style="opacity:0.4"></span></td><td></td></tr>
@@ -4302,13 +4537,13 @@ Contents <a name="top"></a>
 <table>
         <tr>
                 <td colspan="9" style="border:0;"><small>
-                        reg. season: avg. opp. rating: 1495 (+56 net)
+                        reg. season: avg. opp. rating: 1487 (+47 net)
                         &nbsp;|&nbsp;
-                        avg. beat rating: 1447
+                        avg. beat rating: 1440
                         &nbsp;|&nbsp;
                         avg. lost to rating: 1562
                         &nbsp;|&nbsp;
-                        avg. remaining rating: 1471
+                        avg. remaining rating: 1489
                 </small></td>
         </tr>
         <tr><th>Wk</th><th>Rk</th><th>Outcome</th><th>Wk</th><th>Rk</th><th>Outcome</th><th>Wk</th><th>Rk</th><th>Outcome</th></tr>
@@ -4316,7 +4551,7 @@ Contents <a name="top"></a>
 <tr><td><a href="#after-Reg-2">2</a></td><td>31</td><td class="bdr">vs <a href="#New-York-Giants-season-stats">NYG</a>(1427) W 21-18: +7→1344</td><td><a href="#after-Reg-10">10</a></td><td>15</td><td class="bdr">vs <a href="#Pittsburgh-Steelers-season-stats">PIT</a>(1588) L 27-28: +0→1499</td><td><a href="#after-Reg-18">18</a></td><td></td><td>at <a href="#Dallas-Cowboys-season-stats">DAL</a></td></tr>
 <tr><td><a href="#after-Reg-3">3</a></td><td>31</td><td class="bdr">at <a href="#Cincinnati-Bengals-season-stats">CIN</a>(1549) W 38-33: +31→1375</td><td><a href="#after-Reg-11">11</a></td><td>16</td><td class="bdr">at <a href="#Philadelphia-Eagles-season-stats">PHI</a>(1608) L 18-26: -5→1494</td><td><span style="opacity:0.4"><a href="#after-Playoffs-Wildcard">W</a></span></td><td><span style="opacity:0.4"></span></td><td></td></tr>
 <tr><td><a href="#after-Reg-4">4</a></td><td>28</td><td class="bdr">at <a href="#Arizona-Cardinals-season-stats">ARI</a>(1440) W 42-14: +58→1433</td><td><a href="#after-Reg-12">12</a></td><td>18</td><td class="bdr">vs <a href="#Dallas-Cowboys-season-stats">DAL</a>(1407) L 26-34: -35→1459</td><td><span style="opacity:0.4"><a href="#after-Playoffs-Divisional">D</a></span></td><td><span style="opacity:0.4"></span></td><td></td></tr>
-<tr><td><a href="#after-Reg-5">5</a></td><td>19</td><td class="bdr">vs <a href="#Cleveland-Browns-season-stats">CLE</a>(1462) W 34-13: +42→1475</td><td><a href="#after-Reg-13">13</a></td><td></td><td class="bdr">vs <a href="#Tennessee-Titans-season-stats">TEN</a></td><td><span style="opacity:0.4"><a href="#after-Playoffs-Championship">C</a></span></td><td><span style="opacity:0.4"></span></td><td></td></tr>
+<tr><td><a href="#after-Reg-5">5</a></td><td>19</td><td class="bdr">vs <a href="#Cleveland-Browns-season-stats">CLE</a>(1462) W 34-13: +42→1475</td><td><a href="#after-Reg-13">13</a></td><td>16</td><td class="bdr">vs <a href="#Tennessee-Titans-season-stats">TEN</a>(1393) W 42-19: +30→1489</td><td><span style="opacity:0.4"><a href="#after-Playoffs-Championship">C</a></span></td><td><span style="opacity:0.4"></span></td><td></td></tr>
 <tr><td><a href="#after-Reg-6">6</a></td><td>20</td><td class="bdr">at <a href="#Baltimore-Ravens-season-stats">BAL</a>(1684) L 23-30: +0→1475</td><td><a href="#after-Reg-14">14</a></td><td></td><td class="bdr">(bye)</td><td><span style="opacity:0.4"><a href="#after-Playoffs-Super-Bowl">S</a></span></td><td><span style="opacity:0.4"></span></td><td></td></tr>
 <tr><td><a href="#after-Reg-7">7</a></td><td>18</td><td class="bdr">vs <a href="#Carolina-Panthers-season-stats">CAR</a>(1297) W 40-7: +18→1493</td><td><a href="#after-Reg-15">15</a></td><td></td><td class="bdr">at <a href="#New-Orleans-Saints-season-stats">NO</a></td><td><span style="opacity:0.4"></span></td><td><span style="opacity:0.4"></span></td><td></td></tr>
 <tr><td><a href="#after-Reg-8">8</a></td><td>18</td><td class="bdr">vs <a href="#Chicago-Bears-season-stats">CHI</a>(1548) W 18-15: +6→<u>1499</u></td><td><a href="#after-Reg-16">16</a></td><td></td><td class="bdr">vs <a href="#Philadelphia-Eagles-season-stats">PHI</a></td><td><span style="opacity:0.4"></span></td><td><span style="opacity:0.4"></span></td><td></td></tr>
@@ -4330,20 +4565,20 @@ Contents <a name="top"></a>
 <ul>
 <li class="season-stat-li"><b>Longest Elo Hot Streaks</b>: <small>Consecutive games with an Elo rating increase</small>
 <ol>
-<li>3 games (weeks 10-12) <a href="#Miami-Dolphins-season-stats">Miami Dolphins</a>: +98 total Elo rating</li>
-<li>3 games (weeks 10-12) <a href="#Philadelphia-Eagles-season-stats">Philadelphia Eagles</a>: +77 total Elo rating</li>
-<li>2 games (weeks 11-12) <a href="#Seattle-Seahawks-season-stats">Seattle Seahawks</a>: +47 total Elo rating</li>
-<li>2 games (weeks 10-11) <a href="#New-Orleans-Saints-season-stats">New Orleans Saints</a>: +46 total Elo rating</li>
-<li>2 games (weeks 11-12) <a href="#Denver-Broncos-season-stats">Denver Broncos</a>: +45 total Elo rating</li>
+<li>4 games (weeks 10-13) <a href="#Philadelphia-Eagles-season-stats">Philadelphia Eagles</a>: +86 total Elo rating</li>
+<li>3 games (weeks 10-13) <a href="#Buffalo-Bills-season-stats">Buffalo Bills</a>: +52 total Elo rating</li>
+<li>3 games (weeks 11-13) <a href="#Denver-Broncos-season-stats">Denver Broncos</a>: +52 total Elo rating</li>
+<li>3 games (weeks 11-13) <a href="#Seattle-Seahawks-season-stats">Seattle Seahawks</a>: +49 total Elo rating</li>
+<li>2 games (weeks 12-13) <a href="#Green-Bay-Packers-season-stats">Green Bay Packers</a>: +59 total Elo rating</li>
 </ol>
 </li>
 <li class="season-stat-li"><b>Longest Elo Cold Streaks</b>: <small>Consecutive games with an Elo rating decrease</small>
 <ol>
-<li>4 games (weeks 8-12) <a href="#Las-Vegas-Raiders-season-stats">Las Vegas Raiders</a>: -64 total Elo rating</li>
-<li>3 games (weeks 10-12) <a href="#San-Francisco-49ers-season-stats">San Francisco 49ers</a>: -57 total Elo rating</li>
-<li>3 games (weeks 9-12) <a href="#New-York-Giants-season-stats">New York Giants</a>: -52 total Elo rating</li>
-<li>3 games (weeks 10-12) <a href="#Washington-Commanders-season-stats">Washington Commanders</a>: -40 total Elo rating</li>
-<li>2 games (weeks 10-11) <a href="#New-York-Jets-season-stats">New York Jets</a>: -46 total Elo rating</li>
+<li>4 games (weeks 10-13) <a href="#San-Francisco-49ers-season-stats">San Francisco 49ers</a>: -79 total Elo rating</li>
+<li>4 games (weeks 9-13) <a href="#New-York-Giants-season-stats">New York Giants</a>: -57 total Elo rating</li>
+<li>3 games (weeks 10-13) <a href="#New-York-Jets-season-stats">New York Jets</a>: -48 total Elo rating</li>
+<li>3 games (weeks 10-13) <a href="#Atlanta-Falcons-season-stats">Atlanta Falcons</a>: -37 total Elo rating</li>
+<li>3 games (weeks 11-13) <a href="#New-England-Patriots-season-stats">New England Patriots</a>: -36 total Elo rating</li>
 </ol>
 </li>
 <li class="season-stat-li"><b>Biggest Elo Upsets</b>: <small>Highest Elo rating disparity between teams</small>
@@ -4366,89 +4601,89 @@ Contents <a name="top"></a>
 </li>
 <li class="season-stat-li"><b>Most Improved Elo on the Season</b>:
 <ol>
-<li>+152: <a href="#Detroit-Lions-season-stats">Detroit Lions</a> (1565) before week 1 → (1718) thru week 12</li>
-<li>+145: <a href="#Philadelphia-Eagles-season-stats">Philadelphia Eagles</a> (1500) before week 1 → (1645) thru week 12</li>
-<li>+121: <a href="#Washington-Commanders-season-stats">Washington Commanders</a> (1338) before week 1 → (1459) thru week 12</li>
-<li>+97: <a href="#Denver-Broncos-season-stats">Denver Broncos</a> (1494) before week 1 → (1591) thru week 12</li>
-<li>+95: <a href="#Los-Angeles-Chargers-season-stats">Los Angeles Chargers</a> (1471) before week 1 → (1566) thru week 12</li>
+<li>+154: <a href="#Philadelphia-Eagles-season-stats">Philadelphia Eagles</a> (1500) before week 1 → (1655) thru week 13</li>
+<li>+152: <a href="#Detroit-Lions-season-stats">Detroit Lions</a> (1565) before week 1 → (1718) thru week 13</li>
+<li>+151: <a href="#Washington-Commanders-season-stats">Washington Commanders</a> (1338) before week 1 → (1489) thru week 13</li>
+<li>+104: <a href="#Pittsburgh-Steelers-season-stats">Pittsburgh Steelers</a> (1490) before week 1 → (1594) thru week 13</li>
+<li>+103: <a href="#Denver-Broncos-season-stats">Denver Broncos</a> (1494) before week 1 → (1597) thru week 13</li>
 </ol>
 <details>
         <summary style="padding-left:1.5rem">more...</summary>
         <ol start="6">
-<li>+94: <a href="#Pittsburgh-Steelers-season-stats">Pittsburgh Steelers</a> (1490) before week 1 → (1584) thru week 12</li>
-<li>+89: <a href="#Arizona-Cardinals-season-stats">Arizona Cardinals</a> (1396) before week 1 → (1484) thru week 12</li>
-<li>+67: <a href="#Minnesota-Vikings-season-stats">Minnesota Vikings</a> (1485) before week 1 → (1552) thru week 12</li>
-<li>+62: <a href="#Buffalo-Bills-season-stats">Buffalo Bills</a> (1644) before week 1 → (1706) thru week 11</li>
-<li>+44: <a href="#Green-Bay-Packers-season-stats">Green Bay Packers</a> (1556) before week 1 → (1600) thru week 12</li>
-<li>+35: <a href="#Baltimore-Ravens-season-stats">Baltimore Ravens</a> (1669) before week 1 → (1704) thru week 12</li>
-<li>+34: <a href="#Kansas-City-Chiefs-season-stats">Kansas City Chiefs</a> (1639) before week 1 → (1674) thru week 12</li>
-<li>+33: <a href="#Houston-Texans-season-stats">Houston Texans</a> (1471) before week 1 → (1504) thru week 12</li>
-<li>+32: <a href="#Tampa-Bay-Buccaneers-season-stats">Tampa Bay Buccaneers</a> (1522) before week 1 → (1553) thru week 12</li>
-<li>+21: <a href="#Seattle-Seahawks-season-stats">Seattle Seahawks</a> (1483) before week 1 → (1503) thru week 12</li>
-<li>+11: <a href="#Atlanta-Falcons-season-stats">Atlanta Falcons</a> (1423) before week 1 → (1434) thru week 11</li>
-<li>-15: <a href="#Indianapolis-Colts-season-stats">Indianapolis Colts</a> (1437) before week 1 → (1422) thru week 12</li>
-<li>-18: <a href="#New-York-Jets-season-stats">New York Jets</a> (1438) before week 1 → (1420) thru week 11</li>
-<li>-20: <a href="#Carolina-Panthers-season-stats">Carolina Panthers</a> (1330) before week 1 → (1310) thru week 12</li>
-<li>-27: <a href="#Cincinnati-Bengals-season-stats">Cincinnati Bengals</a> (1551) before week 1 → (1524) thru week 11</li>
-<li>-35: <a href="#Tennessee-Titans-season-stats">Tennessee Titans</a> (1428) before week 1 → (1393) thru week 12</li>
-<li>-47: <a href="#Miami-Dolphins-season-stats">Miami Dolphins</a> (1547) before week 1 → (1500) thru week 12</li>
-<li>-51: <a href="#Jacksonville-Jaguars-season-stats">Jacksonville Jaguars</a> (1492) before week 1 → (1440) thru week 11</li>
-<li>-57: <a href="#New-England-Patriots-season-stats">New England Patriots</a> (1410) before week 1 → (1353) thru week 12</li>
-<li>-67: <a href="#Los-Angeles-Rams-season-stats">Los Angeles Rams</a> (1520) before week 1 → (1453) thru week 12</li>
-<li>-74: <a href="#Chicago-Bears-season-stats">Chicago Bears</a> (1495) before week 1 → (1421) thru week 12</li>
-<li>-79: <a href="#New-York-Giants-season-stats">New York Giants</a> (1430) before week 1 → (1351) thru week 12</li>
-<li>-89: <a href="#New-Orleans-Saints-season-stats">New Orleans Saints</a> (1530) before week 1 → (1441) thru week 11</li>
-<li>-97: <a href="#Cleveland-Browns-season-stats">Cleveland Browns</a> (1479) before week 1 → (1383) thru week 12</li>
-<li>-133: <a href="#San-Francisco-49ers-season-stats">San Francisco 49ers</a> (1673) before week 1 → (1541) thru week 12</li>
-<li>-155: <a href="#Dallas-Cowboys-season-stats">Dallas Cowboys</a> (1597) before week 1 → (1442) thru week 12</li>
-<li>-167: <a href="#Las-Vegas-Raiders-season-stats">Las Vegas Raiders</a> (1496) before week 1 → (1329) thru week 12</li>
+<li>+95: <a href="#Los-Angeles-Chargers-season-stats">Los Angeles Chargers</a> (1471) before week 1 → (1566) thru week 13</li>
+<li>+89: <a href="#Arizona-Cardinals-season-stats">Arizona Cardinals</a> (1396) before week 1 → (1484) thru week 13</li>
+<li>+84: <a href="#Buffalo-Bills-season-stats">Buffalo Bills</a> (1644) before week 1 → (1729) thru week 13</li>
+<li>+67: <a href="#Minnesota-Vikings-season-stats">Minnesota Vikings</a> (1485) before week 1 → (1552) thru week 13</li>
+<li>+66: <a href="#Green-Bay-Packers-season-stats">Green Bay Packers</a> (1556) before week 1 → (1621) thru week 13</li>
+<li>+37: <a href="#Houston-Texans-season-stats">Houston Texans</a> (1471) before week 1 → (1508) thru week 13</li>
+<li>+34: <a href="#Kansas-City-Chiefs-season-stats">Kansas City Chiefs</a> (1639) before week 1 → (1674) thru week 13</li>
+<li>+32: <a href="#Tampa-Bay-Buccaneers-season-stats">Tampa Bay Buccaneers</a> (1522) before week 1 → (1553) thru week 13</li>
+<li>+25: <a href="#Baltimore-Ravens-season-stats">Baltimore Ravens</a> (1669) before week 1 → (1694) thru week 13</li>
+<li>+23: <a href="#Seattle-Seahawks-season-stats">Seattle Seahawks</a> (1483) before week 1 → (1506) thru week 13</li>
+<li>+10: <a href="#Atlanta-Falcons-season-stats">Atlanta Falcons</a> (1423) before week 1 → (1433) thru week 13</li>
+<li>-12: <a href="#Indianapolis-Colts-season-stats">Indianapolis Colts</a> (1437) before week 1 → (1425) thru week 13</li>
+<li>-20: <a href="#Carolina-Panthers-season-stats">Carolina Panthers</a> (1330) before week 1 → (1310) thru week 13</li>
+<li>-20: <a href="#New-York-Jets-season-stats">New York Jets</a> (1438) before week 1 → (1418) thru week 13</li>
+<li>-37: <a href="#Cincinnati-Bengals-season-stats">Cincinnati Bengals</a> (1551) before week 1 → (1514) thru week 13</li>
+<li>-47: <a href="#Los-Angeles-Rams-season-stats">Los Angeles Rams</a> (1520) before week 1 → (1473) thru week 13</li>
+<li>-55: <a href="#Jacksonville-Jaguars-season-stats">Jacksonville Jaguars</a> (1492) before week 1 → (1436) thru week 13</li>
+<li>-60: <a href="#New-England-Patriots-season-stats">New England Patriots</a> (1410) before week 1 → (1350) thru week 13</li>
+<li>-65: <a href="#Tennessee-Titans-season-stats">Tennessee Titans</a> (1428) before week 1 → (1363) thru week 13</li>
+<li>-69: <a href="#Miami-Dolphins-season-stats">Miami Dolphins</a> (1547) before week 1 → (1478) thru week 13</li>
+<li>-74: <a href="#Chicago-Bears-season-stats">Chicago Bears</a> (1495) before week 1 → (1421) thru week 13</li>
+<li>-83: <a href="#New-York-Giants-season-stats">New York Giants</a> (1430) before week 1 → (1347) thru week 13</li>
+<li>-103: <a href="#Cleveland-Browns-season-stats">Cleveland Browns</a> (1479) before week 1 → (1376) thru week 13</li>
+<li>-110: <a href="#New-Orleans-Saints-season-stats">New Orleans Saints</a> (1530) before week 1 → (1420) thru week 13</li>
+<li>-151: <a href="#Dallas-Cowboys-season-stats">Dallas Cowboys</a> (1597) before week 1 → (1446) thru week 13</li>
+<li>-155: <a href="#San-Francisco-49ers-season-stats">San Francisco 49ers</a> (1673) before week 1 → (1518) thru week 13</li>
+<li>-167: <a href="#Las-Vegas-Raiders-season-stats">Las Vegas Raiders</a> (1496) before week 1 → (1329) thru week 13</li>
 </ol>
         </details>
 </li>
 <li class="season-stat-li"><b>Worst Elo Collapse on the Season</b>:
 <ol>
-<li>-167: <a href="#Las-Vegas-Raiders-season-stats">Las Vegas Raiders</a> (1496) before week 1 → (1329) thru week 12</li>
-<li>-155: <a href="#Dallas-Cowboys-season-stats">Dallas Cowboys</a> (1597) before week 1 → (1442) thru week 12</li>
-<li>-133: <a href="#San-Francisco-49ers-season-stats">San Francisco 49ers</a> (1673) before week 1 → (1541) thru week 12</li>
-<li>-97: <a href="#Cleveland-Browns-season-stats">Cleveland Browns</a> (1479) before week 1 → (1383) thru week 12</li>
-<li>-89: <a href="#New-Orleans-Saints-season-stats">New Orleans Saints</a> (1530) before week 1 → (1441) thru week 11</li>
+<li>-167: <a href="#Las-Vegas-Raiders-season-stats">Las Vegas Raiders</a> (1496) before week 1 → (1329) thru week 13</li>
+<li>-155: <a href="#San-Francisco-49ers-season-stats">San Francisco 49ers</a> (1673) before week 1 → (1518) thru week 13</li>
+<li>-151: <a href="#Dallas-Cowboys-season-stats">Dallas Cowboys</a> (1597) before week 1 → (1446) thru week 13</li>
+<li>-110: <a href="#New-Orleans-Saints-season-stats">New Orleans Saints</a> (1530) before week 1 → (1420) thru week 13</li>
+<li>-103: <a href="#Cleveland-Browns-season-stats">Cleveland Browns</a> (1479) before week 1 → (1376) thru week 13</li>
 </ol>
 <details>
         <summary style="padding-left:1.5rem">more...</summary>
         <ol start="6">
-<li>-79: <a href="#New-York-Giants-season-stats">New York Giants</a> (1430) before week 1 → (1351) thru week 12</li>
-<li>-74: <a href="#Chicago-Bears-season-stats">Chicago Bears</a> (1495) before week 1 → (1421) thru week 12</li>
-<li>-67: <a href="#Los-Angeles-Rams-season-stats">Los Angeles Rams</a> (1520) before week 1 → (1453) thru week 12</li>
-<li>-57: <a href="#New-England-Patriots-season-stats">New England Patriots</a> (1410) before week 1 → (1353) thru week 12</li>
-<li>-51: <a href="#Jacksonville-Jaguars-season-stats">Jacksonville Jaguars</a> (1492) before week 1 → (1440) thru week 11</li>
-<li>-47: <a href="#Miami-Dolphins-season-stats">Miami Dolphins</a> (1547) before week 1 → (1500) thru week 12</li>
-<li>-35: <a href="#Tennessee-Titans-season-stats">Tennessee Titans</a> (1428) before week 1 → (1393) thru week 12</li>
-<li>-27: <a href="#Cincinnati-Bengals-season-stats">Cincinnati Bengals</a> (1551) before week 1 → (1524) thru week 11</li>
-<li>-20: <a href="#Carolina-Panthers-season-stats">Carolina Panthers</a> (1330) before week 1 → (1310) thru week 12</li>
-<li>-18: <a href="#New-York-Jets-season-stats">New York Jets</a> (1438) before week 1 → (1420) thru week 11</li>
-<li>-15: <a href="#Indianapolis-Colts-season-stats">Indianapolis Colts</a> (1437) before week 1 → (1422) thru week 12</li>
-<li>+11: <a href="#Atlanta-Falcons-season-stats">Atlanta Falcons</a> (1423) before week 1 → (1434) thru week 11</li>
-<li>+21: <a href="#Seattle-Seahawks-season-stats">Seattle Seahawks</a> (1483) before week 1 → (1503) thru week 12</li>
-<li>+32: <a href="#Tampa-Bay-Buccaneers-season-stats">Tampa Bay Buccaneers</a> (1522) before week 1 → (1553) thru week 12</li>
-<li>+33: <a href="#Houston-Texans-season-stats">Houston Texans</a> (1471) before week 1 → (1504) thru week 12</li>
-<li>+34: <a href="#Kansas-City-Chiefs-season-stats">Kansas City Chiefs</a> (1639) before week 1 → (1674) thru week 12</li>
-<li>+35: <a href="#Baltimore-Ravens-season-stats">Baltimore Ravens</a> (1669) before week 1 → (1704) thru week 12</li>
-<li>+44: <a href="#Green-Bay-Packers-season-stats">Green Bay Packers</a> (1556) before week 1 → (1600) thru week 12</li>
-<li>+62: <a href="#Buffalo-Bills-season-stats">Buffalo Bills</a> (1644) before week 1 → (1706) thru week 11</li>
-<li>+67: <a href="#Minnesota-Vikings-season-stats">Minnesota Vikings</a> (1485) before week 1 → (1552) thru week 12</li>
-<li>+89: <a href="#Arizona-Cardinals-season-stats">Arizona Cardinals</a> (1396) before week 1 → (1484) thru week 12</li>
-<li>+94: <a href="#Pittsburgh-Steelers-season-stats">Pittsburgh Steelers</a> (1490) before week 1 → (1584) thru week 12</li>
-<li>+95: <a href="#Los-Angeles-Chargers-season-stats">Los Angeles Chargers</a> (1471) before week 1 → (1566) thru week 12</li>
-<li>+97: <a href="#Denver-Broncos-season-stats">Denver Broncos</a> (1494) before week 1 → (1591) thru week 12</li>
-<li>+121: <a href="#Washington-Commanders-season-stats">Washington Commanders</a> (1338) before week 1 → (1459) thru week 12</li>
-<li>+145: <a href="#Philadelphia-Eagles-season-stats">Philadelphia Eagles</a> (1500) before week 1 → (1645) thru week 12</li>
-<li>+152: <a href="#Detroit-Lions-season-stats">Detroit Lions</a> (1565) before week 1 → (1718) thru week 12</li>
+<li>-83: <a href="#New-York-Giants-season-stats">New York Giants</a> (1430) before week 1 → (1347) thru week 13</li>
+<li>-74: <a href="#Chicago-Bears-season-stats">Chicago Bears</a> (1495) before week 1 → (1421) thru week 13</li>
+<li>-69: <a href="#Miami-Dolphins-season-stats">Miami Dolphins</a> (1547) before week 1 → (1478) thru week 13</li>
+<li>-65: <a href="#Tennessee-Titans-season-stats">Tennessee Titans</a> (1428) before week 1 → (1363) thru week 13</li>
+<li>-60: <a href="#New-England-Patriots-season-stats">New England Patriots</a> (1410) before week 1 → (1350) thru week 13</li>
+<li>-55: <a href="#Jacksonville-Jaguars-season-stats">Jacksonville Jaguars</a> (1492) before week 1 → (1436) thru week 13</li>
+<li>-47: <a href="#Los-Angeles-Rams-season-stats">Los Angeles Rams</a> (1520) before week 1 → (1473) thru week 13</li>
+<li>-37: <a href="#Cincinnati-Bengals-season-stats">Cincinnati Bengals</a> (1551) before week 1 → (1514) thru week 13</li>
+<li>-20: <a href="#New-York-Jets-season-stats">New York Jets</a> (1438) before week 1 → (1418) thru week 13</li>
+<li>-20: <a href="#Carolina-Panthers-season-stats">Carolina Panthers</a> (1330) before week 1 → (1310) thru week 13</li>
+<li>-12: <a href="#Indianapolis-Colts-season-stats">Indianapolis Colts</a> (1437) before week 1 → (1425) thru week 13</li>
+<li>+10: <a href="#Atlanta-Falcons-season-stats">Atlanta Falcons</a> (1423) before week 1 → (1433) thru week 13</li>
+<li>+23: <a href="#Seattle-Seahawks-season-stats">Seattle Seahawks</a> (1483) before week 1 → (1506) thru week 13</li>
+<li>+25: <a href="#Baltimore-Ravens-season-stats">Baltimore Ravens</a> (1669) before week 1 → (1694) thru week 13</li>
+<li>+32: <a href="#Tampa-Bay-Buccaneers-season-stats">Tampa Bay Buccaneers</a> (1522) before week 1 → (1553) thru week 13</li>
+<li>+34: <a href="#Kansas-City-Chiefs-season-stats">Kansas City Chiefs</a> (1639) before week 1 → (1674) thru week 13</li>
+<li>+37: <a href="#Houston-Texans-season-stats">Houston Texans</a> (1471) before week 1 → (1508) thru week 13</li>
+<li>+66: <a href="#Green-Bay-Packers-season-stats">Green Bay Packers</a> (1556) before week 1 → (1621) thru week 13</li>
+<li>+67: <a href="#Minnesota-Vikings-season-stats">Minnesota Vikings</a> (1485) before week 1 → (1552) thru week 13</li>
+<li>+84: <a href="#Buffalo-Bills-season-stats">Buffalo Bills</a> (1644) before week 1 → (1729) thru week 13</li>
+<li>+89: <a href="#Arizona-Cardinals-season-stats">Arizona Cardinals</a> (1396) before week 1 → (1484) thru week 13</li>
+<li>+95: <a href="#Los-Angeles-Chargers-season-stats">Los Angeles Chargers</a> (1471) before week 1 → (1566) thru week 13</li>
+<li>+103: <a href="#Denver-Broncos-season-stats">Denver Broncos</a> (1494) before week 1 → (1597) thru week 13</li>
+<li>+104: <a href="#Pittsburgh-Steelers-season-stats">Pittsburgh Steelers</a> (1490) before week 1 → (1594) thru week 13</li>
+<li>+151: <a href="#Washington-Commanders-season-stats">Washington Commanders</a> (1338) before week 1 → (1489) thru week 13</li>
+<li>+152: <a href="#Detroit-Lions-season-stats">Detroit Lions</a> (1565) before week 1 → (1718) thru week 13</li>
+<li>+154: <a href="#Philadelphia-Eagles-season-stats">Philadelphia Eagles</a> (1500) before week 1 → (1655) thru week 13</li>
 </ol>
         </details>
 </li>
 <li class="season-stat-li"><b>Most Improved Elo in 8 or Fewer Games</b>:
 <ol>
-<li>+181: <a href="#Philadelphia-Eagles-season-stats">Philadelphia Eagles</a> (1465) before week 7 → (1645) thru week 12</li>
+<li>+190: <a href="#Philadelphia-Eagles-season-stats">Philadelphia Eagles</a> (1465) before week 7 → (1655) thru week 13</li>
 <li>+162: <a href="#Washington-Commanders-season-stats">Washington Commanders</a> (1337) before week 2 → (1499) thru week 8</li>
 <li>+130: <a href="#Arizona-Cardinals-season-stats">Arizona Cardinals</a> (1381) before week 5 → (1512) thru week 10</li>
 <li>+129: <a href="#Detroit-Lions-season-stats">Detroit Lions</a> (1562) before week 4 → (1692) thru week 11</li>
@@ -4460,29 +4695,29 @@ Contents <a name="top"></a>
 <li>+99: <a href="#Los-Angeles-Chargers-season-stats">Los Angeles Chargers</a> (1479) before week 5 → (1578) thru week 11</li>
 <li>+98: <a href="#Miami-Dolphins-season-stats">Miami Dolphins</a> (1402) before week 10 → (1500) thru week 12</li>
 <li>+98: <a href="#Pittsburgh-Steelers-season-stats">Pittsburgh Steelers</a> (1490) before week 1 → (1588) thru week 7</li>
+<li>+97: <a href="#Buffalo-Bills-season-stats">Buffalo Bills</a> (1631) before week 7 → (1729) thru week 13</li>
 <li>+84: <a href="#New-England-Patriots-season-stats">New England Patriots</a> (1303) before week 8 → (1386) thru week 10</li>
 <li>+77: <a href="#Tampa-Bay-Buccaneers-season-stats">Tampa Bay Buccaneers</a> (1479) before week 4 → (1557) thru week 6</li>
 <li>+77: <a href="#Houston-Texans-season-stats">Houston Texans</a> (1444) before week 5 → (1522) thru week 11</li>
 <li>+76: <a href="#Minnesota-Vikings-season-stats">Minnesota Vikings</a> (1485) before week 1 → (1561) thru week 5</li>
-<li>+75: <a href="#Buffalo-Bills-season-stats">Buffalo Bills</a> (1631) before week 7 → (1706) thru week 11</li>
 <li>+73: <a href="#Atlanta-Falcons-season-stats">Atlanta Falcons</a> (1421) before week 2 → (1494) thru week 6</li>
+<li>+67: <a href="#Seattle-Seahawks-season-stats">Seattle Seahawks</a> (1439) before week 7 → (1506) thru week 13</li>
 <li>+65: <a href="#Baltimore-Ravens-season-stats">Baltimore Ravens</a> (1639) before week 4 → (1704) thru week 7</li>
-<li>+64: <a href="#Seattle-Seahawks-season-stats">Seattle Seahawks</a> (1439) before week 7 → (1503) thru week 12</li>
 <li>+63: <a href="#Chicago-Bears-season-stats">Chicago Bears</a> (1485) before week 4 → (1548) thru week 6</li>
 <li>+61: <a href="#New-York-Giants-season-stats">New York Giants</a> (1419) before week 3 → (1480) thru week 5</li>
 <li>+59: <a href="#New-Orleans-Saints-season-stats">New Orleans Saints</a> (1530) before week 1 → (1589) thru week 2</li>
+<li>+59: <a href="#Green-Bay-Packers-season-stats">Green Bay Packers</a> (1562) before week 12 → (1621) thru week 13</li>
 <li>+56: <a href="#Kansas-City-Chiefs-season-stats">Kansas City Chiefs</a> (1639) before week 1 → (1695) thru week 7</li>
 <li>+55: <a href="#Los-Angeles-Rams-season-stats">Los Angeles Rams</a> (1466) before week 3 → (1522) thru week 9</li>
 <li>+54: <a href="#New-York-Jets-season-stats">New York Jets</a> (1438) before week 2 → (1491) thru week 3</li>
 <li>+51: <a href="#Carolina-Panthers-season-stats">Carolina Panthers</a> (1296) before week 3 → (1348) thru week 4</li>
 <li>+51: <a href="#Tennessee-Titans-season-stats">Tennessee Titans</a> (1378) before week 4 → (1429) thru week 6</li>
 <li>+50: <a href="#Cincinnati-Bengals-season-stats">Cincinnati Bengals</a> (1519) before week 4 → (1569) thru week 7</li>
-<li>+37: <a href="#Green-Bay-Packers-season-stats">Green Bay Packers</a> (1562) before week 10 → (1600) thru week 12</li>
+<li>+39: <a href="#Dallas-Cowboys-season-stats">Dallas Cowboys</a> (1407) before week 12 → (1446) thru week 13</li>
 <li>+28: <a href="#Jacksonville-Jaguars-season-stats">Jacksonville Jaguars</a> (1430) before week 7 → (1458) thru week 8</li>
 <li>+27: <a href="#Las-Vegas-Raiders-season-stats">Las Vegas Raiders</a> (1496) before week 1 → (1523) thru week 2</li>
 <li>+23: <a href="#Cleveland-Browns-season-stats">Cleveland Browns</a> (1421) before week 7 → (1443) thru week 8</li>
 <li>+20: <a href="#Indianapolis-Colts-season-stats">Indianapolis Colts</a> (1437) before week 3 → (1456) thru week 7</li>
-<li>+4: <a href="#Dallas-Cowboys-season-stats">Dallas Cowboys</a> (1541) before week 4 → (1546) thru week 5</li>
 <li>+0: <a href="#San-Francisco-49ers-season-stats">San Francisco 49ers</a> (1598) before week 8 → (1598) thru week 10</li>
 </ol>
         </details>
@@ -4493,14 +4728,14 @@ Contents <a name="top"></a>
 <li>-151: <a href="#Las-Vegas-Raiders-season-stats">Las Vegas Raiders</a> (1523) before week 3 → (1372) thru week 9</li>
 <li>-146: <a href="#Miami-Dolphins-season-stats">Miami Dolphins</a> (1547) before week 2 → (1402) thru week 8</li>
 <li>-138: <a href="#Dallas-Cowboys-season-stats">Dallas Cowboys</a> (1546) before week 6 → (1407) thru week 11</li>
-<li>-128: <a href="#New-York-Giants-season-stats">New York Giants</a> (1480) before week 6 → (1351) thru week 12</li>
+<li>-133: <a href="#New-York-Giants-season-stats">New York Giants</a> (1480) before week 6 → (1347) thru week 13</li>
 </ol>
 <details>
         <summary style="padding-left:1.5rem">more...</summary>
         <ol start="6">
 <li>-127: <a href="#Chicago-Bears-season-stats">Chicago Bears</a> (1548) before week 7 → (1421) thru week 10</li>
 <li>-110: <a href="#New-England-Patriots-season-stats">New England Patriots</a> (1412) before week 3 → (1303) thru week 7</li>
-<li>-101: <a href="#San-Francisco-49ers-season-stats">San Francisco 49ers</a> (1641) before week 5 → (1541) thru week 12</li>
+<li>-110: <a href="#San-Francisco-49ers-season-stats">San Francisco 49ers</a> (1628) before week 7 → (1518) thru week 13</li>
 <li>-93: <a href="#Cleveland-Browns-season-stats">Cleveland Browns</a> (1462) before week 5 → (1369) thru week 11</li>
 <li>-87: <a href="#Seattle-Seahawks-season-stats">Seattle Seahawks</a> (1526) before week 4 → (1439) thru week 6</li>
 <li>-86: <a href="#Carolina-Panthers-season-stats">Carolina Panthers</a> (1365) before week 4 → (1279) thru week 7</li>
@@ -4508,10 +4743,10 @@ Contents <a name="top"></a>
 <li>-69: <a href="#Los-Angeles-Rams-season-stats">Los Angeles Rams</a> (1522) before week 10 → (1453) thru week 12</li>
 <li>-68: <a href="#Arizona-Cardinals-season-stats">Arizona Cardinals</a> (1450) before week 3 → (1381) thru week 4</li>
 <li>-66: <a href="#Buffalo-Bills-season-stats">Buffalo Bills</a> (1697) before week 4 → (1631) thru week 5</li>
+<li>-66: <a href="#Tennessee-Titans-season-stats">Tennessee Titans</a> (1429) before week 7 → (1363) thru week 13</li>
 <li>-62: <a href="#Jacksonville-Jaguars-season-stats">Jacksonville Jaguars</a> (1492) before week 2 → (1430) thru week 6</li>
 <li>-61: <a href="#Atlanta-Falcons-season-stats">Atlanta Falcons</a> (1494) before week 7 → (1434) thru week 11</li>
-<li>-61: <a href="#Tennessee-Titans-season-stats">Tennessee Titans</a> (1437) before week 5 → (1376) thru week 11</li>
-<li>-52: <a href="#Cincinnati-Bengals-season-stats">Cincinnati Bengals</a> (1565) before week 7 → (1513) thru week 8</li>
+<li>-54: <a href="#Cincinnati-Bengals-season-stats">Cincinnati Bengals</a> (1569) before week 8 → (1514) thru week 13</li>
 <li>-43: <a href="#Tampa-Bay-Buccaneers-season-stats">Tampa Bay Buccaneers</a> (1523) before week 2 → (1479) thru week 3</li>
 <li>-40: <a href="#Washington-Commanders-season-stats">Washington Commanders</a> (1499) before week 11 → (1459) thru week 12</li>
 <li>-39: <a href="#Philadelphia-Eagles-season-stats">Philadelphia Eagles</a> (1504) before week 4 → (1465) thru week 6</li>
@@ -4530,83 +4765,83 @@ Contents <a name="top"></a>
 </li>
 <li class="season-stat-li"><b>Strongest Average Opponent Rating</b>:
 <ol>
-<li><a href="#Baltimore-Ravens-season-stats">Baltimore Ravens</a>: 1552</li>
-<li><a href="#Dallas-Cowboys-season-stats">Dallas Cowboys</a>: 1528</li>
-<li><a href="#Jacksonville-Jaguars-season-stats">Jacksonville Jaguars</a>: 1528</li>
-<li><a href="#Seattle-Seahawks-season-stats">Seattle Seahawks</a>: 1526</li>
-<li><a href="#Kansas-City-Chiefs-season-stats">Kansas City Chiefs</a>: 1525</li>
+<li><a href="#Baltimore-Ravens-season-stats">Baltimore Ravens</a>: 1559</li>
+<li><a href="#Las-Vegas-Raiders-season-stats">Las Vegas Raiders</a>: 1528</li>
+<li><a href="#Jacksonville-Jaguars-season-stats">Jacksonville Jaguars</a>: 1526</li>
+<li><a href="#Arizona-Cardinals-season-stats">Arizona Cardinals</a>: 1522</li>
+<li><a href="#Cleveland-Browns-season-stats">Cleveland Browns</a>: 1521</li>
 </ol>
 <details>
         <summary style="padding-left:1.5rem">more...</summary>
         <ol start="6">
-<li><a href="#Arizona-Cardinals-season-stats">Arizona Cardinals</a>: 1519</li>
-<li><a href="#Indianapolis-Colts-season-stats">Indianapolis Colts</a>: 1516</li>
-<li><a href="#Tampa-Bay-Buccaneers-season-stats">Tampa Bay Buccaneers</a>: 1515</li>
-<li><a href="#Las-Vegas-Raiders-season-stats">Las Vegas Raiders</a>: 1515</li>
-<li><a href="#Cleveland-Browns-season-stats">Cleveland Browns</a>: 1514</li>
-<li><a href="#Tennessee-Titans-season-stats">Tennessee Titans</a>: 1509</li>
-<li><a href="#Carolina-Panthers-season-stats">Carolina Panthers</a>: 1503</li>
-<li><a href="#Cincinnati-Bengals-season-stats">Cincinnati Bengals</a>: 1502</li>
-<li><a href="#Detroit-Lions-season-stats">Detroit Lions</a>: 1501</li>
+<li><a href="#Seattle-Seahawks-season-stats">Seattle Seahawks</a>: 1518</li>
+<li><a href="#Dallas-Cowboys-season-stats">Dallas Cowboys</a>: 1513</li>
+<li><a href="#Philadelphia-Eagles-season-stats">Philadelphia Eagles</a>: 1510</li>
+<li><a href="#Cincinnati-Bengals-season-stats">Cincinnati Bengals</a>: 1509</li>
+<li><a href="#Kansas-City-Chiefs-season-stats">Kansas City Chiefs</a>: 1509</li>
+<li><a href="#Carolina-Panthers-season-stats">Carolina Panthers</a>: 1507</li>
+<li><a href="#Tennessee-Titans-season-stats">Tennessee Titans</a>: 1505</li>
+<li><a href="#Indianapolis-Colts-season-stats">Indianapolis Colts</a>: 1503</li>
+<li><a href="#Atlanta-Falcons-season-stats">Atlanta Falcons</a>: 1502</li>
+<li><a href="#San-Francisco-49ers-season-stats">San Francisco 49ers</a>: 1502</li>
 <li><a href="#New-York-Jets-season-stats">New York Jets</a>: 1501</li>
-<li><a href="#Minnesota-Vikings-season-stats">Minnesota Vikings</a>: 1500</li>
-<li><a href="#Los-Angeles-Rams-season-stats">Los Angeles Rams</a>: 1499</li>
-<li><a href="#Atlanta-Falcons-season-stats">Atlanta Falcons</a>: 1497</li>
-<li><a href="#Buffalo-Bills-season-stats">Buffalo Bills</a>: 1497</li>
-<li><a href="#Los-Angeles-Chargers-season-stats">Los Angeles Chargers</a>: 1495</li>
-<li><a href="#Washington-Commanders-season-stats">Washington Commanders</a>: 1495</li>
-<li><a href="#Houston-Texans-season-stats">Houston Texans</a>: 1493</li>
-<li><a href="#Philadelphia-Eagles-season-stats">Philadelphia Eagles</a>: 1493</li>
-<li><a href="#Green-Bay-Packers-season-stats">Green Bay Packers</a>: 1490</li>
-<li><a href="#Denver-Broncos-season-stats">Denver Broncos</a>: 1490</li>
-<li><a href="#San-Francisco-49ers-season-stats">San Francisco 49ers</a>: 1484</li>
-<li><a href="#Pittsburgh-Steelers-season-stats">Pittsburgh Steelers</a>: 1481</li>
-<li><a href="#New-York-Giants-season-stats">New York Giants</a>: 1477</li>
-<li><a href="#New-England-Patriots-season-stats">New England Patriots</a>: 1477</li>
-<li><a href="#New-Orleans-Saints-season-stats">New Orleans Saints</a>: 1471</li>
-<li><a href="#Miami-Dolphins-season-stats">Miami Dolphins</a>: 1471</li>
-<li><a href="#Chicago-Bears-season-stats">Chicago Bears</a>: 1453</li>
+<li><a href="#Buffalo-Bills-season-stats">Buffalo Bills</a>: 1500</li>
+<li><a href="#Minnesota-Vikings-season-stats">Minnesota Vikings</a>: 1498</li>
+<li><a href="#Tampa-Bay-Buccaneers-season-stats">Tampa Bay Buccaneers</a>: 1498</li>
+<li><a href="#Detroit-Lions-season-stats">Detroit Lions</a>: 1494</li>
+<li><a href="#Los-Angeles-Rams-season-stats">Los Angeles Rams</a>: 1494</li>
+<li><a href="#Green-Bay-Packers-season-stats">Green Bay Packers</a>: 1491</li>
+<li><a href="#Los-Angeles-Chargers-season-stats">Los Angeles Chargers</a>: 1490</li>
+<li><a href="#Houston-Texans-season-stats">Houston Texans</a>: 1489</li>
+<li><a href="#Washington-Commanders-season-stats">Washington Commanders</a>: 1487</li>
+<li><a href="#Pittsburgh-Steelers-season-stats">Pittsburgh Steelers</a>: 1485</li>
+<li><a href="#Miami-Dolphins-season-stats">Miami Dolphins</a>: 1482</li>
+<li><a href="#Denver-Broncos-season-stats">Denver Broncos</a>: 1481</li>
+<li><a href="#Chicago-Bears-season-stats">Chicago Bears</a>: 1475</li>
+<li><a href="#New-York-Giants-season-stats">New York Giants</a>: 1474</li>
+<li><a href="#New-England-Patriots-season-stats">New England Patriots</a>: 1473</li>
+<li><a href="#New-Orleans-Saints-season-stats">New Orleans Saints</a>: 1470</li>
 </ol>
         </details>
 </li>
 <li class="season-stat-li"><b>Weakest Average Opponent Rating</b>:
 <ol>
-<li><a href="#Chicago-Bears-season-stats">Chicago Bears</a>: 1453</li>
-<li><a href="#Miami-Dolphins-season-stats">Miami Dolphins</a>: 1471</li>
-<li><a href="#New-Orleans-Saints-season-stats">New Orleans Saints</a>: 1471</li>
-<li><a href="#New-England-Patriots-season-stats">New England Patriots</a>: 1477</li>
-<li><a href="#New-York-Giants-season-stats">New York Giants</a>: 1477</li>
+<li><a href="#New-Orleans-Saints-season-stats">New Orleans Saints</a>: 1470</li>
+<li><a href="#New-England-Patriots-season-stats">New England Patriots</a>: 1473</li>
+<li><a href="#New-York-Giants-season-stats">New York Giants</a>: 1474</li>
+<li><a href="#Chicago-Bears-season-stats">Chicago Bears</a>: 1475</li>
+<li><a href="#Denver-Broncos-season-stats">Denver Broncos</a>: 1481</li>
 </ol>
 <details>
         <summary style="padding-left:1.5rem">more...</summary>
         <ol start="6">
-<li><a href="#Pittsburgh-Steelers-season-stats">Pittsburgh Steelers</a>: 1481</li>
-<li><a href="#San-Francisco-49ers-season-stats">San Francisco 49ers</a>: 1484</li>
-<li><a href="#Denver-Broncos-season-stats">Denver Broncos</a>: 1490</li>
-<li><a href="#Green-Bay-Packers-season-stats">Green Bay Packers</a>: 1490</li>
-<li><a href="#Philadelphia-Eagles-season-stats">Philadelphia Eagles</a>: 1493</li>
-<li><a href="#Houston-Texans-season-stats">Houston Texans</a>: 1493</li>
-<li><a href="#Washington-Commanders-season-stats">Washington Commanders</a>: 1495</li>
-<li><a href="#Los-Angeles-Chargers-season-stats">Los Angeles Chargers</a>: 1495</li>
-<li><a href="#Buffalo-Bills-season-stats">Buffalo Bills</a>: 1497</li>
-<li><a href="#Atlanta-Falcons-season-stats">Atlanta Falcons</a>: 1497</li>
-<li><a href="#Los-Angeles-Rams-season-stats">Los Angeles Rams</a>: 1499</li>
-<li><a href="#Minnesota-Vikings-season-stats">Minnesota Vikings</a>: 1500</li>
+<li><a href="#Miami-Dolphins-season-stats">Miami Dolphins</a>: 1482</li>
+<li><a href="#Pittsburgh-Steelers-season-stats">Pittsburgh Steelers</a>: 1485</li>
+<li><a href="#Washington-Commanders-season-stats">Washington Commanders</a>: 1487</li>
+<li><a href="#Houston-Texans-season-stats">Houston Texans</a>: 1489</li>
+<li><a href="#Los-Angeles-Chargers-season-stats">Los Angeles Chargers</a>: 1490</li>
+<li><a href="#Green-Bay-Packers-season-stats">Green Bay Packers</a>: 1491</li>
+<li><a href="#Los-Angeles-Rams-season-stats">Los Angeles Rams</a>: 1494</li>
+<li><a href="#Detroit-Lions-season-stats">Detroit Lions</a>: 1494</li>
+<li><a href="#Tampa-Bay-Buccaneers-season-stats">Tampa Bay Buccaneers</a>: 1498</li>
+<li><a href="#Minnesota-Vikings-season-stats">Minnesota Vikings</a>: 1498</li>
+<li><a href="#Buffalo-Bills-season-stats">Buffalo Bills</a>: 1500</li>
 <li><a href="#New-York-Jets-season-stats">New York Jets</a>: 1501</li>
-<li><a href="#Detroit-Lions-season-stats">Detroit Lions</a>: 1501</li>
-<li><a href="#Cincinnati-Bengals-season-stats">Cincinnati Bengals</a>: 1502</li>
-<li><a href="#Carolina-Panthers-season-stats">Carolina Panthers</a>: 1503</li>
-<li><a href="#Tennessee-Titans-season-stats">Tennessee Titans</a>: 1509</li>
-<li><a href="#Cleveland-Browns-season-stats">Cleveland Browns</a>: 1514</li>
-<li><a href="#Las-Vegas-Raiders-season-stats">Las Vegas Raiders</a>: 1515</li>
-<li><a href="#Tampa-Bay-Buccaneers-season-stats">Tampa Bay Buccaneers</a>: 1515</li>
-<li><a href="#Indianapolis-Colts-season-stats">Indianapolis Colts</a>: 1516</li>
-<li><a href="#Arizona-Cardinals-season-stats">Arizona Cardinals</a>: 1519</li>
-<li><a href="#Kansas-City-Chiefs-season-stats">Kansas City Chiefs</a>: 1525</li>
-<li><a href="#Seattle-Seahawks-season-stats">Seattle Seahawks</a>: 1526</li>
-<li><a href="#Jacksonville-Jaguars-season-stats">Jacksonville Jaguars</a>: 1528</li>
-<li><a href="#Dallas-Cowboys-season-stats">Dallas Cowboys</a>: 1528</li>
-<li><a href="#Baltimore-Ravens-season-stats">Baltimore Ravens</a>: 1552</li>
+<li><a href="#San-Francisco-49ers-season-stats">San Francisco 49ers</a>: 1502</li>
+<li><a href="#Atlanta-Falcons-season-stats">Atlanta Falcons</a>: 1502</li>
+<li><a href="#Indianapolis-Colts-season-stats">Indianapolis Colts</a>: 1503</li>
+<li><a href="#Tennessee-Titans-season-stats">Tennessee Titans</a>: 1505</li>
+<li><a href="#Carolina-Panthers-season-stats">Carolina Panthers</a>: 1507</li>
+<li><a href="#Kansas-City-Chiefs-season-stats">Kansas City Chiefs</a>: 1509</li>
+<li><a href="#Cincinnati-Bengals-season-stats">Cincinnati Bengals</a>: 1509</li>
+<li><a href="#Philadelphia-Eagles-season-stats">Philadelphia Eagles</a>: 1510</li>
+<li><a href="#Dallas-Cowboys-season-stats">Dallas Cowboys</a>: 1513</li>
+<li><a href="#Seattle-Seahawks-season-stats">Seattle Seahawks</a>: 1518</li>
+<li><a href="#Cleveland-Browns-season-stats">Cleveland Browns</a>: 1521</li>
+<li><a href="#Arizona-Cardinals-season-stats">Arizona Cardinals</a>: 1522</li>
+<li><a href="#Jacksonville-Jaguars-season-stats">Jacksonville Jaguars</a>: 1526</li>
+<li><a href="#Las-Vegas-Raiders-season-stats">Las Vegas Raiders</a>: 1528</li>
+<li><a href="#Baltimore-Ravens-season-stats">Baltimore Ravens</a>: 1559</li>
 </ol>
         </details>
 </li>
@@ -4615,36 +4850,36 @@ Contents <a name="top"></a>
 <li><a href="#Cleveland-Browns-season-stats">Cleveland Browns</a>: 1598</li>
 <li><a href="#Las-Vegas-Raiders-season-stats">Las Vegas Raiders</a>: 1565</li>
 <li><a href="#Baltimore-Ravens-season-stats">Baltimore Ravens</a>: 1561</li>
+<li><a href="#Philadelphia-Eagles-season-stats">Philadelphia Eagles</a>: 1522</li>
 <li><a href="#Arizona-Cardinals-season-stats">Arizona Cardinals</a>: 1515</li>
-<li><a href="#Kansas-City-Chiefs-season-stats">Kansas City Chiefs</a>: 1509</li>
 </ol>
 <details>
         <summary style="padding-left:1.5rem">more...</summary>
         <ol start="6">
-<li><a href="#Seattle-Seahawks-season-stats">Seattle Seahawks</a>: 1503</li>
-<li><a href="#Philadelphia-Eagles-season-stats">Philadelphia Eagles</a>: 1502</li>
 <li><a href="#New-England-Patriots-season-stats">New England Patriots</a>: 1499</li>
-<li><a href="#Detroit-Lions-season-stats">Detroit Lions</a>: 1499</li>
-<li><a href="#Pittsburgh-Steelers-season-stats">Pittsburgh Steelers</a>: 1493</li>
+<li><a href="#Pittsburgh-Steelers-season-stats">Pittsburgh Steelers</a>: 1496</li>
+<li><a href="#Kansas-City-Chiefs-season-stats">Kansas City Chiefs</a>: 1493</li>
 <li><a href="#New-York-Giants-season-stats">New York Giants</a>: 1493</li>
 <li><a href="#Atlanta-Falcons-season-stats">Atlanta Falcons</a>: 1492</li>
-<li><a href="#Los-Angeles-Rams-season-stats">Los Angeles Rams</a>: 1490</li>
+<li><a href="#Buffalo-Bills-season-stats">Buffalo Bills</a>: 1492</li>
+<li><a href="#Detroit-Lions-season-stats">Detroit Lions</a>: 1492</li>
+<li><a href="#Seattle-Seahawks-season-stats">Seattle Seahawks</a>: 1491</li>
 <li><a href="#Minnesota-Vikings-season-stats">Minnesota Vikings</a>: 1487</li>
-<li><a href="#Buffalo-Bills-season-stats">Buffalo Bills</a>: 1487</li>
-<li><a href="#Dallas-Cowboys-season-stats">Dallas Cowboys</a>: 1486</li>
-<li><a href="#Houston-Texans-season-stats">Houston Texans</a>: 1475</li>
-<li><a href="#Tampa-Bay-Buccaneers-season-stats">Tampa Bay Buccaneers</a>: 1466</li>
-<li><a href="#Green-Bay-Packers-season-stats">Green Bay Packers</a>: 1462</li>
+<li><a href="#Los-Angeles-Rams-season-stats">Los Angeles Rams</a>: 1482</li>
+<li><a href="#Houston-Texans-season-stats">Houston Texans</a>: 1471</li>
+<li><a href="#Green-Bay-Packers-season-stats">Green Bay Packers</a>: 1466</li>
 <li><a href="#San-Francisco-49ers-season-stats">San Francisco 49ers</a>: 1460</li>
-<li><a href="#Indianapolis-Colts-season-stats">Indianapolis Colts</a>: 1460</li>
-<li><a href="#Los-Angeles-Chargers-season-stats">Los Angeles Chargers</a>: 1457</li>
+<li><a href="#Dallas-Cowboys-season-stats">Dallas Cowboys</a>: 1459</li>
+<li><a href="#Los-Angeles-Chargers-season-stats">Los Angeles Chargers</a>: 1454</li>
 <li><a href="#New-Orleans-Saints-season-stats">New Orleans Saints</a>: 1452</li>
 <li><a href="#New-York-Jets-season-stats">New York Jets</a>: 1447</li>
-<li><a href="#Washington-Commanders-season-stats">Washington Commanders</a>: 1447</li>
 <li><a href="#Carolina-Panthers-season-stats">Carolina Panthers</a>: 1445</li>
-<li><a href="#Denver-Broncos-season-stats">Denver Broncos</a>: 1436</li>
+<li><a href="#Indianapolis-Colts-season-stats">Indianapolis Colts</a>: 1442</li>
+<li><a href="#Washington-Commanders-season-stats">Washington Commanders</a>: 1440</li>
+<li><a href="#Tampa-Bay-Buccaneers-season-stats">Tampa Bay Buccaneers</a>: 1440</li>
 <li><a href="#Tennessee-Titans-season-stats">Tennessee Titans</a>: 1436</li>
 <li><a href="#Chicago-Bears-season-stats">Chicago Bears</a>: 1432</li>
+<li><a href="#Denver-Broncos-season-stats">Denver Broncos</a>: 1429</li>
 <li><a href="#Miami-Dolphins-season-stats">Miami Dolphins</a>: 1427</li>
 <li><a href="#Cincinnati-Bengals-season-stats">Cincinnati Bengals</a>: 1415</li>
 <li><a href="#Jacksonville-Jaguars-season-stats">Jacksonville Jaguars</a>: 1389</li>
@@ -4656,36 +4891,36 @@ Contents <a name="top"></a>
 <li><a href="#Jacksonville-Jaguars-season-stats">Jacksonville Jaguars</a>: 1389</li>
 <li><a href="#Cincinnati-Bengals-season-stats">Cincinnati Bengals</a>: 1415</li>
 <li><a href="#Miami-Dolphins-season-stats">Miami Dolphins</a>: 1427</li>
+<li><a href="#Denver-Broncos-season-stats">Denver Broncos</a>: 1429</li>
 <li><a href="#Chicago-Bears-season-stats">Chicago Bears</a>: 1432</li>
-<li><a href="#Tennessee-Titans-season-stats">Tennessee Titans</a>: 1436</li>
 </ol>
 <details>
         <summary style="padding-left:1.5rem">more...</summary>
         <ol start="6">
-<li><a href="#Denver-Broncos-season-stats">Denver Broncos</a>: 1436</li>
+<li><a href="#Tennessee-Titans-season-stats">Tennessee Titans</a>: 1436</li>
+<li><a href="#Tampa-Bay-Buccaneers-season-stats">Tampa Bay Buccaneers</a>: 1440</li>
+<li><a href="#Washington-Commanders-season-stats">Washington Commanders</a>: 1440</li>
+<li><a href="#Indianapolis-Colts-season-stats">Indianapolis Colts</a>: 1442</li>
 <li><a href="#Carolina-Panthers-season-stats">Carolina Panthers</a>: 1445</li>
-<li><a href="#Washington-Commanders-season-stats">Washington Commanders</a>: 1447</li>
 <li><a href="#New-York-Jets-season-stats">New York Jets</a>: 1447</li>
 <li><a href="#New-Orleans-Saints-season-stats">New Orleans Saints</a>: 1452</li>
-<li><a href="#Los-Angeles-Chargers-season-stats">Los Angeles Chargers</a>: 1457</li>
-<li><a href="#Indianapolis-Colts-season-stats">Indianapolis Colts</a>: 1460</li>
+<li><a href="#Los-Angeles-Chargers-season-stats">Los Angeles Chargers</a>: 1454</li>
+<li><a href="#Dallas-Cowboys-season-stats">Dallas Cowboys</a>: 1459</li>
 <li><a href="#San-Francisco-49ers-season-stats">San Francisco 49ers</a>: 1460</li>
-<li><a href="#Green-Bay-Packers-season-stats">Green Bay Packers</a>: 1462</li>
-<li><a href="#Tampa-Bay-Buccaneers-season-stats">Tampa Bay Buccaneers</a>: 1466</li>
-<li><a href="#Houston-Texans-season-stats">Houston Texans</a>: 1475</li>
-<li><a href="#Dallas-Cowboys-season-stats">Dallas Cowboys</a>: 1486</li>
-<li><a href="#Buffalo-Bills-season-stats">Buffalo Bills</a>: 1487</li>
+<li><a href="#Green-Bay-Packers-season-stats">Green Bay Packers</a>: 1466</li>
+<li><a href="#Houston-Texans-season-stats">Houston Texans</a>: 1471</li>
+<li><a href="#Los-Angeles-Rams-season-stats">Los Angeles Rams</a>: 1482</li>
 <li><a href="#Minnesota-Vikings-season-stats">Minnesota Vikings</a>: 1487</li>
-<li><a href="#Los-Angeles-Rams-season-stats">Los Angeles Rams</a>: 1490</li>
+<li><a href="#Seattle-Seahawks-season-stats">Seattle Seahawks</a>: 1491</li>
+<li><a href="#Detroit-Lions-season-stats">Detroit Lions</a>: 1492</li>
+<li><a href="#Buffalo-Bills-season-stats">Buffalo Bills</a>: 1492</li>
 <li><a href="#Atlanta-Falcons-season-stats">Atlanta Falcons</a>: 1492</li>
 <li><a href="#New-York-Giants-season-stats">New York Giants</a>: 1493</li>
-<li><a href="#Pittsburgh-Steelers-season-stats">Pittsburgh Steelers</a>: 1493</li>
-<li><a href="#Detroit-Lions-season-stats">Detroit Lions</a>: 1499</li>
+<li><a href="#Kansas-City-Chiefs-season-stats">Kansas City Chiefs</a>: 1493</li>
+<li><a href="#Pittsburgh-Steelers-season-stats">Pittsburgh Steelers</a>: 1496</li>
 <li><a href="#New-England-Patriots-season-stats">New England Patriots</a>: 1499</li>
-<li><a href="#Philadelphia-Eagles-season-stats">Philadelphia Eagles</a>: 1502</li>
-<li><a href="#Seattle-Seahawks-season-stats">Seattle Seahawks</a>: 1503</li>
-<li><a href="#Kansas-City-Chiefs-season-stats">Kansas City Chiefs</a>: 1509</li>
 <li><a href="#Arizona-Cardinals-season-stats">Arizona Cardinals</a>: 1515</li>
+<li><a href="#Philadelphia-Eagles-season-stats">Philadelphia Eagles</a>: 1522</li>
 <li><a href="#Baltimore-Ravens-season-stats">Baltimore Ravens</a>: 1561</li>
 <li><a href="#Las-Vegas-Raiders-season-stats">Las Vegas Raiders</a>: 1565</li>
 <li><a href="#Cleveland-Browns-season-stats">Cleveland Browns</a>: 1598</li>
@@ -4759,6 +4994,11 @@ Contents <a name="top"></a>
         <td><a href="#after-Reg-12">12</a></td>
         <td>10-3 (10/13, 76.92%)</td>
         <td>117-62 (117/179, 65.36%)</td>
+</tr>
+<tr>
+        <td><a href="#after-Reg-13">13</a></td>
+        <td>10-6 (10/16, 62.5%)</td>
+        <td>127-68 (127/195, 65.13%)</td>
 </tr>
 </table>
 </div>
