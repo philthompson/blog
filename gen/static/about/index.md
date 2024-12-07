@@ -90,6 +90,9 @@ A visual listing of this site's tools and apps is available <a target="_blank" h
  * JavaScript toy that approximates Pi with randomly-placed points
 * <a target="_blank" href="${SITE_ROOT_REL}/misc/tree/">Fractal Trees</a>, 2024
  * JavaScript toy that generates fractal trees
+* As far as I'm aware, I was the first to calculate the number of unique polycubes containing <a target="_blank" href="${SITE_ROOT_REL}/2024/Counting-Polycubes-of-Size-21.html">21</a> and <a target="_blank" href="${SITE_ROOT_REL}/2024/Counting-Polycubes-of-Size-22.html">22</a> cubes, 2024
+ * ported Stanley Dodds's polycube enumeration algorithm to a multi-core rust implementation and calculated the values in AWS (see the blog post for n=21 for much more detail)
+ * published the <a target="_blank" href="https://oeis.org/A000162">n=21 and n=22 values to the OEIS</a>
 * <a target="_blank" href="${SITE_ROOT_REL}/nfl-elo/">NFL Elo Power Rankings</a>, 2023-2024
  * written in Python
  * parses Wikipedia data, calculates Elo ratings, and outputs the above linked page
