@@ -6107,8 +6107,8 @@ Contents <a name="top"></a>
 <ol>
 <li>+190: <a href="#New-England-Patriots-season-stats">New England Patriots</a> (1476) before week 7 → (1666) thru week 13</li>
 <li>+166: <a href="#Philadelphia-Eagles-season-stats">Philadelphia Eagles</a> (1375) before week 8 → (1541) thru week 15</li>
-<li>+165: <a href="#Arizona-Cardinals-season-stats">Arizona Cardinals</a> (1485) before week 3 → (1650) thru week 9</li>
 <li>+165: <a href="#Cincinnati-Bengals-season-stats">Cincinnati Bengals</a> (1391) before week 1 → (1556) thru week 7</li>
+<li>+165: <a href="#Arizona-Cardinals-season-stats">Arizona Cardinals</a> (1485) before week 3 → (1650) thru week 9</li>
 <li>+149: <a href="#Miami-Dolphins-season-stats">Miami Dolphins</a> (1429) before week 9 → (1577) thru week 16</li>
 </ol>
 <details>
