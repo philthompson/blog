@@ -17,6 +17,7 @@
 
 THIS_SCRIPT="`perl -MCwd -le 'print Cwd::abs_path shift' "${0}"`"
 THIS_DIR="$(dirname "${THIS_SCRIPT}")"
+THIS_SCRIPT_BASENAME_STEM="$(basename "${THIS_SCRIPT}" | cut -d . -f 1)"
 OUT_DIR="${THIS_DIR}/out/$(date +%Y-%m-%d-%H%M%S)"
 GEN_DIR="${THIS_DIR}/gen"
 STATIC_DIR="${THIS_DIR}/gen/static"
@@ -934,3 +935,5 @@ ${ITEM_LINE}"
 	echo "  </channel>"
 	echo "</rss>"
 fi > "${RSS_FINAL}"
+
+say "done with ${THIS_SCRIPT_BASENAME_STEM}"
