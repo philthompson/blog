@@ -185,6 +185,16 @@ This is a "cheat sheet" style collection of bash and other snippets, mainly for 
 	$ git rebase -i HEAD~3
 
 
+## Exiftool
+
+#### Copy GPS tags from one image to another
+
+	exiftool -tagsFromFile <from-file> -GPSPosition <to-file>
+
+#### Copy date tags from one image to another
+
+	exiftool -tagsFromFile <from-file> -AllDates <to-file>
+
 ## Maven
 
 #### Run package without tests:
