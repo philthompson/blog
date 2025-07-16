@@ -12,6 +12,20 @@ from pathlib import Path
 from pathlib import PurePosixPath
 import inspect
 
+# since "slash" birds ("Greater/Lesser Scaup") are not common in my photos,
+#   and since i don't want to show most of those pictures (but there are a
+#   few i might want to show), hide some slash species individually here
+# find these with these queries:
+# SELECT DISTINCT name FROM photo_species WHERE name LIKE '%/%';
+# SELECT DISTINCT name FROM photo_species_overrides WHERE name LIKE '%/%';
+species_to_skip = set([
+	"Blue-winged/Cinnamon Teal",
+	"Greater/Lesser Scaup",
+	"Short-billed/Long-billed Dowitcher",
+	"Trumpeter/Tundra Swan",
+	"unknown"
+])
+
 # possible required arg: first/best/favorites/last
 #   (each of these would output to a different static page)
 
@@ -578,6 +592,7 @@ def print_collapsable_item(species):
 			found_related_species.append(some_species)
 
 	for related_species in sorted(found_related_species):
+		#print(f'species [{related_species}] is related to [{species}]', file=sys.stderr)
 		print_collapsed_content(related_species, top_level_name)
 
 	print(inspect.cleandoc("""
@@ -656,6 +671,7 @@ def print_collapsed_content(species, top_level_name):
 			""".format(species=species, best_year=best_year, best_img=best_img, best_date=best_date, best_stars=best_stars)))
 
 def main_stuff(conn):
+	global species_to_skip
 	curs = conn.cursor()
 	run_query(conn, curs, where_clause)
 	print_header()
@@ -697,6 +713,18 @@ def main_stuff(conn):
 			'date_str': row[4],
 			'stars': row[5],
 			'favorite': row[6]}
+		# since "slash" birds ("Greater/Lesser Scaup") are not common in my photos,
+		#   and since i don't want to show most of those pictures (but there are a
+		#   few i might want to show), hide some slash species individually here
+		# species might have parenthetical tags after a space, like "Western Sandpiper (Juvenile)"
+		#   so we need to remove those before checking presence in the set
+		species_without_parens = row_dict['species'].split(' ')
+		while species_without_parens[-1].startswith('('):
+			species_without_parens = species_without_parens[0:-1]
+		species_without_parens = ' '.join(species_without_parens)
+		if species_without_parens in species_to_skip:
+			#print(f'skipping species [{row_dict["species"]} -> {species_without_parens}]', file=sys.stderr)
+			continue
 		if row_dict['rollup'] == "first":
 			first_by_species[row_dict["species"]] = row_dict
 		elif row_dict['rollup'] == "last":
