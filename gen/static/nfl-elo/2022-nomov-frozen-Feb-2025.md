@@ -162,10 +162,10 @@ of 3.9 fewer games correctly picked over those 12 seasons.*
 All available 2022 season pages:
 
 <ul>
-<li><a href="./2022.html">2022 (regular)</a></li>
-<li><a href="./2022-only.html">2022 "Blank Slate"</a></li>
-<li><a href="./2022-winpos.html">2022 "Never Lose Elo For a Win"</a></li>
-<li><a href="./2022-nomov.html">2022 "No Margin of Victory"</a></li>
+<li><a href="./2022-frozen-Feb-2025.html">2022 (regular)</a></li>
+<li><a href="./2022-only-frozen-Feb-2025.html">2022 "Blank Slate"</a></li>
+<li><a href="./2022-winpos-frozen-Feb-2025.html">2022 "Never Lose Elo For a Win"</a></li>
+<li><a href="./2022-nomov-frozen-Feb-2025.html">2022 "No Margin of Victory"</a></li>
 </ul>
 <hr/>
 
@@ -414,8 +414,8 @@ Contents <a name="top"></a>
 
 
 <div class="btns" style="margin:0 0 2rem 0">
-        <a class="btn" href="./2021-nomov.html">← 2021 Season</a>
-        <a class="btn" href="./2023-nomov.html">2023 Season →</a>
+        <a class="btn" href="./2021-nomov-frozen-Feb-2025.html">← 2021 Season</a>
+        <a class="btn" href="./2023-nomov-frozen-Feb-2025.html">2023 Season →</a>
 </div>
 
 <hr/>

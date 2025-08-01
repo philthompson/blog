@@ -162,10 +162,10 @@ of 3.9 fewer games correctly picked over those 12 seasons.*
 All available 2020 season pages:
 
 <ul>
-<li><a href="./2020.html">2020 (regular)</a></li>
-<li><a href="./2020-only.html">2020 "Blank Slate"</a></li>
-<li><a href="./2020-winpos.html">2020 "Never Lose Elo For a Win"</a></li>
-<li><a href="./2020-nomov.html">2020 "No Margin of Victory"</a></li>
+<li><a href="./2020-frozen-Feb-2025.html">2020 (regular)</a></li>
+<li><a href="./2020-only-frozen-Feb-2025.html">2020 "Blank Slate"</a></li>
+<li><a href="./2020-winpos-frozen-Feb-2025.html">2020 "Never Lose Elo For a Win"</a></li>
+<li><a href="./2020-nomov-frozen-Feb-2025.html">2020 "No Margin of Victory"</a></li>
 </ul>
 <hr/>
 
@@ -414,7 +414,7 @@ Contents <a name="top"></a>
 
 <div class="btns" style="margin:0 0 2rem 0">
         
-        <a class="btn" href="./2021-nomov.html">2021 Season →</a>
+        <a class="btn" href="./2021-nomov-frozen-Feb-2025.html">2021 Season →</a>
 </div>
 
 <hr/>

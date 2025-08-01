@@ -166,10 +166,10 @@ winners (66.28%).*
 All available 2024 season pages:
 
 <ul>
-<li><a href="./2024.html">2024 (regular)</a></li>
-<li><a href="./2024-only.html">2024 "Blank Slate"</a></li>
-<li><a href="./2024-winpos.html">2024 "Never Lose Elo For a Win"</a></li>
-<li><a href="./2024-nomov.html">2024 "No Margin of Victory"</a></li>
+<li><a href="./2024-frozen-Feb-2025.html">2024 (regular)</a></li>
+<li><a href="./2024-only-frozen-Feb-2025.html">2024 "Blank Slate"</a></li>
+<li><a href="./2024-winpos-frozen-Feb-2025.html">2024 "Never Lose Elo For a Win"</a></li>
+<li><a href="./2024-nomov-frozen-Feb-2025.html">2024 "No Margin of Victory"</a></li>
 </ul>
 <hr/>
 
@@ -418,8 +418,8 @@ Contents <a name="top"></a>
 
 
 <div class="btns" style="margin:0 0 2rem 0">
-        <a class="btn" href="./2023-only.html">← 2023 Season</a>
-        
+        <a class="btn" href="./2023-only-frozen-Feb-2025.html">← 2023 Season</a>
+        <a class="btn" href="./2025-only-frozen-Feb-2025.html">2025 Season →</a>
 </div>
 
 <hr/>
