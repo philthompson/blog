@@ -319,6 +319,8 @@ ${ARTICLE_YEAR}"
 	if [[ -z "${YEAR_PAGES_CONTENT[$ARTICLE_YEAR]}" ]]
 	then
 		YEAR_PAGES_CONTENT[$ARTICLE_YEAR]="`bash "${GEN_DIR}/header.sh" "Archive — ${ARTICLE_YEAR}" '..' "blog, archive, history, year, ${ARTICLE_YEAR}" "Personal blog archive for ${ARTICLE_YEAR} — philthompson.me" 7`"
+		YEAR_PAGES_CONTENT[$ARTICLE_YEAR]="${YEAR_PAGES_CONTENT[$ARTICLE_YEAR]}
+<p></p>"
 	fi
 
 	# embed newlines directly into variables
@@ -462,7 +464,7 @@ done
 # since a line with the year is added for each article, we need to keep
 #   only the unique years
 ARCHIVE_INDEX_SORT_U="`echo "${ARCHIVE_INDEX_CONTENT}" | sort -u | sed '/^$/d'`"
-ARCHIVE_INDEX_CONTENT=""
+ARCHIVE_INDEX_CONTENT="<p></p>" #empty space before first line
 while read LINE
 do
 	ARCHIVE_INDEX_CONTENT="${ARCHIVE_INDEX_CONTENT}
