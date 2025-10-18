@@ -431,7 +431,8 @@ def print_header():
 				border-top: 1px solid #949b96;
 			}}
 			details, details summary {{
-				display: inline;
+				/\\* to keep this working as expected, updated this from inline to inline-block in October 2025 \\*/
+				display: inline-block;
 			}}
 			details summary img {{
 				max-height: 25rem;

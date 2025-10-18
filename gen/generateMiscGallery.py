@@ -175,15 +175,16 @@ For a more complete list of my projects, see my portfolio listing on this site's
 		border-top: 1px solid #949b96;
 	}}
 	details, details summary {{
-		display: inline;
+		/\\* to keep this working as expected, updated this from inline to inline-block in October 2025 \\*/
+		display: inline-block;
 	}}
 	details summary {{
 		list-style: none;
 	}}
 	details img {{
 		border-radius: 1.0rem;
-		/* the site default padding-top for <image> makes the top rounded corners look wrong */
-		/* to fix this, set padding to 0 and use margin-top instead */
+		/\\* the site default padding-top for <image> makes the top rounded corners look wrong \\*/
+		/\\* to fix this, set padding to 0 and use margin-top instead \\*/
 		padding: 0;
 		margin-top: 0.4rem;
 	}}
