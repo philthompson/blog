@@ -71,80 +71,80 @@ Portfolio
 A visual listing of this site's tools and apps is available <a target="_blank" href="${SITE_ROOT_REL}/misc/">here</a>.
 
 * <a target="_blank" href="${SITE_ROOT_REL}/2025/Searching-for-a-Magic-Square-of-Squares.html">GPU Magic Square of Squares Search</a>, 2025
- * a GPU-based brute force search program, written in Rust with the `metal` crate
+  * a GPU-based brute force search program, written in Rust with the `metal` crate
 * <a target="_blank" href="${SITE_ROOT_REL}/misc/gravity-2d/">2D Gravity Simulation</a>, 2024
- * a set of JavaScript toy pages for simulating gravity in two dimensions
+  * a set of JavaScript toy pages for simulating gravity in two dimensions
 * <a target="_blank" href="${SITE_ROOT_REL}/misc/noise-flow-field/">Noise Flow Field</a>, 2024
- * JavaScript app for generating digital art with Perlin noise flow fields
+  * JavaScript app for generating digital art with Perlin noise flow fields
 * <a target="_blank" href="${SITE_ROOT_REL}/misc/cascading-bloom-filters/">Cascading Bloom Filters</a>, 2024
- * JavaScript app for playing with cascading bloom filter parameters
+  * JavaScript app for playing with cascading bloom filter parameters
 * <a target="_blank" href="${SITE_ROOT_REL}/2024/Counting-Birds-in-a-Photo.html">Counting Birds in Photos</a>, 2024
- * A small Python script using OpenCV to count birds in photos, but is general enough to count any type of "spots"
- * the source code is available in its <a target="_blank" href="https://github.com/philthompson/python-img-count">GitHub repository</a>
+  * A small Python script using OpenCV to count birds in photos, but is general enough to count any type of "spots"
+  * the source code is available in its <a target="_blank" href="https://github.com/philthompson/python-img-count">GitHub repository</a>
 * <a target="_blank" href="${SITE_ROOT_REL}/2024/My-Electronic-Chill-Album-Break-Away.html">"Break | Away" EP</a>, 2024
- * Electronic/Chill EP available on all major music streaming platforms
+  * Electronic/Chill EP available on all major music streaming platforms
 * <a target="_blank" href="${SITE_ROOT_REL}/misc/click-counter/">Click Counter</a>, 2024
- * JavaScript app for counting things in images
+  * JavaScript app for counting things in images
 * Image Stacking in Python, 2024
- * A set of Python scripts to align and stack astrophotography frames using OpenCV
- * while I've used my code to align and stack frames for several of my astro photos, I'm unsure if I want to publish it on GitHub since it is slow and not user-friendly, and I don't want to devote more time to its ongoing development
+  * A set of Python scripts to align and stack astrophotography frames using OpenCV
+  * while I've used my code to align and stack frames for several of my astro photos, I'm unsure if I want to publish it on GitHub since it is slow and not user-friendly, and I don't want to devote more time to its ongoing development
 * <a target="_blank" href="${SITE_ROOT_REL}/misc/pi-random/">Pi random</a>, 2024
- * JavaScript toy that approximates Pi with randomly-placed points
+  * JavaScript toy that approximates Pi with randomly-placed points
 * <a target="_blank" href="${SITE_ROOT_REL}/misc/tree/">Fractal Trees</a>, 2024
- * JavaScript toy that generates fractal trees
+  * JavaScript toy that generates fractal trees
 * As far as I'm aware, I was the first to calculate the number of unique polycubes containing <a target="_blank" href="${SITE_ROOT_REL}/2024/Counting-Polycubes-of-Size-21.html">21</a> and <a target="_blank" href="${SITE_ROOT_REL}/2024/Counting-Polycubes-of-Size-22.html">22</a> cubes, 2024
- * ported Stanley Dodds's polycube enumeration algorithm to a multi-core rust implementation and calculated the values in AWS (see the blog post for n=21 for much more detail)
+  * ported Stanley Dodds's polycube enumeration algorithm to a multi-core rust implementation and calculated the values in AWS (see the blog post for n=21 for much more detail)
  * published the <a target="_blank" href="https://oeis.org/A000162">n=21 and n=22 values to the OEIS</a>
 * <a target="_blank" href="${SITE_ROOT_REL}/nfl-elo/">NFL Elo Power Rankings</a>, 2023-2025
- * written in Python
- * parses Wikipedia data, calculates Elo ratings, and outputs the above linked page
- * test harness for adjusting Elo rating model parameters, which backtests the model on several years' worth of NFL games (31 full seasons at the time of writing)
+  * written in Python
+  * parses Wikipedia data, calculates Elo ratings, and outputs the above linked page
+  * test harness for adjusting Elo rating model parameters, which backtests the model on several years' worth of NFL games (31 full seasons at the time of writing)
 * <a target="_blank" href="${SITE_ROOT_REL}/2023/Partial-String-Match-for-Birds.html">Partial String Match for Birds</a>, 2023
- * tested out algorithms for finding partial string matches of bird species names
- * I found my algorithm to work well enough, and to run fast enough, for use in smartphone apps (this would fix a gripe I have with the otherwise perfect eBird app)
- * implemented the algorithm in JavaScript, and published pages for testing and running the algorithms
- * in the above linked post, I outlined the steps taken to develop the algorithm
+  * tested out algorithms for finding partial string matches of bird species names
+  * I found my algorithm to work well enough, and to run fast enough, for use in smartphone apps (this would fix a gripe I have with the otherwise perfect eBird app)
+  * implemented the algorithm in JavaScript, and published pages for testing and running the algorithms
+  * in the above linked post, I outlined the steps taken to develop the algorithm
 * <a target="_blank" href="${SITE_ROOT_REL}/misc/smarter-than-a-chimp/">"Smarter than a Chimp" game</a>, 2023
- * a simple JavaScript canvas-based memory game
- * the source code is available in its <a target="_blank" href="https://github.com/philthompson/smarter-than-chimp">GitHub repository</a>
+  * a simple JavaScript canvas-based memory game
+  * the source code is available in its <a target="_blank" href="https://github.com/philthompson/smarter-than-chimp">GitHub repository</a>
 * <a target="_blank" href="${SITE_ROOT_REL}/2023/Faster-Mandelbrot-Set-Rendering-with-BLA-Bivariate-Linear-Approximation.html">Calculating the Mandelbrot set with BLA: Bivariate Linear Approximation</a>, 2023
- * a JavaScript implementation of BLA for Very Plotter, my web Mandelbrot set viewer
- * this was the cutting-edge Mandelbrot set approach, as of May 2023, which was developed by others (see <a target="_blank" href="https://fractalforums.org/index.php?topic=4360.30">the discussion at fractalforums.org</a>) starting at least as far back as 2021
+  * a JavaScript implementation of BLA for Very Plotter, my web Mandelbrot set viewer
+  * this was the cutting-edge Mandelbrot set approach, as of May 2023, which was developed by others (see <a target="_blank" href="https://fractalforums.org/index.php?topic=4360.30">the discussion at fractalforums.org</a>) starting at least as far back as 2021
 * <a target="_blank" href="${SITE_ROOT_REL}/2022/Advent-of-Code-2022.html">Advent of Code</a>, 2022
- * solved nearly entirely by myself, with python 3, after nearly a month of concentrated effort
- * my code is available <a target="_blank" href="https://github.com/philthompson/advent-of-code/tree/master/2022">on GitHub</a>
+  * solved nearly entirely by myself, with python 3, after nearly a month of concentrated effort
+  * my code is available <a target="_blank" href="https://github.com/philthompson/advent-of-code/tree/master/2022">on GitHub</a>
 * <a target="_blank" href="${SITE_ROOT_REL}/2022/Birds-Favorites-Pages.html">birds "year in review" and favorites pages</a>, 2022
- * created by writing photo metadata into a SQLite database, and then running queries and writing static pages, all with python 3
+  * created by writing photo metadata into a SQLite database, and then running queries and writing static pages, all with python 3
 * photography <a target="_blank" href="${SITE_ROOT_REL}/gallery">gallery</a> pages, 2021
- * these galleries are statically generated with a bash script, including some SQLite for faster re-generation of previously pre-processed gallery content
+  * these galleries are statically generated with a bash script, including some SQLite for faster re-generation of previously pre-processed gallery content
 * <a target="_blank" href="${SITE_ROOT_REL}/jars/">Water Jars game</a>, 2021
- * also added a bare-bones generalized <a target="_blank" href="${SITE_ROOT_REL}/jars/solver.html">water jars solver page</a> that uses a JavaScript worker
- * the source code is available in its <a target="_blank" href="https://github.com/philthompson/water-jars">GitHub repository</a>
+  * also added a bare-bones generalized <a target="_blank" href="${SITE_ROOT_REL}/jars/solver.html">water jars solver page</a> that uses a JavaScript worker
+  * the source code is available in its <a target="_blank" href="https://github.com/philthompson/water-jars">GitHub repository</a>
 * <a target="_blank" href="${SITE_ROOT_REL}/very-plotter/">Very Plotter</a>, 2021
- * view the Mandelbrot set, and plots of a few mathematical sequences
- * uses JavaScript worker threads, the number of which can be updated on the fly
- * the source code is available in its <a target="_blank" href="https://github.com/philthompson/visualize-primes">GitHub repository</a>
+  * view the Mandelbrot set, and plots of a few mathematical sequences
+  * uses JavaScript worker threads, the number of which can be updated on the fly
+  * the source code is available in its <a target="_blank" href="https://github.com/philthompson/visualize-primes">GitHub repository</a>
 * <a target="_blank" href="https://github.com/philthompson/rust-calc-term">rust-calc-term</a>, 2020
- * a terminal-based calculator powered by bigdecimal math, written in Rust
+  * a terminal-based calculator powered by bigdecimal math, written in Rust
 * <a target="_blank" href="${SITE_ROOT_REL}/qrcode.html">qrcodejs</a>, 2018
- * a JavaScript page for interactively generating QR codes
- * the source code is available in its <a target="_blank" href="https://github.com/philthompson/qrcodejs">GitHub repository</a>
+  * a JavaScript page for interactively generating QR codes
+  * the source code is available in its <a target="_blank" href="https://github.com/philthompson/qrcodejs">GitHub repository</a>
 * this website, 2018
- * static site files are mostly generated with bash scripts
- * no JavaScript, except for some individual JavaScript-based pages mentioned here
- * background on the site generator was provided in <a target="_blank" href="${SITE_ROOT_REL}/2018/Writing-A-Static-Site-Generator.html">a blog post</a>.
- * the source code is available in its <a target="_blank" href="https://github.com/philthompson/blog">GitHub repository</a>
+  * static site files are mostly generated with bash scripts
+  * no JavaScript, except for some individual JavaScript-based pages mentioned here
+  * background on the site generator was provided in <a target="_blank" href="${SITE_ROOT_REL}/2018/Writing-A-Static-Site-Generator.html">a blog post</a>.
+  * the source code is available in its <a target="_blank" href="https://github.com/philthompson/blog">GitHub repository</a>
 * <a target="_blank" href="${SITE_ROOT_REL}/screensavejs/">screensavejs</a> (interactive, 2018) / <a target="_blank" href="https://harvey.dog">harvey.dog</a> (non-interactive, 2016)
- * a JavaScript page that paints a blurry rendition of any image file
+  * a JavaScript page that paints a blurry rendition of any image file
 * <a target="_blank" href="${SITE_ROOT_REL}/misc/black-and-white/">Javascript toy: black & white box</a>, 2015
- * finds a box (many are possible) describing the percentage of black and white pixels, where the text itself is counted
- * inspired by the xkcd #688 <a target="_blank" href="https://xkcd.com/688/">Self-Description</a>
- * also available for fiddling with at <a target="_blank" href="https://jsfiddle.net/b8w1coga/">jsfiddle</a>
+  * finds a box (many are possible) describing the percentage of black and white pixels, where the text itself is counted
+  * inspired by the xkcd #688 <a target="_blank" href="https://xkcd.com/688/">Self-Description</a>
+  * also available for fiddling with at <a target="_blank" href="https://jsfiddle.net/b8w1coga/">jsfiddle</a>
 
 Other Links
 ---------
 
 * <a target="_blank" href="https://www.astrobin.com/users/ptdotme/">My AstroBin profile</a>
- * some of my astrophotography images
+  * some of my astrophotography images
 * <a target="_blank" href="../linux-notes.html">Linux Notes</a>
- * a "cheat sheet" style collection of bash and other snippets
+  * a "cheat sheet" style collection of bash and other snippets
