@@ -1,5 +1,24 @@
 '''
 
+# run with:
+% source python-venv/bin/activate
+% python3 build.py out/in-place [--skip-gallery]
+
+# assumes 'in-place' behavior if the target directory already exists
+
+# this build.py replaces build.sh, and is 40x faster:
+# new
+% time python3 build.py out/python-in-place
+...
+python3 build.py out/python-in-place  2.01s user 0.20s system 58% cpu 3.774 total
+
+# old
+% time ./build.sh in-place
+...
+./build.sh in-place  36.50s user 44.99s system 53% cpu 2:31.79 total
+
+----
+
 To install python dependencies:
 
         $ python3 -m venv python-venv
@@ -17,18 +36,6 @@ To update python dependencies if the `python-requirements.txt` file is updated:
 
         $ source python-venv/bin/activate
         $ python3 -m pip install --ignore-installed -r python-requirements.txt
-
-
-to replace build.sh
-
-- assumes 'in-place' behavior if the target directory already exists
-- TODO:
-    - looks like rsync is copying static .md files?  they're not supposed to end up in the build dir
-    - make python version of gallery.sh
-    - figure out how to compare all files in out/in-place vs out/python-in-place, and only swap over to new one once they're identical
-
-python3 build.py out/python-in-place --skip-gallery
-
 '''
 
 import base64

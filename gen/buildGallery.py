@@ -394,7 +394,7 @@ def populateHashesDb(*, curs, HASHES_FILE, HASHES_SUPP, HASHES_ID, HASHES_YEAR, 
 				print(f"supplement file shoot:visible: item in [{HASHES_SUPP}] is not an expected value of 'true' or 'false'")
 				SHOOT_VISIBLE = 'true'
 		if len(SUPP_FAVORITE) > 0:
-			SHOOT_FAVORITE = b64Encode(SUPP_FAVORITE[0].split(':', 2)[-1])
+			SHOOT_FAVORITE = b64Encode(HASHES_YEAR + '/' + SUPP_FAVORITE[0].split(':', 2)[-1])
 
 	#sqlite3 "${HASHES_DB}" "INSERT INTO shoot (title_b64, description_b64, bch_txid_b64, algo_txid_b64, favorite_path_rel, default_favorite_path_rel, visible) VALUES ('${SHOOT_TITLE}', '${SHOOT_DESCRIPTION}', '${SHOOT_BCH_TXID}', '${SHOOT_ALGO_TXID}', '${SHOOT_FAVORITE}', '${SHOOT_DEFAULT_FAVORITE}', '${SHOOT_VISIBLE}');"
 	curs.execute("""
