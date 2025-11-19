@@ -29,16 +29,6 @@ then
 	FINAL_YEAR="`date -j -v-3m +%Y`"
 fi
 
-# output redirect page that points to current year page
-cat > "${NFL_ELO_STATIC_DIR}/index.html" << xxxxxEOFxxxxx
-<html lang="en">
-	<head>
-		<meta http-equiv="refresh" content="0; url=./${FINAL_YEAR}.html">
-	</head>
-	<body></body>
-</html>
-xxxxxEOFxxxxx
-
 FREEZE_ARG=""
 FREEZE_FILE_SUFFIX=""
 if [ "${3}" == "--freeze" ]
