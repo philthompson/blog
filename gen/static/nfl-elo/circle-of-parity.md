@@ -30,7 +30,7 @@
 
 [//]: # (this file is edited by hand, using "pypy3 circleOfParityDisplay.py 1970 2025 --markdown" for the content)
 
-This page lists the earliest "circle of parity" I've found for each season of the post AFL/NFL merger era.
+This page lists the earliest "circle of parity" I've found for each season of the post AFL/NFL merger era.  I found no circle of parity in the first four seasons of the Super Bowl era, 1966-1969, before the merger.  This makes sense because there wasn't inter-league play except for the Super Bowl itself.
 
 A "circle of parity" is a loop created by tracing a defeated team's defeated team, through all teams, back to the original team.
 

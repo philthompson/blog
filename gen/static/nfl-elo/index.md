@@ -64,6 +64,8 @@ Regular model: [2023](./2023-frozen-Feb-2024.html) | [2022](./2022-frozen-Feb-20
 
 ## Other Pages
 
+[Circle of Parity](./circle-of-parity.html) &mdash; A record of the earliest "circle of parity" found for each season.  Not Elo related.
+
 [November 5, 2025 &mdash; "NFL Week 10 Has Been Strangely Unpredictable For 30+ Seasons"](../2025/NFL-Week-10-Has-Been-Strangely-Unpredictable-For-30-Seasons.html)
 
 [October 17, 2023 &mdash; "NFL Elo Models Compared"](../2023/NFL-Elo-Models-Compared.html)
