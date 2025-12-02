@@ -102,11 +102,6 @@ articles_dir = gen_dir.joinpath("articles")
 #   even looking at all the gallery files
 GALLERY_LATEST_FILE = out_dir.joinpath("gallery-latest.txt")
 
-# special case: don't allow this build.py to touch the output dir used by build.sh
-if out_dir.samefile(this_dir.joinpath("out").joinpath("in-place")):
-	print(f"cannot output to [{out_dir}] from python script (use out/python-in-place)", file=sys.stderr)
-	sys.exit(1)
-
 # the top-level URL
 SITE_URL="https://philthompson.me"
 

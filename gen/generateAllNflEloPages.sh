@@ -53,7 +53,7 @@ do
 	#   entire year
 	# STOP_ARG is not quoted here, because it's only
 	#   included for the final year
-	MODEL_NAME="v3.2025.06"
+	MODEL_NAME="v3.2025.06" # ALSO update this in ~/projects/nfl-elo/manualAutoFetch.sh
 	echo "python3 \"${NFL_ELO_DIR}/outputYearMarkdown.py\" \"${MODEL_NAME}\" 1992 \"${YEAR}\" $STOP_ARG $FREEZE_ARG"
 	python3 "${NFL_ELO_DIR}/outputYearMarkdown.py" "${MODEL_NAME}" 1992 "${YEAR}" $STOP_ARG $FREEZE_ARG > "${NFL_ELO_STATIC_DIR}/${YEAR}${FREEZE_FILE_SUFFIX}.md"
 	if [ $? -ne 0 ]
@@ -84,7 +84,7 @@ do
 
 	# for summer 2025: re-enable this after find best new "blank slate" model
 	## generate the 2023-only.html page
-	MODEL_NAME="blank-slate-v2.2025.08"
+	MODEL_NAME="blank-slate-v2.2025.08" # ALSO update this in ~/projects/nfl-elo/manualAutoFetch.sh
 	echo "python3 \"${NFL_ELO_DIR}/outputYearMarkdown.py\" \"${MODEL_NAME}\" \"${YEAR}\" \"${YEAR}\" $STOP_ARG $FREEZE_ARG"
 	python3 "${NFL_ELO_DIR}/outputYearMarkdown.py" "${MODEL_NAME}" "${YEAR}" "${YEAR}" $STOP_ARG $FREEZE_ARG > "${NFL_ELO_STATIC_DIR}/${YEAR}-only${FREEZE_FILE_SUFFIX}.md"
 	if [ $? -ne 0 ]
