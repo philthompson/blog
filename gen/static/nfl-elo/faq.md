@@ -30,6 +30,7 @@
 
 * [What are Elo ratings?](#Elo-Ratings)
 * [How do Elo ratings work for the NFL?](#NFL-Elo-Ratings)
+* [Why can teams lose Elo rating points after a win?](#Why-Lose-Rating-Points-After-a-Win)
 * [Why are you publishing these?](#Why-Publish)
 * [What are the goals of these NFL Elo ratings?](#Goals)
 * [Why be objective?](#Why-Objective)
@@ -58,9 +59,9 @@
 
 <h3><a name="Elo-Ratings"></a><small><a class="top-arw" title="Top" href="#top">↑</a></small> What are Elo ratings?</h3>
 
-Elo ratings are numeric strength ratings for a set of competitors (see <a target="_blank" href="https://en.wikipedia.org/wiki/Elo_rating_system">Wikipedia</a>) where higher scores are better.  For example, competitor "A" with an Elo rating of 1,650 is considered stronger than "B" with a rating of 1,600.  This allows us to judge the strength of two competitors that haven't recently, or ever, had a head-to-head match using one number: their Elo rating.
+Elo ratings are numeric strength ratings for a set of competitors (see <a target="_blank" href="https://en.wikipedia.org/wiki/Elo_rating_system">Wikipedia</a>) where higher scores are better.  For example, competitor "A" with an Elo rating of 1,650 is considered stronger than "B" with a rating of 1,600.  This allows us to judge the strength of two competitors that haven't recently, or ever, had a head-to-head match.
 
-The *expected* outcome of a contest between any two contestants can be calculated using their ratings.  After a match, the contestant that exceeds expectations takes some amount of Elo rating points from their opponent.  For the example ratings, if the weaker contestant "B" beats "A" convincingly, they may take 30 Elo rating points.  "B" would then be rated 1,630 and "A" would then be rated 1,620.
+The *expected* outcome of one or more contests between any two contestants can be calculated using their ratings.  After a match, the contestant that exceeds expectations takes some amount of Elo rating points from their opponent.  For the example ratings, say the weaker contestant "B" beats "A" and is awarded 30 Elo rating points.  "B" would then be rated 1,630 and "A" would then be rated 1,620.
 
 While originally invented for rating chess players, Elo ratings and similar systems are used in many areas.
 
@@ -68,9 +69,18 @@ While originally invented for rating chess players, Elo ratings and similar syst
 
 In applying Elo ratings to American football, we cannot treat an NFL game like a single chess game.  A chess game can be won or lost in only a few moves, and the endgame is determined by which pieces remain and where they are physically positioned.  This is more analogous to a football drive or even a single play than to an entire football game.
 
-Instead, we'll treat a football game like a multi-game chess match.  After a scoring drive, a football team kicks to their opponent and a new drive begins &mdash; to some degree the game is reset.  Nothing like this happens in a single chess game but it lines up nicely with a multi-game chess match.
+Another way of looking at it involves the *approach* taken by the players/teams involved.  In a multi-game chess match, players do not treat each individual chess game as a "must win."  Depending on whether they are playing the white or black pieces, or how the game progresses, they may attempt to invoke a draw.  A chess match cannot be won or lost in a single game, and their goal is to win the match, not each game.  Similarly, football teams do not treat each individual drive or play as a "must win."  A football game cannot be won with a couple of scores in the first quarter.  Their goal is to win the football game by "winning" more drives/plays than the other team over the course of the game.
 
-In a chess match, player ratings are used to compute the expected winning percentage of games for both players.  An expected performance of 0.5 means a player is expected to win as many games as they lose, and draw the rest.  For football, we can consider each game as a series of drives (or plays). If one team "wins" most of the drives within a game, they'll likely end up with a large margin of victory. If both teams "win" the same number of drives, the margin of victory will likely be much more narrow.  Therefore, team ratings can be used to calculate an expected margin of victory for the favored team.  For example, if both teams are expected to score 0.5, a tie is expected.  If one team is expected to score a perfect 1.0, they are expected to win by a "blowout" margin (more on that later).  After a game, the two teams' Elo ratings are adjusted based on the actual vs. expected margin of victory.
+For these reasons, it doesn't make sense to treat a football game like a single chess game with respect to Elo calculations.  Instead, we'll treat a football game like a multi-game chess match.  This works nicely because after a scoring drive, a football team kicks to their opponent and a new drive begins &mdash; to some degree the game is reset.  Nothing like this happens in a single chess game.
+
+For a chess match, player ratings are used to compute the expected winning percentage of games for both players.  An expected performance of 0.5 means both players are expected to win as many games as they lose and draw the rest.  For football, we can consider each game as a series of drives (or plays). If one team "wins" most of the drives within a game, they'll likely end up with a large margin of victory. If both teams "win" the same number of drives, the margin of victory will likely be much more narrow.  Therefore, team ratings can be used to calculate an expected margin of victory for the favored team.  For example, if both teams have an expected performance near 0.5, a close game is expected, with a tie being exactly 0.5.  If one team is expected to score near a perfect 1.0, they are expected to win by a "blowout" margin (more on that later).  After a game, the two teams' Elo ratings are adjusted based on the difference between the actual and expected margin of victory.
+
+<h3><a name="Why-Lose-Rating-Points-After-a-Win"></a><small><a class="top-arw" title="Top" href="#top">↑</a></small> Why can teams lose Elo rating points after a win?</h3>
+
+For Elo calculations, it makes more sense to treat an NFL game like a series of contests (drives or plays), where the goal is to win the football game, not every drive or play.  This is more analogous to a multi-game chess match both for how the games play out and in how the players approach each game or football drive/play.  If a team wins a football game, but by a smaller than expected margin, they will give Elo rating points to their opponent.  See [How do Elo ratings work for the NFL?](#NFL-Elo-Ratings) for more background.
+
+Also see [Why use margin of victory?](#Why-Use-Margin-of-Victory).
+
 
 <h3><a name="Why-Publish"></a><small><a class="top-arw" title="Top" href="#top">↑</a></small> Why are you publishing these?</h3>
 
@@ -89,6 +99,8 @@ I believe that If I do any subjective model tuning to make the ratings "look mor
 There are plenty of power rankings designed by their authors to look correct to their eye.  (Reddit user <a target="_blank" href="https://old.reddit.com/user/mikebiox/submitted/?sort=new">mikebiox</a> has been posting weekly <a target="_blank" href="https://old.reddit.com/r/nfl/comments/1oua20x/nfl_power_rankings_combined_week_10/">averaged power rankings for years</a> if you're interested in those.)  There's no point in replicating any of that here, so these Elo ratings are intended to be objective.
 
 <h3><a name="Define-Accurate"></a><small><a class="top-arw" title="Top" href="#top">↑</a></small> How can the "accuracy" of these Elo ratings be judged?</h3>
+
+Simply put: these Elo ratings have an expected winner for each game.  Over one or more seasons, we can see how many game winners are correctly picked.
 
 These Elo ratings take a few factors into account, including home field advantage and rest days, to calculate expected winners for each game.  Models that pick more game winners correctly are considered more accurate.  To avoid overfitting to individual seasons, the standard deviation of the pick rate across seasons is also used: models that pick game winners more consistently from season to season are considered more accurate.
 
@@ -126,7 +138,7 @@ The ratings are calculated from:
 
 <h3><a name="How-Accurate"></a><small><a class="top-arw" title="Top" href="#top">↑</a></small> How accurate are these ratings?</h3>
 
-This Elo rating model was tuned by backtesting against 8,200+ games NFL games from 1994 through 2024. Over that span of it correctly picks winners in 65.84% of games, trailing the Vegas straight-up pick rate of 66.63% (according to <a target="_blank" href="https://www.sportsoddshistory.com/nfl-game-odds/">sportsoddshistory.com</a>), though it did meet or exceed Vegas's pick rate in 8 of the past 14 seasons. This model also does well compared to many "experts" on <a target="_blank" href="https://nflpickwatch.com/nfl">NFL Pickwatch</a>. That being said, these ratings and rankings are not intended for use in informing sports betting decisions. This is a simple Elo model derived from a minimal data set and it does not account for many relevant factors that may impact game outcomes. The accuracy of this model for past seasons is not necessarily indicative of its accuracy for the current or future seasons.
+This Elo rating model was tuned by backtesting against 8,200+ games NFL games from 1994 through 2024. Over that span of it correctly picks winners in 65.84% of games, trailing the Vegas straight-up pick rate of 66.63% (according to <a target="_blank" href="https://www.sportsoddshistory.com/nfl-game-odds/">sportsoddshistory.com</a>), though it did meet or exceed Vegas's pick rate in 8 of the past 14 seasons. This model also does better than the average game picker at <a target="_blank" href="https://www.nflpickspage.com/sitestats.php?year=2025&view=su">NFL Picks Page</a>. That being said, these ratings and rankings are not intended for use in informing sports betting decisions. This is a simple Elo model derived from a minimal data set and it does not account for many relevant factors that may impact game outcomes. The accuracy of this model for past seasons is not necessarily indicative of its accuracy for the current or future seasons.
 
 <a target="_blank" href="https://philthompson.me/s/img/2025/20250909-By-Season-Vs-Vegas-1994-2024.png">This chart</a> shows the pick rates by season between Vegas and the newest (at the time of writing) Elo models for the 2025 season.
 
@@ -134,7 +146,7 @@ This Elo rating model was tuned by backtesting against 8,200+ games NFL games fr
 
 I guess it's a bit surprising, but the "slow to update" nature of these Elo ratings was found to give the best accuracy.  This indicates that NFL teams do carry over much of their identity from one season to the next.
 
-The [model's accuracy, compared to Vegas](#How-Accurate), demonstrates this.
+The [model's accuracy, compared to Vegas and to the average person](#How-Accurate), demonstrates this.
 
 <h3><a name="Why-Not-Use-More-Stats"></a><small><a class="top-arw" title="Top" href="#top">↑</a></small> Why don't these Elo ratings use QB stats?  Or player injuries?  Or offense or defense EPA stats?  Or other stats?</h3>
 
@@ -144,9 +156,9 @@ Additionally, it appears that stats, roster changes, etc., don't seem to matter 
 
 <h3><a name="Why-Use-Margin-of-Victory"></a><small><a class="top-arw" title="Top" href="#top">↑</a></small> Why use margin of victory?  The object of the game is to win, not to win by a wide margin.</h3>
 
-I am very confident that teams attempt to score on most drives on offense, and try to prevent scores while playing defense.  There are some situations where it's optimal to burn clock or force the opponent to use timeouts, but otherwise I believe teams try to score on every possession.  At the end of the day, the best way to increase your chance of winning is to have a larger lead.
+I am very confident that teams attempt to score on most drives on offense, and try to prevent scores while playing defense.  There are some situations where it's optimal to focus on burning clock or to force the opponent to use timeouts, but otherwise I believe teams try to score on every possession.  At the end of the day, the best way to increase your chance of winning is to have a larger lead.
 
-Using margin of victory instead of "expected chance to win" also makes [calculating model accuracy](#Define-Accurate) more straightforward.
+It also makes more sense, Elo-wise, to [treat a football game like a multi-game chess match than a single chess game](#NFL-Elo-Ratings), and margin of victory is then used to determine team performance.  Additionally, using margin of victory instead of "expected chance to win" makes [calculating model accuracy](#Define-Accurate) more straightforward.
 
 <h3><a name="What-Is-a-Big-Win"></a><small><a class="top-arw" title="Top" href="#top">↑</a></small> How can margin of victory be used when a 30-point win may be no better than a 20-point win?</h3>
 
@@ -156,7 +168,9 @@ Margin of victory is awarded on a curve.  A 50-point win is not awarded 10 times
 
 Like all aspects of this system, the model appears to be slow to update because that [results in the most correctly-picked games, on average](#Define-Objective).
 
-One interpretation of this is that games (especially close games) are often won or lost due in part to factors not related to the underlying "true strength" of a team: sometimes they play at a stronger or weaker level depending on injuries, opponent, game plan, individual matchups between players, play calling, and even weather and field conditions, and there are also simple flukes and odd bounces of the ball.  The best the model can do is shoot for the average case and try not to over-react to individual games.
+One interpretation of this is that games (especially close games) are often won or lost due in part to factors not related to the underlying "true strength" of a team: sometimes they play at a stronger or weaker level depending on injuries, opponent, game plan, individual matchups between players, play calling, and even weather and field conditions, and there are also simple flukes and odd bounces of the ball.
+
+If we were to change an improving or collapsing team's Elo rating too quickly, we might be more accurate for that team but at the expense of accuracy for other teams that simply had an outlier good or bad game.  The best the model can do is shoot for the average case and try not to over-react to individual games.
 
 <h3><a name="Injury-Bump"></a><small><a class="top-arw" title="Top" href="#top">↑</a></small> Team XYZ gained too many rating points for beating an injured team.  How is this accounted for?</h3>
 
