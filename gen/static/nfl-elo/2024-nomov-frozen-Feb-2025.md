@@ -415,7 +415,6 @@ Contents <a name="top"></a>
 
 <div class="btns" style="margin:0 0 2rem 0">
         <a class="btn" href="./2023-nomov-frozen-Feb-2025.html">← 2023 Season</a>
-        <a class="btn" href="./2025-nomov-frozen-Feb-2025.html">2025 Season →</a>
 </div>
 
 <hr/>

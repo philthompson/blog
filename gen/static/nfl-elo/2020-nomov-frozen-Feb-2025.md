@@ -413,7 +413,6 @@ Contents <a name="top"></a>
 
 
 <div class="btns" style="margin:0 0 2rem 0">
-        
         <a class="btn" href="./2021-nomov-frozen-Feb-2025.html">2021 Season →</a>
 </div>
 
