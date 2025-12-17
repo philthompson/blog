@@ -40,7 +40,8 @@
 * [What data is used to calculate these Elo ratings?](#Data)
 * [How accurate are these ratings?](#How-Accurate)
 * [The NFL only has 17 games in a season, and every year there is a lot of roster and coach turnover.  How can Elo ratings be effective for the NFL?](#Small-Sample-Size)
-* [Why don't these Elo ratings use QB stats?  Or player injuries?  Or offense or defense EPA stats?  Or other stats?](#Why-Not-Use-More-Stats)
+* [Why don't these Elo ratings use player injuries?](#Why-Not-Use-Injuries)
+* [Why don't these Elo ratings use QB stats?  Or offense or defense EPA stats?  Or other stats?](#Why-Not-Use-More-Stats)
 * [Why use margin of victory?  The object of the game is to win, not to win by a wide margin.](#Why-Use-Margin-of-Victory)
 * [How can margin of victory be used when a 30-point win may be no better than a 20-point win?](#What-Is-a-Big-Win)
 * [Why are the ratings so slow to update?  Team XYZ has won several games recently, and they're not highly rated.](#Why-Do-Ratings-Move-So-Little)
@@ -55,7 +56,9 @@
 * [Why was the model changed?](#Why-Was-The-Model-Changed)
 * [I have a comment, feedback, or suggestion.  How can I get in touch?](#Comment-Feedback-Suggestion)
 
-
+<div class="btns">
+	<a class="btn" href="./index.html">NFL Elo Home</a>
+</div>
 
 <h3><a name="Elo-Ratings"></a><small><a class="top-arw" title="Top" href="#top">↑</a></small> What are Elo ratings?</h3>
 
@@ -148,7 +151,15 @@ I guess it's a bit surprising, but the "slow to update" nature of these Elo rati
 
 The [model's accuracy, compared to Vegas and to the average person](#How-Accurate), demonstrates this.
 
-<h3><a name="Why-Not-Use-More-Stats"></a><small><a class="top-arw" title="Top" href="#top">↑</a></small> Why don't these Elo ratings use QB stats?  Or player injuries?  Or offense or defense EPA stats?  Or other stats?</h3>
+<h3><a name="Why-Not-Use-Injuries"></a><small><a class="top-arw" title="Top" href="#top">↑</a></small> Why don't these Elo ratings use player injuries?</h3>
+
+I don't think it's a good idea to directly change team Elo ratings as a result of player injuries.  Practically, it is extremely challenging to quantify the impact of a single player.  This would involve play-by-play analysis, and even this is kind of limited in usefulness because we don't know all the players' assignments on each play, and players are rotated in and out of games all the time.  On top of that, sometimes players are replaced by quality backups or trades or by signing guys off the couch.  And we do want to incorporate the strengths of each team's depth and coaching staff into their ratings, and injuries allow us to do this.
+
+But ultimately, I don't want Elo ratings to be impacted by anything other than what happens on the field.  If we change team ratings outside of game results I think we're straying too far from true "Elo" ratings.
+
+I think this approach works fine for the most part.  Vegas does take injuries into account, and these injury-unaware Elo ratings track the Vegas straight-up picks closely (even exceeding them in some years).  Also see [Why don't these Elo ratings use stats?](#Why-Not-Use-More-Stats).
+
+<h3><a name="Why-Not-Use-More-Stats"></a><small><a class="top-arw" title="Top" href="#top">↑</a></small> Why don't these Elo ratings use QB stats?  Or offense or defense EPA stats?  Or other stats?</h3>
 
 Ultimately, I want to keep these ratings simple and traditional.  I believe that incorporating more stats and variables makes the model more susceptible to bias, and makes the model harder to tune for accuracy.  The model's [accuracy](#How-Accurate) is, in my opinion, already very good as-is.
 
