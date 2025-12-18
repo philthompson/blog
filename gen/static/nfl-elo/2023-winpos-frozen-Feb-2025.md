@@ -470,6 +470,7 @@ Contents <a name="top"></a>
 </table>
         <h3 class="only-superwide" style="opacity:50%">https://philthompson.me/nfl-elo/</h3>
 </div>
+
 ### <a name="after-Playoffs-Championship"></a><small><a class="top-arw" href="#top">↑</a></small> Power Rankings After Playoffs Championship, 2023 Season
 
 <div class="row-toggle-and-table">
@@ -530,6 +531,7 @@ Contents <a name="top"></a>
 </table>
         <h3 class="only-superwide" style="opacity:50%">https://philthompson.me/nfl-elo/</h3>
 </div>
+
 ### <a name="after-Playoffs-Divisional"></a><small><a class="top-arw" href="#top">↑</a></small> Power Rankings After Playoffs Divisional, 2023 Season
 
 <div class="row-toggle-and-table">
@@ -608,6 +610,7 @@ Contents <a name="top"></a>
 </table>
         <h3 class="only-superwide" style="opacity:50%">https://philthompson.me/nfl-elo/</h3>
 </div>
+
 ### <a name="after-Playoffs-Wildcard"></a><small><a class="top-arw" href="#top">↑</a></small> Power Rankings After Playoffs Wildcard, 2023 Season
 
 <div class="row-toggle-and-table">
@@ -716,6 +719,7 @@ Contents <a name="top"></a>
 </table>
         <h3 class="only-superwide" style="opacity:50%">https://philthompson.me/nfl-elo/</h3>
 </div>
+
 ### <a name="after-Reg-18"></a><small><a class="top-arw" href="#top">↑</a></small> Power Rankings After Week 18, 2023 Season
 
 <div class="row-toggle-and-table">
@@ -896,6 +900,7 @@ Contents <a name="top"></a>
 </table>
         <h3 class="only-superwide" style="opacity:50%">https://philthompson.me/nfl-elo/</h3>
 </div>
+
 ### <a name="after-Reg-17"></a><small><a class="top-arw" href="#top">↑</a></small> Power Rankings After Week 17, 2023 Season
 
 <div class="row-toggle-and-table">
@@ -1130,6 +1135,7 @@ Contents <a name="top"></a>
 </table>
         <h3 class="only-superwide" style="opacity:50%">https://philthompson.me/nfl-elo/</h3>
 </div>
+
 ### <a name="after-Reg-16"></a><small><a class="top-arw" href="#top">↑</a></small> Power Rankings After Week 16, 2023 Season
 
 <div class="row-toggle-and-table">
@@ -1364,6 +1370,7 @@ Contents <a name="top"></a>
 </table>
         <h3 class="only-superwide" style="opacity:50%">https://philthompson.me/nfl-elo/</h3>
 </div>
+
 ### <a name="after-Reg-15"></a><small><a class="top-arw" href="#top">↑</a></small> Power Rankings After Week 15, 2023 Season
 
 <div class="row-toggle-and-table">
@@ -1598,6 +1605,7 @@ Contents <a name="top"></a>
 </table>
         <h3 class="only-superwide" style="opacity:50%">https://philthompson.me/nfl-elo/</h3>
 </div>
+
 ### <a name="after-Reg-14"></a><small><a class="top-arw" href="#top">↑</a></small> Power Rankings After Week 14, 2023 Season
 
 <div class="row-toggle-and-table">
@@ -1832,6 +1840,7 @@ Contents <a name="top"></a>
 </table>
         <h3 class="only-superwide" style="opacity:50%">https://philthompson.me/nfl-elo/</h3>
 </div>
+
 ### <a name="after-Reg-13"></a><small><a class="top-arw" href="#top">↑</a></small> Power Rankings After Week 13, 2023 Season
 
 <div class="row-toggle-and-table">
@@ -2066,6 +2075,7 @@ Contents <a name="top"></a>
 </table>
         <h3 class="only-superwide" style="opacity:50%">https://philthompson.me/nfl-elo/</h3>
 </div>
+
 ### <a name="after-Reg-12"></a><small><a class="top-arw" href="#top">↑</a></small> Power Rankings After Week 12, 2023 Season
 
 <div class="row-toggle-and-table">
@@ -2300,6 +2310,7 @@ Contents <a name="top"></a>
 </table>
         <h3 class="only-superwide" style="opacity:50%">https://philthompson.me/nfl-elo/</h3>
 </div>
+
 ### <a name="after-Reg-11"></a><small><a class="top-arw" href="#top">↑</a></small> Power Rankings After Week 11, 2023 Season
 
 <div class="row-toggle-and-table">
@@ -2534,6 +2545,7 @@ Contents <a name="top"></a>
 </table>
         <h3 class="only-superwide" style="opacity:50%">https://philthompson.me/nfl-elo/</h3>
 </div>
+
 ### <a name="after-Reg-10"></a><small><a class="top-arw" href="#top">↑</a></small> Power Rankings After Week 10, 2023 Season
 
 <div class="row-toggle-and-table">
@@ -2768,6 +2780,7 @@ Contents <a name="top"></a>
 </table>
         <h3 class="only-superwide" style="opacity:50%">https://philthompson.me/nfl-elo/</h3>
 </div>
+
 ### <a name="after-Reg-9"></a><small><a class="top-arw" href="#top">↑</a></small> Power Rankings After Week 9, 2023 Season
 
 <div class="row-toggle-and-table">
@@ -3002,6 +3015,7 @@ Contents <a name="top"></a>
 </table>
         <h3 class="only-superwide" style="opacity:50%">https://philthompson.me/nfl-elo/</h3>
 </div>
+
 ### <a name="after-Reg-8"></a><small><a class="top-arw" href="#top">↑</a></small> Power Rankings After Week 8, 2023 Season
 
 <div class="row-toggle-and-table">
@@ -3236,6 +3250,7 @@ Contents <a name="top"></a>
 </table>
         <h3 class="only-superwide" style="opacity:50%">https://philthompson.me/nfl-elo/</h3>
 </div>
+
 ### <a name="after-Reg-7"></a><small><a class="top-arw" href="#top">↑</a></small> Power Rankings After Week 7, 2023 Season
 
 <div class="row-toggle-and-table">
@@ -3470,6 +3485,7 @@ Contents <a name="top"></a>
 </table>
         <h3 class="only-superwide" style="opacity:50%">https://philthompson.me/nfl-elo/</h3>
 </div>
+
 ### <a name="after-Reg-6"></a><small><a class="top-arw" href="#top">↑</a></small> Power Rankings After Week 6, 2023 Season
 
 <div class="row-toggle-and-table">
@@ -3704,6 +3720,7 @@ Contents <a name="top"></a>
 </table>
         <h3 class="only-superwide" style="opacity:50%">https://philthompson.me/nfl-elo/</h3>
 </div>
+
 ### <a name="after-Reg-5"></a><small><a class="top-arw" href="#top">↑</a></small> Power Rankings After Week 5, 2023 Season
 
 <div class="row-toggle-and-table">
@@ -3938,6 +3955,7 @@ Contents <a name="top"></a>
 </table>
         <h3 class="only-superwide" style="opacity:50%">https://philthompson.me/nfl-elo/</h3>
 </div>
+
 ### <a name="after-Reg-4"></a><small><a class="top-arw" href="#top">↑</a></small> Power Rankings After Week 4, 2023 Season
 
 <div class="row-toggle-and-table">
@@ -4172,6 +4190,7 @@ Contents <a name="top"></a>
 </table>
         <h3 class="only-superwide" style="opacity:50%">https://philthompson.me/nfl-elo/</h3>
 </div>
+
 ### <a name="after-Reg-3"></a><small><a class="top-arw" href="#top">↑</a></small> Power Rankings After Week 3, 2023 Season
 
 <div class="row-toggle-and-table">
@@ -4406,6 +4425,7 @@ Contents <a name="top"></a>
 </table>
         <h3 class="only-superwide" style="opacity:50%">https://philthompson.me/nfl-elo/</h3>
 </div>
+
 ### <a name="after-Reg-2"></a><small><a class="top-arw" href="#top">↑</a></small> Power Rankings After Week 2, 2023 Season
 
 <div class="row-toggle-and-table">
@@ -4640,6 +4660,7 @@ Contents <a name="top"></a>
 </table>
         <h3 class="only-superwide" style="opacity:50%">https://philthompson.me/nfl-elo/</h3>
 </div>
+
 ### <a name="after-Reg-1"></a><small><a class="top-arw" href="#top">↑</a></small> Power Rankings After Week 1, 2023 Season
 
 <div class="row-toggle-and-table">
