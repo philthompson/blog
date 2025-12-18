@@ -63,8 +63,8 @@
                 display: inline-block;
                 /* background:red; */
                 /* color:white; */
-                transition: all .3s ease;
-                padding: 0.0rem 1.0rem;
+                /* transition: all .3s ease; */
+                /* padding: 0.0rem 1.0rem; */
                 /* width:100%; */
                 text-decoration: underline;
         }
