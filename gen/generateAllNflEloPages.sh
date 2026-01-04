@@ -53,9 +53,19 @@ do
 	#   entire year
 	# STOP_ARG is not quoted here, because it's only
 	#   included for the final year
-	MODEL_NAME="v3.2025.06" # ALSO update this in ~/projects/nfl-elo/manualAutoFetch.sh
+	MODEL_NAME="v2.2024.07" # ALSO update this in ~/projects/nfl-elo/manualAutoFetch.sh
 	echo "python3 \"${NFL_ELO_DIR}/outputYearMarkdown.py\" \"${MODEL_NAME}\" 1992 \"${YEAR}\" $STOP_ARG $FREEZE_ARG"
 	python3 "${NFL_ELO_DIR}/outputYearMarkdown.py" "${MODEL_NAME}" 1992 "${YEAR}" $STOP_ARG $FREEZE_ARG > "${NFL_ELO_STATIC_DIR}/${YEAR}${FREEZE_FILE_SUFFIX}.md"
+	if [ $? -ne 0 ]
+	then
+		echo "error detected in regular model run"
+		exit
+	fi
+
+	# for 2025 season, moving the "v3.2025.06" model to separate pages
+	MODEL_NAME="v3.2025.06" # ALSO update this in ~/projects/nfl-elo/manualAutoFetch.sh
+	echo "python3 \"${NFL_ELO_DIR}/outputYearMarkdown.py\" \"${MODEL_NAME}\" 1992 \"${YEAR}\" $STOP_ARG $FREEZE_ARG"
+	python3 "${NFL_ELO_DIR}/outputYearMarkdown.py" "${MODEL_NAME}" 1992 "${YEAR}" $STOP_ARG $FREEZE_ARG > "${NFL_ELO_STATIC_DIR}/${YEAR}-v3-2025-06${FREEZE_FILE_SUFFIX}.md"
 	if [ $? -ne 0 ]
 	then
 		echo "error detected in regular model run"
