@@ -166,10 +166,10 @@ winners (65.8%).*
 All available 2025 season pages:
 
 <ul>
-<li><a href="./2025.html">2025 (regular)</a></li>
-<li><a href="./2025-only.html">2025 "Blank Slate"</a></li>
-<!--<li><a href="./2025-winpos.html">2025 "Never Lose Elo For a Win"</a></li>-->
-<!--<li><a href="./2025-nomov.html">2025 "No Margin of Victory"</a></li>-->
+<li><a href="./2025-frozen-Feb-2025.html">2025 (regular)</a></li>
+<li><a href="./2025-only-frozen-Feb-2025.html">2025 "Blank Slate"</a></li>
+<!--<li><a href="./2025-winpos-frozen-Feb-2025.html">2025 "Never Lose Elo For a Win"</a></li>-->
+<!--<li><a href="./2025-nomov-frozen-Feb-2025.html">2025 "No Margin of Victory"</a></li>-->
 </ul>
 <hr/>
 
@@ -442,7 +442,7 @@ Contents <a name="top"></a>
 
 
 <div class="btns" style="margin:0 0 2rem 0">
-        <a class="btn" href="./2024-only.html">← 2024 Season</a> <a class="btn" href="./">NFL Elo Home</a> 
+        <a class="btn" href="./2024-only-frozen-Feb-2025.html">← 2024 Season</a> <a class="btn" href="./">NFL Elo Home</a> 
 </div>
 
 <hr/>
