@@ -265,6 +265,7 @@ def populateHashesDb(*, curs, HASHES_FILE, HASHES_SUPP, HASHES_ID, HASHES_YEAR, 
 		PHOTO_FILENAME = LINE.split(':')[0]
 		PHOTO_YEAR = PHOTO_FILENAME.split('-')[0]
 		PHOTO_MONTH = PHOTO_FILENAME.split('-')[1]
+		PHOTO_DAY = PHOTO_FILENAME.split('-')[2]
 		# this requires a local (on the system this script is running on) copy
 		#   of all bird gallery -sm.jpg pictures, which i of course have but
 		#   this means the git repo is not self-contained with respect to
@@ -291,8 +292,14 @@ def populateHashesDb(*, curs, HASHES_FILE, HASHES_SUPP, HASHES_ID, HASHES_YEAR, 
 		# this path is relative to the new on-webserver static images path
 		PHOTO_PATH_REL = f"{HASHES_YEAR}/{PHOTO_FILENAME}"
 		PHOTO_DATETIME_LEX = executeCmd(['/opt/homebrew/bin/exiftool', '-d', '%Y-%m-%d-%H%M%S', '-DateTimeOriginal', '-S', '-s', PHOTO_PATH])
-		if PHOTO_DATETIME_LEX is None:
-			continue
+		if PHOTO_DATETIME_LEX is None or len(PHOTO_DATETIME_LEX.strip()) == 0:
+			if not PHOTO_YEAR.isdigit() or not PHOTO_MONTH.isdigit() or not PHOTO_DAY.isdigit():
+				continue
+			# if a DateTimeOriginal cannot be found in metadata, use filename
+			PHOTO_HMS = (PHOTO_FILENAME.split('-') + ['']*4)[3]
+			if not PHOTO_HMS.isdigit():
+				PHOTO_HMS = '000000'
+			PHOTO_DATETIME_LEX = '-'.join([PHOTO_YEAR, PHOTO_MONTH, PHOTO_DAY, PHOTO_HMS])
 		PHOTO_DATETIME_LEX = PHOTO_DATETIME_LEX.strip()
 		photo_datetime_parsed = datetime.strptime(PHOTO_DATETIME_LEX, '%Y-%m-%d-%H%M%S')
 		#PHOTO_DATETIME_DISP="`/opt/homebrew/bin/exiftool -d '%I:%M%p %A %B %d, %Y' -DateTimeOriginal -S -s "${PHOTO_PATH}"`"
