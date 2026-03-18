@@ -87,13 +87,43 @@ photos_data = {
 		{'url': '2024-02-18-105333-84-R6PT1268-sm.jpg',                  'desc': 'Steller sea lion<br/>Oregon, USA' },
 		{'url': '2024-03-15-Moon-Stacked-Blended.jpg',                   'desc': 'shot from Oregon, USA' },
 		{'url': '2024-04-08-eclipse-stacked-topaz-composite-sm.jpg',     'desc': 'Total Solar Eclipse<br/>shot from New York, USA' },
-		{'url': '2024-04-15-133443-21-R6PT4768-sm.jpg',                  'desc': 'Suksdorf’s Large Camas<br/>Oregon, USA' },
+		{'url': '2024-04-15-133443-21-R6PT4768-sm.jpg',                  'desc': "Suksdorf's Large Camas<br/>Oregon, USA" },
 		{'url': '2024-05-28-092701-05-R6PT9324-Photoshop-16x9-sm.jpg',   'desc': 'Lazuli Bunting<br/>Oregon, USA' },
-		{'url': '2024-05-29-094600-34-R6PT9716-sm.jpg',                  'desc': 'Townsend’s Chipmunk<br/>Oregon, USA' },
+		{'url': '2024-05-29-094600-34-R6PT9716-sm.jpg',                  'desc': "Townsend's Chipmunk<br/>Oregon, USA" },
 		{'url': '2024-05-21-102959-27-R6PT9030-sm.jpg',                  'desc': 'Southern Alligator Lizard<br/>Oregon, USA' },
 		{'url': '2024-07-21-101135-21-R6PT3960-sm.jpg',                  'desc': 'White-winged Scoter<br/>Oregon, USA' },
 		{'url': '2024-07-21-101155-47-R6PT3983-sm.jpg',                  'desc': 'White-winged Scoter<br/>Oregon, USA' },
 		{'url': '2024-10-03-141205-noise-flow-palette51.jpg',            'desc': 'Perlin noise flow field<br/>Generated with <a href="https://philthompson.me/misc/noise-flow-field/">this JavaScript app</a>.' },
+	],
+	2025: [
+		{'url': '2025-01-21-bgp2_stack_gesd_fwhmweighted-phil-2-sm.jpg',      'desc': 'M 31 Andromeda Galaxy<br/>shot from Oregon, USA' },
+		{'url': '2025-03-13-205558-68-R5PT7292-Photoshop-sm.jpg',             'desc': 'Full Moon<br/>shot from Oregon, USA' },
+		{'url': '2025-03-13-235832-06-R5PT7370-sm.jpg',                       'desc': 'Total Lunar Eclipse at Midnight<br/>shot from Oregon, USA' },
+		{'url': '2025-01-21-bgp2_stack_gesd_fwhmweighted-phil-2-sm.jpg',      'desc': 'M 31 Andromeda Galaxy<br/>shot from Oregon, USA' },
+		{'url': '2025-03-17-095430-09-R5PT8499-Pano-Enhanced-NR-16x9-sm.jpg', 'desc': 'Oregon, USA' },
+		{'url': '2025-04-21-093834-08-R5PT4605-Pano-sm.jpg',                  'desc': 'Oregon, USA' },
+		{'url': '2025-04-28-115019-11-R5PT5923-HDR-sm.jpg',                   'desc': 'Harbor Seal<br/>Oregon, USA' },
+		{'url': '2025-04-30-Moon-3x-stacked64-wavelet-down1x-ALL3-R5PT7111-HDR-sm.jpg',  'desc': '15.6% Moon with HDR Effect<br/>shot from Oregon, USA' },
+		{'url': '2025-05-04-m81-1433x20s-sm.jpg',                             'desc': "M 81 Bode's Galaxy and M 82 Cigar Galaxy<br/>ZWO Seestar S30<br/>shot from Oregon, USA" },
+		{'url': '2025-05-24-M101-sm.jpg',                                     'desc': "M 101 Pinwheel Galaxy<br/>ZWO Seestar S30<br/>shot from Oregon, USA" },
+		{'url': '2025-05-28-121849-95-R5PT6877-sm.jpg',                       'desc': 'Common Ringlet<br/>Oregon, USA' },
+		{'url': '2025-05-29-Moon-blended-down1x-sm.jpg',                      'desc': '12.6% Moon with HDR Effect<br/>shot from Oregon, USA' },
+		{'url': '2025-06-09-091052-70-R5PT9590-Photoshop-sm.jpg',             'desc': 'Western Fence Lizard<br/>Oregon, USA' },
+		{'url': '2025-06-11-102427-24-R5PT1093-sm.jpg',                       'desc': 'Pacific Forktail<br/>Oregon, USA' },
+		{'url': '2025-06-18-135806-57-R5PT1941-sm.jpg',                       'desc': "Burchell's Zebra (captive)<br/>Oregon, USA" },
+		{'url': '2025-06-18-150112-78-R5PT2403-sm.jpg',                       'desc': 'Chilean Flamingo (captive)<br/>Yes, this is a bird.  It\'s in this "non-bird"<br/>gallery because it\'s captive.<br/>Oregon, USA' },
+		{'url': '2025-06-18-150215-59-R5PT2451-sm.jpg',                       'desc': 'Chilean Flamingo (captive)<br/>Yes, this is a bird.  It\'s in this "non-bird"<br/>gallery because it\'s captive.<br/>Oregon, USA' },
+		{'url': '2025-07-06-152321-667-IMG_8676-sm.jpg',                      'desc': 'A Rock on the Coast<br/>Oregon, USA' },
+		{'url': '2025-07-06-152336-297-IMG_8677-sm.jpg',                      'desc': 'A Rock on the Coast<br/>Oregon, USA' },
+		# someday, make the Florida ones visible (put the crabs on iNat first to get species name)
+		#{'url': '2025-08-02-162205-28-R5PT3050-sm.jpg',                      'desc': 'Unknown Crab Species<br/>Florida, USA' },
+		#{'url': '2025-08-02-162619-94-R5PT3222-sm.jpg',                      'desc': 'Unknown Crab Species<br/>Florida, USA' },
+		{'url': '2025-08-06-093827-22-R5PT6001-sm.jpg',                       'desc': 'Common Golden-mantled Ground Squirrel<br/>Oregon, USA' },
+		{'url': '2025-10-20-C2025-A6-Lemmon-crop-35pct.jpg',                  'desc': 'Comet C/2025 A6 (Lemmon)<br/>shot from Oregon, USA' },
+		{'url': '2025-10-29-NGC7000-NAmericaNeb-50pct-sm.jpg',                'desc': 'NGC 7000 North America Nebula<br/>ZWO Seestar S30<br/>shot from Oregon, USA' },
+		{'url': '2025-11-03-090505-49-R5PT8125-sm.jpg',                       'desc': 'Pacific Madrone<br/>Oregon, USA' },
+		{'url': '2025-11-23-132948-46-R5PT1589-sm.jpg',                       'desc': 'Saguaro<br/>Arizona, USA' },
+		{'url': '2025-11-23-145607-42-R5PT2038-Pano-full-sm.jpg',             'desc': 'Arizona, USA' },
 	]
 }
 
@@ -152,7 +182,7 @@ def write_header(*, year, prev_year, next_year, buffer):
 
 [//]: # (gen-keywords: photography, gallery, landscape, art)
 
-[//]: # (gen-description: Some of my favorite (non-bird) photos of {year})
+[//]: # (gen-description: Some of my favorite &#40;non-bird&#41; photos of {year})
 
 [//]: # (gen-meta-end)
 
