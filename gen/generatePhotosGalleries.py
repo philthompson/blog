@@ -115,9 +115,8 @@ photos_data = {
 		{'url': '2025-06-18-150215-59-R5PT2451-sm.jpg',                       'desc': 'Chilean Flamingo (captive)<br/>Yes, this is a bird.  It\'s in this "non-bird"<br/>gallery because it\'s captive.<br/>Oregon, USA' },
 		{'url': '2025-07-06-152321-667-IMG_8676-sm.jpg',                      'desc': 'A Rock on the Coast<br/>Oregon, USA' },
 		{'url': '2025-07-06-152336-297-IMG_8677-sm.jpg',                      'desc': 'A Rock on the Coast<br/>Oregon, USA' },
-		# someday, make the Florida ones visible (put the crabs on iNat first to get species name)
-		#{'url': '2025-08-02-162205-28-R5PT3050-sm.jpg',                      'desc': 'Unknown Crab Species<br/>Florida, USA' },
-		#{'url': '2025-08-02-162619-94-R5PT3222-sm.jpg',                      'desc': 'Unknown Crab Species<br/>Florida, USA' },
+		{'url': '2025-08-02-162205-28-R5PT3050-sm.jpg',                       'desc': 'Atlantic Sand Fiddler Crab<br/>Florida, USA' },
+		{'url': '2025-08-02-162619-94-R5PT3222-sm.jpg',                       'desc': 'Atlantic Sand Fiddler Crab<br/>Florida, USA' },
 		{'url': '2025-08-06-093827-22-R5PT6001-sm.jpg',                       'desc': 'Common Golden-mantled Ground Squirrel<br/>Oregon, USA' },
 		{'url': '2025-10-20-C2025-A6-Lemmon-crop-35pct.jpg',                  'desc': 'Comet C/2025 A6 (Lemmon)<br/>shot from Oregon, USA' },
 		{'url': '2025-10-29-NGC7000-NAmericaNeb-50pct-sm.jpg',                'desc': 'NGC 7000 North America Nebula<br/>ZWO Seestar S30<br/>shot from Oregon, USA' },
