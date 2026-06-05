@@ -35,7 +35,6 @@ if [ "${3}" == "--freeze" ]
 then
 	FREEZE_ARG="--freeze"
 	FREEZE_FILE_SUFFIX="-frozen-`date +%b-%Y`"
-	FREEZE_FILE_SUFFIX="-frozen-Feb-2025"
 fi
 
 echo "running:"
