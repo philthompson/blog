@@ -44,9 +44,9 @@ For example, we start the sequence with:
 
 <math display="block" style="font-size:1.5rem">
   <mn>2.92005...</mn>
-  <mo>&rarr;</mo>
+  <mo linebreak="goodbreak">&rarr;</mo>
   <mn>2</mn>
-  <mo>&times;</mo>
+  <mo linebreak="goodbreak">&times;</mo>
   <mrow>
   	<mo>(</mo>
   	<mn>1.0</mn>
@@ -54,9 +54,9 @@ For example, we start the sequence with:
   	<mn>0.92005...</mn>
   	<mo>)</mo>
   </mrow>
-  <mo>=</mo>
+  <mo linebreak="goodbreak">=</mo>
   <mn>3.8401...</mn>
-  <mo>&rarr;</mo>
+  <mo linebreak="goodbreak">&rarr;</mo>
   <mn>3</mn>
 </math>
 
@@ -64,9 +64,9 @@ For example, we start the sequence with:
 
 <math display="block" style="font-size:1.5rem">
   <mn>3.8401...</mn>
-  <mo>&rarr;</mo>
+  <mo linebreak="goodbreak">&rarr;</mo>
   <mn>3</mn>
-  <mo>&times;</mo>
+  <mo linebreak="goodbreak">&times;</mo>
   <mrow>
   	<mo>(</mo>
   	<mn>1.0</mn>
@@ -74,9 +74,9 @@ For example, we start the sequence with:
   	<mn>0.8401...</mn>
   	<mo>)</mo>
   </mrow>
-  <mo>=</mo>
+  <mo linebreak="goodbreak">=</mo>
   <mn>5.5203...</mn>
-  <mo>&rarr;</mo>
+  <mo linebreak="goodbreak">&rarr;</mo>
   <mn>5</mn>
 </math>
 
