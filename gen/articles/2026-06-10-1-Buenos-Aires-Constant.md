@@ -17,11 +17,11 @@ Numberphile videos often ["nerd snipe"](https://xkcd.com/356/) me, and it's happ
 
 The Numberphile video in question here is a few years old.  It's titled ["2.920050977316"](https://www.youtube.com/watch?v=_gCKX6VMvmU), and it introduces the "Buenos Aires Constant," which is a decimal number that generates the sequence of primes.
 
-This constant was first described by four Numberphile viewers in a (paywalled) [formal paper](https://www.tandfonline.com/doi/abs/10.1080/00029890.2019.1530554).  The paper was "Received Sep 16th 2017, Accepted May 29th 2018, Published online: Jan 30th 2019" and the Numberphile video was released Nov. 26th 2020, so it took quite a while to surface for public discussion.
-
-The video demonstrated using the constant to generate primes, and how to calculate the constant given the primes.  What they didn't discuss, however, is *how many* primes can be generated for some number of decimal places.  I wanted to find that out, and also to calculate the constant for myself, so I fired up the text editor and wrote some Python code.
+The video demonstrates using the constant to generate primes, and how to calculate the constant given the primes.  What they don't discuss, however, is *how many* primes can be generated for some number of decimal places.  I wanted to find that out, and also to calculate the constant for myself, so I fired up the text editor and wrote some Python code.
 
 [more](more://)
+
+This constant was first described by four Numberphile viewers, Dylan Fridman, Juli Garbulsky, Bruno Glecer, and Massi Tron Florentin, with contributions from James Grime, in a (paywalled) [formal paper](https://www.tandfonline.com/doi/abs/10.1080/00029890.2019.1530554).  The paper was "Received Sep 16th 2017, Accepted May 29th 2018, Published online: Jan 30th 2019" and the Numberphile video was released Nov. 26th 2020, so it took quite a while to surface for public discussion.
 
 ## Using the Constant
 
@@ -84,7 +84,7 @@ For example, we start the sequence with:
 
 ## Calculating the Constant
 
-In the Numberphile video, Dr. Grime demonstrated the method for using the series of primes to calculate a value for this constant.  I instead wanted to use a simple algorithm to find it.  And I wanted to write the initial version myself, without using AI.  (I guess we're now at the point where programming projects might be assumed to involve AI unless the programmer says otherwise.)
+In the Numberphile video, Dr. Grime demonstrates the method for using the series of primes to calculate a value for this constant.  I instead wanted to use a simple algorithm to find it.  And I wanted to write the initial version myself, without using AI.  (I guess we're now at the point where programming projects might be assumed to involve AI unless the programmer says otherwise.)
 
 For my algorithm, I figured something like a binary search would work, where we repeatedly halve the search space between two decimal values.  Based on how many primes the high, middle, and low values each produce, we can select either the high and middle or the middle and low as our new "high" and "low" values, and repeat this process to add decimal digits of precision and approach the value for the constant.
 
