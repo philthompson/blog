@@ -52,7 +52,7 @@ do
 	#   entire year
 	# STOP_ARG is not quoted here, because it's only
 	#   included for the final year
-	MODEL_NAME="v2.2024.07" # ALSO update this in ~/projects/nfl-elo/manualAutoFetch.sh
+	MODEL_NAME="v4.2026.04" # ALSO update this in ~/projects/nfl-elo/manualAutoFetch.sh
 	echo "python3 \"${NFL_ELO_DIR}/outputYearMarkdown.py\" \"${MODEL_NAME}\" 1992 \"${YEAR}\" $STOP_ARG $FREEZE_ARG"
 	python3 "${NFL_ELO_DIR}/outputYearMarkdown.py" "${MODEL_NAME}" 1992 "${YEAR}" $STOP_ARG $FREEZE_ARG > "${NFL_ELO_STATIC_DIR}/${YEAR}${FREEZE_FILE_SUFFIX}.md"
 	if [ $? -ne 0 ]
@@ -61,15 +61,16 @@ do
 		exit
 	fi
 
-	# for 2025 season, moving the "v3.2025.06" model to separate pages
-	MODEL_NAME="v3.2025.06" # ALSO update this in ~/projects/nfl-elo/manualAutoFetch.sh
-	echo "python3 \"${NFL_ELO_DIR}/outputYearMarkdown.py\" \"${MODEL_NAME}\" 1992 \"${YEAR}\" $STOP_ARG $FREEZE_ARG"
-	python3 "${NFL_ELO_DIR}/outputYearMarkdown.py" "${MODEL_NAME}" 1992 "${YEAR}" $STOP_ARG $FREEZE_ARG > "${NFL_ELO_STATIC_DIR}/${YEAR}-v3-2025-06${FREEZE_FILE_SUFFIX}.md"
-	if [ $? -ne 0 ]
-	then
-		echo "error detected in regular model run"
-		exit
-	fi
+	# for 2026 season, not using "v3.2025.06" anymore since "v4.2026.04" is better
+	## for 2025 season, moving the "v3.2025.06" model to separate pages
+	#MODEL_NAME="v3.2025.06" # ALSO update this in ~/projects/nfl-elo/manualAutoFetch.sh
+	#echo "python3 \"${NFL_ELO_DIR}/outputYearMarkdown.py\" \"${MODEL_NAME}\" 1992 \"${YEAR}\" $STOP_ARG $FREEZE_ARG"
+	#python3 "${NFL_ELO_DIR}/outputYearMarkdown.py" "${MODEL_NAME}" 1992 "${YEAR}" $STOP_ARG $FREEZE_ARG > "${NFL_ELO_STATIC_DIR}/${YEAR}-v3-2025-06${FREEZE_FILE_SUFFIX}.md"
+	#if [ $? -ne 0 ]
+	#then
+	#	echo "error detected in regular model run"
+	#	exit
+	#fi
 
 	# for 2025 season, not doing "nomov"
 	#MODEL_NAME="nomov-v1.2024.11"
@@ -93,7 +94,7 @@ do
 
 	# for summer 2025: re-enable this after find best new "blank slate" model
 	## generate the 2023-only.html page
-	MODEL_NAME="blank-slate-v2.2025.08" # ALSO update this in ~/projects/nfl-elo/manualAutoFetch.sh
+	MODEL_NAME="blank-slate-v1.2024.07" # ALSO update this in ~/projects/nfl-elo/manualAutoFetch.sh
 	echo "python3 \"${NFL_ELO_DIR}/outputYearMarkdown.py\" \"${MODEL_NAME}\" \"${YEAR}\" \"${YEAR}\" $STOP_ARG $FREEZE_ARG"
 	python3 "${NFL_ELO_DIR}/outputYearMarkdown.py" "${MODEL_NAME}" "${YEAR}" "${YEAR}" $STOP_ARG $FREEZE_ARG > "${NFL_ELO_STATIC_DIR}/${YEAR}-only${FREEZE_FILE_SUFFIX}.md"
 	if [ $? -ne 0 ]

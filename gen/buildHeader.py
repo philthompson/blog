@@ -54,11 +54,6 @@ def generate(*, page_title, SITE_ROOT_REL, meta_keywords, meta_description, meta
 							<img src="{SITE_ROOT_REL}/img/donate-gray.png">
 						</a>
 					</li>
-					<li class="nav-item" style="padding-right: 0;">
-						<a href="{SITE_ROOT_REL}/2024/My-Electronic-Chill-Album-Break-Away.html" target="_self" class="icon" title='My Electronic/Chill Album "Break | Away"'>
-							<img src="{SITE_ROOT_REL}/s/img/2024/break-away-album-art-sm.jpg">
-						</a>
-					</li>
 				</ul>
 			</header>
 """
