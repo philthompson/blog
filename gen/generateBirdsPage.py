@@ -199,7 +199,8 @@ def run_query(conn, curs, photos_p_where_clause):
 			FROM
 				apply_species_sex_overrides
 			WHERE
-				incidental = 0
+				incidental = 0 AND
+				name NOT LIKE '% (Captive)%'
 			UNION
 			SELECT
 				file_name,
@@ -209,7 +210,8 @@ def run_query(conn, curs, photos_p_where_clause):
 				apply_species_sex_overrides
 			WHERE
 				incidental = 0 AND
-				name LIKE '% (%)'
+				name LIKE '% (%)' AND
+				name NOT LIKE '% (Captive)%'
 		),
 		species_and_subspecies_and_sex AS (
 			SELECT
