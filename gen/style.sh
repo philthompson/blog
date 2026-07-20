@@ -1,5 +1,11 @@
 #!/bin/bash
 
+###-###-###-###-###-###-###-###-###-###-###
+### !!! THIS IS NO LONGER USED !!!      ###
+###                                     ###
+### buildStyle.py is now used instead   ###
+###-###-###-###-###-###-###-###-###-###-###
+
 CLR_PAGE_BG="#eff1f3"
 CLR_LINK_LINE="#dee2e5"
 CLR_LINK_LINE="#b4b9bd"

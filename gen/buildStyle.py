@@ -189,6 +189,16 @@ img {{
 	}}
 }}
 
+.width-resp-100-0 {{
+	max-width: 0px;
+}}
+
+@media screen and (min-width: 43rem) {{
+	.width-resp-100-0 {{
+		max-width: 100%;
+	}}
+}}
+
 .width-100 {{
 	max-width: 100%;
 }}

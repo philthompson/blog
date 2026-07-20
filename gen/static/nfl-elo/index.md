@@ -15,13 +15,13 @@
 If you're here to see the latest ratings:
 
 <div class="btns" style="margin:2.0rem">
-	<a class="btn" href="./2025.html">2025 Season Page</a>
+	<a class="btn" href="./2026.html">2026 Season Page</a>
 </div>
 
 If you're interested in the "blank slate" ratings where all teams started the season with a 1500 rating:
 
 <div class="btns" style="margin:2.0rem">
-	<a class="btn" href="./2025-only.html">2025 "Blank Slate" Season Page</a>
+	<a class="btn" href="./2026-only.html">2026 "Blank Slate" Season Page</a>
 </div>
 
 ## F.A.Q. Page
@@ -37,6 +37,7 @@ This F.A.Q. Page covers a lot of topics including higher-level questions and how
 These pages are longer articles on the state of the project:
 
 <div class="btns" style="margin:2.0rem">
+	<a class="btn" href="../2026/NFL-Elo-Power-Rankings-for-2026.html">2026</a>
 	<a class="btn" href="../2025/NFL-Elo-Power-Rankings-for-2025.html">2025</a>
 	<a class="btn" href="../2024/NFL-Elo-Power-Rankings-for-2024.html">2024</a>
 	<a class="btn" href="../2023/NFL-Elo-Power-Rankings-for-2023.html">2023</a>
@@ -45,6 +46,14 @@ These pages are longer articles on the state of the project:
 ## "Frozen" Pages Using Previous Models
 
 If you're looking for what previous versions of the models and pages looked like:
+
+### Pages Frozen in February 2026
+
+Regular model: [2025](./2025-frozen-Feb-2026.html) | [2024](./2024-frozen-Feb-2026.html) | [2023](./2023-frozen-Feb-2026.html) | [2022](./2022-frozen-Feb-2026.html) | [2021](./2021-frozen-Feb-2026.html) | [2020](./2020-frozen-Feb-2026.html)
+
+"Blank Slate" model: [2025](./2025-only-frozen-Feb-2026.html) | [2024](./2024-only-frozen-Feb-2026.html) | [2023](./2023-only-frozen-Feb-2026.html) | [2022](./2022-only-frozen-Feb-2026.html) | [2021](./2021-only-frozen-Feb-2026.html) | [2020](./2020-only-frozen-Feb-2026.html)
+
+2025 Season original "v3-2025-06" model: [2025](./2025-v3-2025-06-frozen-Feb-2026.html) | [2024](./2024-v3-2025-06-frozen-Feb-2026.html) | [2023](./2023-v3-2025-06-frozen-Feb-2026.html) | [2022](./2022-v3-2025-06-frozen-Feb-2026.html) | [2021](./2021-v3-2025-06-frozen-Feb-2026.html) | [2020](./2020-v3-2025-06-frozen-Feb-2026.html)
 
 ### Pages Frozen in February 2025
 
