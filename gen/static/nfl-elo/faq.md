@@ -97,7 +97,7 @@ These NFL Elo ratings are intended to be simple, objective, and as accurate as p
 
 Human-written power rankings have value, but their authors may have some bias, unconscious or otherwise, that affects their power rankings.  Elo-based ratings and rankings can reduce or eliminate biases for or against individual teams.
 
-I believe that If I do any subjective model tuning to make the ratings "look more correct" to my eye, then I am nearly 100% likely to be making the model less accurate, or more biased in some way, or both.  I want to avoid this altogether.
+I believe that If I do any subjective model tuning to make the ratings "look more correct" to my eye, then I would almost certainly make the model less accurate, or more biased in some way, or both.  I want to avoid this altogether.
 
 There are plenty of power rankings designed by their authors to look correct to their eye.  (Reddit user <a target="_blank" href="https://old.reddit.com/user/mikebiox/submitted/?sort=new">mikebiox</a> has been posting weekly <a target="_blank" href="https://old.reddit.com/r/nfl/comments/1oua20x/nfl_power_rankings_combined_week_10/">averaged power rankings for years</a> if you're interested in those.)  There's no point in replicating any of that here, so these Elo ratings are intended to be objective.
 
@@ -111,7 +111,7 @@ As a benchmark, the model pick rates can be [compared to Vegas's straight-up pic
 
 <h3><a name="Define-Objective"></a><small><a class="top-arw" title="Top" href="#top">↑</a></small> How are these Elo ratings "objective?"</h3>
 
-Simply put: the model is tuned to match the average case over thousands of NFL games over 31 seasons.
+Simply put: the model is tuned to match the average case over thousands of NFL games over 32 seasons.
 
 The ratings are calculated with <a target="_blank" href="https://en.wikipedia.org/wiki/Elo_rating_system#Mathematical_details">regular Elo rating math</a>, but things like the "K-factor," home field advantage, how to define a close win vs. a blowout win, etc., are [parameters](#Define-Parameters) that must be set to *something*.
 
@@ -136,7 +136,8 @@ The ratings are calculated from:
 * offseason "parity reset" (reversion to the mean),
 * early season shenanigans/uncertainty,
 * division alignment (whether a game is a division matchup),
-* whether a game is meaningless with respect to playoff seeding,
+* whether a game is meaningless with respect to playoff seed,
+* whether a game is meaningless with respect to playoff seeding "category" (home field, division winner, or wildcard),
 * and of course both teams' ratings.
 
 <h3><a name="How-Accurate"></a><small><a class="top-arw" title="Top" href="#top">↑</a></small> How accurate are these ratings?</h3>
@@ -153,7 +154,7 @@ The [model's accuracy, compared to Vegas and to the average person](#How-Accurat
 
 <h3><a name="Why-Not-Use-Injuries"></a><small><a class="top-arw" title="Top" href="#top">↑</a></small> Why don't these Elo ratings use player injuries?</h3>
 
-I don't think it's a good idea to directly change team Elo ratings as a result of player injuries.  Practically, it is extremely challenging to quantify the impact of a single player.  This would involve play-by-play analysis, and even this is kind of limited in usefulness because we don't know all the players' assignments on each play, and players are rotated in and out of games all the time.  On top of that, sometimes players are replaced by quality backups or trades or by signing guys off the couch.  And we do want to incorporate the strengths of each team's depth and coaching staff into their ratings, and injuries allow us to do this.
+I don't think it's a good idea to directly change team Elo ratings as a result of player injuries.  Practically, it is extremely challenging to quantify the impact of a single player.  This would involve play-by-play analysis, and even this is kind of limited in usefulness because we don't know all the players' assignments on each play, and players are rotated in and out of games all the time.  On top of that, sometimes injured players are replaced by even better players!  And we do want to incorporate the strengths of each team's depth and coaching staff, and their front office's ability to trade and sign players mid-season, into their ratings, and injuries allow us to do this.
 
 But ultimately, I don't want Elo ratings to be impacted by anything other than what happens on the field.  If we change team ratings outside of game results I think we're straying too far from true "Elo" ratings.
 
@@ -161,13 +162,13 @@ I think this approach works fine for the most part.  Vegas does take injuries in
 
 <h3><a name="Why-Not-Use-More-Stats"></a><small><a class="top-arw" title="Top" href="#top">↑</a></small> Why don't these Elo ratings use QB stats?  Or offense or defense EPA stats?  Or other stats?</h3>
 
-Ultimately, I want to keep these ratings simple and traditional.  I believe that incorporating more stats and variables makes the model more susceptible to bias, and makes the model harder to tune for accuracy.  The model's [accuracy](#How-Accurate) is, in my opinion, already very good as-is.
+Ultimately, I want to keep these Elo-based ratings simple and traditional, where only the game outcome matters, not anything that happens during a game.  I believe that incorporating more stats and variables makes the model more susceptible to bias, and makes the model harder to tune for accuracy.  The model's [accuracy](#How-Accurate) is, in my opinion, already very good as-is.
 
 Additionally, it appears that stats, roster changes, etc., don't seem to matter as much as we'd think.  Again, I believe the accuracy of these ratings is proof of that.
 
 <h3><a name="Why-Use-Margin-of-Victory"></a><small><a class="top-arw" title="Top" href="#top">↑</a></small> Why use margin of victory?  The object of the game is to win, not to win by a wide margin.</h3>
 
-I am very confident that teams attempt to score on most drives on offense, and try to prevent scores while playing defense.  There are some situations where it's optimal to focus on burning clock or to force the opponent to use timeouts, but otherwise I believe teams try to score on every possession.  At the end of the day, the best way to increase your chance of winning is to have a larger lead.
+I am very confident that teams attempt to score on almost all drives on offense, and try to prevent scores while playing defense.  There are some situations where it's optimal to focus on burning clock or to forcing the opponent to use timeouts, but otherwise I believe teams try to score on every possession.  At the end of the day, the best way for a team to increase their chance of winning is to have a larger lead.
 
 It also makes more sense, Elo-wise, to [treat a football game like a multi-game chess match than a single chess game](#NFL-Elo-Ratings), where margin of victory is used to determine team performance.  Additionally, using margin of victory instead of "expected chance to win" makes [calculating model accuracy](#Define-Accurate) more straightforward.
 
@@ -181,7 +182,7 @@ Like all aspects of this system, the model appears to be slow to update because 
 
 One interpretation of this is that games (especially close games) are often won or lost due in part to factors not related to the underlying "true strength" of a team: sometimes they play at a stronger or weaker level depending on injuries, opponent, game plan, individual matchups between players, play calling, and even weather and field conditions, and there are also simple flukes and odd bounces of the ball.
 
-If we were to change an improving or collapsing team's Elo rating too quickly, we might be more accurate for that team but at the expense of accuracy for other teams that simply had an outlier good or bad game.  The best the model can do is shoot for the average case and try not to over-react to individual games.
+And we can't give or take away many Elo rating points for a team without making an equal and opposite big adjustment for their opponent.  If we were to change an improving or collapsing team's Elo rating too quickly, we might have a more accurate rating for that team but at the expense of accuracy for their opponent(s) that simply had an outlier good or bad game.  The best the model can do is shoot for the average case and try not to over-react to individual games.
 
 <h3><a name="Injury-Bump"></a><small><a class="top-arw" title="Top" href="#top">↑</a></small> Team XYZ gained too many rating points for beating an injured team.  How is this accounted for?</h3>
 
@@ -205,7 +206,7 @@ See [above](#Rating-Does-Not-Match-Bad-Record).
 
 Like other parameters in this system, the impact of the offseason parity reset and how much of the previous season's ratings to carry over has been [adjusted to maximize the number of correctly-picked games, on average](#Define-Objective).
 
-I do publish a separate "blank slate" model that does start fresh every season.  The 2025 "blank slate" ratings <a target="_blank" href="https://philthompson.me/nfl-elo/2025-only.html">are available here</a>.
+I do publish a separate "blank slate" model that does start fresh every season.  The 2026 "blank slate" ratings <a target="_blank" href="https://philthompson.me/nfl-elo/2026-only.html">are available here</a>.
 
 <h3><a name="Elo-Exchanged-Appears-To-Not-Be-Net-Zero"></a><small><a class="top-arw" title="Top" href="#top">↑</a></small> Team A played Team B.  Team A appears to have gained more Elo rating points than Team B lost.  Shouldn't they be the same?</h3>
 
