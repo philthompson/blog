@@ -94,7 +94,7 @@ do
 
 	# for summer 2025: re-enable this after find best new "blank slate" model
 	## generate the 2023-only.html page
-	MODEL_NAME="blank-slate-v1.2024.07" # ALSO update this in ~/projects/nfl-elo/manualAutoFetch.sh and the Dropbox "run-...txt" files
+	MODEL_NAME="blank-slate-v3.2026.08" # ALSO update this in ~/projects/nfl-elo/manualAutoFetch.sh and the Dropbox "run-...txt" files
 	echo "python3 \"${NFL_ELO_DIR}/outputYearMarkdown.py\" \"${MODEL_NAME}\" \"${YEAR}\" \"${YEAR}\" $STOP_ARG $FREEZE_ARG"
 	python3 "${NFL_ELO_DIR}/outputYearMarkdown.py" "${MODEL_NAME}" "${YEAR}" "${YEAR}" $STOP_ARG $FREEZE_ARG > "${NFL_ELO_STATIC_DIR}/${YEAR}-only${FREEZE_FILE_SUFFIX}.md"
 	if [ $? -ne 0 ]

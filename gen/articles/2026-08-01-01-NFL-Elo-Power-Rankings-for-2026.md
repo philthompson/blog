@@ -227,5 +227,7 @@ I will no longer be publishing the "blank slate" Elo ratings to reddit, but I wi
 
 This section will be updated if any further changes are made during the season.
 
+*Update on August 25th*: a new blank slate model is ready!  I'll be calling it `blank-slate-v3.2026.08`.  This new blank slate model picks 5,454 game winners over the 8,498 games from 1994-2025 (64.19%), which is a nice improvement over the `blank-slate-v1.2024.07` model that picks 5,390 game winners (63.43%) over that span.  That's an average of exactly 2 more game winners picked per season.  This new blank slate model is still inferior to the regular model of course.  The new regular model, `v4.2026.07`, picks 5,580 game winners, averaging 3.94 more winners picked per season than the new blank slate model.
+
 <small>P.S. &mdash; You can render the Mandelbrot set image at the top of this post in your browser (desktop recommended) <a href="https://philthompson.me/very-plotter/?plot=Mandelbrot-set&v=5&n=15000&mag=4.72975e49&centerX=-1.98550712201196731892045719764531398191554415763414689305121813306195851782538e0&centerY=7.746890545168955005543267709842136684843557717174281894711895134987242577e-6&gradient=Bbwgb-b.00338D-g.C60C30-mod150-shift1&bgColor=b&smooth=on-show">here</a>.</small>
 
