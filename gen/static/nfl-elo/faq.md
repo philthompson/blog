@@ -72,7 +72,7 @@ While originally invented for rating chess players, Elo ratings and similar syst
 
 In applying Elo ratings to American football, we cannot treat an NFL game like a single chess game.  A chess game can be won or lost in only a few moves, and the endgame is determined by which pieces remain and where they are physically positioned.  This is more analogous to a football drive or even a single play than to an entire football game.
 
-Another way of looking at it involves the *approach* taken by the players/teams involved.  In a multi-game chess match, players do not treat each individual chess game as a "must win."  Depending on whether they are playing the white or black pieces, or how the match or game progresses, they may attempt to invoke a draw or play conservatively.  A chess match cannot be won or lost in a single game, and their goal is to win the match, not each game.  Similarly, football teams do not treat each individual drive or play as a "must win."  A football game cannot be won with a couple of scores in the first quarter.  Their goal is to win the football game by "winning" more drives/plays than the other team over the course of the game.
+Another way of looking at it involves the *approach* taken by the players/teams involved.  In a multi-game chess match, players do not treat each individual chess game as a "must win."  Depending on whether they are playing the white or black pieces, or how the match or game progresses, they may attempt to invoke a draw or play conservatively.  A chess match cannot be won or lost in a single game, and their goal is to win the match, not every game.  Similarly, football teams do not treat each individual drive or play as a "must win."  A football game cannot be won with a couple of scores in the first quarter.  Their goal is to win the football game by "winning" more drives/plays than the other team over the course of the game.
 
 For these reasons, it doesn't make sense to treat a football game like a single chess game with respect to Elo calculations.  Instead, we'll treat a football game like a multi-game chess match.  This works nicely because after a scoring drive, a football team kicks to their opponent and a new drive begins &mdash; to some degree the game is reset.  Nothing like this happens in a single chess game.
 
@@ -80,7 +80,9 @@ For a chess match, player ratings are used to compute the expected winning perce
 
 <h3><a name="Why-Lose-Rating-Points-After-a-Win"></a><small><a class="top-arw" title="Top" href="#top">↑</a></small> Why can teams lose Elo rating points after a win?</h3>
 
-For Elo calculations, it makes more sense to treat an NFL game like a series of contests (drives or plays), where the goal is to win the football game, not every drive or play.  This is more analogous to a multi-game chess match both for how the games play out and in how the players approach each game or football drive/play.  If a team wins a football game, but by a smaller than expected margin, they will give Elo rating points to their opponent.  See [How do Elo ratings work for the NFL?](#NFL-Elo-Ratings) for more background.
+A team will lose Elo rating points after a win if that win is by fewer points than expected.
+
+For Elo calculations, it makes more sense to treat an NFL game like a series of contests (drives or plays), where the goal is to win the football game, not every drive or play.  This is analogous to a multi-game chess match.  See [How do Elo ratings work for the NFL?](#NFL-Elo-Ratings) for more background.
 
 Also see [Why use margin of victory?](#Why-Use-Margin-of-Victory).
 
