@@ -80,12 +80,9 @@ For a chess match, player ratings are used to compute the expected winning perce
 
 <h3><a name="Why-Lose-Rating-Points-After-a-Win"></a><small><a class="top-arw" title="Top" href="#top">↑</a></small> Why can teams lose Elo rating points after a win?</h3>
 
-A team will lose Elo rating points after a win if that win is by fewer points than expected.
+A team will lose Elo rating points with a win if their margin of victory is smaller than expected.  This happens because an NFL game is [considered as a series of smaller contests](#NFL-Elo-Ratings) for Elo purposes.  Also see [Why use margin of victory?](#Why-Use-Margin-of-Victory).
 
-For Elo calculations, it makes more sense to treat an NFL game like a series of contests (drives or plays), where the goal is to win the football game, not every drive or play.  This is analogous to a multi-game chess match.  See [How do Elo ratings work for the NFL?](#NFL-Elo-Ratings) for more background.
-
-Also see [Why use margin of victory?](#Why-Use-Margin-of-Victory).
-
+Losing Elo rating points with a win is common in the world of Elo, and is computed using standard Elo math.  Some world championship chess examples include 2024 Gukesh-Ding, 2014 Carlsen-Anand, 1990 Kasparov-Karpov, and 1972 Fischer-Spassky.
 
 <h3><a name="Why-Publish"></a><small><a class="top-arw" title="Top" href="#top">↑</a></small> Why are you publishing these?</h3>
 
@@ -172,7 +169,7 @@ Additionally, it appears that stats, roster changes, etc., don't seem to matter 
 
 I am very confident that teams attempt to score on almost all drives on offense, and try to prevent scores while playing defense.  There are some situations where it's optimal to focus on burning clock or to forcing the opponent to use timeouts, but otherwise I believe teams try to score on every possession.  At the end of the day, the best way for a team to increase their chance of winning is to have a larger lead.
 
-It also makes more sense, Elo-wise, to [treat a football game like a multi-game chess match than a single chess game](#NFL-Elo-Ratings), where margin of victory is used to determine team performance.  Additionally, using margin of victory instead of "expected chance to win" makes [calculating model accuracy](#Define-Accurate) more straightforward.
+It also makes more sense, Elo-wise, to [treat a football game like a multi-game chess match rather than a single chess game](#NFL-Elo-Ratings), where margin of victory is used to determine team performance.  Additionally, using margin of victory instead of "expected chance to win" makes [calculating model accuracy](#Define-Accurate) more straightforward.
 
 <h3><a name="What-Is-a-Big-Win"></a><small><a class="top-arw" title="Top" href="#top">↑</a></small> How can margin of victory be used when a 30-point win may be no better than a 20-point win?</h3>
 
