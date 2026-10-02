@@ -1,9 +1,9 @@
 
-def generate(*, page_title, SITE_ROOT_REL, meta_keywords, meta_description, meta_revisit_after_days=3):
+def generate(*, page_title, SITE_ROOT_REL, meta_keywords, meta_description, meta_revisit_after_days=3, meta_other=''):
 	return f"""<!DOCTYPE html>
 <html lang="en">
 	<head>
-		<title>{page_title} &mdash; philthompson.me</title>
+		{meta_other}<title>{page_title} &mdash; philthompson.me</title>
 		<meta http-equiv="content-type" content="text/html; charset=UTF-8">
 		<meta http-equiv="content-language" content="en">
 		<meta name="description" content="{meta_description}">

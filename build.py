@@ -439,6 +439,7 @@ for i in range(0, len(sorted_article_files)):
 	ARTICLE_TITLE_URL   = getGenMetaLineContent(gen_meta_lines=gen_meta_content_lines, gen_meta_keyword='gen-title-url')
 	ARTICLE_KEYWORDS    = getGenMetaLineContent(gen_meta_lines=gen_meta_content_lines, gen_meta_keyword='gen-keywords')
 	ARTICLE_DESCRIPTION = getGenMetaLineContent(gen_meta_lines=gen_meta_content_lines, gen_meta_keyword='gen-description')
+	ARTICLE_META_OTHER  = getGenMetaLineContent(gen_meta_lines=gen_meta_content_lines, gen_meta_keyword='gen-meta-other') or ''
 	
 	ARTICLE_DATE = article_file.stem
 
@@ -472,7 +473,7 @@ for i in range(0, len(sorted_article_files)):
 
 	article_html_content = buildArticle.generate(article_md_content=article_md_content,
 		ARTICLE_TITLE=ARTICLE_TITLE, ARTICLE_TITLE_URL=ARTICLE_TITLE_URL, ARTICLE_KEYWORDS=ARTICLE_KEYWORDS, ARTICLE_DESCRIPTION=ARTICLE_DESCRIPTION,
-		ARTICLE_DATE=ARTICLE_DATE_REFORMAT, PREV_ARTICLE_REL_URL=prev_article_rel_url, NEXT_ARTICLE_REL_URL=next_article_rel_url, SITE_ROOT_REL='..')
+		ARTICLE_DATE=ARTICLE_DATE_REFORMAT, ARTICLE_META_OTHER=ARTICLE_META_OTHER, PREV_ARTICLE_REL_URL=prev_article_rel_url, NEXT_ARTICLE_REL_URL=next_article_rel_url, SITE_ROOT_REL='..')
 
 	# replace page path into page content
 	article_html_content = article_html_content.replace('REPLACE_PAGE_URL', f"/{ARTICLE_YEAR}/{ARTICLE_TITLE_URL}.html")
@@ -682,8 +683,9 @@ for static_walk_dirname, _, static_walk_filenames in static_dir.walk():
 		PAGE_TITLE       = getGenMetaLineContent(gen_meta_lines=PAGE_METADATA, gen_meta_keyword='gen-title')
 		PAGE_KEYWORDS    = getGenMetaLineContent(gen_meta_lines=PAGE_METADATA, gen_meta_keyword='gen-keywords')
 		PAGE_DESCRIPTION = getGenMetaLineContent(gen_meta_lines=PAGE_METADATA, gen_meta_keyword='gen-description')
+		PAGE_META_OTHER  = getGenMetaLineContent(gen_meta_lines=PAGE_METADATA, gen_meta_keyword='gen-meta-other') or ''
 
-		TMP_HEADER = buildHeader.generate(page_title=PAGE_TITLE, SITE_ROOT_REL=MD_PAGE_SITE_ROOT_REL, meta_keywords=PAGE_KEYWORDS, meta_description=PAGE_DESCRIPTION, meta_revisit_after_days=30)
+		TMP_HEADER = buildHeader.generate(page_title=PAGE_TITLE, SITE_ROOT_REL=MD_PAGE_SITE_ROOT_REL, meta_keywords=PAGE_KEYWORDS, meta_description=PAGE_DESCRIPTION, meta_revisit_after_days=30, meta_other=PAGE_META_OTHER)
 		TMP_CONTENT = MarkdownIt().render(readFileContent(PAGE_MARKDOWN_FILE)).replace('${SITE_ROOT_REL}', MD_PAGE_SITE_ROOT_REL)
 		TMP_FOOTER = buildFooter.generate(SITE_ROOT_REL=MD_PAGE_SITE_ROOT_REL)
 

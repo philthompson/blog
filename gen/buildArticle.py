@@ -6,9 +6,9 @@ from . import buildFooter
 
 def generate(*, article_md_content,
 		ARTICLE_TITLE, ARTICLE_TITLE_URL, ARTICLE_KEYWORDS, ARTICLE_DESCRIPTION,
-		ARTICLE_DATE, PREV_ARTICLE_REL_URL, NEXT_ARTICLE_REL_URL, SITE_ROOT_REL):
+		ARTICLE_DATE, ARTICLE_META_OTHER, PREV_ARTICLE_REL_URL, NEXT_ARTICLE_REL_URL, SITE_ROOT_REL):
 	
-	htmlHeaderContent = buildHeader.generate(page_title=ARTICLE_TITLE, SITE_ROOT_REL=SITE_ROOT_REL, meta_keywords=ARTICLE_KEYWORDS, meta_description=ARTICLE_DESCRIPTION)
+	htmlHeaderContent = buildHeader.generate(page_title=ARTICLE_TITLE, SITE_ROOT_REL=SITE_ROOT_REL, meta_keywords=ARTICLE_KEYWORDS, meta_description=ARTICLE_DESCRIPTION, meta_other=ARTICLE_META_OTHER)
 	
 	htmlBodyContentLines = MarkdownIt().render(article_md_content) \
 		.replace('${SITE_ROOT_REL}', SITE_ROOT_REL) \
