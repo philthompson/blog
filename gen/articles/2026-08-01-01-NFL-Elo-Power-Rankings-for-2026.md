@@ -86,6 +86,14 @@ Here are comparisons between last year's the best known (non-misbehaving) model 
 	</a>
 </p>
 
+And here is the weekly comparison between the new regular `v4.2026.07` and blank slate `blank-slate-v3.2026.08` models.  You can see the blank slate one is closer to a coin toss in week 1, but then improves.  The blank slate model doesn't ever overtake the regular model, which fits my belief that much of a team's "identity" (coaches, mostly) is retained from one season to the next.
+
+<p class="wrap-wider-child">
+	<a target="_blank" href="${SITE_ROOT_REL}/s/img/2026/20261020-By-Week-Regular-vs-BSlate-over-1994-2025.png">
+		<img class="width-100 center-block" src="${SITE_ROOT_REL}/s/img/2026/20261020-By-Week-Regular-vs-BSlate-over-1994-2025.png"/>
+	</a>
+</p>
+
 <!--
 And here is a comparison, by season and by week, between last year's flawed `v3.2025.06` model and this year's new `v4.2026.07` model.  The new one compares very favorably, and on the whole is slightly better over 2001-2025, but above all does not exhibit the same sort of misbehavior toward the end of the regular season and into the playoffs as last year's model.
 
