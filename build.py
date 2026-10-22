@@ -353,6 +353,7 @@ result = subprocess.run(
 	"--exclude=gallery-img/**/*.db",
 	"--exclude=gallery-img/**/*.supplement",
 	"--exclude=gallery-img/**/*.txid",
+	"--exclude=*-spec.txt",
 	str(static_dir) + '/', # note trailing slash for source dir
 	str(out_dir)], # note absence of trailing slash for dest dir
 	capture_output=True, text=True, check=True

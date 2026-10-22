@@ -1,0 +1,89 @@
+# instructions for creating this file
+# (side note: this file is excluded from blog build rsync based on its -spec.txt suffix)
+
+- create a single javascript page
+	- use only vanilla JavaScript and CSS, aside from the provided p5.js file (see header at the end of this document)
+
+- it must be a .md markdown page, so it can be built as a static page as part of my blog
+	- it must start with the header at the end of this document
+
+- page layout (everything centered unless specified)
+	- perhaps try a p5 function similar to this, to ensure the page always takes up the full width of the screen: "function windowResized() { const newWidth = windowWidth - 40; const newHeight = <something>; /* like (newWidth / 4) * 3 */ resizeCanvas(newWidth, newHeight); }"
+	- show a "Monty Hall" title text, at the top
+	- below the title, have a smaller text label
+	- below that smaller text, show three doors, arranged in a row
+	- below the doors, keep a horizontal space for button(s)
+	- below that, keep an area for displaying text stats
+	- on very narrow (phone-like) windows, use less space to the left of door 1 and to the right of door 3, and make the doors' color borders a bit thinner -- this should all allow the doors to be a bit bigger in the same amount of horizontal space
+
+- what the page does
+	- below the title, in smaller text, initally show "Pick a door.  Behind one door is a bag of money.  Behind the other two are goats.  <small><u>(What?!)</u></small>"
+		- the "What?!" text must be a link to https://en.wikipedia.org/wiki/Monty_Hall_problem
+		- the "What?!" text must be in-line with the "...other two are goats." text
+	- use a good prng to randomly assign the cash and goats to the doors whenever a new game is started
+	- once the user selects a door, animate another door opening (the one with a goat behind it, or a random door if both un-selected doors have a goat behind it)
+	- below the doors, then show a pair of buttons: "Keep Your Choice" and "Switch My Choice to the Other Door"
+	- once the user clicks one of those buttons, make the buttons inactive but allow the user to see which one they pressed, and animate the other two doors opening
+	- after the door animation, handle the end of the game
+		- if the user has selected the money, animate celebratory confetti, and show "You win!" at the top, in the "smaller text" area where the "Pick a door..." text was
+			- make the confetti explode upwards from behind the cash door, and flutter and fall, visible for around 2.5-4 seconds total
+		- if the user has selected the goat, show "Try Again!" at the top, in the "smaller text" area where the "Pick a door..." text was
+		- hide the "Keep ..." and "Switch ..." buttons, and in their place show a "Play Again" button
+		- update the text stats area (see next section)
+	- at the very bottom, in very small text, write "Created by Claude Opus 5.5, at the request and direction of Phil Thompson, in October 2026.  Built on p5.js.  <u>Options</u>" where the "p5.js" is a link to https://p5js.org/
+	- make sure the doors and the rest of the UI doesn't move up and down (in the first version they moved depending on the page width and how many buttons were visible in the button area)
+
+- "optional" hidden features
+	- when the underlined "Options" text is tapped, toggle these features visible and invisible
+	- the theme select box (more detail below)
+	- a "Show after initial pick" checkbox (when checked, print in small font "Cash" above cash door and "Goat" above goat doors... this will show to the user that the cash isn't moving around)
+	- the "Reset Stats" button (more detail below)
+	- a "10 doors" checkbox, unchecked on every page load (not remembered)
+		-checking or unchecking it starts a new game
+		- when checked, show 10 smaller doors in two rows of 5, fitting into roughly the same space as the 3 doors (the UI below the doors must not move)
+		- the cash is behind one door, and goats are behind the other nine
+		- after the player picks, open every other door except one: the cash door if the player picked a goat, or a random door if the player picked the cash
+		- the Keep/Switch choice, end of game and confetti work the same as in the 3-door game
+		- don't record stats for 10-door games, and show a small note saying so
+		- the spotlight wanders among all 10 doors
+		- in this mode, the 3rd sentence of the under-title text should be "Behind the other nine are goats."
+	- both the "10 doors" and "Show after initial pick" checkboxes must be unchecked on every page load, even if the browser tries to restore their previous state
+		- an exception is if the URL has the parameter "doors=10" (e.g. monty-hall.html?doors=10) -- in that case, load the page with "10 doors" mode already active (checkbox checked) and the optional hidden features visible; checking the "10 doors" checkbox should add that parameter to the URL (without reloading the page), and unchecking it should remove it
+
+- text stats
+	- use local storage to keep these stats
+	- for "Initial Choice Kept" show "Cash found: 29 games (32.29%)" and "Goat found: 62 games (67.34%)" or whatever the numbers are
+	- for "Switched Door" show the same sort of stats
+	- show a slider set to either "This Visit" or "All Time"
+		- reset the "This Visit" stats every time the page is reloaded, but add those stats to the all time totals
+		- both the "All Time" and "This Visit" totals should keep incrementing as the game is played
+		- when "All Time" is selected, show in small text "Just for this browser."
+	- below the stats, show a small button to "Reset Stats" with "Are You Sure?" confirmation modal dialog
+
+- page style
+	- use a dark and cozy color palette (Theme 1)
+	- at the very bottom of the page, show a select box with "Theme 1" selected (the initial color palette) and "Theme 2" and "Theme 3" and "Theme 4" as other choices
+	- for Theme 2: use a tidy, fun font and muted but fun colors
+	- for Theme 3: use a classic gameshow font and colors
+		- animate the "marquee" lights around the "MONTY HALL" sign, so they appear to be moving around it
+	- for Theme 4: make the background black, perhaps with a moving star field like we're on a spaceship moving through space
+		- use "Bungee" or similar font (but don't download any external font files!  use the closest built-in/default font), where the text is colored with slowly morphing rainbow colors.  and make the doors open smoothly but quite quickly
+		- show gently moving rainbow-color-shifting lasers in the background
+		- make this the default theme
+		- make the stars move slowly: the fastest stars should take about 8 seconds to travel from the center to the edge of the screen, visible the whole way, and slower stars should take up to about 30 seconds	
+	- regardless of theme, show spotlight gently moving among the doors, before one is picked, and settle the spotlight upon the user's picked door
+		- "point the spotlight" at the doors, rather than sliding the spotlight around
+		- the spotlight shouldn't end with a hard edge.  instead, make it quite long (beyond the edge of the page) and have it fade to completely transparent as it approaches the edge of the page (a simple fade based on length is fine, no need to actually detect the dimensions of the page or anything)
+	- there's a nice gradient circle thing centered behind and below the title text... but there's a visible line just below the title text margin (make that not visible)
+
+- the lines below are the first few lines that must be (verbatim) at the top of the file:
+
+[//]: # (gen-title: Monty Hall - philthompson.me)
+
+[//]: # (gen-keywords: monty hall, problem, paradox, simulator, probability, game theory)
+
+[//]: # (gen-description: JavaScript app for trying the Monty Hall game")
+
+[//]: # (gen-meta-end)
+
+<script src="../p5-v1.9.0.min.js"></script>

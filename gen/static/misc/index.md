@@ -107,6 +107,14 @@ For a more complete list of my projects, see my portfolio listing on this site's
 
 <details class="width-resp-50">
 	<summary>
+		<img class="width-100" src="../s/img/2026/20261022-Monty-Hall-screenshot.jpg"/>
+	</summary>
+	<h2><a href="../misc/monty-hall/">Monty Hall</a></h2>
+	<p>JavaScript page for playing the Monty Hall game.</p>
+	<p>First published in 2026.</p>
+</details>
+<details class="width-resp-50">
+	<summary>
 		<img class="width-100" src="../s/img/2024/gravity-2d-single-screenshot.png"/>
 	</summary>
 	<h2><a href="../misc/gravity-2d/">2D Gravity Simulations</a></h2>
