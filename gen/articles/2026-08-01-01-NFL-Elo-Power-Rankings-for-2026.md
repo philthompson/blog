@@ -74,6 +74,8 @@ Sometime in the fall I will kick off a new model search, which hopefully will fi
 
 Here are comparisons between last year's the best known (non-misbehaving) model `v2.2024.07` and the new `v4.2026.07` model.  Click the plots to see full size.
 
+*Note that, for the below by-week plots, seasons with fewer weeks have gap weeks inserted between the regular season and playoffs to ensure all playoff and Super Bowl weeks are aligned.  For example, "Week 22" in the plots below shows the Super Bowl pick rate, even for seasons where the Super Bowl occurred in week 21.*
+
 <p class="wrap-wider-child">
 	<a target="_blank" href="${SITE_ROOT_REL}/s/img/2026/20260801-By-Season-2024-vs-2026-over-1994-2025.png">
 		<img class="width-100 center-block" src="${SITE_ROOT_REL}/s/img/2026/20260801-By-Season-2024-vs-2026-over-1994-2025.png"/>
@@ -81,16 +83,22 @@ Here are comparisons between last year's the best known (non-misbehaving) model 
 </p>
 
 <p class="wrap-wider-child">
-	<a target="_blank" href="${SITE_ROOT_REL}/s/img/2026/20260801-By-Week-2024-vs-2026-over-1994-2025.png">
-		<img class="width-100 center-block" src="${SITE_ROOT_REL}/s/img/2026/20260801-By-Week-2024-vs-2026-over-1994-2025.png"/>
+	<a target="_blank" href="${SITE_ROOT_REL}/s/img/2026/20261023-By-Week-2024-vs-2026-over-1994-2025.png">
+		<img class="width-100 center-block" src="${SITE_ROOT_REL}/s/img/2026/20261023-By-Week-2024-vs-2026-over-1994-2025.png"/>
 	</a>
 </p>
 
-And here is the weekly comparison between the new regular `v4.2026.07` and blank slate `blank-slate-v3.2026.08` models.  You can see the blank slate one is closer to a coin toss in week 1, but then improves.  The blank slate model doesn't ever overtake the regular model, which fits my belief that much of a team's "identity" (coaches, mostly) is retained from one season to the next.
+And here are the by-season and by-week comparisons between the new regular `v4.2026.07` and blank slate `blank-slate-v3.2026.08` models.  Again, the playoffs are pushed back a week for shorter seasons (1994-2020) in the by-week plot.  You can see the blank slate one is closer to a coin toss in week 1, but then improves.  The blank slate model doesn't ever overtake the regular model, which may be due in part to (some of) a team's "identity" being retained from one season to the next.  This may be a mixture of carryover of coaching, roster, staff, training facilities, stadium, and even a team's division opponents' carryover of *their* identity.  Whatever the cause is, the blank slate model is usually less accurate than the regular model that carries over most of every team's Elo rating from the previous season.
 
 <p class="wrap-wider-child">
-	<a target="_blank" href="${SITE_ROOT_REL}/s/img/2026/20261020-By-Week-Regular-vs-BSlate-over-1994-2025.png">
-		<img class="width-100 center-block" src="${SITE_ROOT_REL}/s/img/2026/20261020-By-Week-Regular-vs-BSlate-over-1994-2025.png"/>
+	<a target="_blank" href="${SITE_ROOT_REL}/s/img/2026/20261023-By-Season-Regular-vs-BSlate-over-1994-2025.png">
+		<img class="width-100 center-block" src="${SITE_ROOT_REL}/s/img/2026/20261023-By-Season-Regular-vs-BSlate-over-1994-2025.png"/>
+	</a>
+</p>
+
+<p class="wrap-wider-child">
+	<a target="_blank" href="${SITE_ROOT_REL}/s/img/2026/20261023-By-Week-Regular-vs-BSlate-over-1994-2025.png">
+		<img class="width-100 center-block" src="${SITE_ROOT_REL}/s/img/2026/20261023-By-Week-Regular-vs-BSlate-over-1994-2025.png"/>
 	</a>
 </p>
 

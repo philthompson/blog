@@ -2,7 +2,7 @@
 
 [//]: # (gen-keywords: monty hall, problem, paradox, simulator, probability, game theory)
 
-[//]: # (gen-description: JavaScript app for trying the Monty Hall game")
+[//]: # (gen-description: JavaScript app for trying the Monty Hall game)
 
 [//]: # (gen-meta-end)
 

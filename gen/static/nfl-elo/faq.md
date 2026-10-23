@@ -141,15 +141,19 @@ The ratings are calculated from:
 
 <h3><a name="How-Accurate"></a><small><a class="top-arw" title="Top" href="#top">↑</a></small> How accurate are these ratings?</h3>
 
-The newest "v4.2026.07" Elo rating model was tuned by backtesting against 8,400+ NFL games from 1994 through 2025. Over that span it correctly picks winners in 65.67% of games, trailing the Vegas straight-up pick rate of 66.64% (according to <a target="_blank" href="https://www.covers.com/sportsoddshistory/nfl-game-odds/">covers.com/sportsoddshistory</a>). This model also does better than the average game picker at <a target="_blank" href="https://www.nflpickspage.com/sitestats.php?year=2025&view=su">NFL Picks Page</a>. That being said, these ratings and rankings are not intended for use in informing sports betting decisions. This is a simple Elo model derived from a minimal data set and it does not account for many relevant factors that may impact game outcomes. The accuracy of this model for past seasons is not necessarily indicative of its accuracy for the current or future seasons.
+The newest "v4.2026.07" Elo rating model was tuned by backtesting against 8,400+ NFL games from 1994 through 2025. Over that span it correctly picks winners in 65.67% of games, trailing the Vegas straight-up pick rate of 66.64% (according to <a target="_blank" href="https://www.covers.com/sportsoddshistory/nfl-game-odds/">covers.com/sportsoddshistory</a>).  This means the model averages ~2.6 fewer game winners picked per season than Vegas, despite not having any awareness of injuries or roster or coaching changes.
+
+This model also does better than the average straight-up pick rate at <a target="_blank" href="https://www.nflpickspage.com/sitestats.php?year=2026&view=su">NFL Picks Page</a>.
+
+That being said, these ratings and rankings are not intended for use in informing sports betting decisions. This is a simple Elo model derived from a minimal data set and it does not account for many relevant factors that may impact game outcomes. The accuracy of this model for past seasons is not necessarily indicative of its accuracy for the current or future seasons.
 
 <a target="_blank" href="https://philthompson.me/s/img/2026/20260801-By-Season-Vs-Vegas-1994-2025.png">This chart</a> shows the pick rates by season between Vegas and the newest (at the time of writing) Elo models for the 2026 season.
 
 <h3><a name="Small-Sample-Size"></a><small><a class="top-arw" title="Top" href="#top">↑</a></small> The NFL only has 17 games in a season, and every year there is a lot of roster and coach turnover.  How can Elo ratings be effective for the NFL?</h3>
 
-I guess it's a bit surprising, but the "slow to update" nature of these Elo ratings was found to give the best accuracy.  This indicates that NFL teams do carry over much of their identity from one season to the next.
+I guess it's a bit surprising, but the "slow to update" nature of these Elo ratings was found to give the best accuracy.  And resetting all teams to a 1,500 rating in the offseason (a "blank slate" rating) makes the Elo ratings less accurate throughout the season, not just in the first few weeks.  Together, all of this indicates that NFL teams do carry over some of their "identity" from one season to the next.  This may be a mixture of carryover of coaching, roster, staff, training facilities, stadium, and even a team's division opponents' carryover of *their* identity.
 
-The [model's accuracy, compared to Vegas and to the average person](#How-Accurate), demonstrates this.
+Ultimately the [model's accuracy, compared to Vegas and to the average person](#How-Accurate), demonstrate that Elo ratings are effective for the NFL, and the per-season sample size isn't too small.
 
 <h3><a name="Why-Not-Use-Injuries"></a><small><a class="top-arw" title="Top" href="#top">↑</a></small> Why don't these Elo ratings use player injuries?</h3>
 

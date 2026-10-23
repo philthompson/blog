@@ -57,7 +57,7 @@
 	- show a slider set to either "This Visit" or "All Time"
 		- reset the "This Visit" stats every time the page is reloaded, but add those stats to the all time totals
 		- both the "All Time" and "This Visit" totals should keep incrementing as the game is played
-		- when "All Time" is selected, show in small text "Just for this browser."
+		- below the slider, regardless of the slider setting, show in small text "Just for this browser."
 	- below the stats, show a small button to "Reset Stats" with "Are You Sure?" confirmation modal dialog
 
 - page style
