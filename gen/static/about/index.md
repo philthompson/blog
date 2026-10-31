@@ -70,6 +70,15 @@ Portfolio
 
 A visual listing of this site's tools and apps is available <a target="_blank" href="${SITE_ROOT_REL}/misc/">here</a>.
 
+* <a target="_blank" href="${SITE_ROOT_REL}/2026/The-Monty-Hall-Paradox.html">The Monty Hall Paradox</a>, 2026
+  * a JavaScript game that tracks win rate for the "stay put" and "switch doors" strategies
+  * written with Claude Opus 5.5
+* <a target="_blank" href="${SITE_ROOT_REL}/2026/Buenos-Aires-Constant.html">Buenos Aires Constant</a>, 2026
+  * algorithm based on the Numberphile <a target="_blank" href="https://www.youtube.com/watch?v=_gCKX6VMvmU">"2.920050977316"</a> video
+  * written in Python
+* <a target="_blank" href="${SITE_ROOT_REL}/2026/Red-and-Black-Knights.html">Red and Black Knights</a>, 2026
+  * algorithm and animated images based on the Numberphile <a target="_blank" href="https://www.youtube.com/watch?v=UiX4CFIiegM">"Red & Black Knights"</a> video
+  * written in Python
 * <a target="_blank" href="${SITE_ROOT_REL}/2025/Searching-for-a-Magic-Square-of-Squares.html">GPU Magic Square of Squares Search</a>, 2025
   * a GPU-based brute force search program, written in Rust with the `metal` crate
 * <a target="_blank" href="${SITE_ROOT_REL}/misc/gravity-2d/">2D Gravity Simulation</a>, 2024
@@ -94,10 +103,10 @@ A visual listing of this site's tools and apps is available <a target="_blank" h
   * JavaScript toy that generates fractal trees
 * As far as I'm aware, I was the first to calculate the number of unique polycubes containing <a target="_blank" href="${SITE_ROOT_REL}/2024/Counting-Polycubes-of-Size-21.html">21</a> and <a target="_blank" href="${SITE_ROOT_REL}/2024/Counting-Polycubes-of-Size-22.html">22</a> cubes, 2024
   * ported Stanley Dodds's polycube enumeration algorithm to a multi-core rust implementation and calculated the values in AWS (see the blog post for n=21 for much more detail)
- * published the <a target="_blank" href="https://oeis.org/A000162">n=21 and n=22 values to the OEIS</a>
-* <a target="_blank" href="${SITE_ROOT_REL}/nfl-elo/">NFL Elo Power Rankings</a>, 2023-2025
+  * published the <a target="_blank" href="https://oeis.org/A000162">n=21 and n=22 values to the OEIS</a>
+* <a target="_blank" href="${SITE_ROOT_REL}/nfl-elo/">NFL Elo Power Rankings</a>, 2023-present
   * written in Python
-  * parses Wikipedia data, calculates Elo ratings, and outputs the above linked page
+  * parses game data, calculates Elo ratings, and outputs the above linked page
   * test harness for adjusting Elo rating model parameters, which backtests the model on several years' worth of NFL games (31 full seasons at the time of writing)
 * <a target="_blank" href="${SITE_ROOT_REL}/2023/Partial-String-Match-for-Birds.html">Partial String Match for Birds</a>, 2023
   * tested out algorithms for finding partial string matches of bird species names
@@ -148,3 +157,5 @@ Other Links
   * some of my astrophotography images
 * <a target="_blank" href="../linux-notes.html">Linux Notes</a>
   * a "cheat sheet" style collection of bash and other snippets
+* <a target="_blank" href="../misc/punny-names.html">Punny Names</a>
+  * a reference, for my own use, of names that are puns
