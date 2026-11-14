@@ -54,7 +54,8 @@ do
 	#   included for the final year
 	MODEL_NAME="v4.2026.07" # ALSO update this in ~/projects/nfl-elo/manualAutoFetch.sh and the Dropbox "run-...txt" files
 	echo "python3 \"${NFL_ELO_DIR}/outputYearMarkdown.py\" \"${MODEL_NAME}\" \"--no-suffix--\" 1992 \"${YEAR}\" $STOP_ARG $FREEZE_ARG"
-	python3 "${NFL_ELO_DIR}/outputYearMarkdown.py" "${MODEL_NAME}" "--no-suffix--" 1992 "${YEAR}" $STOP_ARG $FREEZE_ARG > "${NFL_ELO_STATIC_DIR}/${YEAR}${FREEZE_FILE_SUFFIX}.md"
+	python3 "${NFL_ELO_DIR}/outputYearMarkdown.py"                 "${MODEL_NAME}" "--no-suffix--" 1992 "${YEAR}" $STOP_ARG $FREEZE_ARG > "${NFL_ELO_STATIC_DIR}/${YEAR}${FREEZE_FILE_SUFFIX}.md"
+	python3 "${NFL_ELO_DIR}/outputYearMarkdown.py" playoff-chances "${MODEL_NAME}" "--no-suffix--" 1992 "${YEAR}" $STOP_ARG $FREEZE_ARG > "${NFL_ELO_STATIC_DIR}/${YEAR}-playoff-chances${FREEZE_FILE_SUFFIX}.md"
 	if [ $? -ne 0 ]
 	then
 		echo "error detected in regular model run"
@@ -96,7 +97,8 @@ do
 	## generate the 2023-only.html page
 	MODEL_NAME="blank-slate-v3.2026.08" # ALSO update this in ~/projects/nfl-elo/manualAutoFetch.sh and the Dropbox "run-...txt" files
 	echo "python3 \"${NFL_ELO_DIR}/outputYearMarkdown.py\" \"${MODEL_NAME}\" \"-only\" \"${YEAR}\" \"${YEAR}\" $STOP_ARG $FREEZE_ARG"
-	python3 "${NFL_ELO_DIR}/outputYearMarkdown.py" "${MODEL_NAME}" "-only" "${YEAR}" "${YEAR}" $STOP_ARG $FREEZE_ARG > "${NFL_ELO_STATIC_DIR}/${YEAR}-only${FREEZE_FILE_SUFFIX}.md"
+	python3 "${NFL_ELO_DIR}/outputYearMarkdown.py"                 "${MODEL_NAME}" "-only" "${YEAR}" "${YEAR}" $STOP_ARG $FREEZE_ARG > "${NFL_ELO_STATIC_DIR}/${YEAR}-only${FREEZE_FILE_SUFFIX}.md"
+	python3 "${NFL_ELO_DIR}/outputYearMarkdown.py" playoff-chances "${MODEL_NAME}" "-only" "${YEAR}" "${YEAR}" $STOP_ARG $FREEZE_ARG > "${NFL_ELO_STATIC_DIR}/${YEAR}-only-playoff-chances${FREEZE_FILE_SUFFIX}.md"
 	if [ $? -ne 0 ]
 	then
 		echo "error detected in blank slate model run"

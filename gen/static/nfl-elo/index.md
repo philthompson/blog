@@ -24,6 +24,14 @@ If you're interested in the "blank slate" ratings where all teams started the se
 	<a class="btn" href="./2026-only.html">2026 "Blank Slate" Season Page</a>
 </div>
 
+## Playoff Chances
+
+Every team's playoff chances over thousands of simulated seasons.
+
+<div class="btns" style="margin:2.0rem">
+	<a class="btn" href="./2026-playoff-chances.html">2026 Playoff Chances Page</a>
+</div>
+
 ## F.A.Q. Page
 
 This F.A.Q. Page covers a lot of topics including higher-level questions and how these Elo ratings work:
