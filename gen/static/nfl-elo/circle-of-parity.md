@@ -50,7 +50,7 @@ I've found a circle of parity for most seasons since the first 1970 post-merger 
 **Week 9:** [1974](#1974), [1978](#1978), [1989](#1989), [2002](#2002), [2018](#2018)
 
 
-**Week 10:** [1970](#1970), [1973](#1973), [1994](#1994), [1996](#1996), [1999](#1999), [2010](#2010), [2012](#2012), [2022](#2022)
+**Week 10:** [1970](#1970), [1973](#1973), [1994](#1994), [1996](#1996), [1999](#1999), [2010](#2010), [2012](#2012), [2022](#2022), [2026](#2026)
 
 
 **Week 11:** [1971](#1971), [1983](#1983), [1992](#1992), [2003](#2003), [2006](#2006), [2024](#2024)
@@ -1856,6 +1856,44 @@ I've found a circle of parity for most seasons since the first 1970 post-merger 
 <li>the 1-4 Raiders beat the 1-4 Titans in week 6, at home, 20-10</li>
 <li>the 0-4 Titans beat the 2-2 Cardinals in week 5, on the road, 22-21</li>
 <li>the 0-0 Cardinals beat the 0-0 Saints in week 1, on the road, 20-13</li>
+
+</ul></details>
+
+<h3><a name="2026"></a><small><a class="top-arw" title="Top" href="#top">↑</a></small> 2026 Season: Week 10</h3>
+<p>Titans&nbsp;→&nbsp;Colts&nbsp;→&nbsp;Dolphins&nbsp;→&nbsp;Jets&nbsp;→ Browns&nbsp;→&nbsp;Panthers&nbsp;→&nbsp;Saints&nbsp;→&nbsp;Giants&nbsp;→ Cardinals&nbsp;→&nbsp;Rams&nbsp;→&nbsp;Eagles&nbsp;→&nbsp;Commanders&nbsp;→ Seahawks&nbsp;→&nbsp;Patriots&nbsp;→&nbsp;Bills&nbsp;→&nbsp;Lions&nbsp;→ Vikings&nbsp;→&nbsp;Packers&nbsp;→&nbsp;Bears&nbsp;→&nbsp;Buccaneers&nbsp;→ Cowboys&nbsp;→&nbsp;Texans&nbsp;→&nbsp;Jaguars&nbsp;→&nbsp;Bengals&nbsp;→ Steelers&nbsp;→&nbsp;Falcons&nbsp;→&nbsp;49ers&nbsp;→&nbsp;Broncos&nbsp;→ Chiefs&nbsp;→&nbsp;Raiders&nbsp;→&nbsp;Chargers&nbsp;→&nbsp;Ravens&nbsp;→ Titans</p>
+<details><summary>Game Details</summary><ul>
+<li>the 0-5 Titans beat the 2-3 Colts in week 6, on the road, 26-20</li>
+<li>the 2-7 Colts beat the 1-7 Dolphins in week 10, at home, 24-22</li>
+<li>the 0-5 Dolphins beat the 2-4 Jets in week 7, on the road, 28-25</li>
+<li>the 1-3 Jets beat the 3-1 Browns in week 5, at home, 17-12</li>
+<li>the 1-1 Browns beat the 1-1 Panthers in week 3, at home, 21-18</li>
+<li>the 3-5 Panthers beat the 3-5 Saints in week 10, on the road, 20-17</li>
+<li>the 1-4 Saints beat the 3-1-1 Giants in week 6, on the road, 34-27</li>
+<li>the 2-1 Giants beat the 1-2 Cardinals in week 4, at home, 36-24</li>
+<li>the 1-4 Cardinals beat the 2-3 Rams in week 6, on the road, 18-16</li>
+<li>the 1-2 Rams beat the 2-1 Eagles in week 4, on the road, 24-20</li>
+<li>the 0-0 Eagles beat the 0-0 Commanders in week 1, at home, 24-22</li>
+<li>the 0-2 Commanders beat the 2-0 Seahawks in week 3, at home, 33-31</li>
+<li>the 0-0 Seahawks beat the 0-0 Patriots in week 1, at home, 13-10</li>
+<li>the 1-2 Patriots beat the 3-0 Bills in week 4, on the road, 29-26</li>
+<li>the 1-0 Bills beat the 1-0 Lions in week 2, at home, 41-31</li>
+<li>the 4-2 Lions beat the 6-0 Vikings in week 8, at home, 19-15</li>
+<li>the 0-0 Vikings beat the 0-0 Packers in week 1, at home, 39-22</li>
+<li>the 2-2 Packers beat the 3-1 Bears in week 5, at home, 31-7</li>
+<li>the 6-2 Bears beat the 3-5 Buccaneers in week 9, at home, 27-24</li>
+<li>the 0-4 Buccaneers beat the 2-2 Cowboys in week 5, on the road, 24-16</li>
+<li>the 1-2 Cowboys beat the 0-3 Texans in week 4, on the road, 34-30</li>
+<li>the 1-4 Texans beat the 4-1 Jaguars in week 6, at a neutral site, 34-31</li>
+<li>the 2-1 Jaguars beat the 2-1 Bengals in week 4, on the road, 22-17</li>
+<li>the 6-2 Bengals beat the 6-2 Steelers in week 10, at home, 38-18</li>
+<li>the 0-0 Steelers beat the 0-0 Falcons in week 1, at home, 20-13</li>
+<li>the 2-4 Falcons beat the 6-0 49ers in week 7, at home, 29-20</li>
+<li>the 3-0 49ers beat the 2-1 Broncos in week 4, at home, 24-14</li>
+<li>the 5-2 Broncos beat the 5-1 Chiefs in week 8, at home, 28-24</li>
+<li>the 3-0 Chiefs beat the 3-0 Raiders in week 4, on the road, 30-27</li>
+<li>the 1-0 Raiders beat the 0-1 Chargers in week 2, on the road, 26-14</li>
+<li>the 0-8 Chargers beat the 4-5 Ravens in week 10, on the road, 23-20</li>
+<li>the 2-1 Ravens beat the 0-3 Titans in week 4, at home, 24-18</li>
 
 </ul></details>
 
